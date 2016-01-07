@@ -2,6 +2,9 @@ textmod
 ============
 
 
+[![Project Status: WIP - Initial development is in progress, but there
+has not yet been a stable, usable release suitable for the
+public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip)
 [![Build
 Status](https://travis-ci.org/trinker/textmod.svg?branch=master)](https://travis-ci.org/trinker/textmod)
 [![Coverage
@@ -35,8 +38,6 @@ development version:
 Contact
 =======
 
-You are welcome to:  
-- submit suggestions and bug-reports at:
-<https://github.com/trinker/textmod/issues>  
-- send a pull request on: <https://github.com/trinker/textmod/>  
+You are welcome to:   - submit suggestions and bug-reports at: <https://github.com/trinker/textmod/issues>   - send a pull request on: <https://github.com/trinker/textmod/>  
+
 - compose a friendly e-mail to: <tyler.rinker@gmail.com>
