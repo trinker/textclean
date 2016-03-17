@@ -1,12 +1,15 @@
-Package: textmod
-Title: What the Package Does (one line)
+Package: textclean
+Title: Text Cleaning Tools
 Version: 0.0.1
 Authors@R: c(person("Tyler", "Rinker", email = "tyler.rinker@gmail.com", role = c("aut", "cre")))
 Maintainer: Tyler Rinker <tyler.rinker@gmail.com>
-Description: What the package does (one paragraph)
-Depends: R (>= 3.2.3)
-Suggests: testthat
+Description: Tools to clean and process text.
+Depends:
+    R (>= 3.2.3)
+Suggests:
+    testthat
 Date: 2016-01-06
 License: GPL-2
 LazyData: TRUE
 Roxygen: list(wrap = FALSE)
+RoxygenNote: 5.0.1

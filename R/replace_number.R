@@ -3,7 +3,7 @@
 #' Replaces numeric represented numbers with words (e.g., 1001 becomes one 
 #' thousand one).
 #' 
-#' @param text.var  The text variable.
+#' @param x  The text variable.
 #' @param num.paste logical.  If \code{TRUE} a the elements of larger numbers are 
 #' separated with spaces.  If \code{FALSE} the elements will be joined without 
 #' spaces.
@@ -16,34 +16,25 @@
 #' would turn "21st" into "twenty onest", whereas \code{\link[qdap]{replace_ordinal}}
 #' would generate "twenty first".
 #' @keywords number-to-word
-#' @seealso 
-#' \code{\link[qdap]{bracketX}},
-#' \code{\link[qdap]{qprep}},
-#' \code{\link[qdap]{replace_abbreviation}},
-#' \code{\link[qdap]{replace_contraction}},
-#' \code{\link[qdap]{replace_symbol}},
-#' \code{\link[qdap]{replace_ordinal}}
 #' @export
 #' @examples
-#' \dontrun{
 #' x <- c("I like 346,457 ice cream cones.", "They are 99 percent good")
 #' y <- c("I like 346457 ice cream cones.", "They are 99 percent good")
 #' replace_number(x)
 #' replace_number(y)
 #' replace_number(x, FALSE)
 #' replace_number(x, remove=TRUE)
-#' }
 replace_number  <-
-function(text.var, num.paste = TRUE, remove = FALSE) {
+function(x, num.paste = TRUE, remove = FALSE) {
 
-    if (remove) return(gsub("[0-9]", "", text.var))
+    if (remove) return(gsub("[0-9]", "", x))
 
     ones <- c("zero", "one", "two", "three", "four", "five", "six", "seven", 
         "eight", "nine") 
 
     num.paste <- ifelse(num.paste, "separate", "combine")
  
-    unlist(lapply(lapply(gsub(",([0-9])", "\\1", text.var), function(x) {
+    unlist(lapply(lapply(gsub(",([0-9])", "\\1", x), function(x) {
             if (!is.na(x) & length(unlist(strsplit(x, 
                 "([0-9])", perl = TRUE))) > 1) {
                 num_sub(x, num.paste = num.paste)
@@ -51,7 +42,7 @@ function(text.var, num.paste = TRUE, remove = FALSE) {
                 x
             }
         }
-    ), function(x) mgsub(0:9, ones, x)))
+    ), mgsub, 0:9, ones))
     
 }
 
