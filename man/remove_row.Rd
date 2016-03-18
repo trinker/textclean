@@ -5,7 +5,7 @@
 \alias{remove_row}
 \title{Remove Rows That Contain Markers}
 \usage{
-remove_row(dataframe, search.column, terms, keep.rownames = FALSE, ...)
+remove_row(dataframe, search.column, terms, ...)
 
 remove_empty_row(dataframe)
 }

@@ -3,9 +3,10 @@
 #' This function replaces contractions with long form.
 #' 
 #' @param x  The text variable.
-#' @param contraction A two column hash of contractions (column 1) and expanded 
+#' @param contraction.key A two column hash of contractions (column 1) and expanded 
 #' form replacements (column 2).  Default is to use 
 #' \code{\link[lexicon]{hash_contractions}} data set.
+#' @param ignore.case logical.  Should case be ignored?
 #' @param \dots ignored.
 #' @return Returns a vector with contractions replaced.
 #' @keywords contraction

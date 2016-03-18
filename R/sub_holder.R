@@ -4,8 +4,11 @@
 #' user to manipulate the vector and then revert the place holders back to the 
 #' original values.
 #' 
+#' @param x A character vector.
+#' @param pattern Character string to be matched in the given character vector.
 #' @param alpha.type logical.  If \code{TRUE} alpha (lower case letters) are 
 #' used for the key.  If \code{FALSE} numbers are used as the key.
+#' @param \dots Additional arguments passed to \code{\link[base]{gsub}}.
 #' @return Returns a list with the following:
 #' \item{output}{keyed place holder character vector} 
 #' \item{unhold}{A function used to revert back to the original values}
@@ -48,7 +51,7 @@ sub_holder <- function(x, pattern, alpha.type = TRUE, ...) {
 
 
     FUN <- function(x, ...) {
-        mgsub(x, reps, pattern)
+        mgsub(x, reps, pattern, ...)
     }
 
     out <- list(output = output, unhold = FUN)

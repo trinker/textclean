@@ -25,7 +25,7 @@
 #'    ncol =2, dimnames=list(12:13, colnames(DATA)[c(1, 4)]))))
 #' remove_empty_row(dat)
 #' }
-remove_row <- function (dataframe, search.column, terms, keep.rownames = FALSE, ...) {
+remove_row <- function (dataframe, search.column, terms, ...) {
     
     terms <- paste(terms, collapse="|")
     dataframe <- dataframe[!grepl(terms, dataframe[[search.column]], perl=TRUE, ...), ]

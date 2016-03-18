@@ -1,4 +1,4 @@
 library("testthat")
-library("textmod")
+library("textclean")
 
-test_check("textmod")
+test_check("textclean")

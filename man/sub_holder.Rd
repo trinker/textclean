@@ -7,8 +7,14 @@
 sub_holder(x, pattern, alpha.type = TRUE, ...)
 }
 \arguments{
+\item{x}{A character vector.}
+
+\item{pattern}{Character string to be matched in the given character vector.}
+
 \item{alpha.type}{logical.  If \code{TRUE} alpha (lower case letters) are 
 used for the key.  If \code{FALSE} numbers are used as the key.}
+
+\item{\dots}{Additional arguments passed to \code{\link[base]{gsub}}.}
 }
 \value{
 Returns a list with the following:

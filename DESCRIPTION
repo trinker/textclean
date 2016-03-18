@@ -5,8 +5,8 @@ Authors@R: c(person("Tyler", "Rinker", email = "tyler.rinker@gmail.com", role = 
 Maintainer: Tyler Rinker <tyler.rinker@gmail.com>
 Description: Tools to clean and process text.
 Depends: R (>= 3.2.3)
-Imports: qdapRegex
-Suggests: testthat, lexicon
+Imports: qdapRegex, lexicon
+Suggests: testthat, textshape
 Date: 2016-03-17
 License: GPL-2
 LazyData: TRUE
