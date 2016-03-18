@@ -4,11 +4,10 @@ Version: 0.0.1
 Authors@R: c(person("Tyler", "Rinker", email = "tyler.rinker@gmail.com", role = c("aut", "cre")))
 Maintainer: Tyler Rinker <tyler.rinker@gmail.com>
 Description: Tools to clean and process text.
-Depends:
-    R (>= 3.2.3)
-Suggests:
-    testthat
-Date: 2016-01-06
+Depends: R (>= 3.2.3)
+Imports: qdapRegex
+Suggests: testthat, lexicon
+Date: 2016-03-17
 License: GPL-2
 LazyData: TRUE
 Roxygen: list(wrap = FALSE)

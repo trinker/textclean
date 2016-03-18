@@ -2,14 +2,15 @@
 % Please edit documentation in R/replace_non_ascii.R
 \name{replace_non_ascii}
 \alias{replace_non_ascii}
-\title{Replace Non-ASCII Characters}
+\title{Replace Common Non-ASCII Characters}
 \usage{
-replace_non_ascii(x, replacement = "", ...)
+replace_non_ascii(x, remove.nonconverted = TRUE, ...)
 }
 \arguments{
 \item{x}{The text variable.}
 
-\item{replacement}{A string to replace incomplete punctuation marks with.}
+\item{remove.nonconverted}{logical.  If \code{TRUE} unmapped encodings are
+deleted from the string.}
 
 \item{\dots}{ignored.}
 }
@@ -18,15 +19,19 @@ Returns a text variable (character sting) with non-ascii characters
 replaced.
 }
 \description{
-Replaces non-ascii characters.
+Replaces common non-ascii characters.
 }
 \examples{
-x <- c("Hello World", "6 Ekstr\\xf8m", "J\\xf6reskog", "bi\\xdfchen Z\\xfcrcher")
+x <- c(
+    "Hello World", "6 Ekstr\\xf8m", "J\\xf6reskog", "bi\\xdfchen Z\\xfcrcher",
+    'This is a \\xA9 but not a \\xAE', '6 \\xF7 2 = 3', 'fractions \\xBC, \\xBD, \\xBE',
+    'cows go \\xB5', '30\\xA2'
+)
 Encoding(x) <- "latin1"
 x
 
 replace_non_ascii(x)
-replace_non_ascii(x, replacement="<<FLAG>>")
+replace_non_ascii(x, remove.nonconverted = FALSE)
 }
 \keyword{ascii}
 

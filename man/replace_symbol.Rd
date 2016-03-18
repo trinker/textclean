@@ -4,11 +4,11 @@
 \alias{replace_symbol}
 \title{Replace Symbols With Word Equivalents}
 \usage{
-replace_symbol(text.var, dollar = TRUE, percent = TRUE, pound = TRUE,
+replace_symbol(x, dollar = TRUE, percent = TRUE, pound = TRUE,
   at = TRUE, and = TRUE, with = TRUE)
 }
 \arguments{
-\item{text.var}{The text variable.}
+\item{x}{A character vector.}
 
 \item{dollar}{logical.  If \code{TRUE} replaces dollar sign ($) with 
 \code{"dollar"}.}
@@ -34,19 +34,11 @@ This function replaces symbols with word equivalents (e.g., \code{@} becomes
 \code{"at"}.
 }
 \examples{
-\dontrun{
 x <- c("I am @ Jon's & Jim's w/ Marry", 
     "I owe $41 for food", 
-    "two is 10\% of a #")
+    "two is 10\% of a #"
+)
 replace_symbol(x)
-}
-}
-\seealso{
-\code{\link[qdap]{bracketX}},
-\code{\link[qdap]{qprep}},
-\code{\link[qdap]{replace_abbreviation}},
-\code{\link[qdap]{replace_contraction}},
-\code{\link[qdap]{replace_number}},
 }
 \keyword{symbol-replace}
 

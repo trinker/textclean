@@ -1,81 +1,49 @@
 #' Remove Rows That Contain Markers
 #' 
-#' \code{rm_row} - Remove rows from a data set that contain a given marker/term.
+#' \code{remove_row} - Remove rows from a data set that contain a given marker/term.
 #' 
 #' @param dataframe A dataframe object.
 #' @param search.column Column name to search for markers/terms.
-#' @param terms Terms/markers of the rows that are to be removed from the 
-#' dataframe.  The term/marker must appear at the beginning of the string and is 
-#' case sensitive.
-#' @param contains logical.  If \code{TRUE} \code{rm_row} searches for the terms 
-#' anywhere within the string.  If \code{FALSE} \code{rm_row} searches only the 
-#' beginning of the string.
-#' @param ignore.case logical.  If \code{TRUE} case is ignored during matching, 
-#' if \code{FALSE}the pattern matching is case sensitive.
-#' @param keep.rownames logical.  If \code{TRUE} the original, non-sequential, 
-#' rownames will be used. 
+#' @param terms The regex terms/markers of the rows that are to be removed from 
+#' the dataframe.  
 #' @param \ldots Other arguments passed to \code{\link[base]{grepl}}.
-#' @return \code{rm_row} - returns a dataframe with the termed/markered rows 
+#' @return \code{remove_row} - returns a dataframe with the termed/markered rows 
 #' removed.
-#' @rdname rm_row
+#' @rdname remove_row
 #' @export
 #' @examples
 #' \dontrun{
-#' #rm_row EXAMPLE:
-#' rm_row(DATA, "person", c("sam", "greg"))
-#' rm_row(DATA, 1, c("sam", "greg"))
-#' rm_row(DATA, "state", c("Comp"))
-#' rm_row(DATA, "state", c("I "))
-#' rm_row(DATA, "state", c("you"), contains = TRUE, ignore.case=TRUE)
+#' #remove_row EXAMPLE:
+#' remove_row(DATA, "person", c("sam", "greg"))
+#' remove_row(DATA, 1, c("sam", "greg"))
+#' remove_row(DATA, "state", c("Comp"))
+#' remove_row(DATA, "state", c("I "))
+#' remove_row(DATA, "state", c("you"), ignore.case=TRUE)
 #' 
-#' #rm_empty_row EXAMPLE:
+#' #remove_empty_row EXAMPLE:
 #' (dat <- rbind.data.frame(DATA[, c(1, 4)], matrix(rep(" ", 4), 
 #'    ncol =2, dimnames=list(12:13, colnames(DATA)[c(1, 4)]))))
-#' rm_empty_row(dat)
+#' remove_empty_row(dat)
 #' }
-rm_row <- 
-function (dataframe, search.column, terms, contains = FALSE, ignore.case = FALSE,
-    keep.rownames = FALSE, ...) {
-
-    if (contains) {
-        FUN <- function(dat, sc, term) {
-            dat[!grepl(term, dat[, sc], ignore.case = ignore.case, ...),]
-        }
-    } else {
-        if (!ignore.case) {
-            FUN <- function(dat, sc, term) {
-                dat[substring(dat[, sc], 1, nchar(term)) != term, ]
-            }
-        } else {
-            FUN <- function(dat, sc, term) {
-                dat[tolower(substring(dat[, sc], 1, nchar(term))) != tolower(term), ]
-            }
-        }
-    }
-
-    lapply(terms, function(x) {
-        dataframe <<- FUN(dataframe, search.column, x)
-    })
-
-    if (!keep.rownames) {
-        rownames(dataframe) <- NULL
-    }
+remove_row <- function (dataframe, search.column, terms, keep.rownames = FALSE, ...) {
+    
+    terms <- paste(terms, collapse="|")
+    dataframe <- dataframe[!grepl(terms, dataframe[[search.column]], perl=TRUE, ...), ]
+    rownames(dataframe) <- NULL
+    
     dataframe
 }
 
 
 #' Remove Empty Rows in a Data Frame
 #' 
-#' \code{rm_empty_row} - Removes the empty rows of a data set that are common in 
-#' reading in data (default method in \code{\link[qdap]{read.transcript}}).
+#' \code{remove_empty_row} - Removes the empty rows of a data set that are common in 
+#' reading in data.
 #' 
-#' @return \code{rm_empty_row} - returns a dataframe with empty rows removed.
-#' @rdname rm_row
+#' @return \code{remove_empty_row} - returns a dataframe with empty rows removed.
+#' @rdname remove_row
 #' @export
-rm_empty_row <-
-function(dataframe) {
-    x <- paste2(dataframe, sep="")
-    x <- gsub("\\s+", "", x)
-    ind <- x != ""
-    return(dataframe[ind,  ,drop = FALSE] )
+remove_empty_row <- function(dataframe) {
+    x <- apply(dataframe, 1, function(x) paste(na.omit(x), collapse = ""))
+    return(dataframe[!grepl("^\\s*$", x),  ,drop = FALSE] )
 }

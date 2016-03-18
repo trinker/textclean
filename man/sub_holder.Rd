@@ -2,41 +2,40 @@
 % Please edit documentation in R/sub_holder.R
 \name{sub_holder}
 \alias{sub_holder}
-\title{Multiple gsub}
+\title{Hold the Place of Characters Prior to Subbing}
 \usage{
-sub_holder(pattern, text.var, alpha.type = TRUE, ...)
+sub_holder(x, pattern, alpha.type = TRUE, ...)
 }
 \arguments{
 \item{alpha.type}{logical.  If \code{TRUE} alpha (lower case letters) are 
 used for the key.  If \code{FALSE} numbers are used as the key.}
 }
 \value{
-\code{sub_holder} - Returns a list with the following:
+Returns a list with the following:
 \item{output}{keyed place holder character vector} 
 \item{unhold}{A function used to revert back to the original values}
 }
 \description{
-\code{sub_holder} - This function holds the place for particular character 
-values, allowing the user to manipulate the vector and then revert the place
-holders back to the original values.
+This function holds the place for particular character values, allowing the 
+user to manipulate the vector and then revert the place holders back to the 
+original values.
 }
 \note{
 The \code{unhold} function for \code{sub_holder} will only work on keys
 that have not been disturbed by subsequent alterations.  The key follows the 
-pattern of `qdapplaceholder` followed by lower case letter keys followed by
-`qdap`.
+pattern of `zzzplaceholder` followed by lower case letter keys followed by
+`zzz`.
 }
 \examples{
 ## `alpha.type` as TRUE
-(fake_dat <- paste(emoticon[1:11,2], DATA$state))
-(m <- sub_holder(emoticon[,2], fake_dat))
+library(lexicon); library(textshape)
+(fake_dat <- paste(key_emoticons[1:11, 1], DATA$state))
+(m <- sub_holder(fake_dat, key_emoticons[[1]]))
 m$unhold(strip(m$output))
-# With Stemming
-m$unhold(stemmer(strip(m$output), capitalize = FALSE))
 
 ## `alpha.type` as FALSE (numeric keys)
 vowels <- LETTERS[c(1, 5, 9, 15, 21)]
-(m2 <- sub_holder(vowels, toupper(DATA$state), alpha.type = FALSE))
+(m2 <- sub_holder(toupper(DATA$state), vowels, alpha.type = FALSE))
 m2$unhold(gsub("[^0-9]", "", m2$output))
 mtabulate(strsplit(m2$unhold(gsub("[^0-9]", "", m2$output)), ""))
 }
