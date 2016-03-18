@@ -12,7 +12,7 @@ Status](https://coveralls.io/repos/trinker/textclean/badge.svg?branch=master)](h
 <a href="https://img.shields.io/badge/Version-0.0.1-orange.svg"><img src="https://img.shields.io/badge/Version-0.0.1-orange.svg" alt="Version"/></a>
 </p>
 
-<img src="inst/textclean_logo/r_textclean.png" width="200" alt="textclean Logo">
+<img src="inst/textclean_logo/r_textclean2.png" width="200" alt="textclean Logo">
 
 **textclean** is a collection of tools to clean and process text.
 
