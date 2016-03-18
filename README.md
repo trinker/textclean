@@ -5,9 +5,6 @@ textclean   [![Follow](https://img.shields.io/twitter/follow/tylerrinker.svg?sty
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active)
-[![Project Status: WIP - Initial development is in progress, but there
-has not yet been a stable, usable release suitable for the
-public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip)
 [![Build
 Status](https://travis-ci.org/trinker/textclean.svg?branch=master)](https://travis-ci.org/trinker/textclean)
 [![Coverage
@@ -112,7 +109,7 @@ the development version:
 Contact
 =======
 
-You are welcome to:   
-- submit suggestions and bug-reports at: <https://github.com/trinker/textclean/issues>   
-- send a pull request on: <https://github.com/trinker/textclean/>  
-- compose a friendly e-mail to: <tyler.rinker@gmail.com>
+You are welcome to:    
+- submit suggestions and bug-reports at: <https://github.com/trinker/textclean/issues>    
+- send a pull request on: <https://github.com/trinker/textclean/>    
+- compose a friendly e-mail to: <tyler.rinker@gmail.com>    
