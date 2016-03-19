@@ -3,7 +3,7 @@
 #' \code{filter_row} - Remove rows from a data set that contain a given marker/term.
 #' 
 #' @param dataframe A dataframe object.
-#' @param search.column Column name to search for markers/terms.
+#' @param column Column name to search for markers/terms.
 #' @param terms The regex terms/markers of the rows that are to be removed from 
 #' the dataframe.  
 #' @param \ldots Other arguments passed to \code{\link[base]{grepl}}.
@@ -25,10 +25,10 @@
 #'    ncol =2, dimnames=list(12:13, colnames(DATA)[c(1, 4)]))))
 #' filter_empty_row(dat)
 #' }
-filter_row <- function (dataframe, search.column, terms, ...) {
+filter_row <- function (dataframe, column, terms, ...) {
     
     terms <- paste(terms, collapse="|")
-    dataframe <- dataframe[!grepl(terms, dataframe[[search.column]], perl=TRUE, ...), ]
+    dataframe <- dataframe[!grepl(terms, dataframe[[column]], perl=TRUE, ...), ]
     rownames(dataframe) <- NULL
     
     dataframe

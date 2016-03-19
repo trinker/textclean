@@ -38,12 +38,14 @@ The main functions, task category, & descriptions are summarized in the table be
 | `filter_empty_row`        | filter rows | Remove empty rows                     |
 | `filter_row`              | filter rows | Remove rows matching a reqex          |
 | `replace_contractions`    | replacement | Replace contractions with both words  |
-| `replace_incomplete`      | replacement | Replace incomplete sentence endmarks  |
+| `replace_incomplete`      | replacement | Replace incomplete sentence end-marks  |
 | `replace_non_ascii`       | replacement | Replace non-ascii with equivalent or remove   |
 | `replace_number`          | replacement | Replace common numbers                |
 | `replace_symbol`          | replacement | Replace common symbols                |
 | `replace_white`           | replacement | Replace regex white space characters  |
-| `has_endmark`             | check       | Check if an element has an endmark    | 
+| `check_text`              | check       | Text report of potential issues       | 
+| `check_spelling`          | check       | Check text spelling                   | 
+| `has_endmark`             | check       | Check if an element has an end-mark    | 
 
 # Installation
 
@@ -53,7 +55,10 @@ Download the [zip ball](https://github.com/trinker/textclean/zipball/master) or 
 
 ```r
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load_gh("trinker/textclean")
+pacman::p_load_gh(
+    "trinker/lexicon",    
+    "trinker/textclean"
+)
 ```
 
 # Contact
@@ -62,3 +67,177 @@ You are welcome to:
 - submit suggestions and bug-reports at: <https://github.com/trinker/textclean/issues>    
 - send a pull request on: <https://github.com/trinker/textclean/>    
 - compose a friendly e-mail to: <tyler.rinker@gmail.com>    
+
+
+# Demonstration
+
+## Load the Packages/Data
+
+```{r, message=FALSE}
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(dplyr)
+pacman::p_load_gh("trinker/textclean", "trinker/textshape")
+```
+
+## Check Text
+
+### Report
+
+*Under Construction*
+
+### Spelling
+
+*Under Construction*
+
+
+
+## Row Filtering
+
+It is useful to filter/remove empty rows or unwanted rows (for example the researcher dialogue from a transcript).  The `filter_empty_row` & `filter_row` do empty row do just this.  First I'll demo the removal of empty rows.
+
+
+```{r}
+## create a data set wit empty rows
+(dat <- rbind.data.frame(DATA[, c(1, 4)], matrix(rep(" ", 4), 
+    ncol =2, dimnames=list(12:13, colnames(DATA)[c(1, 4)]))))
+
+filter_empty_row(dat)
+```
+
+Next we filter out rows.  The `filter_row` function takes a data set, a column (named or numeric position) and regex terms to search for.  The `terms` argument takes regex(es) allowing for partial matching.  `terms` is case sensitive  but can be changed via the `ignore.case` argument.
+
+```{r}
+filter_row(dataframe = DATA, column = "person", terms = c("sam", "greg"))
+filter_row(DATA, 1, c("sam", "greg"))
+filter_row(DATA, "state", c("Comp"))
+filter_row(DATA, "state", c("I "))
+filter_row(DATA, "state", c("you"), ignore.case = TRUE)
+```
+
+## Stripping
+
+Often it is useful to remove all non relevant symbols and case from a text (letters, spaces, and apostrophes are retained).  The `strip` function accomplishes this.  The `char.keep` argument allows the user to retain characters.
+
+
+```{r}
+strip(DATA$state)
+strip(DATA$state, apostrophe.remove = TRUE)
+strip(DATA$state, char.keep = c("?", "."))
+```
+
+
+## Subbing
+
+### Multiple Subs
+
+`gsub` is a great tool but often the user wants to replace a vector of elements with another vector.  `mgsub` allows for a vector of patterns and replacements.  Note that the first argument of `mgsub` is the data, not the `pattern` as is standard with base R's `gsub`.  This allows `mgsub` to be used in a **magrittr** pipeline more easily.  Also note that by default `fixed = TRUE`.  This means the search `pattern` is not a regex per-se.  This makes the replacement much faster when a regex search is not needed.  `mgsub` also reorders the patterns to ensure patterns contained within patterns don't over write the longer pattern.  For example if the pattern `c('i', 'it')` is given the longer `'it'` is replaced first (though `order.pattern = FALSE` can be used to negate this feature).
+
+```{r}
+mgsub(DATA$state, c("it's", "I'm"), c("<<it is>>", "<<I am>>"))
+mgsub(DATA$state, "[[:punct:]]", "<<PUNCT>>", fixed = FALSE)
+mgsub(DATA$state, c("i", "it"), c("<<I>>", "[[IT]]"))
+mgsub(DATA$state, c("i", "it"), c("<<I>>", "[[IT]]"), order.pattern = FALSE)
+```
+
+### Stashing Character Pre-Sub
+
+There are times the user may want to stash a set of characters before subbing out and then return the stashed characters.  An example of this is when a researcher wants to remove punctuation but not emoticons.  The `subholder` provides tools to stash the emoticons, allow a punctuation, and then return the emoticons.  First I'll create some fake text data with emoticons, then stash the emoticons (using a unique text key to hold their place), then I'll strip out the punctuation, and last put the stashed emoticons back.
+
+
+```{r}
+(fake_dat <- paste(key_emoticons[1:11, 1, with=FALSE][[1]], DATA$state))
+(m <- sub_holder(fake_dat, key_emoticons[[1]]))
+(m_stripped <-strip(m$output))
+m$unhold(m_stripped)
+```
+
+
+## Replacement
+
+**textclean** contains tools to replace substrings within text with other substrings that may be easier to analyze.  This section outlines the uses of these tools.  
+
+### Contractions
+
+Some analysis techniques require contractions to be replaced with their multi-word forms (e.g., "I'll" -> "I will").  `replace_contrction` provides this functionality.
+
+```{r}
+x <- c("Mr. Jones isn't going.",  
+    "Check it out what's going on.",
+    "He's here but didn't go.",
+    "the robot at t.s. wasn't nice", 
+    "he'd like it if i'd go away")
+
+replace_contraction(x)
+```
+
+### Incomplete Sentences
+
+Sometimes an incomplete sentence is denoted with multiple end marks or no punctuation at all.  `replace_incomplete` standardizes these sentences with a pipe (`|`) endmark (or one of the users choice).
+
+```{r}
+x <- c("the...",  "I.?", "you.", "threw..", "we?")
+replace_incomplete(x)
+replace_incomplete(x, '...')
+```
+
+### Non-ASCII Characters
+
+R can choke on non-ASCII characters.  They can be re-encoded but the new encoding may lack iterpretablity (e.g., &cent; may be converted to `\xA2` which is not easily understood or likely to be matched in a hash look up).  `replace_non_ascii` attempts to replace common non-ASCII characters with a text representation (e.g., &cent; becomes "cent")  Non recognized non-ASCII characters are simply removed (unless `remove.nonconverted = FALSE`).
+
+
+```{r}
+x <- c(
+    "Hello World", "6 Ekstr\xf8m", "J\xf6reskog", "bi\xdfchen Z\xfcrcher",
+    'This is a \xA9 but not a \xAE', '6 \xF7 2 = 3', 'fractions \xBC, \xBD, \xBE',
+    'cows go \xB5', '30\xA2'
+)
+Encoding(x) <- "latin1"
+x
+
+replace_non_ascii(x)
+replace_non_ascii(x, remove.nonconverted = FALSE)
+```
+
+### Numbers
+
+Some analysis requires numbers to be converted to text form.  `replace_number` attempts to perform this task.  `replace_number` handles comma separated numbers as well.
+
+```{r}
+x <- c("I like 346,457 ice cream cones.", "They are 99 percent good")
+y <- c("I like 346457 ice cream cones.", "They are 99 percent good")
+replace_number(x)
+replace_number(y)
+replace_number(x, num.paste = TRUE)
+replace_number(x, remove=TRUE)
+```
+
+### Symbols
+
+Text often contains short-hand representations of words/phrases.  These symbols may contain analyzable information but in the symbolic form they cannot be parsed.  The `replace_symbol` function attempts to replace the symbols `c("$", "%", "#", "@", "& "w/")` with their word equivalents.
+
+``{r}
+x <- c("I am @ Jon's & Jim's w/ Marry", 
+    "I owe $41 for food", 
+    "two is 10% of a #"
+)
+replace_symbol(x)
+```
+
+### White Space
+
+Regex white space characters (e.g., `\n`, `\t`, `\r`) matched by `\s` may impede analysis.  These can be replaced with a single space `" "` via the `replace_white` function.
+
+```{r}
+x <- "I go \r
+    to   the \tnext line"
+x
+cat(x)
+replace_white(x)
+```
+
+
+
+
+
+
+

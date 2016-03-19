@@ -43,7 +43,6 @@ of search terms and a vector or single value of replacements.
 }
 \examples{
 mgsub(DATA$state, c("it's", "I'm"), c("it is", "I am"))
-mgsub(DATA$state, c("it's", "I'm"), c("it is", "I am"))
 mgsub(DATA$state, "[[:punct:]]", "PUNC", fixed = FALSE)
 }
 \seealso{

@@ -5,14 +5,14 @@
 \alias{filter_row}
 \title{Remove Rows That Contain Markers}
 \usage{
-filter_row(dataframe, search.column, terms, ...)
+filter_row(dataframe, column, terms, ...)
 
 filter_empty_row(dataframe)
 }
 \arguments{
 \item{dataframe}{A dataframe object.}
 
-\item{search.column}{Column name to search for markers/terms.}
+\item{column}{Column name to search for markers/terms.}
 
 \item{terms}{The regex terms/markers of the rows that are to be removed from 
 the dataframe.}

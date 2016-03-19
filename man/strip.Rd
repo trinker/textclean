@@ -8,11 +8,11 @@
 \alias{strip.list}
 \title{Strip Text}
 \usage{
-strip(x, char.keep = "~~", digit.remove = TRUE, apostrophe.remove = TRUE,
+strip(x, char.keep = "~~", digit.remove = TRUE, apostrophe.remove = FALSE,
   lower.case = TRUE)
 
 \method{strip}{character}(x, char.keep = "~~", digit.remove = TRUE,
-  apostrophe.remove = TRUE, lower.case = TRUE)
+  apostrophe.remove = FALSE, lower.case = TRUE)
 
 \method{strip}{factor}(x, char.keep = "~~", digit.remove = TRUE,
   apostrophe.remove = TRUE, lower.case = TRUE)
@@ -59,7 +59,7 @@ Strip text of unwanted characters.
 \dontrun{
 DATA$state #no strip applied
 strip(DATA$state)
-strip(DATA$state, apostrophe.remove=FALSE)
+strip(DATA$state, apostrophe.remove=TRUE)
 strip(DATA$state, char.keep = c("?", "."))
 }
 }

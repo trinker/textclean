@@ -21,10 +21,10 @@
 #' \dontrun{
 #' DATA$state #no strip applied
 #' strip(DATA$state)
-#' strip(DATA$state, apostrophe.remove=FALSE)
+#' strip(DATA$state, apostrophe.remove=TRUE)
 #' strip(DATA$state, char.keep = c("?", "."))
 #' }
-strip <- function(x, char.keep = "~~", digit.remove = TRUE, apostrophe.remove = TRUE,
+strip <- function(x, char.keep = "~~", digit.remove = TRUE, apostrophe.remove = FALSE,
     lower.case = TRUE){
 
     UseMethod("strip")
@@ -34,7 +34,7 @@ strip <- function(x, char.keep = "~~", digit.remove = TRUE, apostrophe.remove = 
 #' @rdname strip
 #' @export
 #' @method strip character
-strip.character <- function(x, char.keep = "~~", digit.remove = TRUE, apostrophe.remove = TRUE,
+strip.character <- function(x, char.keep = "~~", digit.remove = TRUE, apostrophe.remove = FALSE,
     lower.case = TRUE){
 
     x <- gsub(paste0(ifelse(digit.remove, "[0-9]|", ""), "\\\\r|\\\\n|\\n|\\\\t"), " ", x)

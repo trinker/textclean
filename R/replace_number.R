@@ -4,8 +4,8 @@
 #' thousand one).
 #' 
 #' @param x  The text variable.
-#' @param num.paste logical.  If \code{TRUE} a the elements of larger numbers are 
-#' separated with spaces.  If \code{FALSE} the elements will be joined without 
+#' @param num.paste logical.  If \code{FALSE} the elements of larger numbers are 
+#' separated with spaces.  If \code{TRUE} the elements will be joined without 
 #' spaces.
 #' @param remove logical.  If \code{TRUE} numbers are removed from the text.
 #' @return Returns a vector with abbreviations replaced.
@@ -22,17 +22,17 @@
 #' y <- c("I like 346457 ice cream cones.", "They are 99 percent good")
 #' replace_number(x)
 #' replace_number(y)
-#' replace_number(x, FALSE)
+#' replace_number(x, num.paste = TRUE)
 #' replace_number(x, remove=TRUE)
 replace_number  <-
-function(x, num.paste = TRUE, remove = FALSE) {
+function(x, num.paste = FALSE, remove = FALSE) {
 
     if (remove) return(gsub("[0-9]", "", x))
 
     ones <- c("zero", "one", "two", "three", "four", "five", "six", "seven", 
         "eight", "nine") 
 
-    num.paste <- ifelse(num.paste, "separate", "combine")
+    num.paste <- ifelse(num.paste, "combine", "separate")
  
     unlist(lapply(lapply(gsub(",([0-9])", "\\1", x), function(x) {
             if (!is.na(x) & length(unlist(strsplit(x, 

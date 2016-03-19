@@ -12,7 +12,7 @@
 #' \code{"number"}.
 #' @param at logical.  If \code{TRUE} replaces at sign (@@) with \code{"at"}.
 #' @param and logical.  If \code{TRUE} replaces and sign (&) with \code{"and"}.
-#' @param with  logical.  If \code{TRUE} replaces with sign (w/) with 
+#' @param with logical.  If \code{TRUE} replaces with sign (w/) with 
 #' \code{"with"}.
 #' @return Returns a character vector with symbols replaced..
 #' @keywords symbol-replace

@@ -4,13 +4,13 @@
 \alias{replace_number}
 \title{Replace Numbers With Text Representation}
 \usage{
-replace_number(x, num.paste = TRUE, remove = FALSE)
+replace_number(x, num.paste = FALSE, remove = FALSE)
 }
 \arguments{
 \item{x}{The text variable.}
 
-\item{num.paste}{logical.  If \code{TRUE} a the elements of larger numbers are 
-separated with spaces.  If \code{FALSE} the elements will be joined without 
+\item{num.paste}{logical.  If \code{FALSE} the elements of larger numbers are 
+separated with spaces.  If \code{TRUE} the elements will be joined without 
 spaces.}
 
 \item{remove}{logical.  If \code{TRUE} numbers are removed from the text.}
@@ -33,7 +33,7 @@ x <- c("I like 346,457 ice cream cones.", "They are 99 percent good")
 y <- c("I like 346457 ice cream cones.", "They are 99 percent good")
 replace_number(x)
 replace_number(y)
-replace_number(x, FALSE)
+replace_number(x, num.paste = TRUE)
 replace_number(x, remove=TRUE)
 }
 \references{

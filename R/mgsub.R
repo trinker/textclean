@@ -25,7 +25,6 @@
 #' @export
 #' @examples
 #' mgsub(DATA$state, c("it's", "I'm"), c("it is", "I am"))
-#' mgsub(DATA$state, c("it's", "I'm"), c("it is", "I am"))
 #' mgsub(DATA$state, "[[:punct:]]", "PUNC", fixed = FALSE)
 mgsub <-
 function (x, pattern, replacement, leadspace = FALSE, 
