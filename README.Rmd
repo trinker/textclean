@@ -44,7 +44,6 @@ The main functions, task category, & descriptions are summarized in the table be
 | `replace_symbol`          | replacement | Replace common symbols                |
 | `replace_white`           | replacement | Replace regex white space characters  |
 | `check_text`              | check       | Text report of potential issues       | 
-| `check_spelling`          | check       | Check text spelling                   | 
 | `has_endmark`             | check       | Check if an element has an end-mark    | 
 
 # Installation
@@ -80,12 +79,6 @@ pacman::p_load_gh("trinker/textclean", "trinker/textshape")
 ```
 
 ## Check Text
-
-### Report
-
-*Under Construction*
-
-### Spelling
 
 *Under Construction*
 

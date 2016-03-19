@@ -27,8 +27,6 @@ Table of Contents
 -   [Demonstration](#demonstration)
     -   [Load the Packages/Data](#load-the-packagesdata)
     -   [Check Text](#check-text)
-        -   [Report](#report)
-        -   [Spelling](#spelling)
     -   [Row Filtering](#row-filtering)
     -   [Stripping](#stripping)
     -   [Subbing](#subbing)
@@ -119,11 +117,6 @@ table below:
 <td align="left">Text report of potential issues</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>check_spelling</code></td>
-<td align="left">check</td>
-<td align="left">Check text spelling</td>
-</tr>
-<tr class="even">
 <td align="left"><code>has_endmark</code></td>
 <td align="left">check</td>
 <td align="left">Check if an element has an end-mark</td>
@@ -167,12 +160,6 @@ Load the Packages/Data
 
 Check Text
 ----------
-
-### Report
-
-*Under Construction*
-
-### Spelling
 
 *Under Construction*
 
