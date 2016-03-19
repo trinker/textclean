@@ -36,7 +36,7 @@ The main functions, task category, & descriptions are summarized in the table be
 | `sub_holder`              | subbing     | Hold a value prior to a `strip`       |
 | `strip`                   | deletion    | Remove all non word characters        |
 | `replace_contractions`    | replacement | Replace contractions with both words  |
-| `replace_incomplete`      | replacement | Repalce incomplete sentence endmarks  |
+| `replace_incomplete`      | replacement | Replace incomplete sentence endmarks  |
 | `replace_non_ascii`       | replacement | Replace non-ascii with equivalent or remove   |
 | `replace_number`          | replacement | Replace common numbers                |
 | `replace_symbol`          | replacement | Replace common symbols                |

@@ -63,7 +63,7 @@ table below:
 <tr class="odd">
 <td align="left"><code>replace_incomplete</code></td>
 <td align="left">replacement</td>
-<td align="left">Repalce incomplete sentence endmarks</td>
+<td align="left">Replace incomplete sentence endmarks</td>
 </tr>
 <tr class="even">
 <td align="left"><code>replace_non_ascii</code></td>
