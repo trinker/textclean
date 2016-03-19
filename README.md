@@ -9,12 +9,13 @@ developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repos
 Status](https://travis-ci.org/trinker/textclean.svg?branch=master)](https://travis-ci.org/trinker/textclean)
 [![Coverage
 Status](https://coveralls.io/repos/trinker/textclean/badge.svg?branch=master)](https://coveralls.io/r/trinker/textclean?branch=master)
-<a href="https://img.shields.io/badge/Version-0.0.1-orange.svg"><img src="https://img.shields.io/badge/Version-0.0.1-orange.svg" alt="Version"/></a>
+<a href="https://img.shields.io/badge/Version-0.1.0-orange.svg"><img src="https://img.shields.io/badge/Version-0.1.0-orange.svg" alt="Version"/></a>
 </p>
-
 <img src="inst/textclean_logo/r_textclean2.png" width="200" alt="textclean Logo">
 
-**textclean** is a collection of tools to clean and process text.
+**textclean** is a collection of tools to clean and process text. Many
+of these tools have been taken from the **qdap** package and revamped to
+be more intuitive, better named, and faster.
 
 
 Table of Contents
@@ -54,6 +55,16 @@ table below:
 <td align="left"><code>strip</code></td>
 <td align="left">deletion</td>
 <td align="left">Remove all non word characters</td>
+</tr>
+<tr class="even">
+<td align="left"><code>filter_empty_row</code></td>
+<td align="left">filter rows</td>
+<td align="left">Remove empty rows</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>filter_row</code></td>
+<td align="left">filter rows</td>
+<td align="left">Remove rows matching a reqex</td>
 </tr>
 <tr class="even">
 <td align="left"><code>replace_contractions</code></td>

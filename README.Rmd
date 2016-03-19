@@ -23,7 +23,7 @@ developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repos
 
 <img src="inst/textclean_logo/r_textclean2.png" width="200" alt="textclean Logo">
 
-**textclean** is a collection of tools to clean and process text.
+**textclean** is a collection of tools to clean and process text.  Many of these tools have been taken from the **qdap** package and revamped to be more intuitive, better named, and faster.
 
 # Functions
 
@@ -35,6 +35,8 @@ The main functions, task category, & descriptions are summarized in the table be
 | `mgsub`                   | subbing     | Multiple `gsub`                       |
 | `sub_holder`              | subbing     | Hold a value prior to a `strip`       |
 | `strip`                   | deletion    | Remove all non word characters        |
+| `filter_empty_row`        | filter rows | Remove empty rows                     |
+| `filter_row`              | filter rows | Remove rows matching a reqex          |
 | `replace_contractions`    | replacement | Replace contractions with both words  |
 | `replace_incomplete`      | replacement | Replace incomplete sentence endmarks  |
 | `replace_non_ascii`       | replacement | Replace non-ascii with equivalent or remove   |
