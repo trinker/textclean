@@ -36,7 +36,8 @@ The main functions, task category, & descriptions are summarized in the table be
 | `sub_holder`              | subbing     | Hold a value prior to a `strip`       |
 | `strip`                   | deletion    | Remove all non word characters        |
 | `filter_empty_row`        | filter rows | Remove empty rows                     |
-| `filter_row`              | filter rows | Remove rows matching a reqex          |
+| `filter_row`              | filter rows | Remove rows matching a regex          |
+| `filter_NA`               | filter rows | Remove `NA` text rows                 |
 | `replace_contractions`    | replacement | Replace contractions with both words  |
 | `replace_incomplete`      | replacement | Replace incomplete sentence end-marks  |
 | `replace_non_ascii`       | replacement | Replace non-ascii with equivalent or remove   |

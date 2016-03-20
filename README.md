@@ -79,49 +79,54 @@ table below:
 <tr class="odd">
 <td align="left"><code>filter_row</code></td>
 <td align="left">filter rows</td>
-<td align="left">Remove rows matching a reqex</td>
+<td align="left">Remove rows matching a regex</td>
 </tr>
 <tr class="even">
+<td align="left"><code>filter_NA</code></td>
+<td align="left">filter rows</td>
+<td align="left">Remove <code>NA</code> text rows</td>
+</tr>
+<tr class="odd">
 <td align="left"><code>replace_contractions</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace contractions with both words</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>replace_incomplete</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace incomplete sentence end-marks</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>replace_non_ascii</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace non-ascii with equivalent or remove</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>replace_number</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace common numbers</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>replace_symbol</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace common symbols</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>replace_white</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace regex white space characters</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>add_comma_space</code></td>
 <td align="left">repalcement</td>
 <td align="left">Replace non-space after comma</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>check_text</code></td>
 <td align="left">check</td>
 <td align="left">Text report of potential issues</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>has_endmark</code></td>
 <td align="left">check</td>
 <td align="left">Check if an element has an end-mark</td>
@@ -381,7 +386,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are breathtaking! 
+    ## You are marvelous! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
