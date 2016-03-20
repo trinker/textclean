@@ -381,7 +381,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are remarkable! 
+    ## You are breathtaking! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -795,8 +795,15 @@ symbols may contain analyzable information but in the symbolic form they
 cannot be parsed. The `replace_symbol` function attempts to replace the
 symbols `c("$", "%", "#", "@", "& "w/")` with their word equivalents.
 
-\`\`{r} x &lt;- c("I am @ Jon's & Jim's w/ Marry", "I owe $41 for food",
-"two is 10% of a \#" ) replace\_symbol(x) \`\`\`
+    x <- c("I am @ Jon's & Jim's w/ Marry", 
+        "I owe $41 for food", 
+        "two is 10% of a #"
+    )
+    replace_symbol(x)
+
+    ## [1] "I am at Jon's and Jim's with Marry"
+    ## [2] "I owe dollar 41 for food"          
+    ## [3] "two is 10 percent of a number"
 
 ### White Space
 
