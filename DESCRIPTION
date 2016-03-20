@@ -6,8 +6,8 @@ Authors@R: c(person("Tyler", "Rinker", email =
 Maintainer: Tyler Rinker <tyler.rinker@gmail.com>
 Description: Tools to clean and process text.
 Depends: R (>= 3.2.3)
-Imports: qdapRegex, lexicon, hunspell
-Suggests: testthat, textshape
+Imports: qdapRegex, hunspell, stringi
+Suggests: testthat, textshape, lexicon
 Date: 2016-03-20
 License: GPL-2
 LazyData: TRUE
