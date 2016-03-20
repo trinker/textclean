@@ -42,6 +42,7 @@ The main functions, task category, & descriptions are summarized in the table be
 | `replace_incomplete`      | replacement | Replace incomplete sentence end-marks  |
 | `replace_non_ascii`       | replacement | Replace non-ascii with equivalent or remove   |
 | `replace_number`          | replacement | Replace common numbers                |
+| `replace_ordinal`         | replacement | Replace common ordinal number form    |
 | `replace_symbol`          | replacement | Replace common symbols                |
 | `replace_white`           | replacement | Replace regex white space characters  |
 | `add_comma_space`         | repalcement | Replace non-space after comma         |
@@ -233,6 +234,24 @@ replace_number(y)
 replace_number(x, num.paste = TRUE)
 replace_number(x, remove=TRUE)
 ```
+
+### Ordinal Numbers
+
+Afain, some analysis requires numbers, including ordinal numbers, to be converted to text form.  `replace_ordinal` attempts to perform this task for ordinal number 1-100 (i.e., 1st - 100th).  
+
+
+```{r}
+x <- c(
+    "I like the 1st one not the 22nd one.", 
+    "For the 100th time stop those 3 things!",
+    "I like the 3rd 1 not the 12th 1."
+)
+replace_ordinal(x)
+replace_ordinal(x, TRUE)
+replace_ordinal(x, remove = TRUE)
+replace_number(replace_ordinal(x))
+```
+
 
 ### Symbols
 

@@ -23,9 +23,9 @@ Replaces numeric represented numbers with words (e.g., 1001 becomes one
 thousand one).
 }
 \note{
-The user may want to use \code{\link[qdap]{replace_ordinal}} first to 
-remove ordinal number notation.  For example \code{\link[qdap]{replace_number}}
-would turn "21st" into "twenty onest", whereas \code{\link[qdap]{replace_ordinal}}
+The user may want to use \code{\link[cleantext]{replace_ordinal}} first to 
+remove ordinal number notation.  For example \code{\link[cleantext]{replace_number}}
+would turn "21st" into "twenty onest", whereas \code{\link[cleantext]{replace_ordinal}}
 would generate "twenty first".
 }
 \examples{

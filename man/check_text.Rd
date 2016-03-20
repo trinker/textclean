@@ -53,9 +53,6 @@ print(check_text(x), include.text=FALSE)
 y <- c("A valid sentence.", "yet another!")
 check_text(y)
 }
-\seealso{
-\code{\link[qdap]{check_spelling_interactive}}
-}
 \keyword{check}
 \keyword{spelling}
 \keyword{text}

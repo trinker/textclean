@@ -9,7 +9,7 @@ developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repos
 Status](https://travis-ci.org/trinker/textclean.svg?branch=master)](https://travis-ci.org/trinker/textclean)
 [![Coverage
 Status](https://coveralls.io/repos/trinker/textclean/badge.svg?branch=master)](https://coveralls.io/r/trinker/textclean?branch=master)
-<a href="https://img.shields.io/badge/Version-0.1.0-orange.svg"><img src="https://img.shields.io/badge/Version-0.1.0-orange.svg" alt="Version"/></a>
+<a href="https://img.shields.io/badge/Version-0.1.1-orange.svg"><img src="https://img.shields.io/badge/Version-0.1.1-orange.svg" alt="Version"/></a>
 </p>
 <img src="inst/textclean_logo/r_textclean2.png" width="200" alt="textclean Logo">
 
@@ -37,6 +37,7 @@ Table of Contents
         -   [Incomplete Sentences](#incomplete-sentences)
         -   [Non-ASCII Characters](#non-ascii-characters)
         -   [Numbers](#numbers)
+        -   [Ordinal Numbers](#ordinal-numbers)
         -   [Symbols](#symbols)
         -   [White Space](#white-space)
 
@@ -107,26 +108,31 @@ table below:
 <td align="left">Replace common numbers</td>
 </tr>
 <tr class="odd">
+<td align="left"><code>replace_ordinal</code></td>
+<td align="left">replacement</td>
+<td align="left">Replace common ordinal number form</td>
+</tr>
+<tr class="even">
 <td align="left"><code>replace_symbol</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace common symbols</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>replace_white</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace regex white space characters</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>add_comma_space</code></td>
 <td align="left">repalcement</td>
 <td align="left">Replace non-space after comma</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>check_text</code></td>
 <td align="left">check</td>
 <td align="left">Text report of potential issues</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>has_endmark</code></td>
 <td align="left">check</td>
 <td align="left">Check if an element has an end-mark</td>
@@ -386,7 +392,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are phenomenal! 
+    ## You are prodigious! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -792,6 +798,40 @@ comma separated numbers as well.
     replace_number(x, remove=TRUE)
 
     ## [1] "I like , ice cream cones." "They are  percent good"
+
+### Ordinal Numbers
+
+Afain, some analysis requires numbers, including ordinal numbers, to be
+converted to text form. `replace_ordinal` attempts to perform this task
+for ordinal number 1-100 (i.e., 1st - 100th).
+
+    x <- c(
+        "I like the 1st one not the 22nd one.", 
+        "For the 100th time stop those 3 things!",
+        "I like the 3rd 1 not the 12th 1."
+    )
+    replace_ordinal(x)
+
+    ## [1] "I like the first one not the twenty second one."
+    ## [2] "For the hundredth time stop those 3 things!"    
+    ## [3] "I like the third 1 not the twelfth 1."
+
+    replace_ordinal(x, TRUE)
+
+    ## [1] "I like the first one not the twentysecond one."
+    ## [2] "For the hundredth time stop those 3 things!"   
+    ## [3] "I like the third 1 not the twelfth 1."
+
+    replace_ordinal(x, remove = TRUE)
+
+    ## [1] "I like the one not the one."       "For the time stop those 3 things!"
+    ## [3] "I like the 1 not the 1."
+
+    replace_number(replace_ordinal(x))
+
+    ## [1] "I like the first one not the twenty second one."
+    ## [2] "For the hundredth time stop those three things!"
+    ## [3] "I like the third one not the twelfth one."
 
 ### Symbols
 

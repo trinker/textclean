@@ -17,7 +17,7 @@ And constructed with the following guidelines:
 * Bug fixes and misc changes bumps the patch
 
 
-textmod 0.1.0
+textmod 0.1.0 -
 ----------------------------------------------------------------
 
 BUG FIXES
@@ -25,6 +25,9 @@ BUG FIXES
 NEW FEATURES
 
 * `check_text` added to report on potential problems in a text vector.
+
+* `replace_ordinal` added to replace ordinal numbers (e.g., 1st) with word 
+  representation (e.g., first).
 
 MINOR FEATURES
 

@@ -31,7 +31,6 @@
 #' to fix the text.
 #' @keywords check text spelling
 #' @export
-#' @seealso \code{\link[qdap]{check_spelling_interactive}}
 #' @examples
 #' x <- c("i like", "i want. thet them ther .", "I am ! that|", "", NA, 
 #'     "they,were there", ".", "   ", "?", "3;", "I like goud eggs!", 
