@@ -99,9 +99,9 @@ One of the most useful tools in **textclean** is `check_text` which scans text v
 Here is an example:
 
 ```{r}
-x <- c("i like", "i want. thet them ther .", "I am ! that|", "", NA, 
+x <- as.factor(c("i like", "i want. thet them ther .", "I am ! that|", "", NA, 
     "they,were there", ".", "   ", "?", "3;", "I like goud eggs!", 
-    "i 4like...", "\\tgreat",  "She said \"yes\"")
+    "i 4like...", "\\tgreat",  "She said \"yes\""))
 check_text(x)
 ```
 

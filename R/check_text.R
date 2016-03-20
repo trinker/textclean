@@ -134,7 +134,7 @@ print.check_text <- function(x, include.text = TRUE, file = NULL, ...) {
 
                 if (y == "potentially_misspelled" && !is.null(spelling)) {
                     spelling <- unique(spelling)
-                    txt.var[x] <- Trim(mgsub(
+                    txt.var[x] <- trimws(mgsub(
                         txt.var[x],
                         spelling,
                         paste0("<<", spelling, ">>")

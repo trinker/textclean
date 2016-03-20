@@ -4,7 +4,7 @@
 #' comma separated string as one word (i.e., \code{"one,two,three"} becomes 
 #' \code{"onetwothree"}  rather than \code{"one two three"}).
 #' 
-#' @param text.var The text variable.
+#' @param x The text variable.
 #' @return Returns a vector of strings with commas that have a space after them.
 #' @keywords comma space
 #' @export

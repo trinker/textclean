@@ -196,11 +196,19 @@ information on the following:
 
 Here is an example:
 
-    x <- c("i like", "i want. thet them ther .", "I am ! that|", "", NA, 
+    x <- as.factor(c("i like", "i want. thet them ther .", "I am ! that|", "", NA, 
         "they,were there", ".", "   ", "?", "3;", "I like goud eggs!", 
-        "i 4like...", "\\tgreat",  "She said \"yes\"")
+        "i 4like...", "\\tgreat",  "She said \"yes\""))
     check_text(x)
 
+    ## 
+    ## =============
+    ## NON CHARACTER
+    ## =============
+    ## 
+    ## Text is a factor.
+    ## 
+    ## *Suggestion: Consider using `as.character` or `stringsAsFactors = FALSE` when reading in
     ## 
     ## ==========================
     ## MISSING ENDING PUNCTUATION

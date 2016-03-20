@@ -7,7 +7,7 @@
 add_comma_space(x)
 }
 \arguments{
-\item{text.var}{The text variable.}
+\item{x}{The text variable.}
 }
 \value{
 Returns a vector of strings with commas that have a space after them.
