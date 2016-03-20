@@ -19,7 +19,7 @@
 #' )
 #' has_endmark(x)
 has_endmark <- function(x, endmarks = c('?', '.', '!'), ...){
-    !grepl(sprintf('[%s]\\s*$', paste(endmarks, collapse = "")), x, ...)
+    !is.na(x) & grepl(sprintf('[%s]\\s*$', paste(endmarks, collapse = "")), x, ...)
 }
 
 
