@@ -216,15 +216,19 @@ Here is an example:
     ## 
     ## The following observations were missing ending punctuation:
     ## 
-    ## 2, 7, 9, 11, 12
+    ## 1, 3, 4, 5, 6, 8, 10, 13, 14
     ## 
     ## The following text is missing ending punctuation:
     ## 
-    ## 2: i want. thet them ther .
-    ## 7: .
-    ## 9: ?
-    ## 11: I like goud eggs!
-    ## 12: i 4like...
+    ## 1: i like
+    ## 3: I am ! that|
+    ## 4: 
+    ## 5: NA
+    ## 6: they,were there
+    ## 8:    
+    ## 10: 3;
+    ## 13: \tgreat
+    ## 14: She said "yes"
     ## 
     ## *Suggestion: Consider cleaning the raw text or running `replace_incomplete`
     ## 
@@ -375,20 +379,15 @@ And if all is well the user should be greeted by a cow:
     check_text(y)
 
     ## 
-    ## ==========================
-    ## MISSING ENDING PUNCTUATION
-    ## ==========================
-    ## 
-    ## The following observations were missing ending punctuation:
-    ## 
-    ## 1, 2
-    ## 
-    ## The following text is missing ending punctuation:
-    ## 
-    ## 1: A valid sentence.
-    ## 2: yet another!
-    ## 
-    ## *Suggestion: Consider cleaning the raw text or running `replace_incomplete`
+    ##  ------- 
+    ## No problems found!
+    ## You are remarkable! 
+    ##  -------- 
+    ##     \   ^__^ 
+    ##      \  (oo)\ ________ 
+    ##         (__)\         )\ /\ 
+    ##              ||------w|
+    ##              ||      ||
 
 Row Filtering
 -------------
