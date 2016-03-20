@@ -386,7 +386,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are staggering! 
+    ## You are phenomenal! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -615,10 +615,10 @@ There are times the user may want to stash a set of characters before
 subbing out and then return the stashed characters. An example of this
 is when a researcher wants to remove punctuation but not emoticons. The
 `subholder` function provides tooling to stash the emoticons, allow a
-punctuation, and then return the emoticons. First I'll create some fake
-text data with emoticons, then stash the emoticons (using a unique text
-key to hold their place), then I'll strip out the punctuation, and last
-put the stashed emoticons back.
+punctuation stripping, and then return the emoticons. First I'll create
+some fake text data with emoticons, then stash the emoticons (using a
+unique text key to hold their place), then I'll strip out the
+punctuation, and last put the stashed emoticons back.
 
     (fake_dat <- paste(key_emoticons[1:11, 1, with=FALSE][[1]], DATA$state))
 
