@@ -25,7 +25,8 @@ x <- c(
     "Et tu?",  
     "Not so much", 
     "Oh, I understand.",  
-    "At 3 p.m., we go"
+    "At 3 p.m., we go",
+    NA
 )
 has_endmark(x)
 }

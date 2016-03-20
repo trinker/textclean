@@ -24,6 +24,8 @@ BUG FIXES
 
 NEW FEATURES
 
+* `check_text` added to report on potential problems in a text vector.
+
 MINOR FEATURES
 
 IMPROVEMENTS

@@ -43,8 +43,9 @@ The main functions, task category, & descriptions are summarized in the table be
 | `replace_number`          | replacement | Replace common numbers                |
 | `replace_symbol`          | replacement | Replace common symbols                |
 | `replace_white`           | replacement | Replace regex white space characters  |
+| `add_comma_space`         | repalcement | Replace non-space after comma         |
 | `check_text`              | check       | Text report of potential issues       | 
-| `has_endmark`             | check       | Check if an element has an end-mark    | 
+| `has_endmark`             | check       | Check if an element has an end-mark   | 
 
 # Installation
 
@@ -75,13 +76,41 @@ You are welcome to:
 ```{r, message=FALSE}
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(dplyr)
-pacman::p_load_gh("trinker/textclean", "trinker/textshape")
+pacman::p_load_gh("trinker/textclean", "trinker/textshape", "trinker/lexicon")
 ```
 
 ## Check Text
 
-*Under Construction*
+One of the most useful tools in **textclean** is `check_text` which scans text variables and reports potential problems.  Not all potential problems are definite problems for analysis but the report provides an overview of what may need further preparation.  The report also provides suggested functions for the reported problems.  The report provides information on the following:
 
+1. **non_character** - Text that is `factor`.
+2. **missing_ending_punctuation** - Text with no endmark at the end of the string.
+3. **empty** - Text that contains an empty element (i.e., `""`).
+4. **double_punctuation** - Text that contains two punctuation marks in the same string.
+5. **non_space_after_comma** - Text that contains commas with no space after them.
+6. **no_alpha** - Text that contains string elements with no alphabetic characters.
+7. **non_ascii** - Text that contains non-ASCII characters.
+8. **missing_value** - Text that contains missing values (i.e., `NA`).
+9. **containing_escaped** - Text that contains escaped (see `?Quotes`).
+10. **containing_digits** - Text that contains digits.
+11. **indicating_incomplete** - Text that contains endmarks that are indicative of incomplete/trailing sentences (e.g., `...`).
+12. **potentially_misspelled** - Text that contains potentially misspelled words.
+
+Here is an example:
+
+```{r}
+x <- c("i like", "i want. thet them ther .", "I am ! that|", "", NA, 
+    "they,were there", ".", "   ", "?", "3;", "I like goud eggs!", 
+    "i 4like...", "\\tgreat",  "She said \"yes\"")
+check_text(x)
+```
+
+And if all is well the user should be greeted by a cow:
+
+```{r}
+y <- c("A valid sentence.", "yet another!")
+check_text(y)
+```
 
 
 ## Row Filtering

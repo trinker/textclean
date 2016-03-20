@@ -112,11 +112,16 @@ table below:
 <td align="left">Replace regex white space characters</td>
 </tr>
 <tr class="even">
+<td align="left"><code>add_comma_space</code></td>
+<td align="left">repalcement</td>
+<td align="left">Replace non-space after comma</td>
+</tr>
+<tr class="odd">
 <td align="left"><code>check_text</code></td>
 <td align="left">check</td>
 <td align="left">Text report of potential issues</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>has_endmark</code></td>
 <td align="left">check</td>
 <td align="left">Check if an element has an end-mark</td>
@@ -157,12 +162,225 @@ Load the Packages/Data
 
     if (!require("pacman")) install.packages("pacman")
     pacman::p_load(dplyr)
-    pacman::p_load_gh("trinker/textclean", "trinker/textshape")
+    pacman::p_load_gh("trinker/textclean", "trinker/textshape", "trinker/lexicon")
 
 Check Text
 ----------
 
-*Under Construction*
+One of the most useful tools in **textclean** is `check_text` which
+scans text variables and reports potential problems. Not all potential
+problems are definite problems for analysis but the report provides an
+overview of what may need further preparation. The report also provides
+suggested functions for the reported problems. The report provides
+information on the following:
+
+1.  **non\_character** - Text that is `factor`.
+2.  **missing\_ending\_punctuation** - Text with no endmark at the end
+    of the string.
+3.  **empty** - Text that contains an empty element (i.e., `""`).
+4.  **double\_punctuation** - Text that contains two punctuation marks
+    in the same string.
+5.  **non\_space\_after\_comma** - Text that contains commas with no
+    space after them.
+6.  **no\_alpha** - Text that contains string elements with no
+    alphabetic characters.
+7.  **non\_ascii** - Text that contains non-ASCII characters.
+8.  **missing\_value** - Text that contains missing values (i.e., `NA`).
+9.  **containing\_escaped** - Text that contains escaped (see
+    `?Quotes`).
+10. **containing\_digits** - Text that contains digits.
+11. **indicating\_incomplete** - Text that contains endmarks that are
+    indicative of incomplete/trailing sentences (e.g., `...`).
+12. **potentially\_misspelled** - Text that contains potentially
+    misspelled words.
+
+Here is an example:
+
+    x <- c("i like", "i want. thet them ther .", "I am ! that|", "", NA, 
+        "they,were there", ".", "   ", "?", "3;", "I like goud eggs!", 
+        "i 4like...", "\\tgreat",  "She said \"yes\"")
+    check_text(x)
+
+    ## 
+    ## ==========================
+    ## MISSING ENDING PUNCTUATION
+    ## ==========================
+    ## 
+    ## The following observations were missing ending punctuation:
+    ## 
+    ## 2, 7, 9, 11, 12
+    ## 
+    ## The following text is missing ending punctuation:
+    ## 
+    ## 2: i want. thet them ther .
+    ## 7: .
+    ## 9: ?
+    ## 11: I like goud eggs!
+    ## 12: i 4like...
+    ## 
+    ## *Suggestion: Consider cleaning the raw text or running `replace_incomplete`
+    ## 
+    ## 
+    ## =====
+    ## EMPTY
+    ## =====
+    ## 
+    ## The following observations were empty:
+    ## 
+    ## 4, 8
+    ## 
+    ## The following text is empty:
+    ## 
+    ## 4: 
+    ## 8:    
+    ## 
+    ## *Suggestion: Consider running `filter_empty`
+    ## 
+    ## 
+    ## =====================
+    ## NON SPACE AFTER COMMA
+    ## =====================
+    ## 
+    ## The following observations were non space after comma:
+    ## 
+    ## 6
+    ## 
+    ## The following text is non space after comma:
+    ## 
+    ## 6: they,were there
+    ## 
+    ## *Suggestion: Consider running `add_comma_space`
+    ## 
+    ## 
+    ## ========
+    ## NO ALPHA
+    ## ========
+    ## 
+    ## The following observations were no alpha:
+    ## 
+    ## 4, 7, 8, 9, 10
+    ## 
+    ## The following text is no alpha:
+    ## 
+    ## 4: 
+    ## 7: .
+    ## 8:    
+    ## 9: ?
+    ## 10: 3;
+    ## 
+    ## *Suggestion: Consider cleaning the raw text or running `filter_row`
+    ## 
+    ## 
+    ## =========
+    ## NON ASCII
+    ## =========
+    ## 
+    ## The following observations were non ascii:
+    ## 
+    ## 4, 5
+    ## 
+    ## The following text is non ascii:
+    ## 
+    ## 4: 
+    ## 5: NA
+    ## 
+    ## *Suggestion: Consider running `replace_non_ascii`
+    ## 
+    ## 
+    ## =============
+    ## MISSING VALUE
+    ## =============
+    ## 
+    ## The following observations were missing value:
+    ## 
+    ## 5
+    ## 
+    ## *Suggestion: Consider running `filter_NA`
+    ## 
+    ## 
+    ## ==================
+    ## CONTAINING ESCAPED
+    ## ==================
+    ## 
+    ## The following observations were containing escaped:
+    ## 
+    ## 13
+    ## 
+    ## The following text is containing escaped:
+    ## 
+    ## 13: \tgreat
+    ## 
+    ## *Suggestion: Consider using `replace_white`
+    ## 
+    ## 
+    ## =================
+    ## CONTAINING DIGITS
+    ## =================
+    ## 
+    ## The following observations were containing digits:
+    ## 
+    ## 10, 12
+    ## 
+    ## The following text is containing digits:
+    ## 
+    ## 10: 3;
+    ## 12: i 4like...
+    ## 
+    ## *Suggestion: Consider using `replace_number`
+    ## 
+    ## 
+    ## =====================
+    ## INDICATING INCOMPLETE
+    ## =====================
+    ## 
+    ## The following observations were indicating incomplete:
+    ## 
+    ## 12
+    ## 
+    ## The following text is indicating incomplete:
+    ## 
+    ## 12: i 4like...
+    ## 
+    ## *Suggestion: Consider using `replace_incomplete`
+    ## 
+    ## 
+    ## ======================
+    ## POTENTIALLY MISSPELLED
+    ## ======================
+    ## 
+    ## The following observations were potentially misspelled:
+    ## 
+    ## 2, 11, 12, 13
+    ## 
+    ## The following text is potentially misspelled:
+    ## 
+    ## 2: i want. <<thet>> them <<ther>> .
+    ## 11: I like <<goud>> eggs!
+    ## 12: i <<4like>>...
+    ## 13: \<<tgreat>>
+    ## 
+    ## *Suggestion: Consider running `hunspell::hunspell_find` & `hunspell::hunspell_suggest`
+
+And if all is well the user should be greeted by a cow:
+
+    y <- c("A valid sentence.", "yet another!")
+    check_text(y)
+
+    ## 
+    ## ==========================
+    ## MISSING ENDING PUNCTUATION
+    ## ==========================
+    ## 
+    ## The following observations were missing ending punctuation:
+    ## 
+    ## 1, 2
+    ## 
+    ## The following text is missing ending punctuation:
+    ## 
+    ## 1: A valid sentence.
+    ## 2: yet another!
+    ## 
+    ## *Suggestion: Consider cleaning the raw text or running `replace_incomplete`
 
 Row Filtering
 -------------
