@@ -68,71 +68,76 @@ table below:
 <td align="left">Hold a value prior to a <code>strip</code></td>
 </tr>
 <tr class="odd">
+<td align="left"><code>swap</code></td>
+<td align="left">subbing</td>
+<td align="left">Simultaneously swap patterns 1 &amp; 2</td>
+</tr>
+<tr class="even">
 <td align="left"><code>strip</code></td>
 <td align="left">deletion</td>
 <td align="left">Remove all non word characters</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>filter_empty_row</code></td>
 <td align="left">filter rows</td>
 <td align="left">Remove empty rows</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>filter_row</code></td>
 <td align="left">filter rows</td>
 <td align="left">Remove rows matching a regex</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>filter_NA</code></td>
 <td align="left">filter rows</td>
 <td align="left">Remove <code>NA</code> text rows</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>replace_contractions</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace contractions with both words</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>replace_incomplete</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace incomplete sentence end-marks</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>replace_non_ascii</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace non-ascii with equivalent or remove</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>replace_number</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace common numbers</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>replace_ordinal</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace common ordinal number form</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>replace_symbol</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace common symbols</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>replace_white</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace regex white space characters</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>add_comma_space</code></td>
 <td align="left">repalcement</td>
 <td align="left">Replace non-space after comma</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>check_text</code></td>
 <td align="left">check</td>
 <td align="left">Text report of potential issues</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>has_endmark</code></td>
 <td align="left">check</td>
 <td align="left">Check if an element has an end-mark</td>
@@ -373,13 +378,12 @@ Here is an example:
     ## 
     ## The following observations were potentially misspelled:
     ## 
-    ## 2, 11, 12, 13
+    ## 2, 11, 13
     ## 
     ## The following text is potentially misspelled:
     ## 
     ## 2: i want. <<thet>> them <<ther>> .
     ## 11: I like <<goud>> eggs!
-    ## 12: i <<4like>>...
     ## 13: \<<tgreat>>
     ## 
     ## *Suggestion: Consider running `hunspell::hunspell_find` & `hunspell::hunspell_suggest`
@@ -392,7 +396,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are prodigious! 
+    ## You are kryptonian*! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -626,7 +630,7 @@ some fake text data with emoticons, then stash the emoticons (using a
 unique text key to hold their place), then I'll strip out the
 punctuation, and last put the stashed emoticons back.
 
-    (fake_dat <- paste(key_emoticons[1:11, 1, with=FALSE][[1]], DATA$state))
+    (fake_dat <- paste(hash_emoticons[1:11, 1, with=FALSE][[1]], DATA$state))
 
     ##  [1] "#-o Computer is fun. Not too fun."        
     ##  [2] "$_$ No it's not, it's dumb."              
@@ -640,7 +644,7 @@ punctuation, and last put the stashed emoticons back.
     ## [10] "//_^ Shall we move on?  Good then."       
     ## [11] "0;) I'm hungry.  Let's eat.  You already?"
 
-    (m <- sub_holder(fake_dat, key_emoticons[[1]]))
+    (m <- sub_holder(fake_dat, hash_emoticons[[1]]))
 
     ##  [1] "zzzplaceholderazzz Computer is fun. Not too fun."      
     ##  [2] "zzzplaceholderbzzz No it's not, it's dumb."            

@@ -34,6 +34,7 @@ The main functions, task category, & descriptions are summarized in the table be
 |---------------------------|-------------|---------------------------------------| 
 | `mgsub`                   | subbing     | Multiple `gsub`                       |
 | `sub_holder`              | subbing     | Hold a value prior to a `strip`       |
+| `swap`                    | subbing     | Simultaneously swap patterns 1 & 2    |
 | `strip`                   | deletion    | Remove all non word characters        |
 | `filter_empty_row`        | filter rows | Remove empty rows                     |
 | `filter_row`              | filter rows | Remove rows matching a regex          |
@@ -169,8 +170,8 @@ There are times the user may want to stash a set of characters before subbing ou
 
 
 ```{r}
-(fake_dat <- paste(key_emoticons[1:11, 1, with=FALSE][[1]], DATA$state))
-(m <- sub_holder(fake_dat, key_emoticons[[1]]))
+(fake_dat <- paste(hash_emoticons[1:11, 1, with=FALSE][[1]], DATA$state))
+(m <- sub_holder(fake_dat, hash_emoticons[[1]]))
 (m_stripped <-strip(m$output))
 m$unhold(m_stripped)
 ```
