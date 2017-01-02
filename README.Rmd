@@ -39,6 +39,7 @@ The main functions, task category, & descriptions are summarized in the table be
 | `filter_empty_row`        | filter rows | Remove empty rows                     |
 | `filter_row`              | filter rows | Remove rows matching a regex          |
 | `filter_NA`               | filter rows | Remove `NA` text rows                 |
+| `filter_element`          | filter elements | Remove matching elements from a vector   |
 | `replace_contractions`    | replacement | Replace contractions with both words  |
 | `replace_incomplete`      | replacement | Replace incomplete sentence end-marks  |
 | `replace_non_ascii`       | replacement | Replace non-ascii with equivalent or remove   |

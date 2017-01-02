@@ -9,7 +9,7 @@ developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repos
 Status](https://travis-ci.org/trinker/textclean.svg?branch=master)](https://travis-ci.org/trinker/textclean)
 [![Coverage
 Status](https://coveralls.io/repos/trinker/textclean/badge.svg?branch=master)](https://coveralls.io/r/trinker/textclean?branch=master)
-<a href="https://img.shields.io/badge/Version-0.1.1-orange.svg"><img src="https://img.shields.io/badge/Version-0.1.1-orange.svg" alt="Version"/></a>
+<a href="https://img.shields.io/badge/Version-0.2.0-orange.svg"><img src="https://img.shields.io/badge/Version-0.2.0-orange.svg" alt="Version"/></a>
 </p>
 <img src="inst/textclean_logo/r_textclean2.png" width="200" alt="textclean Logo">
 
@@ -93,51 +93,56 @@ table below:
 <td align="left">Remove <code>NA</code> text rows</td>
 </tr>
 <tr class="even">
+<td align="left"><code>filter_element</code></td>
+<td align="left">filter elements</td>
+<td align="left">Remove matching elements from a vector</td>
+</tr>
+<tr class="odd">
 <td align="left"><code>replace_contractions</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace contractions with both words</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>replace_incomplete</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace incomplete sentence end-marks</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>replace_non_ascii</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace non-ascii with equivalent or remove</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>replace_number</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace common numbers</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>replace_ordinal</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace common ordinal number form</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>replace_symbol</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace common symbols</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>replace_white</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace regex white space characters</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>add_comma_space</code></td>
 <td align="left">repalcement</td>
 <td align="left">Replace non-space after comma</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>check_text</code></td>
 <td align="left">check</td>
 <td align="left">Text report of potential issues</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>has_endmark</code></td>
 <td align="left">check</td>
 <td align="left">Check if an element has an end-mark</td>
@@ -396,7 +401,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are kryptonian*! 
+    ## You are indomitable! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 

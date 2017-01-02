@@ -31,6 +31,8 @@ NEW FEATURES
   
 * `swap` added to swap two patterns simultaneously.
 
+* `filter_element` added to exclude matching elements from a vector.
+
 MINOR FEATURES
 
 IMPROVEMENTS
