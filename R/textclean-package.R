@@ -2,8 +2,8 @@
 #'
 #' Tools to clean and process text.
 #' @docType package
-#' @name textmod
-#' @aliases textmod package-textmod
+#' @name textclean
+#' @aliases textclean package-textclean
 NULL
 
 #' Fictitious Classroom Dialogue
