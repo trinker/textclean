@@ -15,7 +15,7 @@ replace_white(x, ...)
 Returns a vector of character strings with escaped characters removed.
 }
 \description{
-Preprocess data to replace one or more white space character with a single 
+Pre-process data to replace one or more white space character with a single 
 space.
 }
 \examples{

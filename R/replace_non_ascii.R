@@ -1,6 +1,6 @@
 #' Replace Common Non-ASCII Characters
 #' 
-#' Replaces common non-ascii characters.
+#' Replaces common non-ASCII characters.
 #' 
 #' @param x  The text variable.
 #' @param remove.nonconverted logical.  If \code{TRUE} unmapped encodings are

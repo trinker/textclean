@@ -35,8 +35,8 @@ pattern of `zzzplaceholder` followed by lower case letter keys followed by
 \examples{
 ## `alpha.type` as TRUE
 library(lexicon); library(textshape)
-(fake_dat <- paste(key_emoticons[1:11, 1, with=FALSE][[1]], DATA$state))
-(m <- sub_holder(fake_dat, key_emoticons[[1]]))
+(fake_dat <- paste(hash_emoticons[1:11, 1, with=FALSE][[1]], DATA$state))
+(m <- sub_holder(fake_dat, hash_emoticons[[1]]))
 m$unhold(strip(m$output))
 
 ## `alpha.type` as FALSE (numeric keys)

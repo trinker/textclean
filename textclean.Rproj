@@ -14,4 +14,6 @@ LaTeX: pdfLaTeX
 
 BuildType: Package
 PackageUseDevtools: Yes
-PackageInstallArgs: --no-multiarch --with-keep.source
+PackageInstallArgs: --no-multiarch
+PackageBuildArgs: --compact-vignettes=qpdf --resave-data=best
+PackageCheckArgs: --as-cran

@@ -19,7 +19,7 @@ Returns a text variable (character sting) with non-ascii characters
 replaced.
 }
 \description{
-Replaces common non-ascii characters.
+Replaces common non-ASCII characters.
 }
 \examples{
 x <- c(

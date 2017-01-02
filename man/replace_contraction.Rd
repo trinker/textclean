@@ -4,7 +4,7 @@
 \alias{replace_contraction}
 \title{Replace Contractions}
 \usage{
-replace_contraction(x, contraction.key = lexicon::hash_contractions,
+replace_contraction(x, contraction.key = lexicon::key_contractions,
   ignore.case = TRUE, ...)
 }
 \arguments{
@@ -12,7 +12,7 @@ replace_contraction(x, contraction.key = lexicon::hash_contractions,
 
 \item{contraction.key}{A two column hash of contractions (column 1) and expanded 
 form replacements (column 2).  Default is to use 
-\code{\link[lexicon]{hash_contractions}} data set.}
+\code{\link[lexicon]{key_contractions}} data set.}
 
 \item{ignore.case}{logical.  Should case be ignored?}
 

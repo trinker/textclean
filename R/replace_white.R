@@ -1,6 +1,6 @@
 #' Remove Escaped Characters
 #' 
-#' Preprocess data to replace one or more white space character with a single 
+#' Pre-process data to replace one or more white space character with a single 
 #' space.
 #' 
 #' @param x The character vector.
