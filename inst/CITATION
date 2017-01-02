@@ -6,11 +6,11 @@ citEntry(entry = "manual",
     author = "Tyler W. Rinker",
     organization = "University at Buffalo/SUNY",
     address = "Buffalo, New York",
-    note = "version 0.1.1",
+    note = "version 0.2.0",
     year = "2016",
     url = "http://github.com/trinker/textclean", 
     textVersion  = paste("Rinker, T. W. (2016).",
         "textclean: Text Cleaning Tools",
-        "version 0.1.1. University at Buffalo. Buffalo, New York.",
+        "version 0.2.0. University at Buffalo. Buffalo, New York.",
         "http://github.com/trinker/textclean")
 )
