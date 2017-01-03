@@ -44,6 +44,7 @@ potential problem elements, the accompanying text, and possible suggestions
 to fix the text.
 }
 \examples{
+\dontrun{
 x <- c("i like", "i want. thet them ther .", "I am ! that|", "", NA, 
     "they,were there", ".", "   ", "?", "3;", "I like goud eggs!", 
     "i 4like...", "\\\\tgreat",  "She said \\"yes\\"")
@@ -52,6 +53,7 @@ print(check_text(x), include.text=FALSE)
 
 y <- c("A valid sentence.", "yet another!")
 check_text(y)
+}
 }
 \keyword{check}
 \keyword{spelling}

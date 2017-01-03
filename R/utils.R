@@ -42,3 +42,30 @@ count_endmark <- function(x) {
     stringi::stri_count_regex(y, "(?<!\\w\\.\\w.)(?<![A-Z][a-z]\\.)(?<=\\.|\\?|\\!)(\\s|(?=[a-zA-Z][a-zA-Z]*\\s))")
 }
 
+
+check_install <- function(x, fun = 'function'){
+
+    found <- TRUE
+    path <- try(find.package(x), silent = TRUE)
+    if (inherits(path, "try-error")) found <- FALSE
+
+    if (!found) {
+        if (interactive()){
+            message(paste(x, "package not found.  Do you want to install?\n"))
+            ans <- utils::menu(c("Yes", "No"))
+            if (ans == "1") {
+                utils::install.packages(x)
+            } else {
+                stop(paste(fun, 'requires', x, 'package to be install.  Please install before using.'))
+            }   
+        } else {
+            stop(paste(fun, 'requires', x, 'package to be install.  Please install before using.'))
+        }     
+    }
+
+    path <- try(find.package(x), silent = TRUE)
+    if (inherits(path, "try-error")) {
+        stop(paste('Could not install.', fun, 'requires', x, 'package to be installed.  Please install before using.'))
+    }  
+
+}

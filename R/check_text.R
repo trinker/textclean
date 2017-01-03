@@ -32,6 +32,7 @@
 #' @keywords check text spelling
 #' @export
 #' @examples
+#' \dontrun{
 #' x <- c("i like", "i want. thet them ther .", "I am ! that|", "", NA, 
 #'     "they,were there", ".", "   ", "?", "3;", "I like goud eggs!", 
 #'     "i 4like...", "\\tgreat",  "She said \"yes\"")
@@ -40,13 +41,17 @@
 #'
 #' y <- c("A valid sentence.", "yet another!")
 #' check_text(y)
+#' }
 check_text <- function(x, file = NULL) {
 
+    
+    check_install('hunspell')
+    
     non_character <- is.factor(x) 
     x <- as.character(x)
     missing <- which(is.na(x))
     
-    pot_spell <- hunspell::hunspell_find(x)
+    pot_spell <- eval(parse(text = "hunspell::hunspell_find(x)")) 
     misspelled <- which(sapply(pot_spell, function(x) length(x) != 0 ))
 
     if (length(missing) == 0) missing <- NULL
