@@ -80,7 +80,7 @@ You are welcome to:
 ```{r, message=FALSE}
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(dplyr)
-pacman::p_load_gh("trinker/textclean", "trinker/textshape", "trinker/lexicon")
+pacman::p_load_gh("trinker/textshape", "trinker/lexicon", "trinker/textclean")
 ```
 
 ## Check Text

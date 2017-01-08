@@ -183,7 +183,7 @@ Load the Packages/Data
 
     if (!require("pacman")) install.packages("pacman")
     pacman::p_load(dplyr)
-    pacman::p_load_gh("trinker/textclean", "trinker/textshape", "trinker/lexicon")
+    pacman::p_load_gh("trinker/textshape", "trinker/lexicon", "trinker/textclean")
 
 Check Text
 ----------
@@ -401,7 +401,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are indomitable! 
+    ## You are stunning! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
