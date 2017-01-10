@@ -8,7 +8,7 @@ Description: Tools to clean and process text.
 Depends: R (>= 3.2.3)
 Imports: qdapRegex, stringi, utils
 Suggests: testthat, textshape, lexicon
-Date: 2017-01-08
+Date: 2017-01-09
 License: GPL-2
 LazyData: TRUE
 Roxygen: list(wrap = FALSE)
