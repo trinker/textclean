@@ -200,7 +200,7 @@ replace_contraction(x)
 
 ### Incomplete Sentences
 
-Sometimes an incomplete sentence is denoted with multiple end marks or no punctuation at all.  `replace_incomplete` standardizes these sentences with a pipe (`|`) endmark (or one of the users choice).
+Sometimes an incomplete sentence is denoted with multiple end marks or no punctuation at all.  `replace_incomplete` standardizes these sentences with a pipe (`|`) endmark (or one of the user's choice).
 
 ```{r}
 x <- c("the...",  "I.?", "you.", "threw..", "we?")
@@ -210,7 +210,7 @@ replace_incomplete(x, '...')
 
 ### Non-ASCII Characters
 
-R can choke on non-ASCII characters.  They can be re-encoded but the new encoding may lack iterpretablity (e.g., &cent; may be converted to `\xA2` which is not easily understood or likely to be matched in a hash look up).  `replace_non_ascii` attempts to replace common non-ASCII characters with a text representation (e.g., &cent; becomes "cent")  Non recognized non-ASCII characters are simply removed (unless `remove.nonconverted = FALSE`).
+R can choke on non-ASCII characters.  They can be re-encoded but the new encoding may lack interpretability (e.g., &cent; may be converted to `\xA2` which is not easily understood or likely to be matched in a hash look up).  `replace_non_ascii` attempts to replace common non-ASCII characters with a text representation (e.g., &cent; becomes "cent")  Non recognized non-ASCII characters are simply removed (unless `remove.nonconverted = FALSE`).
 
 
 ```{r}
@@ -241,7 +241,7 @@ replace_number(x, remove=TRUE)
 
 ### Ordinal Numbers
 
-Afain, some analysis requires numbers, including ordinal numbers, to be converted to text form.  `replace_ordinal` attempts to perform this task for ordinal number 1-100 (i.e., 1st - 100th).  
+Again, some analysis requires numbers, including ordinal numbers, to be converted to text form.  `replace_ordinal` attempts to perform this task for ordinal number 1-100 (i.e., 1st - 100th).  
 
 
 ```{r}

@@ -404,7 +404,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are prodigious! 
+    ## You are astounding! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -725,7 +725,7 @@ provides this functionality.
 
 Sometimes an incomplete sentence is denoted with multiple end marks or
 no punctuation at all. `replace_incomplete` standardizes these sentences
-with a pipe (`|`) endmark (or one of the users choice).
+with a pipe (`|`) endmark (or one of the user's choice).
 
     x <- c("the...",  "I.?", "you.", "threw..", "we?")
     replace_incomplete(x)
@@ -739,7 +739,7 @@ with a pipe (`|`) endmark (or one of the users choice).
 ### Non-ASCII Characters
 
 R can choke on non-ASCII characters. They can be re-encoded but the new
-encoding may lack iterpretablity (e.g., ¢ may be converted to `\xA2`
+encoding may lack interpretability (e.g., ¢ may be converted to `\xA2`
 which is not easily understood or likely to be matched in a hash look
 up). `replace_non_ascii` attempts to replace common non-ASCII characters
 with a text representation (e.g., ¢ becomes "cent") Non recognized
@@ -813,7 +813,7 @@ comma separated numbers as well.
 
 ### Ordinal Numbers
 
-Afain, some analysis requires numbers, including ordinal numbers, to be
+Again, some analysis requires numbers, including ordinal numbers, to be
 converted to text form. `replace_ordinal` attempts to perform this task
 for ordinal number 1-100 (i.e., 1st - 100th).
 
