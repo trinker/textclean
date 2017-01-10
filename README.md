@@ -217,9 +217,11 @@ information on the following:
 
 Here is an example:
 
-    x <- as.factor(c("i like", "i want. thet them ther .", "I am ! that|", "", NA, 
+    x <- c("i like", "i want. thet them ther .", "I am ! that|", "", NA, 
         "they,were there", ".", "   ", "?", "3;", "I like goud eggs!", 
-        "i 4like...", "\\tgreat",  "She said \"yes\""))
+        "bi\xdfchen Z\xfcrcher", "i 4like...", "\\tgreat",  "She said \"yes\"")
+    Encoding(x) <- "latin1"
+    x <- as.factor(x)
     check_text(x)
 
     ## 
@@ -237,7 +239,7 @@ Here is an example:
     ## 
     ## The following observations were missing ending punctuation:
     ## 
-    ## 1, 3, 4, 5, 6, 8, 10, 13, 14
+    ## 1, 3, 4, 5, 6, 8, 10, 12, 14, 15
     ## 
     ## The following text is missing ending punctuation:
     ## 
@@ -248,8 +250,9 @@ Here is an example:
     ## 6: they,were there
     ## 8:    
     ## 10: 3;
-    ## 13: \tgreat
-    ## 14: She said "yes"
+    ## 12: bißchen Zürcher
+    ## 14: \tgreat
+    ## 15: She said "yes"
     ## 
     ## *Suggestion: Consider cleaning the raw text or running `replace_incomplete`
     ## 
@@ -310,11 +313,11 @@ Here is an example:
     ## 
     ## The following observations were non ascii:
     ## 
-    ## 4
+    ## 12
     ## 
     ## The following text is non ascii:
     ## 
-    ## 4: 
+    ## 12: bißchen Zürcher
     ## 
     ## *Suggestion: Consider running `replace_non_ascii`
     ## 
@@ -336,11 +339,11 @@ Here is an example:
     ## 
     ## The following observations were containing escaped:
     ## 
-    ## 13
+    ## 14
     ## 
     ## The following text is containing escaped:
     ## 
-    ## 13: \tgreat
+    ## 14: \tgreat
     ## 
     ## *Suggestion: Consider using `replace_white`
     ## 
@@ -351,12 +354,12 @@ Here is an example:
     ## 
     ## The following observations were containing digits:
     ## 
-    ## 10, 12
+    ## 10, 13
     ## 
     ## The following text is containing digits:
     ## 
     ## 10: 3;
-    ## 12: i 4like...
+    ## 13: i 4like...
     ## 
     ## *Suggestion: Consider using `replace_number`
     ## 
@@ -367,11 +370,11 @@ Here is an example:
     ## 
     ## The following observations were indicating incomplete:
     ## 
-    ## 12
+    ## 13
     ## 
     ## The following text is indicating incomplete:
     ## 
-    ## 12: i 4like...
+    ## 13: i 4like...
     ## 
     ## *Suggestion: Consider using `replace_incomplete`
     ## 
@@ -382,13 +385,14 @@ Here is an example:
     ## 
     ## The following observations were potentially misspelled:
     ## 
-    ## 2, 11, 13
+    ## 2, 11, 12, 14
     ## 
     ## The following text is potentially misspelled:
     ## 
     ## 2: i want. <<thet>> them <<ther>> .
     ## 11: I like <<goud>> eggs!
-    ## 13: \<<tgreat>>
+    ## 12: <<bißchen>> <<Zürcher>>
+    ## 14: \<<tgreat>>
     ## 
     ## *Suggestion: Consider running `hunspell::hunspell_find` & `hunspell::hunspell_suggest`
 
@@ -400,7 +404,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are indomitable! 
+    ## You are prodigious! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
