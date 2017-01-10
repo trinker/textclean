@@ -192,7 +192,7 @@ is.non.alpha <- function(x) {
 }
 
 is.non.ascii <- function(x) {
-    !grepl("[ -~]", x)
+    !grepl("[ -~]", x) & !is.na(x)
 }
 
 ## check if something is a list of vectors

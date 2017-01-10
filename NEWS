@@ -22,6 +22,8 @@ textclean 0.1.0 -
 
 BUG FIXES
 
+* `check_text` reported `NA` as non-ASCII.  This has been fixed.
+
 NEW FEATURES
 
 * `check_text` added to report on potential problems in a text vector.
