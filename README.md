@@ -310,12 +310,11 @@ Here is an example:
     ## 
     ## The following observations were non ascii:
     ## 
-    ## 4, 5
+    ## 4
     ## 
     ## The following text is non ascii:
     ## 
     ## 4: 
-    ## 5: NA
     ## 
     ## *Suggestion: Consider running `replace_non_ascii`
     ## 
@@ -401,7 +400,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are stunning! 
+    ## You are indomitable! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
