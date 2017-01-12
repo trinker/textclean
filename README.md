@@ -9,7 +9,7 @@ developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repos
 Status](https://travis-ci.org/trinker/textclean.svg?branch=master)](https://travis-ci.org/trinker/textclean)
 [![Coverage
 Status](https://coveralls.io/repos/trinker/textclean/badge.svg?branch=master)](https://coveralls.io/r/trinker/textclean?branch=master)
-<a href="https://img.shields.io/badge/Version-0.2.0-orange.svg"><img src="https://img.shields.io/badge/Version-0.2.0-orange.svg" alt="Version"/></a>
+<a href="https://img.shields.io/badge/Version-0.2.1-orange.svg"><img src="https://img.shields.io/badge/Version-0.2.1-orange.svg" alt="Version"/></a>
 </p>
 <img src="inst/textclean_logo/r_textclean2.png" width="200" alt="textclean Logo">
 
@@ -404,7 +404,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are astounding! 
+    ## You are phenomenal! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
