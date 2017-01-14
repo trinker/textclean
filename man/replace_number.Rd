@@ -29,10 +29,15 @@ would turn "21st" into "twenty onest", whereas \code{\link[textclean]{replace_or
 would generate "twenty first".
 }
 \examples{
-x <- c("I like 346,457 ice cream cones.", "They are 99 percent good")
-y <- c("I like 346457 ice cream cones.", "They are 99 percent good")
+x <- c(
+    NA, 
+    'then .456 good', 
+    'none', 
+    "I like 346,457 ice cream cones.", 
+    "I like 123456789 cashes.",     
+    "They are 99 percent good and 45678.2345667"
+)
 replace_number(x)
-replace_number(y)
 replace_number(x, num.paste = TRUE)
 replace_number(x, remove=TRUE)
 }

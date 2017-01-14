@@ -28,6 +28,9 @@ textclean 0.2.1 -
 
 **IMPROVEMENTS**
 
+* `replace_number` now uses the *english* package making it faster and more 
+  maintainable.  In addition, the function now handles decimal places as well.
+
 **CHANGES**
 
 
