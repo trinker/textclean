@@ -8,6 +8,7 @@
 #' separated with spaces.  If \code{TRUE} the elements will be joined without 
 #' spaces.
 #' @param remove logical.  If \code{TRUE} numbers are removed from the text.
+#' @param \ldots Other arguments passed to  \code{\link[english]{as.english}}
 #' @return Returns a vector with abbreviations replaced.
 #' @references Fox, J. (2005). Programmer's niche: How do you spell that number? 
 #' R News. Vol. 5(1), pp. 51-55.
@@ -29,7 +30,7 @@
 #' replace_number(x)
 #' replace_number(x, num.paste = TRUE)
 #' replace_number(x, remove=TRUE)
-replace_number  <- function(x, num.paste = FALSE, remove = FALSE) {
+replace_number  <- function(x, num.paste = FALSE, remove = FALSE, ...) {
 
     if (remove) return(stringi::stri_replace_all_regex(x, num_regex, ""))
 
@@ -58,10 +59,10 @@ replace_number  <- function(x, num.paste = FALSE, remove = FALSE) {
     num_df[['decimal']] <- unlist(stringi::stri_extract_all_regex(num_df[[1]], "\\.\\d+"))
     num_df[['integer']] <- floor(as.numeric(num_df[[1]]) )
     num_df[['den']] <- num_df[['den1']] <- 10 ^ (nchar(num_df[['decimal']])- 1)
-    num_df[['den']][!is.na(num_df[['den']])] <- paste0(eng(num_df[['den']][!is.na(num_df[['den']])]), 'ths') 
-    num_df[['numerator']] <- eng(num_df[['den1']] * as.numeric(num_df[['decimal']]))
+    num_df[['den']][!is.na(num_df[['den']])] <- paste0(eng(num_df[['den']][!is.na(num_df[['den']])], ...), 'ths') 
+    num_df[['numerator']] <- eng(num_df[['den1']] * as.numeric(num_df[['decimal']]), ...)
     num_df[['den']][is.na(num_df[['den']])] <- ""
-    num_df[['int']] <- eng(num_df[['integer']])
+    num_df[['int']] <- eng(num_df[['integer']], ...)
     is_decimal <- grepl("\\.", num_df[[1]])  
     not_integer_decimal <- !grepl('\\d\\.', num_df[[1]])
     num_df[['int']][is_decimal & not_integer_decimal] <- ""
@@ -82,7 +83,7 @@ replace_number  <- function(x, num.paste = FALSE, remove = FALSE) {
 }
 
 num_regex <- "(?<=^| )[-.]*\\d+(?:\\.\\d+)?(?= |\\.?$)|\\d+(?:,\\d{3})+(\\.\\d+)*"
-eng <- function(x) as.character(english::as.english(x))
+eng <- function(x, ...) as.character(english::as.english(x, ...))
 
 
 

@@ -4,7 +4,7 @@
 \alias{replace_number}
 \title{Replace Numbers With Text Representation}
 \usage{
-replace_number(x, num.paste = FALSE, remove = FALSE)
+replace_number(x, num.paste = FALSE, remove = FALSE, ...)
 }
 \arguments{
 \item{x}{The text variable.}
@@ -14,6 +14,8 @@ separated with spaces.  If \code{TRUE} the elements will be joined without
 spaces.}
 
 \item{remove}{logical.  If \code{TRUE} numbers are removed from the text.}
+
+\item{\ldots}{Other arguments passed to  \code{\link[english]{as.english}}}
 }
 \value{
 Returns a vector with abbreviations replaced.
