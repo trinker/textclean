@@ -14,6 +14,7 @@
 #' @param and logical.  If \code{TRUE} replaces and sign (&) with \code{"and"}.
 #' @param with logical.  If \code{TRUE} replaces with sign (w/) with 
 #' \code{"with"}.
+#' @param \ldots ignored.
 #' @return Returns a character vector with symbols replaced..
 #' @keywords symbol-replace
 #' @export
@@ -24,7 +25,7 @@
 #' )
 #' replace_symbol(x)
 replace_symbol <- function(x, dollar = TRUE, percent = TRUE, 
-    pound = TRUE, at = TRUE, and = TRUE, with = TRUE) {
+    pound = TRUE, at = TRUE, and = TRUE, with = TRUE, ...) {
     
     y <- c(dollar, percent, pound, at, and, with, with)
   

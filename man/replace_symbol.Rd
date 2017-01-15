@@ -5,7 +5,7 @@
 \title{Replace Symbols With Word Equivalents}
 \usage{
 replace_symbol(x, dollar = TRUE, percent = TRUE, pound = TRUE,
-  at = TRUE, and = TRUE, with = TRUE)
+  at = TRUE, and = TRUE, with = TRUE, ...)
 }
 \arguments{
 \item{x}{A character vector.}
@@ -25,6 +25,8 @@ replace_symbol(x, dollar = TRUE, percent = TRUE, pound = TRUE,
 
 \item{with}{logical.  If \code{TRUE} replaces with sign (w/) with 
 \code{"with"}.}
+
+\item{\ldots}{ignored.}
 }
 \value{
 Returns a character vector with symbols replaced..

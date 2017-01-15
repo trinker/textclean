@@ -4,7 +4,7 @@
 \alias{replace_ordinal}
 \title{Replace Mixed Ordinal Numbers With Text Representation}
 \usage{
-replace_ordinal(x, num.paste = FALSE, remove = FALSE)
+replace_ordinal(x, num.paste = FALSE, remove = FALSE, ...)
 }
 \arguments{
 \item{x}{The text variable.}
@@ -14,6 +14,8 @@ separated with spaces.  If \code{FALSE} the elements will be joined without
 spaces.}
 
 \item{remove}{logical.  If \code{TRUE} ordinal numbers are removed from the text.}
+
+\item{\ldots}{ignored.}
 }
 \description{
 Replaces mixed text/numeric represented ordinal numbers with words (e.g., 

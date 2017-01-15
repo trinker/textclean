@@ -8,6 +8,7 @@
 #' separated with spaces.  If \code{FALSE} the elements will be joined without 
 #' spaces.
 #' @param remove logical.  If \code{TRUE} ordinal numbers are removed from the text.
+#' @param \ldots ignored.
 #' @keywords ordinal-to-word
 #' @note Currently only implemented for ordinal values 1 through 100
 #' @export
@@ -20,7 +21,7 @@
 #' replace_ordinal(x, TRUE)
 #' replace_ordinal(x, remove = TRUE)
 #' replace_number(replace_ordinal("I like the 1st 1 not the 22nd 1."))
-replace_ordinal <- function(x, num.paste = FALSE, remove = FALSE) {
+replace_ordinal <- function(x, num.paste = FALSE, remove = FALSE, ...) {
 
     symb <- c("1st", "2nd", "3rd", paste0(4:19, "th"),
         paste0(20:100, c("th", "st", "nd", "rd", rep("th", 6))))

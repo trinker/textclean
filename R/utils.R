@@ -69,3 +69,18 @@ check_install <- function(x, fun = 'function'){
     }  
 
 }
+
+.mgsub <- function (pattern, replacement, text.var, ...) {
+
+    ord <- rev(order(nchar(pattern)))
+    pattern <- pattern[ord]
+    if (length(replacement) != 1) replacement <- replacement[ord]
+
+    if (length(replacement) == 1) replacement <- rep(replacement, length(pattern))
+
+    text.var <- stringi::stri_replace_all_fixed(text.var, pattern, replacement,
+        vectorize_all=FALSE, opts_fixed = list(case_insensitive = TRUE)
+    )
+
+    text.var
+}

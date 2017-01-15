@@ -48,7 +48,12 @@ Functions
 The main functions, task category, & descriptions are summarized in the
 table below:
 
-<table>
+<table style="width:114%;">
+<colgroup>
+<col width="38%" />
+<col width="19%" />
+<col width="55%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Function</th>
@@ -103,6 +108,14 @@ table below:
 <td align="left">Replace contractions with both words</td>
 </tr>
 <tr class="even">
+<td align="left"><code>replace_emoticon</code></td>
+<td align="left">Replace emoticons with word equivalent</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>replace_grade</code></td>
+<td align="left">Replace grades (e.g., &quot;A+&quot;) with word equivalent</td>
+</tr>
+<tr class="even">
 <td align="left"><code>replace_incomplete</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace incomplete sentence end-marks</td>
@@ -123,26 +136,30 @@ table below:
 <td align="left">Replace common ordinal number form</td>
 </tr>
 <tr class="even">
+<td align="left"><code>replace_rating</code></td>
+<td align="left">Replace ratings (e.g., &quot;10 out of 10&quot;, &quot;3 stars&quot;) with word equivalent</td>
+</tr>
+<tr class="odd">
 <td align="left"><code>replace_symbol</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace common symbols</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>replace_white</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace regex white space characters</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>add_comma_space</code></td>
 <td align="left">repalcement</td>
 <td align="left">Replace non-space after comma</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>check_text</code></td>
 <td align="left">check</td>
 <td align="left">Text report of potential issues</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>has_endmark</code></td>
 <td align="left">check</td>
 <td align="left">Check if an element has an end-mark</td>
@@ -404,7 +421,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are phenomenal! 
+    ## You are virtuosic! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -809,7 +826,7 @@ comma separated numbers as well.
 
     replace_number(x, remove=TRUE)
 
-    ## [1] "I like , ice cream cones." "They are  percent good"
+    ## [1] "I like  ice cream cones." "They are  percent good"
 
 ### Ordinal Numbers
 
