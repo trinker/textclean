@@ -34,9 +34,12 @@ Table of Contents
         -   [Stashing Character Pre-Sub](#stashing-character-pre-sub)
     -   [Replacement](#replacement)
         -   [Contractions](#contractions)
+        -   [Emoticons](#emoticons)
+        -   [Grades](#grades)
         -   [Incomplete Sentences](#incomplete-sentences)
         -   [Non-ASCII Characters](#non-ascii-characters)
         -   [Numbers](#numbers)
+        -   [Ratings](#ratings)
         -   [Ordinal Numbers](#ordinal-numbers)
         -   [Symbols](#symbols)
         -   [White Space](#white-space)
@@ -109,10 +112,12 @@ table below:
 </tr>
 <tr class="even">
 <td align="left"><code>replace_emoticon</code></td>
+<td align="left">repalcement</td>
 <td align="left">Replace emoticons with word equivalent</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>replace_grade</code></td>
+<td align="left">repalcement</td>
 <td align="left">Replace grades (e.g., &quot;A+&quot;) with word equivalent</td>
 </tr>
 <tr class="even">
@@ -137,6 +142,7 @@ table below:
 </tr>
 <tr class="even">
 <td align="left"><code>replace_rating</code></td>
+<td align="left">repalcement</td>
 <td align="left">Replace ratings (e.g., &quot;10 out of 10&quot;, &quot;3 stars&quot;) with word equivalent</td>
 </tr>
 <tr class="odd">
@@ -421,7 +427,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are virtuosic! 
+    ## You are phenomenal! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -738,6 +744,57 @@ provides this functionality.
     ## [4] "the robot at t.s. was not nice"     
     ## [5] "he would like it if I would go away"
 
+### Emoticons
+
+Some analysis techniques examine words, meaning emoticons may be
+ignored. `replace_emoticons` replaces emoticons with their word forms
+equivalents.
+
+    x <- c(
+        "text from: http://www.webopedia.com/quick_ref/textmessageabbreviations_02.asp",
+        "... understanding what different characters used in smiley faces mean:",
+        "The close bracket represents a sideways smile  )",
+        "Add in the colon and you have sideways eyes   :",
+        "Put them together to make a smiley face  :)",
+        "Use the dash -  to add a nose   :-)",
+        "Change the colon to a semi-colon ; and you have a winking face ;)  with a nose  ;-)",
+        "Put a zero 0 (halo) on top and now you have a winking, smiling angel 0;) with a nose 0;-)",
+        "Use the letter 8 in place of the colon for sunglasses 8-)",
+        "Use the open bracket ( to turn the smile into a frown  :-("
+    )
+
+    replace_emoticon(x)
+
+    ##  [1] "text from: http://www.webopedia.com/quick_ref/textmessageabbreviations_02.asp"                
+    ##  [2] "... understanding what different characters used in smiley faces mean:"                       
+    ##  [3] "The close bracket represents a sideways smile )"                                              
+    ##  [4] "Add in the colon and you have sideways eyes :"                                                
+    ##  [5] "Put them together to make a smiley face happy "                                               
+    ##  [6] "Use the dash - to add a nose happy "                                                          
+    ##  [7] "Change the colon to a semi-colon ; and you have a winking face winking with a nose winking "  
+    ##  [8] "Put a zero 0 (halo) on top and now you have a winking, smiling angel angel with a nose angel "
+    ##  [9] "Use the letter 8 in place of the colon for sunglasses glasses "                               
+    ## [10] "Use the open bracket ( to turn the smile into a frown sad "
+
+### Grades
+
+In analysis where grades may be discussed it may be useful to convert
+the letter forms into word meanings. The `replace_grade` can be used for
+this task.
+
+    text <- c(
+        "I give an A+",
+        "He deserves an F",
+        "It's C+ work",
+        "A poor example deserves a C!"
+    )
+    replace_grade(text)
+
+    ## [1] "I give an very excellent excellent+"                                     
+    ## [2] "He deserves an very bad"                                                 
+    ## [3] "It's slightly above average+ work"                                       
+    ## [4] "very excellent excellent poor example deserves a slightly above average!"
+
 ### Incomplete Sentences
 
 Sometimes an incomplete sentence is denoted with multiple end marks or
@@ -827,6 +884,40 @@ comma separated numbers as well.
     replace_number(x, remove=TRUE)
 
     ## [1] "I like  ice cream cones." "They are  percent good"
+
+### Ratings
+
+Some texts use ratings to convey satisfaction with a particular object.
+The `replace_rating` function replaces the more abstract rating with
+word equivalents.
+
+    x <- c("This place receives 5 stars for their APPETIZERS!!!",
+         "Four stars for the food & the guy in the blue shirt for his great vibe!",
+         "10 out of 10 for both the movie and trilogy.",
+         "* Both the Hot & Sour & the Egg Flower Soups were absolutely 5 Stars!",
+         "For service, I give them no stars.", "This place deserves no stars.",
+         "10 out of 10 stars.",
+         "My rating: just 3 out of 10.",
+         "If there were zero stars I would give it zero stars.",
+         "Rating: 1 out of 10.",
+         "I gave it 5 stars because of the sound quality.",
+         "If it were possible to give them 0/10, they'd have it."
+    )
+
+    replace_rating(x)
+
+    ##  [1] "This place receives best for their APPETIZERS!!!"                    
+    ##  [2] " better for the food & the guy in the blue shirt for his great vibe!"
+    ##  [3] " best for both the movie and trilogy."                               
+    ##  [4] "* Both the Hot & Sour & the Egg Flower Soups were absolutely best !" 
+    ##  [5] "For service, I give them terrible ."                                 
+    ##  [6] "This place deserves terrible ."                                      
+    ##  [7] " best stars."                                                        
+    ##  [8] "My rating: just below average ."                                     
+    ##  [9] "If there were terrible I would give it terrible ."                   
+    ## [10] "Rating: extremely below average ."                                   
+    ## [11] "I gave it best because of the sound quality."                        
+    ## [12] "If it were possible to give them terrible , they'd have it."
 
 ### Ordinal Numbers
 

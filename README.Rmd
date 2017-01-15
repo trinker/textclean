@@ -41,13 +41,13 @@ The main functions, task category, & descriptions are summarized in the table be
 | `filter_NA`               | filter rows | Remove `NA` text rows                 |
 | `filter_element`          | filter elements | Remove matching elements from a vector   |
 | `replace_contractions`    | replacement | Replace contractions with both words  |
-| `replace_emoticon`| Replace emoticons with word equivalent               |
-| `replace_grade`  | Replace grades (e.g., "A+") with word equivalent     |
+| `replace_emoticon`        | repalcement | Replace emoticons with word equivalent               |
+| `replace_grade`           | repalcement | Replace grades (e.g., "A+") with word equivalent     |
 | `replace_incomplete`      | replacement | Replace incomplete sentence end-marks  |
 | `replace_non_ascii`       | replacement | Replace non-ascii with equivalent or remove   |
 | `replace_number`          | replacement | Replace common numbers                |
 | `replace_ordinal`         | replacement | Replace common ordinal number form    |
-| `replace_rating` | Replace ratings (e.g., "10 out of 10", "3 stars") with word equivalent |
+| `replace_rating`          | repalcement | Replace ratings (e.g., "10 out of 10", "3 stars") with word equivalent |
 | `replace_symbol`          | replacement | Replace common symbols                |
 | `replace_white`           | replacement | Replace regex white space characters  |
 | `add_comma_space`         | repalcement | Replace non-space after comma         |
@@ -201,8 +201,40 @@ x <- c("Mr. Jones isn't going.",
 replace_contraction(x)
 ```
 
+### Emoticons
+
+Some analysis techniques examine words, meaning emoticons may be ignored.  `replace_emoticons` replaces emoticons with their word forms equivalents.
+
+```{r}
+x <- c(
+    "text from: http://www.webopedia.com/quick_ref/textmessageabbreviations_02.asp",
+    "... understanding what different characters used in smiley faces mean:",
+    "The close bracket represents a sideways smile  )",
+    "Add in the colon and you have sideways eyes   :",
+    "Put them together to make a smiley face  :)",
+    "Use the dash -  to add a nose   :-)",
+    "Change the colon to a semi-colon ; and you have a winking face ;)  with a nose  ;-)",
+    "Put a zero 0 (halo) on top and now you have a winking, smiling angel 0;) with a nose 0;-)",
+    "Use the letter 8 in place of the colon for sunglasses 8-)",
+    "Use the open bracket ( to turn the smile into a frown  :-("
+)
+
+replace_emoticon(x)
+```
+
 ### Grades
 
+In analysis where grades may be discussed it may be useful to convert the letter forms into word meanings.  The `replace_grade` can be used for this task.
+
+```{r}
+text <- c(
+    "I give an A+",
+    "He deserves an F",
+    "It's C+ work",
+    "A poor example deserves a C!"
+)
+replace_grade(text)
+```
 
 ### Incomplete Sentences
 
@@ -246,6 +278,25 @@ replace_number(x, remove=TRUE)
 ```
 
 ### Ratings
+
+Some texts use ratings to convey satisfaction with a particular object.  The `replace_rating` function replaces the more abstract rating with word equivalents.
+
+```{r}
+x <- c("This place receives 5 stars for their APPETIZERS!!!",
+     "Four stars for the food & the guy in the blue shirt for his great vibe!",
+     "10 out of 10 for both the movie and trilogy.",
+     "* Both the Hot & Sour & the Egg Flower Soups were absolutely 5 Stars!",
+     "For service, I give them no stars.", "This place deserves no stars.",
+     "10 out of 10 stars.",
+     "My rating: just 3 out of 10.",
+     "If there were zero stars I would give it zero stars.",
+     "Rating: 1 out of 10.",
+     "I gave it 5 stars because of the sound quality.",
+     "If it were possible to give them 0/10, they'd have it."
+)
+
+replace_rating(x)
+```
 
 
 ### Ordinal Numbers

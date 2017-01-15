@@ -24,8 +24,8 @@ textclean 0.2.1 -
 
 **NEW FEATURES**
 
-* `replace_grade` and `replace_rating` have been moved from the *sentimentr*
-  package to *textclean*, a more fitting home.
+* The `replace_emoticon`, `replace_grade` and `replace_rating` functions have 
+  been moved from the *sentimentr* package to *textclean*, a more fitting home.
 
 **MINOR FEATURES**
 

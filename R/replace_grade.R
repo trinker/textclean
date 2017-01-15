@@ -16,7 +16,6 @@
 #'     "It's C+ work",
 #'     "A poor example deserves a C!"
 #' )))
-#' replace_grade(text)
 replace_grade <- function (x, grade_dt = lexicon::key_grade, ...) {
     mgsub(x, grade_dt[["x"]], grade_dt[["y"]], fixed = FALSE)
 }

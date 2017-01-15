@@ -27,7 +27,6 @@ Replaces grades with word equivalents.
     "It's C+ work",
     "A poor example deserves a C!"
 )))
-replace_grade(text)
 }
 \keyword{grade}
 
