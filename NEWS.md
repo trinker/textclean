@@ -25,8 +25,11 @@ textclean 0.2.1 -
 **NEW FEATURES**
 
 * The `replace_emoticon`, `replace_grade` and `replace_rating` functions have 
-  been moved from the *sentimentr* package to *textclean*, a more fitting home.
-
+  been moved from the **sentimentr** package to **textclean** as these are 
+  cleaning functions.  This makes the functions more modular and generalizable 
+  to all types of text cleaning.  These functions are still imported and 
+  exported by **sentimentr**.
+  
 **MINOR FEATURES**
 
 **IMPROVEMENTS**
