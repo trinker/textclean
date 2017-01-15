@@ -4,7 +4,7 @@
 \alias{replace_grade}
 \title{Replace Grades With Words}
 \usage{
-replace_grade(x, grade_dt = lexicon::key_grades, ...)
+replace_grade(x, grade_dt = lexicon::key_grade, ...)
 }
 \arguments{
 \item{x}{The text variable.}

@@ -4,7 +4,7 @@
 \alias{replace_rating}
 \title{Replace Ratings With Words}
 \usage{
-replace_rating(x, rating_dt = lexicon::key_ratings, ...)
+replace_rating(x, rating_dt = lexicon::key_rating, ...)
 }
 \arguments{
 \item{x}{The text variable.}

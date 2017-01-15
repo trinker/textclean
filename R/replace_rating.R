@@ -24,7 +24,7 @@
 #' )
 #'
 #' replace_rating(x)
-replace_rating <- function (x, rating_dt = lexicon::key_ratings, ...) {
+replace_rating <- function (x, rating_dt = lexicon::key_rating, ...) {
     gsub("\\s+", " ", .mgsub(rating_dt[["x"]], paste0(" ",
         rating_dt[["y"]], " "), x, ...))
 }
