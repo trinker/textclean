@@ -9,6 +9,9 @@ replace_html(x, symbol = TRUE, ...)
 \arguments{
 \item{x}{The text variable.}
 
+\item{symbol}{lofical.  If code{TRUE} the sybols are retained with appropriate
+replacments.  If \code{FALSE} they are removed.}
+
 \item{\ldots}{Ignored.}
 }
 \value{
