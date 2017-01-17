@@ -30,6 +30,9 @@ textclean 0.2.1 -
   to all types of text cleaning.  These functions are still imported and 
   exported by **sentimentr**.
   
+* `replace_html` added to remove html tags and repalce symbols with appropriate
+  ASCII symbols.
+  
 **MINOR FEATURES**
 
 **IMPROVEMENTS**

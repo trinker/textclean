@@ -1,6 +1,6 @@
 Package: textclean
 Title: Text Cleaning Tools
-Version: 0.2.1
+Version: 0.2.2
 Authors@R: c(person("Tyler", "Rinker", email =
         "tyler.rinker@gmail.com", role = c("aut", "cre")))
 Maintainer: Tyler Rinker <tyler.rinker@gmail.com>
@@ -8,7 +8,7 @@ Description: Tools to clean and process text.
 Depends: R (>= 3.2.3)
 Imports: english, qdapRegex, stringi, textshape, utils
 Suggests: testthat, lexicon
-Date: 2017-01-15
+Date: 2017-01-16
 License: GPL-2
 LazyData: TRUE
 Roxygen: list(wrap = FALSE)
