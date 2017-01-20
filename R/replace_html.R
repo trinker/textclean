@@ -35,13 +35,13 @@
 #' 
 #' replace_html(x)
 #' replace_html(x, FALSE)
-replace_html <- function(x, symbol = TRUE, ...){
+replace_html <- function(x, symbol = TRUE, replace...){
     if (isTRUE(symbol)) {
         reps <-  html_symbols[['symbol']]
     } else {
         reps <- " "
     }
-    mgsub(gsub('<[^>]+>', '', x), html_symbols[['html']],reps)
+    mgsub(gsub('<[^>]+>', ' ', x), html_symbols[['html']],reps)
 }
 
 
