@@ -17,7 +17,23 @@ And constructed with the following guidelines:
 * Bug fixes and misc changes bumps the patch
 
 
-textclean 0.2.1 - 
+
+textclean 0.2.3 - 
+----------------------------------------------------------------
+
+**BUG FIXES**
+
+**NEW FEATURES**
+
+**MINOR FEATURES**
+
+**IMPROVEMENTS**
+
+**CHANGES**
+
+
+
+textclean 0.2.1 - 0.2.2
 ----------------------------------------------------------------
 
 **BUG FIXES**
@@ -32,15 +48,12 @@ textclean 0.2.1 -
   
 * `replace_html` added to remove html tags and repalce symbols with appropriate
   ASCII symbols.
-  
-**MINOR FEATURES**
 
 **IMPROVEMENTS**
 
 * `replace_number` now uses the *english* package making it faster and more 
   maintainable.  In addition, the function now handles decimal places as well.
 
-**CHANGES**
 
 
 textclean 0.1.0 - 0.2.0
