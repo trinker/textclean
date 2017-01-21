@@ -19,6 +19,7 @@ state and is being actively
 developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.org/trinker/textclean.svg?branch=master)](https://travis-ci.org/trinker/textclean)
 [![Coverage Status](https://coveralls.io/repos/trinker/textclean/badge.svg?branch=master)](https://coveralls.io/r/trinker/textclean?branch=master)
+[![](http://cranlogs.r-pkg.org/badges/textshape)](https://cran.r-project.org/package=textshape)
 `r verbadge`
 
 <img src="inst/textclean_logo/r_textclean2.png" width="200" alt="textclean Logo">
