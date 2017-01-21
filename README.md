@@ -439,7 +439,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are phenomenal! 
+    ## You are splendiferous! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
