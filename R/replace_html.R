@@ -30,7 +30,7 @@
 #' @examples
 #' x <- c(
 #'     "<bold>Random</bold> text with symbols: &nbsp; &lt; &gt; &amp; &quot; &apos;",
-#'     "<p>More text</P> &cent; &pound; &yen; &euro; &copy; &reg;"
+#'     "<p>More text</p> &cent; &pound; &yen; &euro; &copy; &reg;"
 #' )
 #' 
 #' replace_html(x)

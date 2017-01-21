@@ -439,7 +439,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are wickedly awesome! 
+    ## You are splendiferous! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -814,7 +814,7 @@ Sometimes HTML tags and symbols stick around like pesky gnats. The
 
     x <- c(
         "<bold>Random</bold> text with symbols: &nbsp; &lt; &gt; &amp; &quot; &apos;",
-        "<p>More text</P> &cent; &pound; &yen; &euro; &copy; &reg;"
+        "<p>More text</p> &cent; &pound; &yen; &euro; &copy; &reg;"
     )
 
     replace_html(x)
