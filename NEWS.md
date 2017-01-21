@@ -18,7 +18,18 @@ And constructed with the following guidelines:
 
 
 
+textclean 0.3.0 -
+----------------------------------------------------------------
 
+**BUG FIXES**
+
+**NEW FEATURES**
+
+**MINOR FEATURES**
+
+**IMPROVEMENTS**
+
+**CHANGES**
 
 textclean 0.2.1 - 0.2.3
 ----------------------------------------------------------------
