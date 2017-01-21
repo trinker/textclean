@@ -9,7 +9,7 @@ has_endmark(x, endmarks = c("?", ".", "!"), ...)
 \arguments{
 \item{x}{A character vector.}
 
-\item{endmarks}{The potential ending punctuation marks}
+\item{endmarks}{The potential ending punctuation marks,}
 
 \item{\dots}{ignored.}
 }

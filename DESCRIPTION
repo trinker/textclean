@@ -6,9 +6,9 @@ Authors@R: c(person("Tyler", "Rinker", email =
 Maintainer: Tyler Rinker <tyler.rinker@gmail.com>
 Description: Tools to clean and process text.
 Depends: R (>= 3.2.3)
-Imports: english, qdapRegex, stringi, textshape, utils
-Suggests: testthat, lexicon
-Date: 2017-01-19
+Imports: english(>= 1.0-2), qdapRegex, stringi, textshape(>= 1.0.1), utils
+Suggests: testthat, lexicon(>= 0.1.0)
+Date: 2017-01-20
 License: GPL-2
 LazyData: TRUE
 Roxygen: list(wrap = FALSE)

@@ -18,22 +18,9 @@ And constructed with the following guidelines:
 
 
 
-textclean 0.2.3 - 
-----------------------------------------------------------------
-
-**BUG FIXES**
-
-**NEW FEATURES**
-
-**MINOR FEATURES**
-
-**IMPROVEMENTS**
-
-**CHANGES**
 
 
-
-textclean 0.2.1 - 0.2.2
+textclean 0.2.1 - 0.2.3
 ----------------------------------------------------------------
 
 **BUG FIXES**
@@ -48,6 +35,9 @@ textclean 0.2.1 - 0.2.2
   
 * `replace_html` added to remove html tags and repalce symbols with appropriate
   ASCII symbols.
+  
+* `add_missing_endmarks` added to detect missing endmarks and replace with the 
+  desired symbol.
 
 **IMPROVEMENTS**
 

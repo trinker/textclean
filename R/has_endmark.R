@@ -3,7 +3,7 @@
 #' A logical test of missing sentence ending punctuation.
 #' 
 #' @param x A character vector.
-#' @param endmarks The potential ending punctuation marks
+#' @param endmarks The potential ending punctuation marks,
 #' @param \dots ignored.
 #' @return Returns a logical vector.
 #' @keywords incomplete
