@@ -37,6 +37,7 @@ Table of Contents
         -   [Contractions](#contractions)
         -   [Emoticons](#emoticons)
         -   [Grades](#grades)
+        -   [HTML](#html)
         -   [Incomplete Sentences](#incomplete-sentences)
         -   [Non-ASCII Characters](#non-ascii-characters)
         -   [Numbers](#numbers)
@@ -122,44 +123,54 @@ table below:
 <td align="left">Replace grades (e.g., &quot;A+&quot;) with word equivalent</td>
 </tr>
 <tr class="even">
+<td align="left"><code>replace_html</code></td>
+<td align="left">replacement</td>
+<td align="left">Replace HTML tags and symbols</td>
+</tr>
+<tr class="odd">
 <td align="left"><code>replace_incomplete</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace incomplete sentence end-marks</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>replace_non_ascii</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace non-ascii with equivalent or remove</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>replace_number</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace common numbers</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>replace_ordinal</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace common ordinal number form</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>replace_rating</code></td>
 <td align="left">repalcement</td>
 <td align="left">Replace ratings (e.g., &quot;10 out of 10&quot;, &quot;3 stars&quot;) with word equivalent</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>replace_symbol</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace common symbols</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>replace_white</code></td>
 <td align="left">replacement</td>
 <td align="left">Replace regex white space characters</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>add_comma_space</code></td>
 <td align="left">repalcement</td>
 <td align="left">Replace non-space after comma</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>add_missing_endmark</code></td>
+<td align="left">repalcement</td>
+<td align="left">Replace missing endmarks with desired symbol</td>
 </tr>
 <tr class="even">
 <td align="left"><code>check_text</code></td>
@@ -428,7 +439,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are transcendent! 
+    ## You are wickedly awesome! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -795,6 +806,21 @@ this task.
     ## [2] "He deserves an very bad"                                                 
     ## [3] "It's slightly above average+ work"                                       
     ## [4] "very excellent excellent poor example deserves a slightly above average!"
+
+### HTML
+
+Sometimes HTML tags and symbols stick around like pesky gnats. The
+`replace_html` function makes light work of them.
+
+    x <- c(
+        "<bold>Random</bold> text with symbols: &nbsp; &lt; &gt; &amp; &quot; &apos;",
+        "<p>More text</P> &cent; &pound; &yen; &euro; &copy; &reg;"
+    )
+
+    replace_html(x)
+
+    ## [1] "Random text with symbols: < > & \" '"   
+    ## [2] "More text cents pounds yen euro (c) (r)"
 
 ### Incomplete Sentences
 
