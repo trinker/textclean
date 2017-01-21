@@ -161,7 +161,7 @@ spaste <- function(x) paste0(" ", x, " ")
     
 .check_messages <- list(
     non_character = "using `as.character` or `stringsAsFactors = FALSE` when reading in", 
-    missing_ending_punctuation = "cleaning the raw text or running `replace_incomplete`",
+    missing_ending_punctuation = "cleaning the raw text or running `add_missing_endmark`",
     empty = "running `filter_empty`",
     double_punctuation = "running `textshape::split_sentence`",
     non_space_after_comma = "running `add_comma_space`",

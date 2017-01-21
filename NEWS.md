@@ -23,6 +23,10 @@ textclean 0.3.0 -
 
 **BUG FIXES**
 
+* `check_text` reported to use `replace_incomplete` rather than 
+  `add_missing endmark` when endmark is missing.
+
+
 **NEW FEATURES**
 
 **MINOR FEATURES**

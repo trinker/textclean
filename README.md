@@ -289,7 +289,7 @@ Here is an example:
     ## 14: \tgreat
     ## 15: She said "yes"
     ## 
-    ## *Suggestion: Consider cleaning the raw text or running `replace_incomplete`
+    ## *Suggestion: Consider cleaning the raw text or running `add_missing_endmark`
     ## 
     ## 
     ## =====
@@ -439,7 +439,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are splendiferous! 
+    ## You are phenomenal! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
