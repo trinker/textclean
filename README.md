@@ -10,7 +10,7 @@ Status](https://travis-ci.org/trinker/textclean.svg?branch=master)](https://trav
 [![Coverage
 Status](https://coveralls.io/repos/trinker/textclean/badge.svg?branch=master)](https://coveralls.io/r/trinker/textclean?branch=master)
 [![](http://cranlogs.r-pkg.org/badges/textclean)](https://cran.r-project.org/package=textclean)
-<a href="https://img.shields.io/badge/Version-0.3.0-orange.svg"><img src="https://img.shields.io/badge/Version-0.3.0-orange.svg" alt="Version"/></a>
+<a href="https://img.shields.io/badge/Version-0.3.1-orange.svg"><img src="https://img.shields.io/badge/Version-0.3.1-orange.svg" alt="Version"/></a>
 </p>
 <img src="inst/textclean_logo/r_textclean2.png" width="200" alt="textclean Logo">
 
@@ -439,7 +439,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are splendiferous! 
+    ## You are superb! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 

@@ -1,6 +1,6 @@
 Package: textclean
 Title: Text Cleaning Tools
-Version: 0.3.0
+Version: 0.3.1
 Authors@R: c(person("Tyler", "Rinker", email =
         "tyler.rinker@gmail.com", role = c("aut", "cre")))
 Maintainer: Tyler Rinker <tyler.rinker@gmail.com>
