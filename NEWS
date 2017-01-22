@@ -36,6 +36,11 @@ CHANGES
 textclean 0.2.1 - 0.3.0
 ----------------------------------------------------------------
 
+BUG FIXES
+
+* `check_text` reported to use `replace_incomplete` rather than 
+  `add_missing_endmark` when endmark is missing.
+  
 NEW FEATURES
 
 * The `replace_emoticon`, `replace_grade` and `replace_rating` functions have 
