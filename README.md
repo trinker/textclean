@@ -53,134 +53,144 @@ Functions
 The main functions, task category, & descriptions are summarized in the
 table below:
 
-<table style="width:114%;">
+<table>
 <colgroup>
-<col width="38%" />
-<col width="19%" />
-<col width="55%" />
+<col width="34%" />
+<col width="17%" />
+<col width="48%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">Function</th>
-<th align="left">Task</th>
-<th align="left">Description</th>
+<th>Function</th>
+<th>Task</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>mgsub</code></td>
-<td align="left">subbing</td>
-<td align="left">Multiple <code>gsub</code></td>
+<td><code>mgsub</code></td>
+<td>subbing</td>
+<td>Multiple <code>gsub</code></td>
 </tr>
 <tr class="even">
-<td align="left"><code>sub_holder</code></td>
-<td align="left">subbing</td>
-<td align="left">Hold a value prior to a <code>strip</code></td>
+<td><code>sub_holder</code></td>
+<td>subbing</td>
+<td>Hold a value prior to a <code>strip</code></td>
 </tr>
 <tr class="odd">
-<td align="left"><code>swap</code></td>
-<td align="left">subbing</td>
-<td align="left">Simultaneously swap patterns 1 &amp; 2</td>
+<td><code>swap</code></td>
+<td>subbing</td>
+<td>Simultaneously swap patterns 1 &amp; 2</td>
 </tr>
 <tr class="even">
-<td align="left"><code>strip</code></td>
-<td align="left">deletion</td>
-<td align="left">Remove all non word characters</td>
+<td><code>strip</code></td>
+<td>deletion</td>
+<td>Remove all non word characters</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>filter_empty_row</code></td>
-<td align="left">filter rows</td>
-<td align="left">Remove empty rows</td>
+<td><code>filter_empty_row</code></td>
+<td>filter rows</td>
+<td>Remove empty rows</td>
 </tr>
 <tr class="even">
-<td align="left"><code>filter_row</code></td>
-<td align="left">filter rows</td>
-<td align="left">Remove rows matching a regex</td>
+<td><code>filter_row</code></td>
+<td>filter rows</td>
+<td>Remove rows matching a regex</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>filter_NA</code></td>
-<td align="left">filter rows</td>
-<td align="left">Remove <code>NA</code> text rows</td>
+<td><code>filter_NA</code></td>
+<td>filter rows</td>
+<td>Remove <code>NA</code> text rows</td>
 </tr>
 <tr class="even">
-<td align="left"><code>filter_element</code></td>
-<td align="left">filter elements</td>
-<td align="left">Remove matching elements from a vector</td>
+<td><code>filter_element</code></td>
+<td>filter elements</td>
+<td>Remove matching elements from a vector</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>replace_contractions</code></td>
-<td align="left">replacement</td>
-<td align="left">Replace contractions with both words</td>
+<td><code>replace_contractions</code></td>
+<td>replacement</td>
+<td>Replace contractions with both words</td>
 </tr>
 <tr class="even">
-<td align="left"><code>replace_emoticon</code></td>
-<td align="left">repalcement</td>
-<td align="left">Replace emoticons with word equivalent</td>
+<td><code>replace_emoticon</code></td>
+<td>repalcement</td>
+<td>Replace emoticons with word equivalent</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>replace_grade</code></td>
-<td align="left">repalcement</td>
-<td align="left">Replace grades (e.g., &quot;A+&quot;) with word equivalent</td>
+<td><code>replace_grade</code></td>
+<td>repalcement</td>
+<td>Replace grades (e.g., &quot;A+&quot;) with word equivalent</td>
 </tr>
 <tr class="even">
-<td align="left"><code>replace_html</code></td>
-<td align="left">replacement</td>
-<td align="left">Replace HTML tags and symbols</td>
+<td><code>replace_html</code></td>
+<td>replacement</td>
+<td>Replace HTML tags and symbols</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>replace_incomplete</code></td>
-<td align="left">replacement</td>
-<td align="left">Replace incomplete sentence end-marks</td>
+<td><code>replace_incomplete</code></td>
+<td>replacement</td>
+<td>Replace incomplete sentence end-marks</td>
 </tr>
 <tr class="even">
-<td align="left"><code>replace_non_ascii</code></td>
-<td align="left">replacement</td>
-<td align="left">Replace non-ascii with equivalent or remove</td>
+<td><code>replace_non_ascii</code></td>
+<td>replacement</td>
+<td>Replace non-ascii with equivalent or remove</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>replace_number</code></td>
-<td align="left">replacement</td>
-<td align="left">Replace common numbers</td>
+<td><code>replace_number</code></td>
+<td>replacement</td>
+<td>Replace common numbers</td>
 </tr>
 <tr class="even">
-<td align="left"><code>replace_ordinal</code></td>
-<td align="left">replacement</td>
-<td align="left">Replace common ordinal number form</td>
+<td><code>replace_ordinal</code></td>
+<td>replacement</td>
+<td>Replace common ordinal number form</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>replace_rating</code></td>
-<td align="left">repalcement</td>
-<td align="left">Replace ratings (e.g., &quot;10 out of 10&quot;, &quot;3 stars&quot;) with word equivalent</td>
+<td><code>replace_rating</code></td>
+<td>repalcement</td>
+<td>Replace ratings (e.g., &quot;10 out of 10&quot;, &quot;3 stars&quot;) with word equivalent</td>
 </tr>
 <tr class="even">
-<td align="left"><code>replace_symbol</code></td>
-<td align="left">replacement</td>
-<td align="left">Replace common symbols</td>
+<td><code>replace_symbol</code></td>
+<td>replacement</td>
+<td>Replace common symbols</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>replace_white</code></td>
-<td align="left">replacement</td>
-<td align="left">Replace regex white space characters</td>
+<td><code>replace_white</code></td>
+<td>replacement</td>
+<td>Replace regex white space characters</td>
 </tr>
 <tr class="even">
-<td align="left"><code>add_comma_space</code></td>
-<td align="left">repalcement</td>
-<td align="left">Replace non-space after comma</td>
+<td><code>add_comma_space</code></td>
+<td>replacement</td>
+<td>Replace non-space after comma</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>add_missing_endmark</code></td>
-<td align="left">repalcement</td>
-<td align="left">Replace missing endmarks with desired symbol</td>
+<td><code>add_missing_endmark</code></td>
+<td>replacement</td>
+<td>Replace missing endmarks with desired symbol</td>
 </tr>
 <tr class="even">
-<td align="left"><code>check_text</code></td>
-<td align="left">check</td>
-<td align="left">Text report of potential issues</td>
+<td><code>stem_words</code></td>
+<td>stemming</td>
+<td>Stem words</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>has_endmark</code></td>
-<td align="left">check</td>
-<td align="left">Check if an element has an end-mark</td>
+<td><code>stem_strings</code></td>
+<td>stemming</td>
+<td>Stem strings</td>
+</tr>
+<tr class="even">
+<td><code>check_text</code></td>
+<td>check</td>
+<td>Text report of potential issues</td>
+</tr>
+<tr class="odd">
+<td><code>has_endmark</code></td>
+<td>check</td>
+<td>Check if an element has an end-mark</td>
 </tr>
 </tbody>
 </table>
@@ -439,7 +449,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are superb! 
+    ## You are virtuosic! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
