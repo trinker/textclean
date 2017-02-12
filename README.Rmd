@@ -54,8 +54,6 @@ The main functions, task category, & descriptions are summarized in the table be
 | `replace_white`           | replacement | Replace regex white space characters  |
 | `add_comma_space`         | replacement | Replace non-space after comma         |
 | `add_missing_endmark`     | replacement | Replace missing endmarks with desired symbol |
-| `stem_words`              | stemming    | Stem words                            | 
-| `stem_strings`            | stemming    | Stem strings                          | 
 | `check_text`              | check       | Text report of potential issues       | 
 | `has_endmark`             | check       | Check if an element has an end-mark   | 
 

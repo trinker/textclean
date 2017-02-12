@@ -25,8 +25,6 @@ textclean 0.3.1 -
 
 **NEW FEATURES**
 
-* `stem_words` and `stem_strings` added for stemming words and strings.
-
 **MINOR FEATURES**
 
 **IMPROVEMENTS**
