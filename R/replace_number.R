@@ -3,7 +3,7 @@
 #' Replaces numeric represented numbers with words (e.g., 1001 becomes one 
 #' thousand one).
 #' 
-#' @param x  The text variable.
+#' @param x The text variable.
 #' @param num.paste logical.  If \code{FALSE} the elements of larger numbers are 
 #' separated with spaces.  If \code{TRUE} the elements will be joined without 
 #' spaces.

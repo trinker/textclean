@@ -2,7 +2,7 @@
 #' 
 #' Swap pattern x for pattern y and pattern y for pattern x in one fell swoop.
 #' 
-#' @param x A character vector.
+#' @param x A text variable.
 #' @param pattern1 Character string to be matched in the given character vector.
 #' This will be replaced by \code{pattern2}.
 #' @param pattern2 Character string to be matched in the given character vector.

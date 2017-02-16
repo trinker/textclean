@@ -7,7 +7,7 @@
 swap(x, pattern1, pattern2, ...)
 }
 \arguments{
-\item{x}{A character vector.}
+\item{x}{A text variable.}
 
 \item{pattern1}{Character string to be matched in the given character vector.
 This will be replaced by \code{pattern2}.}

@@ -2,7 +2,7 @@
 #'
 #' This function replaces contractions with long form.
 #' 
-#' @param x  The text variable.
+#' @param x The text variable.
 #' @param contraction.key A two column hash of contractions (column 1) and expanded 
 #' form replacements (column 2).  Default is to use 
 #' \code{\link[lexicon]{key_contractions}} data set.

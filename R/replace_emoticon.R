@@ -2,7 +2,7 @@
 #'
 #' Replaces emoticons with word equivalents.
 #'
-#' @param text.var The text variable.
+#' @param x The text variable.
 #' @param emoticon_dt A \pkg{data.table} of emoticons (graphical representations)
 #' and corresponding word meanings.
 #' @param \ldots Other arguments passed to \code{.mgsub} (see
@@ -26,6 +26,6 @@
 #' )
 #'
 #' replace_emoticon(x)
-replace_emoticon <- function(text.var, emoticon_dt = lexicon::hash_emoticons, ...){
-    gsub("\\s+", " ", .mgsub(emoticon_dt[["x"]], paste0(" ", emoticon_dt[["y"]], " "), text.var, ...))
+replace_emoticon <- function(x, emoticon_dt = lexicon::hash_emoticons, ...){
+    gsub("\\s+", " ", .mgsub(emoticon_dt[["x"]], paste0(" ", emoticon_dt[["y"]], " "), x, ...))
 }

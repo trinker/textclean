@@ -3,7 +3,7 @@
 #' Replaces mixed text/numeric represented ordinal numbers with words (e.g., 
 #' "1st" becomes "first").
 #' 
-#' @param x  The text variable.
+#' @param x The text variable.
 #' @param num.paste logical.  If \code{TRUE} a the elements of larger numbers are 
 #' separated with spaces.  If \code{FALSE} the elements will be joined without 
 #' spaces.

@@ -4,10 +4,10 @@
 \alias{replace_emoticon}
 \title{Replace Emoticons With Words}
 \usage{
-replace_emoticon(text.var, emoticon_dt = lexicon::hash_emoticons, ...)
+replace_emoticon(x, emoticon_dt = lexicon::hash_emoticons, ...)
 }
 \arguments{
-\item{text.var}{The text variable.}
+\item{x}{The text variable.}
 
 \item{emoticon_dt}{A \pkg{data.table} of emoticons (graphical representations)
 and corresponding word meanings.}

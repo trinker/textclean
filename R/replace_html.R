@@ -20,7 +20,7 @@
 #'    &reg;   \tab (r) \cr
 #' }
 #' 
-#' @param x  The text variable.
+#' @param x The text variable.
 #' @param symbol lofical.  If code{TRUE} the sybols are retained with appropriate
 #' replacments.  If \code{FALSE} they are removed.
 #' @param \ldots Ignored.

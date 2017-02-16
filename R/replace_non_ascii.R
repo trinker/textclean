@@ -2,7 +2,7 @@
 #' 
 #' Replaces common non-ASCII characters.
 #' 
-#' @param x  The text variable.
+#' @param x The text variable.
 #' @param remove.nonconverted logical.  If \code{TRUE} unmapped encodings are
 #' deleted from the string.
 #' @param \dots ignored.
