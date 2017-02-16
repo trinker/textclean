@@ -1,4 +1,4 @@
-#' Multiple gsub
+#' Multiple \code{\link[base]{gsub}}
 #' 
 #' A wrapper for \code{\link[base]{gsub}} that takes a vector 
 #' of search terms and a vector or single value of replacements.
@@ -21,13 +21,13 @@
 #' search for "then" first).
 #' @param \dots Additional arguments passed to \code{\link[base]{gsub}}.
 #' @return \code{mgsub} - Returns a vector with the pattern replaced.
-#' @seealso \code{\link[base]{gsub}}
+#' @seealso \code{\link[textclean]{replace_tokens}}
+#' \code{\link[base]{gsub}}
 #' @export
 #' @examples
 #' mgsub(DATA$state, c("it's", "I'm"), c("it is", "I am"))
 #' mgsub(DATA$state, "[[:punct:]]", "PUNC", fixed = FALSE)
-mgsub <-
-function (x, pattern, replacement, leadspace = FALSE, 
+mgsub <- function (x, pattern, replacement, leadspace = FALSE, 
     trailspace = FALSE, fixed = TRUE, trim = TRUE, order.pattern = fixed, 
     ...) {
 

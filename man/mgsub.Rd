@@ -2,7 +2,7 @@
 % Please edit documentation in R/mgsub.R
 \name{mgsub}
 \alias{mgsub}
-\title{Multiple gsub}
+\title{Multiple \code{\link[base]{gsub}}}
 \usage{
 mgsub(x, pattern, replacement, leadspace = FALSE, trailspace = FALSE,
   fixed = TRUE, trim = TRUE, order.pattern = fixed, ...)
@@ -46,6 +46,7 @@ mgsub(DATA$state, c("it's", "I'm"), c("it is", "I am"))
 mgsub(DATA$state, "[[:punct:]]", "PUNC", fixed = FALSE)
 }
 \seealso{
+\code{\link[textclean]{replace_tokens}}
 \code{\link[base]{gsub}}
 }
 

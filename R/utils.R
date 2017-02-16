@@ -84,3 +84,30 @@ check_install <- function(x, fun = 'function'){
 
     text.var
 }
+
+
+replace_string_elements_generic  <- function(x, y, z = NULL, ignore.case = FALSE, ...) {
+
+    z_null <- is.null(z)
+    if(isTRUE(z_null)) z <- 'replacermentfunctionstringholder'
+
+    na_locs <- is.na(x)
+    tokens <- textshape::split_token(x, lower = FALSE, ...)
+    locs <- textshape::starts(sapply(tokens, length))[-1]
+
+    tokens <- unlist(tokens)
+    fun <- ifelse(ignore.case, tolower, c)
+    match(fun(tokens), fun(y))
+    tokens[which(fun(tokens) %in% fun(y))] <- z
+
+    replaced <- textshape::split_index(tokens, locs)
+    replaced[na_locs] <- x[na_locs]
+    replaced[!na_locs] <- unlist(lapply(replaced[!na_locs],function(x) {
+         paste(x, collapse = " ")
+    }))
+    out <- unlist(replaced)
+
+    if(isTRUE(z_null)) out <- trimws(gsub("\\s+", " ", gsub(z, "", out, fixed = TRUE)))
+
+    gsub("(\\s+)([.!?,;:])", "\\2", out, perl = TRUE)
+}
