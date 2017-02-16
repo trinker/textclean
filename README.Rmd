@@ -52,6 +52,7 @@ The main functions, task category, & descriptions are summarized in the table be
 | `replace_rating`          | repalcement | Replace ratings (e.g., "10 out of 10", "3 stars") with word equivalent |
 | `replace_symbol`          | replacement | Replace common symbols                |
 | `replace_white`           | replacement | Replace regex white space characters  |
+| `replace_token`           | replacement | Remove or replace a vector of tokens with a single value  |
 | `add_comma_space`         | replacement | Replace non-space after comma         |
 | `add_missing_endmark`     | replacement | Replace missing endmarks with desired symbol |
 | `check_text`              | check       | Text report of potential issues       | 
