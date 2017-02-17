@@ -402,7 +402,7 @@ out <- replace_tokens(rep(x$text.var, 20), nms, "<<NAME>>")
 (toc <- Sys.time() - tic)
 ```
 
-Now let's amp it up with 20x more text data.  Thet's `r f_comma(length(x$text.var) * 20)` rows of text (`r f_comma(sum(stringi::stri_count_words(x$text.var))*20)` words) and `r f_comma(length(nms))` replacement tokens in `r round(toc, 1)` seconds.
+Now let's amp it up with 20x more text data.  That's `r f_comma(length(x$text.var) * 20)` rows of text (`r f_comma(sum(stringi::stri_count_words(x$text.var))*20)` words) and `r f_comma(length(nms))` replacement tokens in `r round(toc, 1)` seconds.
 
 ```
 tic <- Sys.time()

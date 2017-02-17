@@ -445,7 +445,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are wickedly awesome! 
+    ## You are sublime! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -1048,21 +1048,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "Jennefer tittupping Leanne Lauren fifteen Vernie Chase turacos Stefan takeouts coercers berime!"         
-    ## [2] "Queen plater adepts brittan Nelda vughs dwayne revisal Theda skalds exhibition desalt."                  
-    ## [3] "Julietta Daisey Remedios signficance Alexis grainer welchers fifthly Vilma negotiator adnation ruminate."
-    ## [4] "gleamiest distanced undrest tidewaters vomers outblush jujuist befools Roslyn upbraided vivyan Bruno?"   
-    ## [5] "culls Valeri overgoad mons noteworthy ensky fulness buzzed anthia jackhammers Tessa contested?"          
-    ## [6] "Rayford hotched webworm recopies paralyzingly malars ergastic doorway cineols soarers remended relearnt."
+    ## [1] "propulsion Johnetta haplont Tarah propellant turrical mayhap gyppers soth ballooning jubhah Kary!"     
+    ## [2] "daglocks Rocio outbrag upsetter Donald scopulas Jame melodious korry fortifies excising superimposes." 
+    ## [3] "fogyism Kassie cantonment Danyelle Jamar markdown Orville fearfullest carnies finagling Daria Tawnya." 
+    ## [4] "Jeannine lore reprehends teledus Phyliss lawbreakers Amelia Adelaide Brittney pulley custodes shorted?"
+    ## [5] "frumenty elegising paseos kopeck Caryl michel fustier Danae Kandis adorne griff thirtieths?"           
+    ## [6] "Adriane Lashell cropped hydroplane gather chines Aleta tedda cockering disguising trapping unruliest!"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "NAME tittupping NAME NAME fifteen NAME NAME turacos NAME takeouts coercers berime!"                   
-    ## [2] "NAME plater adepts brittan NAME vughs dwayne revisal NAME skalds exhibition desalt."                  
-    ## [3] "NAME NAME NAME signficance NAME grainer welchers fifthly NAME negotiator adnation ruminate."          
-    ## [4] "gleamiest distanced undrest tidewaters vomers outblush jujuist befools NAME upbraided vivyan NAME?"   
-    ## [5] "culls NAME overgoad mons noteworthy ensky fulness buzzed anthia jackhammers NAME contested?"          
-    ## [6] "NAME hotched webworm recopies paralyzingly malars ergastic doorway cineols soarers remended relearnt."
+    ## [1] "propulsion NAME haplont NAME propellant turrical mayhap gyppers soth ballooning jubhah NAME!"      
+    ## [2] "daglocks NAME outbrag upsetter NAME scopulas NAME melodious korry fortifies excising superimposes."
+    ## [3] "fogyism NAME cantonment NAME NAME markdown NAME fearfullest carnies finagling NAME NAME."          
+    ## [4] "NAME lore reprehends teledus NAME lawbreakers NAME NAME NAME pulley custodes shorted?"             
+    ## [5] "frumenty elegising paseos kopeck NAME michel fustier NAME NAME adorne griff thirtieths?"           
+    ## [6] "NAME NAME cropped hydroplane gather chines NAME tedda cockering disguising trapping unruliest!"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1071,43 +1071,43 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "<<NAME>>"))
 
-    ## [1] "<<NAME>> tittupping <<NAME>> <<NAME>> fifteen <<NAME>> <<NAME>> turacos <<NAME>> takeouts coercers berime!"     
-    ## [2] "<<NAME>> plater adepts brittan <<NAME>> vughs dwayne revisal <<NAME>> skalds exhibition desalt."                
-    ## [3] "<<NAME>> <<NAME>> <<NAME>> signficance <<NAME>> grainer welchers fifthly <<NAME>> negotiator adnation ruminate."
-    ## [4] "gleamiest distanced undrest tidewaters vomers outblush jujuist befools <<NAME>> upbraided vivyan <<NAME>>?"     
-    ## [5] "culls <<NAME>> overgoad mons noteworthy ensky fulness buzzed anthia jackhammers <<NAME>> contested?"            
-    ## [6] "<<NAME>> hotched webworm recopies paralyzingly malars ergastic doorway cineols soarers remended relearnt."
+    ## [1] "propulsion <<NAME>> haplont <<NAME>> propellant turrical mayhap gyppers soth ballooning jubhah <<NAME>>!"        
+    ## [2] "daglocks <<NAME>> outbrag upsetter <<NAME>> scopulas <<NAME>> melodious korry fortifies excising superimposes."  
+    ## [3] "fogyism <<NAME>> cantonment <<NAME>> <<NAME>> markdown <<NAME>> fearfullest carnies finagling <<NAME>> <<NAME>>."
+    ## [4] "<<NAME>> lore reprehends teledus <<NAME>> lawbreakers <<NAME>> <<NAME>> <<NAME>> pulley custodes shorted?"       
+    ## [5] "frumenty elegising paseos kopeck <<NAME>> michel fustier <<NAME>> <<NAME>> adorne griff thirtieths?"             
+    ## [6] "<<NAME>> <<NAME>> cropped hydroplane gather chines <<NAME>> tedda cockering disguising trapping unruliest!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 7.459835 secs
+    ## Time difference of 7.391941 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "<<NAME>>"))
 
-    ## [1] "<<NAME>> tittupping <<NAME>> <<NAME>> fifteen <<NAME>> <<NAME>> turacos <<NAME>> takeouts coercers berime!"     
-    ## [2] "<<NAME>> plater adepts brittan <<NAME>> vughs dwayne revisal <<NAME>> skalds exhibition desalt."                
-    ## [3] "<<NAME>> <<NAME>> <<NAME>> signficance <<NAME>> grainer welchers fifthly <<NAME>> negotiator adnation ruminate."
-    ## [4] "gleamiest distanced undrest tidewaters vomers outblush jujuist befools <<NAME>> upbraided vivyan <<NAME>>?"     
-    ## [5] "culls <<NAME>> overgoad mons noteworthy ensky fulness buzzed anthia jackhammers <<NAME>> contested?"            
-    ## [6] "<<NAME>> hotched webworm recopies paralyzingly malars ergastic doorway cineols soarers remended relearnt."
+    ## [1] "propulsion <<NAME>> haplont <<NAME>> propellant turrical mayhap gyppers soth ballooning jubhah <<NAME>>!"        
+    ## [2] "daglocks <<NAME>> outbrag upsetter <<NAME>> scopulas <<NAME>> melodious korry fortifies excising superimposes."  
+    ## [3] "fogyism <<NAME>> cantonment <<NAME>> <<NAME>> markdown <<NAME>> fearfullest carnies finagling <<NAME>> <<NAME>>."
+    ## [4] "<<NAME>> lore reprehends teledus <<NAME>> lawbreakers <<NAME>> <<NAME>> <<NAME>> pulley custodes shorted?"       
+    ## [5] "frumenty elegising paseos kopeck <<NAME>> michel fustier <<NAME>> <<NAME>> adorne griff thirtieths?"             
+    ## [6] "<<NAME>> <<NAME>> cropped hydroplane gather chines <<NAME>> tedda cockering disguising trapping unruliest!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.08155704 secs
+    ## Time difference of 0.08756208 secs
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "<<NAME>>")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.373038 secs
+    ## Time difference of 1.5306 secs
 
-Now let's amp it up with 20x more text data. Thet's 50,000 rows of text
-(600,060 words) and 5,493 replacement tokens in 1.4 seconds.
+Now let's amp it up with 20x more text data. That's 50,000 rows of text
+(600,120 words) and 5,493 replacement tokens in 1.5 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "<<NAME>>")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.373038 secs
+    ## Time difference of 1.5306 secs
