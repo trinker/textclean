@@ -372,7 +372,7 @@ nms <- gsub("(^.)(.*)", "\\U\\1\\L\\2", lexicon::common_names, perl = TRUE)
 head(nms)
 
 ## Set Up the Data
-x <- split_portion(sample(c(sample(lexicon::grady_augmented, 20000), 
+x <- textshape::split_portion(sample(c(sample(lexicon::grady_augmented, 20000), 
     sample(nms, 10000, TRUE))), n.words = 12)
 x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
 head(x$text.var)
@@ -396,10 +396,10 @@ head(replace_tokens(x$text.var, nms, "NAME"))
 (toc <- Sys.time() - tic)
 ```
 
-```{r}
+```{r, echo = FALSE}
 tic <- Sys.time()
 out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
-(toc <- Sys.time() - tic)
+toc <- Sys.time() - tic
 ```
 
 Now let's amp it up with 20x more text data.  That's `r f_comma(length(x$text.var) * 20)` rows of text (`r f_comma(sum(stringi::stri_count_words(x$text.var))*20)` words) and `r f_comma(length(nms))` replacement tokens in `r round(toc, 1)` seconds.
