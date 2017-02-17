@@ -368,11 +368,11 @@ This example shows a use case for `replace_token`:
 
 ```{r}
 ## Set Up the Tokens to Replace
-nms <- gsub("(^.)(.*)", "\\U\\1\\L\\2", common_names, perl = TRUE)
+nms <- gsub("(^.)(.*)", "\\U\\1\\L\\2", lexicon::common_names, perl = TRUE)
 head(nms)
 
 ## Set Up the Data
-x <- split_portion(sample(c(sample(grady_augmented, 20000), 
+x <- split_portion(sample(c(sample(lexicon::grady_augmented, 20000), 
     sample(nms, 10000, TRUE))), n.words = 12)
 x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
 head(x$text.var)
@@ -387,18 +387,18 @@ This demonstration shows how fast token replacement can be with `replace_token`:
 ```{r}
 ## mgsub
 tic <- Sys.time()
-head(mgsub(x$text.var, nms, "<<NAME>>"))
+head(mgsub(x$text.var, nms, "NAME"))
 (toc <- Sys.time() - tic)
 
 ## replace_tokens
 tic <- Sys.time()
-head(replace_tokens(x$text.var, nms, "<<NAME>>"))
+head(replace_tokens(x$text.var, nms, "NAME"))
 (toc <- Sys.time() - tic)
 ```
 
 ```{r}
 tic <- Sys.time()
-out <- replace_tokens(rep(x$text.var, 20), nms, "<<NAME>>")
+out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
 (toc <- Sys.time() - tic)
 ```
 
@@ -406,7 +406,7 @@ Now let's amp it up with 20x more text data.  That's `r f_comma(length(x$text.va
 
 ```
 tic <- Sys.time()
-out <- replace_tokens(rep(x$text.var, 20), nms, "<<NAME>>")
+out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
 (toc <- Sys.time() - tic)
 ```
 ```{r, echo=FALSE}
