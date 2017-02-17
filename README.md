@@ -45,6 +45,7 @@ Table of Contents
         -   [Ordinal Numbers](#ordinal-numbers)
         -   [Symbols](#symbols)
         -   [White Space](#white-space)
+        -   [Tokens](#tokens)
 
 Functions
 ============
@@ -444,7 +445,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are breathtaking! 
+    ## You are flawless! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -1022,3 +1023,89 @@ the `replace_white` function.
     replace_white(x)
 
     ## [1] "I go to the next line"
+
+### Tokens
+
+Often an analysis requires converting tokens of a certain type into a
+common form or removing them entirely. The `mgsub` function can do this
+task, however it is regex based and time consuming when the number of
+tokens to replace is large. For example, one may want to replace all
+proper nouns that are first names with the word name. The
+`replace_token` provides a fast way to replace a group of tokens with a
+single replacement.
+
+This example shows a use case for `replace_token`:
+
+    ## Set Up the Tokens to Replace
+    nms <- gsub("(^.)(.*)", "\\U\\1\\L\\2", common_names, perl = TRUE)
+    head(nms)
+
+    ## [1] "Mary"      "Patricia"  "Linda"     "Barbara"   "Elizabeth" "Jennifer"
+
+    ## Set Up the Data
+    x <- split_portion(sample(c(sample(grady_augmented, 5000), 
+        sample(nms, 10000, TRUE))), n.words = 12)
+    x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
+    head(x$text.var)
+
+    ## [1] "Ninfa caid Maren Nicolle Lissette Thora staw nonexistences Dorthey Ranee chickweed Armanda."                     
+    ## [2] "Julene Denny Randee debunk maturing Margurite Lucy tabors Ngan salmi Mi caucussed!"                              
+    ## [3] "Denna Tyrell Nicola voile Vernice Chrystal Darrel noncom adduct Lesia Rodolfo menads."                           
+    ## [4] "Lita whodunit Shelton Enedina Mikel Joie Yuki funnymen Tatiana Stacey Kam Shayna."                               
+    ## [5] "Yuri Cornelia melilite unswear reflected Sammy Maurice Andra livelong Laura Donetta mage?"                       
+    ## [6] "Julian Britteny opsonic journals Katharina Margaret cocomposers pinpointed Josefine Christopher Veronique Mandi!"
+
+    head(replace_tokens(x$text.var, nms, 'NAME'))
+
+    ## [1] "NAME caid NAME NAME NAME NAME staw nonexistences NAME NAME chickweed NAME."      
+    ## [2] "NAME NAME NAME debunk maturing NAME NAME tabors NAME salmi NAME caucussed!"      
+    ## [3] "NAME NAME NAME voile NAME NAME NAME noncom adduct NAME NAME menads."             
+    ## [4] "NAME whodunit NAME NAME NAME NAME NAME funnymen NAME NAME NAME NAME."            
+    ## [5] "NAME NAME melilite unswear reflected NAME NAME NAME livelong NAME NAME mage?"    
+    ## [6] "NAME NAME opsonic journals NAME NAME cocomposers pinpointed NAME NAME NAME NAME!"
+
+This demonstration shows how fast token replacement can be with
+`replace_token`:
+
+    tic <- Sys.time()
+    head(replace_tokens(x$text.var, nms, "<<NAME>>"))
+
+    ## [1] "<<NAME>> caid <<NAME>> <<NAME>> <<NAME>> <<NAME>> staw nonexistences <<NAME>> <<NAME>> chickweed <<NAME>>."      
+    ## [2] "<<NAME>> <<NAME>> <<NAME>> debunk maturing <<NAME>> <<NAME>> tabors <<NAME>> salmi <<NAME>> caucussed!"          
+    ## [3] "<<NAME>> <<NAME>> <<NAME>> voile <<NAME>> <<NAME>> <<NAME>> noncom adduct <<NAME>> <<NAME>> menads."             
+    ## [4] "<<NAME>> whodunit <<NAME>> <<NAME>> <<NAME>> <<NAME>> <<NAME>> funnymen <<NAME>> <<NAME>> <<NAME>> <<NAME>>."    
+    ## [5] "<<NAME>> <<NAME>> melilite unswear reflected <<NAME>> <<NAME>> <<NAME>> livelong <<NAME>> <<NAME>> mage?"        
+    ## [6] "<<NAME>> <<NAME>> opsonic journals <<NAME>> <<NAME>> cocomposers pinpointed <<NAME>> <<NAME>> <<NAME>> <<NAME>>!"
+
+    (toc <- Sys.time() - tic)
+
+    ## Time difference of 0.02803802 secs
+
+    tic <- Sys.time()
+    head(mgsub(x$text.var, nms, "<<NAME>>"))
+
+    ## [1] "<<NAME>> caid <<NAME>> <<NAME>> <<NAME>> <<NAME>> staw nonexistences <<NAME>> <<NAME>> chickweed <<NAME>>."      
+    ## [2] "<<NAME>> <<NAME>> <<NAME>> debunk maturing <<NAME>> <<NAME>> tabors <<NAME>> salmi <<NAME>> caucussed!"          
+    ## [3] "<<NAME>> <<NAME>> <<NAME>> voile <<NAME>> <<NAME>> <<NAME>> noncom adduct <<NAME>> <<NAME>> menads."             
+    ## [4] "<<NAME>> whodunit <<NAME>> <<NAME>> <<NAME>> <<NAME>> <<NAME>> funnymen <<NAME>> <<NAME>> <<NAME>> <<NAME>>."    
+    ## [5] "<<NAME>> <<NAME>> melilite unswear reflected <<NAME>> <<NAME>> <<NAME>> livelong <<NAME>> <<NAME>> mage?"        
+    ## [6] "<<NAME>> <<NAME>> opsonic journals <<NAME>> <<NAME>> cocomposers pinpointed <<NAME>> <<NAME>> <<NAME>> <<NAME>>!"
+
+    (toc <- Sys.time() - tic)
+
+    ## Time difference of 3.359018 secs
+
+    tic <- Sys.time()
+    out <- replace_tokens(rep(x$text.var, 20), nms, "<<NAME>>")
+    (toc <- Sys.time() - tic)
+
+    ## Time difference of 0.634439 secs
+
+Now let's amp it up with 20x more text data. Thet's 25,000 rows of text
+(300,020 words) and 5,493 tokens in 0.63 seconds.
+
+    tic <- Sys.time()
+    out <- replace_tokens(rep(x$text.var, 20), nms, "<<NAME>>")
+    (toc <- Sys.time() - tic)
+
+    ## Time difference of 0.634439 secs

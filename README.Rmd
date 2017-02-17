@@ -11,6 +11,7 @@ desc <- suppressWarnings(readLines("DESCRIPTION"))
 regex <- "(^Version:\\s+)(\\d+\\.\\d+\\.\\d+)"
 loc <- grep(regex, desc)
 ver <- gsub(regex, "\\2", desc[loc])
+pacman::p_load_current_gh('trinker/numform')
 verbadge <- sprintf('<a href="https://img.shields.io/badge/Version-%s-orange.svg"><img src="https://img.shields.io/badge/Version-%s-orange.svg" alt="Version"/></a></p>', ver, ver)
 ````
 
@@ -359,8 +360,54 @@ replace_white(x)
 ```
 
 
+### Tokens
+
+Often an analysis requires converting tokens of a certain type into a common form or removing them entirely.  The `mgsub` function can do this task, however it is regex based and time consuming when the number of tokens to replace is large.  For example, one may want to replace all proper nouns that are first names with the word name.  The `replace_token` provides a fast way to replace a group of tokens with a single replacement.
+
+This example shows a use case for `replace_token`:
+
+```{r}
+## Set Up the Tokens to Replace
+nms <- gsub("(^.)(.*)", "\\U\\1\\L\\2", common_names, perl = TRUE)
+head(nms)
+
+## Set Up the Data
+x <- split_portion(sample(c(sample(grady_augmented, 5000), 
+    sample(nms, 10000, TRUE))), n.words = 12)
+x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
+head(x$text.var)
+
+head(replace_tokens(x$text.var, nms, 'NAME'))
+```
 
 
 
+This demonstration shows how fast token replacement can be with `replace_token`:
+
+```{r}
+tic <- Sys.time()
+head(replace_tokens(x$text.var, nms, "<<NAME>>"))
+(toc <- Sys.time() - tic)
 
 
+tic <- Sys.time()
+head(mgsub(x$text.var, nms, "<<NAME>>"))
+(toc <- Sys.time() - tic)
+```
+
+```{r}
+tic <- Sys.time()
+out <- replace_tokens(rep(x$text.var, 20), nms, "<<NAME>>")
+(toc <- Sys.time() - tic)
+```
+
+Now let's amp it up with 20x more text data.  Thet's `r f_comma(length(x$text.var) * 20)` rows of text (`r f_comma(sum(stringi::stri_count_words(x$text.var))*20)` words) and `r f_comma(length(nms))` tokens in `r round(toc, 2)` seconds.
+
+```
+tic <- Sys.time()
+out <- replace_tokens(rep(x$text.var, 20), nms, "<<NAME>>")
+(toc <- Sys.time() - tic)
+```
+```{r, echo=FALSE}
+toc
+```
