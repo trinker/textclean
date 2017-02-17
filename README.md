@@ -445,7 +445,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are flawless! 
+    ## You are wickedly awesome! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -1043,69 +1043,71 @@ This example shows a use case for `replace_token`:
     ## [1] "Mary"      "Patricia"  "Linda"     "Barbara"   "Elizabeth" "Jennifer"
 
     ## Set Up the Data
-    x <- split_portion(sample(c(sample(grady_augmented, 5000), 
+    x <- split_portion(sample(c(sample(grady_augmented, 20000), 
         sample(nms, 10000, TRUE))), n.words = 12)
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "Ninfa caid Maren Nicolle Lissette Thora staw nonexistences Dorthey Ranee chickweed Armanda."                     
-    ## [2] "Julene Denny Randee debunk maturing Margurite Lucy tabors Ngan salmi Mi caucussed!"                              
-    ## [3] "Denna Tyrell Nicola voile Vernice Chrystal Darrel noncom adduct Lesia Rodolfo menads."                           
-    ## [4] "Lita whodunit Shelton Enedina Mikel Joie Yuki funnymen Tatiana Stacey Kam Shayna."                               
-    ## [5] "Yuri Cornelia melilite unswear reflected Sammy Maurice Andra livelong Laura Donetta mage?"                       
-    ## [6] "Julian Britteny opsonic journals Katharina Margaret cocomposers pinpointed Josefine Christopher Veronique Mandi!"
+    ## [1] "Jennefer tittupping Leanne Lauren fifteen Vernie Chase turacos Stefan takeouts coercers berime!"         
+    ## [2] "Queen plater adepts brittan Nelda vughs dwayne revisal Theda skalds exhibition desalt."                  
+    ## [3] "Julietta Daisey Remedios signficance Alexis grainer welchers fifthly Vilma negotiator adnation ruminate."
+    ## [4] "gleamiest distanced undrest tidewaters vomers outblush jujuist befools Roslyn upbraided vivyan Bruno?"   
+    ## [5] "culls Valeri overgoad mons noteworthy ensky fulness buzzed anthia jackhammers Tessa contested?"          
+    ## [6] "Rayford hotched webworm recopies paralyzingly malars ergastic doorway cineols soarers remended relearnt."
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "NAME caid NAME NAME NAME NAME staw nonexistences NAME NAME chickweed NAME."      
-    ## [2] "NAME NAME NAME debunk maturing NAME NAME tabors NAME salmi NAME caucussed!"      
-    ## [3] "NAME NAME NAME voile NAME NAME NAME noncom adduct NAME NAME menads."             
-    ## [4] "NAME whodunit NAME NAME NAME NAME NAME funnymen NAME NAME NAME NAME."            
-    ## [5] "NAME NAME melilite unswear reflected NAME NAME NAME livelong NAME NAME mage?"    
-    ## [6] "NAME NAME opsonic journals NAME NAME cocomposers pinpointed NAME NAME NAME NAME!"
+    ## [1] "NAME tittupping NAME NAME fifteen NAME NAME turacos NAME takeouts coercers berime!"                   
+    ## [2] "NAME plater adepts brittan NAME vughs dwayne revisal NAME skalds exhibition desalt."                  
+    ## [3] "NAME NAME NAME signficance NAME grainer welchers fifthly NAME negotiator adnation ruminate."          
+    ## [4] "gleamiest distanced undrest tidewaters vomers outblush jujuist befools NAME upbraided vivyan NAME?"   
+    ## [5] "culls NAME overgoad mons noteworthy ensky fulness buzzed anthia jackhammers NAME contested?"          
+    ## [6] "NAME hotched webworm recopies paralyzingly malars ergastic doorway cineols soarers remended relearnt."
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
 
-    tic <- Sys.time()
-    head(replace_tokens(x$text.var, nms, "<<NAME>>"))
-
-    ## [1] "<<NAME>> caid <<NAME>> <<NAME>> <<NAME>> <<NAME>> staw nonexistences <<NAME>> <<NAME>> chickweed <<NAME>>."      
-    ## [2] "<<NAME>> <<NAME>> <<NAME>> debunk maturing <<NAME>> <<NAME>> tabors <<NAME>> salmi <<NAME>> caucussed!"          
-    ## [3] "<<NAME>> <<NAME>> <<NAME>> voile <<NAME>> <<NAME>> <<NAME>> noncom adduct <<NAME>> <<NAME>> menads."             
-    ## [4] "<<NAME>> whodunit <<NAME>> <<NAME>> <<NAME>> <<NAME>> <<NAME>> funnymen <<NAME>> <<NAME>> <<NAME>> <<NAME>>."    
-    ## [5] "<<NAME>> <<NAME>> melilite unswear reflected <<NAME>> <<NAME>> <<NAME>> livelong <<NAME>> <<NAME>> mage?"        
-    ## [6] "<<NAME>> <<NAME>> opsonic journals <<NAME>> <<NAME>> cocomposers pinpointed <<NAME>> <<NAME>> <<NAME>> <<NAME>>!"
-
-    (toc <- Sys.time() - tic)
-
-    ## Time difference of 0.02803802 secs
-
+    ## mgsub
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "<<NAME>>"))
 
-    ## [1] "<<NAME>> caid <<NAME>> <<NAME>> <<NAME>> <<NAME>> staw nonexistences <<NAME>> <<NAME>> chickweed <<NAME>>."      
-    ## [2] "<<NAME>> <<NAME>> <<NAME>> debunk maturing <<NAME>> <<NAME>> tabors <<NAME>> salmi <<NAME>> caucussed!"          
-    ## [3] "<<NAME>> <<NAME>> <<NAME>> voile <<NAME>> <<NAME>> <<NAME>> noncom adduct <<NAME>> <<NAME>> menads."             
-    ## [4] "<<NAME>> whodunit <<NAME>> <<NAME>> <<NAME>> <<NAME>> <<NAME>> funnymen <<NAME>> <<NAME>> <<NAME>> <<NAME>>."    
-    ## [5] "<<NAME>> <<NAME>> melilite unswear reflected <<NAME>> <<NAME>> <<NAME>> livelong <<NAME>> <<NAME>> mage?"        
-    ## [6] "<<NAME>> <<NAME>> opsonic journals <<NAME>> <<NAME>> cocomposers pinpointed <<NAME>> <<NAME>> <<NAME>> <<NAME>>!"
+    ## [1] "<<NAME>> tittupping <<NAME>> <<NAME>> fifteen <<NAME>> <<NAME>> turacos <<NAME>> takeouts coercers berime!"     
+    ## [2] "<<NAME>> plater adepts brittan <<NAME>> vughs dwayne revisal <<NAME>> skalds exhibition desalt."                
+    ## [3] "<<NAME>> <<NAME>> <<NAME>> signficance <<NAME>> grainer welchers fifthly <<NAME>> negotiator adnation ruminate."
+    ## [4] "gleamiest distanced undrest tidewaters vomers outblush jujuist befools <<NAME>> upbraided vivyan <<NAME>>?"     
+    ## [5] "culls <<NAME>> overgoad mons noteworthy ensky fulness buzzed anthia jackhammers <<NAME>> contested?"            
+    ## [6] "<<NAME>> hotched webworm recopies paralyzingly malars ergastic doorway cineols soarers remended relearnt."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 3.359018 secs
+    ## Time difference of 7.459835 secs
+
+    ## replace_tokens
+    tic <- Sys.time()
+    head(replace_tokens(x$text.var, nms, "<<NAME>>"))
+
+    ## [1] "<<NAME>> tittupping <<NAME>> <<NAME>> fifteen <<NAME>> <<NAME>> turacos <<NAME>> takeouts coercers berime!"     
+    ## [2] "<<NAME>> plater adepts brittan <<NAME>> vughs dwayne revisal <<NAME>> skalds exhibition desalt."                
+    ## [3] "<<NAME>> <<NAME>> <<NAME>> signficance <<NAME>> grainer welchers fifthly <<NAME>> negotiator adnation ruminate."
+    ## [4] "gleamiest distanced undrest tidewaters vomers outblush jujuist befools <<NAME>> upbraided vivyan <<NAME>>?"     
+    ## [5] "culls <<NAME>> overgoad mons noteworthy ensky fulness buzzed anthia jackhammers <<NAME>> contested?"            
+    ## [6] "<<NAME>> hotched webworm recopies paralyzingly malars ergastic doorway cineols soarers remended relearnt."
+
+    (toc <- Sys.time() - tic)
+
+    ## Time difference of 0.08155704 secs
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "<<NAME>>")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.634439 secs
+    ## Time difference of 1.373038 secs
 
-Now let's amp it up with 20x more text data. Thet's 25,000 rows of text
-(300,020 words) and 5,493 tokens in 0.63 seconds.
+Now let's amp it up with 20x more text data. Thet's 50,000 rows of text
+(600,060 words) and 5,493 replacement tokens in 1.4 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "<<NAME>>")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.634439 secs
+    ## Time difference of 1.373038 secs
