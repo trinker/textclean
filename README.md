@@ -163,31 +163,26 @@ table below:
 <td>Replace regex white space characters</td>
 </tr>
 <tr class="even">
+<td><code>replace_token</code></td>
+<td>replacement</td>
+<td>Remove or replace a vector of tokens with a single value</td>
+</tr>
+<tr class="odd">
 <td><code>add_comma_space</code></td>
 <td>replacement</td>
 <td>Replace non-space after comma</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>add_missing_endmark</code></td>
 <td>replacement</td>
 <td>Replace missing endmarks with desired symbol</td>
 </tr>
-<tr class="even">
-<td><code>stem_words</code></td>
-<td>stemming</td>
-<td>Stem words</td>
-</tr>
 <tr class="odd">
-<td><code>stem_strings</code></td>
-<td>stemming</td>
-<td>Stem strings</td>
-</tr>
-<tr class="even">
 <td><code>check_text</code></td>
 <td>check</td>
 <td>Text report of potential issues</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>has_endmark</code></td>
 <td>check</td>
 <td>Check if an element has an end-mark</td>
@@ -449,7 +444,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are virtuosic! 
+    ## You are breathtaking! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 

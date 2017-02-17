@@ -32,7 +32,7 @@
 filter_row <- function(dataframe, column, terms, ...) {
     
     terms <- paste(terms, collapse="|")
-    if (nrow(dataframe[[column]]) == 0) stop("No columns in the data appear to match supplied `column`")    
+    if (length(dataframe[[column]]) == 0) stop("No columns in the data appear to match supplied `column`")    
     dataframe <- dataframe[!grepl(terms, dataframe[[column]], perl=TRUE, ...), ]
     rownames(dataframe) <- NULL
     
