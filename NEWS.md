@@ -27,7 +27,9 @@ textclean 0.3.1
   replace fixed tokens with a single value or remove them entirely.  This yields 
   an optimized solution that is much faster than `mgsub`.
 
+**CHANGES**
 
+* `mgusb` no longer uses `trim = TRUE` by default.
 
 textclean 0.2.1 - 0.3.0
 ----------------------------------------------------------------

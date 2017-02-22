@@ -5,7 +5,7 @@
 \title{Multiple \code{\link[base]{gsub}}}
 \usage{
 mgsub(x, pattern, replacement, leadspace = FALSE, trailspace = FALSE,
-  fixed = TRUE, trim = TRUE, order.pattern = fixed, ...)
+  fixed = TRUE, trim = FALSE, order.pattern = fixed, ...)
 }
 \arguments{
 \item{x}{A character vector.}

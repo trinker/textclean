@@ -28,7 +28,7 @@
 #' mgsub(DATA$state, c("it's", "I'm"), c("it is", "I am"))
 #' mgsub(DATA$state, "[[:punct:]]", "PUNC", fixed = FALSE)
 mgsub <- function (x, pattern, replacement, leadspace = FALSE, 
-    trailspace = FALSE, fixed = TRUE, trim = TRUE, order.pattern = fixed, 
+    trailspace = FALSE, fixed = TRUE, trim = FALSE, order.pattern = fixed, 
     ...) {
 
     if (leadspace | trailspace) replacement <- spaste(replacement, trailing = trailspace, leading = leadspace)
