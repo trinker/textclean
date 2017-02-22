@@ -445,7 +445,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are flawless! 
+    ## You are majestic! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -1048,21 +1048,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "pancaking vulgarizes harboring sciatica Kayleigh propyla corridors administrant Oliva Nicholas respread Delisa?"
-    ## [2] "clavers recleans draffy idiomatically pilled Tisha Frida headway Randolph crayons Wendie signatures."           
-    ## [3] "Lilly racial feud Alix Krysten Nestor sterical puckeriest Clint marvellous Erick mannequins?"                   
-    ## [4] "kyanise hollies Lala hyenoid complications bedotted Reatha outcrosses triadics antiulcer kimberly howdies?"     
-    ## [5] "educt octoroon Georgianne Erich Cyndy flathead Lincoln cummerbund Sylvie rotate Morris subways."                
-    ## [6] "berms loamier Jayna lysogenies Hubert heeder eschew Kandice coextending terminable transistors tawnya!"
+    ## [1] "corkscrews sudaria Jean Jody Catrice scintilla Ada roseline sharecroppers includes sweatbox arable?"       
+    ## [2] "almas Alysha expletives codeia acquaintance forte outate glairiest Sherrie around erythron Von!"           
+    ## [3] "dispended sild spouses Gertha reflowering susanne gazetteers Lashawn gurges Guillermo perambulating stums."
+    ## [4] "Cristen Amira Kristle darline fannies transfigurations Lakeesha Ria senopias kimberlyn artie Ricki!"       
+    ## [5] "Macy vibrissae Myrtis pedal syrphians duodenal biology kingbolts Marylin zippiest hutlike Michael?"        
+    ## [6] "manges elect weel windmill adolpho Nigel sideboard Joey uncake caroljean Florrie manufactures!"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "pancaking vulgarizes harboring sciatica NAME propyla corridors administrant NAME NAME respread NAME?"    
-    ## [2] "clavers recleans draffy idiomatically pilled NAME NAME headway NAME crayons NAME signatures."            
-    ## [3] "NAME racial feud NAME NAME NAME sterical puckeriest NAME marvellous NAME mannequins?"                    
-    ## [4] "kyanise hollies NAME hyenoid complications bedotted NAME outcrosses triadics antiulcer kimberly howdies?"
-    ## [5] "educt octoroon NAME NAME NAME flathead NAME cummerbund NAME rotate NAME subways."                        
-    ## [6] "berms loamier NAME lysogenies NAME heeder eschew NAME coextending terminable transistors tawnya!"
+    ## [1] "corkscrews sudaria NAME NAME NAME scintilla NAME roseline sharecroppers includes sweatbox arable?"
+    ## [2] "almas NAME expletives codeia acquaintance forte outate glairiest NAME around erythron NAME!"      
+    ## [3] "dispended sild spouses NAME reflowering susanne gazetteers NAME gurges NAME perambulating stums." 
+    ## [4] "NAME NAME NAME darline fannies transfigurations NAME NAME senopias kimberlyn artie NAME!"         
+    ## [5] "NAME vibrissae NAME pedal syrphians duodenal biology kingbolts NAME zippiest hutlike NAME?"       
+    ## [6] "manges elect weel windmill adolpho NAME sideboard NAME uncake caroljean NAME manufactures!"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1071,37 +1071,37 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "pancaking vulgarizes harboring sciatica NAME propyla corridors administrant NAME NAME respread NAME?"    
-    ## [2] "clavers recleans draffy idiomatically pilled NAME NAME headway NAME crayons NAME signatures."            
-    ## [3] "NAME racial feud NAME NAME NAME sterical puckeriest NAME marvellous NAME mannequins?"                    
-    ## [4] "kyanise hollies NAME hyenoid complications bedotted NAME outcrosses triadics antiulcer kimberly howdies?"
-    ## [5] "educt octoroon NAME NAME NAME flathead NAME cummerbund NAME rotate NAME subways."                        
-    ## [6] "berms loamier NAME lysogenies NAME heeder eschew NAME coextending terminable transistors tawnya!"
+    ## [1] "corkscrews sudaria NAME NAME NAME scintilla NAME roseline sharecroppers includes sweatbox arable?"
+    ## [2] "almas NAME expletives codeia acquaintance forte outate glairiest NAME around erythron NAME!"      
+    ## [3] "dispended sild spouses NAME reflowering susanne gazetteers NAME gurges NAME perambulating stums." 
+    ## [4] "NAME NAME NAME darline fannies transfigurations NAME NAME senopias kimberlyn artie NAME!"         
+    ## [5] "NAME vibrissae NAME pedal syrphians duodenal biology kingbolts NAME zippiest hutlike NAME?"       
+    ## [6] "manges elect weel windmill adolpho NAME sideboard NAME uncake caroljean NAME manufactures!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 6.932264 secs
+    ## Time difference of 7.55063 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "pancaking vulgarizes harboring sciatica NAME propyla corridors administrant NAME NAME respread NAME?"    
-    ## [2] "clavers recleans draffy idiomatically pilled NAME NAME headway NAME crayons NAME signatures."            
-    ## [3] "NAME racial feud NAME NAME NAME sterical puckeriest NAME marvellous NAME mannequins?"                    
-    ## [4] "kyanise hollies NAME hyenoid complications bedotted NAME outcrosses triadics antiulcer kimberly howdies?"
-    ## [5] "educt octoroon NAME NAME NAME flathead NAME cummerbund NAME rotate NAME subways."                        
-    ## [6] "berms loamier NAME lysogenies NAME heeder eschew NAME coextending terminable transistors tawnya!"
+    ## [1] "corkscrews sudaria NAME NAME NAME scintilla NAME roseline sharecroppers includes sweatbox arable?"
+    ## [2] "almas NAME expletives codeia acquaintance forte outate glairiest NAME around erythron NAME!"      
+    ## [3] "dispended sild spouses NAME reflowering susanne gazetteers NAME gurges NAME perambulating stums." 
+    ## [4] "NAME NAME NAME darline fannies transfigurations NAME NAME senopias kimberlyn artie NAME!"         
+    ## [5] "NAME vibrissae NAME pedal syrphians duodenal biology kingbolts NAME zippiest hutlike NAME?"       
+    ## [6] "manges elect weel windmill adolpho NAME sideboard NAME uncake caroljean NAME manufactures!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.07105017 secs
+    ## Time difference of 0.106071 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,160 words) and 5,493 replacement tokens in 1.6 seconds.
+(600,100 words) and 5,493 replacement tokens in 2 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.566166 secs
+    ## Time difference of 2.012087 secs

@@ -18,7 +18,7 @@ And constructed with the following guidelines:
 
 
 
-textclean 0.3.1 - 
+textclean 0.3.1
 ----------------------------------------------------------------
 
 **BUG FIXES**
@@ -26,14 +26,6 @@ textclean 0.3.1 -
 * `replace_tokens` added to complement `mgsub` for times when the user wants to 
   replace fixed tokens with a single value or remove them entirely.  This yields 
   an optimized solution that is much faster than `mgsub`.
-
-**NEW FEATURES**
-
-**MINOR FEATURES**
-
-**IMPROVEMENTS**
-
-**CHANGES**
 
 
 
