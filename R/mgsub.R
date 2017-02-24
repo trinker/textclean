@@ -39,7 +39,12 @@ mgsub <- function (x, pattern, replacement, leadspace = FALSE,
         if (length(replacement) != 1) replacement <- replacement[ord]
     }
     if (length(replacement) == 1) replacement <- rep(replacement, length(pattern))
-   
+    if (any(!nzchar(pattern))) {
+        good_apples <- which(nzchar(pattern))  
+        pattern <- pattern[good_apples]
+        replacement <- replacement[good_apples]      
+        warning('Empty pattern found (i.e., `pattern = ""`).\nThis pattern and replacement have been removed.')
+    }
     for (i in seq_along(pattern)){
         x <- gsub(pattern[i], replacement[i], x, fixed = fixed, ...)
     }

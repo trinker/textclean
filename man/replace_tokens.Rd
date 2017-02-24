@@ -40,6 +40,7 @@ replace_tokens(DATA$state, c('No', 'what', "it's"))
 replace_tokens(DATA$state, c('No', 'what', "it's"), "<<TOKEN>>")
 replace_tokens(DATA$state, c('No', 'what', "it's"), "<<TOKEN>>", ignore.case = TRUE)
 
+\dontrun{
 ## Now let's see the speed
 ## Set up data
 library(textshape)
@@ -62,7 +63,6 @@ tic <- Sys.time()
 head(replace_tokens(rep(hamlet$dialogue, 20), tokens))
 (toc <- Sys.time() - tic)
 
-\dontrun{
 ## Replace names example
 
 library(lexicon)
