@@ -1,8 +1,9 @@
 #' Replace HTML Markup
 #' 
 #' Replaces HTML markup.  The angle braces are removed and the HTML symbol 
-#' markup is replaced with equivalent symbols.  Replacements for symbols are as 
-#' follows:
+#' markup is replaced with equivalent symbols.  
+#'
+#' @details Replacements for symbols are as follows:
 #' 
 #' \tabular{lr}{
 #'     \bold{html} \tab  \bold{symbol} \cr
