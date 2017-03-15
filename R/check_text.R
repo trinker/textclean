@@ -44,7 +44,7 @@
 #' }
 check_text <- function(x, file = NULL) {
 
-    
+    if (is.data.frame(x)) stop("`x` is a data.frame.  Pass a text vector.")
     check_install('hunspell')
     
     non_character <- is.factor(x) 
