@@ -31,4 +31,3 @@ x <- c(
 has_endmark(x)
 }
 \keyword{incomplete}
-

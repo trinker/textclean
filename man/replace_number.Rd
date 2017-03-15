@@ -48,4 +48,3 @@ Fox, J. (2005). Programmer's niche: How do you spell that number?
 R News. Vol. 5(1), pp. 51-55.
 }
 \keyword{number-to-word}
-

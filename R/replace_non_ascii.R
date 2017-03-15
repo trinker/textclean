@@ -23,8 +23,9 @@
 #' replace_non_ascii(x, remove.nonconverted = FALSE)
 replace_non_ascii <-
 function(x, remove.nonconverted = TRUE, ...) {
+    x <- stringi::stri_trans_general(x, "latin-ascii")
     x <- iconv(as.character(x), "", "ASCII", "byte")
-    Encoding(x) <-"latin1"
+    Encoding(x) <-"latin1"    
     x <- mgsub(x, ser, reps)
     if (isTRUE(remove.nonconverted)) x <- qdapRegex::rm_angle(x)
     x

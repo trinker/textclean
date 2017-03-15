@@ -43,4 +43,3 @@ x <- c("I am @ Jon's & Jim's w/ Marry",
 replace_symbol(x)
 }
 \keyword{symbol-replace}
-

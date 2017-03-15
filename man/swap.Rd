@@ -31,4 +31,3 @@ x <- c("hash_abbreviation", "hash_contractions", "hash_grade", "key_emoticons",
 x
 swap(x, 'hash_', 'key_')
 }
-

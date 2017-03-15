@@ -49,4 +49,3 @@ mgsub(DATA$state, "[[:punct:]]", "PUNC", fixed = FALSE)
 \code{\link[textclean]{replace_tokens}}
 \code{\link[base]{gsub}}
 }
-

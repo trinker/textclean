@@ -35,4 +35,3 @@ replace_ordinal(x, remove = TRUE)
 replace_number(replace_ordinal("I like the 1st 1 not the 22nd 1."))
 }
 \keyword{ordinal-to-word}
-

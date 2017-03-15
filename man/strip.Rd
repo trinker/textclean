@@ -3,8 +3,8 @@
 \name{strip}
 \alias{strip}
 \alias{strip.character}
-\alias{strip.default}
 \alias{strip.factor}
+\alias{strip.default}
 \alias{strip.list}
 \title{Strip Text}
 \usage{
@@ -63,4 +63,3 @@ strip(DATA$state, apostrophe.remove=TRUE)
 strip(DATA$state, char.keep = c("?", "."))
 }
 }
-

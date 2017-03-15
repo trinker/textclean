@@ -2,11 +2,10 @@
 % Please edit documentation in R/textclean-package.R
 \docType{package}
 \name{textclean}
-\alias{package-textclean}
 \alias{textclean}
+\alias{package-textclean}
 \alias{textclean-package}
 \title{Text Cleaning Tools}
 \description{
 Tools to clean and process text.
 }
-

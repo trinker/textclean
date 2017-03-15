@@ -58,4 +58,3 @@ check_text(y)
 \keyword{check}
 \keyword{spelling}
 \keyword{text}
-

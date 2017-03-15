@@ -15,10 +15,10 @@ Depends: R (>= 3.2.3)
 Imports: english(>= 1.0-2), qdapRegex, stringi, textshape(>= 1.0.1),
         utils
 Suggests: testthat, lexicon(>= 0.1.0)
-Date: 2017-02-24
+Date: 2017-03-14
 License: GPL-2
 LazyData: TRUE
 Roxygen: list(wrap = FALSE)
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 URL: http://github.com/trinker/textclean
 BugReports: http://github.com/trinker/textclean/issues

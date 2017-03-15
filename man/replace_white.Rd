@@ -26,4 +26,3 @@ replace_white(x)
 }
 \keyword{character}
 \keyword{escaped}
-

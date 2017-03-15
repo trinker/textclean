@@ -34,4 +34,3 @@ replace_non_ascii(x)
 replace_non_ascii(x, remove.nonconverted = FALSE)
 }
 \keyword{ascii}
-

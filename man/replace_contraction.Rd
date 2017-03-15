@@ -36,4 +36,3 @@ replace_contraction(x)
 }
 }
 \keyword{contraction}
-

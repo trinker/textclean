@@ -20,4 +20,3 @@ If \code{NULL} prints to the console.}
 \description{
 Prints a check_text object.
 }
-

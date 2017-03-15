@@ -21,4 +21,3 @@ A fictitious dataset useful for small demonstrations.
 }
 }
 \keyword{datasets}
-

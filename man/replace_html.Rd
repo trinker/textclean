@@ -19,10 +19,11 @@ Returns a vector with HTML markup replaced.
 }
 \description{
 Replaces HTML markup.  The angle braces are removed and the HTML symbol 
-markup is replaced with equivalent symbols.  Replacements for symbols are as 
-follows:
+markup is replaced with equivalent symbols.
 }
 \details{
+Replacements for symbols are as follows:
+
 \tabular{lr}{
     \bold{html} \tab  \bold{symbol} \cr
   &nbsp;   \tab      \cr
@@ -49,4 +50,3 @@ replace_html(x)
 replace_html(x, FALSE)
 }
 \keyword{html}
-

@@ -37,4 +37,3 @@ x <- c("This place receives 5 stars for their APPETIZERS!!!",
 replace_rating(x)
 }
 \keyword{rating}
-

@@ -32,4 +32,3 @@ x <- c(
 
 add_missing_endmark(x)
 }
-

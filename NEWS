@@ -29,6 +29,9 @@ MINOR FEATURES
 
 IMPROVEMENTS
 
+* `replace_non_ascii` now uses `stringi::stri_trans_general` to coerce more 
+  non-ASCII characters to ASCII format.
+
 CHANGES
 
 

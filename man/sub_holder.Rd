@@ -45,4 +45,3 @@ vowels <- LETTERS[c(1, 5, 9, 15, 21)]
 m2$unhold(gsub("[^0-9]", "", m2$output))
 mtabulate(strsplit(m2$unhold(gsub("[^0-9]", "", m2$output)), ""))
 }
-

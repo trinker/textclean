@@ -39,4 +39,3 @@ x <- c(
 replace_emoticon(x)
 }
 \keyword{emoticon}
-

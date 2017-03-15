@@ -28,4 +28,3 @@ replace_incomplete(x)
 replace_incomplete(x, '...')
 }
 \keyword{replace_incompletelete-sentence}
-

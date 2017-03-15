@@ -12,7 +12,7 @@ Status](https://coveralls.io/repos/trinker/textclean/badge.svg?branch=master)](h
 [![](http://cranlogs.r-pkg.org/badges/textclean)](https://cran.r-project.org/package=textclean)
 <a href="https://img.shields.io/badge/Version-0.4.0-orange.svg"><img src="https://img.shields.io/badge/Version-0.4.0-orange.svg" alt="Version"/></a>
 </p>
-<img src="inst/textclean_logo/r_textclean2.png" width="200" alt="textclean Logo">
+<img src="tools/textclean_logo/r_textclean2.png" width="200" alt="textclean Logo">
 
 **textclean** is a collection of tools to clean and process text. Many
 of these tools have been taken from the **qdap** package and revamped to
@@ -445,7 +445,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are phenomenal! 
+    ## You are wickedly awesome! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -869,27 +869,19 @@ non-ASCII characters are simply removed (unless
 
     replace_non_ascii(x)
 
-    ## [1] "Hello World"                                       
-    ## [2] "6 Ekstrm"                                          
-    ## [3] "Jreskog"                                           
-    ## [4] "bichen Zrcher"                                     
-    ## [5] "This is a copyright but not a registered trademark"
-    ## [6] "6 / 2 = 3"                                         
-    ## [7] "fractions 1/2, 1/4, 3/4"                           
-    ## [8] "cows go mu"                                        
+    ## [1] "Hello World"                 "6 Ekstrom"                  
+    ## [3] "Joreskog"                    "bisschen Zurcher"           
+    ## [5] "This is a (C) but not a (R)" "6 / 2 = 3"                  
+    ## [7] "fractions 1/4, 1/2, 3/4"     "cows go mu"                 
     ## [9] "30 cent"
 
     replace_non_ascii(x, remove.nonconverted = FALSE)
 
-    ## [1] "Hello World"                                           
-    ## [2] "6 Ekstr<f8>m"                                          
-    ## [3] "J<f6>reskog"                                           
-    ## [4] "bi<df>chen Z<fc>rcher"                                 
-    ## [5] "This is a  copyright  but not a  registered trademark "
-    ## [6] "6 / 2 = 3"                                             
-    ## [7] "fractions 1/2, 1/4, 3/4"                               
-    ## [8] "cows go  mu "                                          
-    ## [9] "30 cent "
+    ## [1] "Hello World"                 "6 Ekstrom"                  
+    ## [3] "Joreskog"                    "bisschen Zurcher"           
+    ## [5] "This is a (C) but not a (R)" "6 / 2 = 3"                  
+    ## [7] "fractions  1/4,  1/2,  3/4"  "cows go <c2> mu "           
+    ## [9] "30<c2> cent "
 
 ### Numbers
 
@@ -1049,21 +1041,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "cuspated Chery Millicent aeroducts such nontraditional roqueted Latesha itinerary twanglers licha foal!"
-    ## [2] "ovine revocations exurbias gonfanon Nicky psis blissful dismasting fumy Kristina Helen emeroids?"       
-    ## [3] "knitter granted gated allison garages simmered condolers Lyle ratifies yardsticks gyrocompass morros?"  
-    ## [4] "Mana oologist Ashley Akilah Natalia Milford dekagrams Alicia terebic mountings champagne anchorite?"    
-    ## [5] "Delcie pubs Cristen Tamala evacuated Lee rechannels amount denied Jacalyn crabbier Sibyl?"              
-    ## [6] "derivative angina lurline doozy offshoots microhms syringe ryegrasses laxest rondures Trisha shirline!"
+    ## [1] "corruptions Tuan faradised Krystina nonspeaking geneticists dejecta Shira Francesca Chang inched brownish!"   
+    ## [2] "Reagan caroljean lunt undried Yolande mishit muns Teri ovaries upfolded aroint spunkily?"                     
+    ## [3] "David rig seismographic chaffering presumers Sindy calypter expanses Basilia mesquites yarrow Lauryn!"        
+    ## [4] "steaks preplanned formalize duffles Tasia bradly potterer tribunals Hye bonspiel Fidela Ashlyn."              
+    ## [5] "Travis Charis surcoats cultural Shaunta pilseners excruciatingly bedraped serenading Milan Shanell wearables!"
+    ## [6] "plenists Indira ingroup licence paraquet cystoids garrulousnesses Janel kesley zippered jacinthes washdays."
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "cuspated NAME NAME aeroducts such nontraditional roqueted NAME itinerary twanglers licha foal!"       
-    ## [2] "ovine revocations exurbias gonfanon NAME psis blissful dismasting fumy NAME NAME emeroids?"           
-    ## [3] "knitter granted gated allison garages simmered condolers NAME ratifies yardsticks gyrocompass morros?"
-    ## [4] "NAME oologist NAME NAME NAME NAME dekagrams NAME terebic mountings champagne anchorite?"              
-    ## [5] "NAME pubs NAME NAME evacuated NAME rechannels amount denied NAME crabbier NAME?"                      
-    ## [6] "derivative angina lurline doozy offshoots microhms syringe ryegrasses laxest rondures NAME shirline!"
+    ## [1] "corruptions NAME faradised NAME nonspeaking geneticists dejecta NAME NAME NAME inched brownish!"         
+    ## [2] "NAME caroljean lunt undried NAME mishit muns NAME ovaries upfolded aroint spunkily?"                     
+    ## [3] "NAME rig seismographic chaffering presumers NAME calypter expanses NAME mesquites yarrow NAME!"          
+    ## [4] "steaks preplanned formalize duffles NAME bradly potterer tribunals NAME bonspiel NAME NAME."             
+    ## [5] "NAME NAME surcoats cultural NAME pilseners excruciatingly bedraped serenading NAME NAME wearables!"      
+    ## [6] "plenists NAME ingroup licence paraquet cystoids garrulousnesses NAME kesley zippered jacinthes washdays."
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1072,37 +1064,37 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "cuspated NAME NAME aeroducts such nontraditional roqueted NAME itinerary twanglers licha foal!"       
-    ## [2] "ovine revocations exurbias gonfanon NAME psis blissful dismasting fumy NAME NAME emeroids?"           
-    ## [3] "knitter granted gated allison garages simmered condolers NAME ratifies yardsticks gyrocompass morros?"
-    ## [4] "NAME oologist NAME NAME NAME NAME dekagrams NAME terebic mountings champagne anchorite?"              
-    ## [5] "NAME pubs NAME NAME evacuated NAME rechannels amount denied NAME crabbier NAME?"                      
-    ## [6] "derivative angina lurline doozy offshoots microhms syringe ryegrasses laxest rondures NAME shirline!"
+    ## [1] "corruptions NAME faradised NAME nonspeaking geneticists dejecta NAME NAME NAME inched brownish!"         
+    ## [2] "NAME caroljean lunt undried NAME mishit muns NAME ovaries upfolded aroint spunkily?"                     
+    ## [3] "NAME rig seismographic chaffering presumers NAME calypter expanses NAME mesquites yarrow NAME!"          
+    ## [4] "steaks preplanned formalize duffles NAME bradly potterer tribunals NAME bonspiel NAME NAME."             
+    ## [5] "NAME NAME surcoats cultural NAME pilseners excruciatingly bedraped serenading NAME NAME wearables!"      
+    ## [6] "plenists NAME ingroup licence paraquet cystoids garrulousnesses NAME kesley zippered jacinthes washdays."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 7.172702 secs
+    ## Time difference of 6.267544 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "cuspated NAME NAME aeroducts such nontraditional roqueted NAME itinerary twanglers licha foal!"       
-    ## [2] "ovine revocations exurbias gonfanon NAME psis blissful dismasting fumy NAME NAME emeroids?"           
-    ## [3] "knitter granted gated allison garages simmered condolers NAME ratifies yardsticks gyrocompass morros?"
-    ## [4] "NAME oologist NAME NAME NAME NAME dekagrams NAME terebic mountings champagne anchorite?"              
-    ## [5] "NAME pubs NAME NAME evacuated NAME rechannels amount denied NAME crabbier NAME?"                      
-    ## [6] "derivative angina lurline doozy offshoots microhms syringe ryegrasses laxest rondures NAME shirline!"
+    ## [1] "corruptions NAME faradised NAME nonspeaking geneticists dejecta NAME NAME NAME inched brownish!"         
+    ## [2] "NAME caroljean lunt undried NAME mishit muns NAME ovaries upfolded aroint spunkily?"                     
+    ## [3] "NAME rig seismographic chaffering presumers NAME calypter expanses NAME mesquites yarrow NAME!"          
+    ## [4] "steaks preplanned formalize duffles NAME bradly potterer tribunals NAME bonspiel NAME NAME."             
+    ## [5] "NAME NAME surcoats cultural NAME pilseners excruciatingly bedraped serenading NAME NAME wearables!"      
+    ## [6] "plenists NAME ingroup licence paraquet cystoids garrulousnesses NAME kesley zippered jacinthes washdays."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.06854796 secs
+    ## Time difference of 0.05503893 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,060 words) and 5,493 replacement tokens in 1.6 seconds.
+(600,020 words) and 5,493 replacement tokens in 1.6 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.584137 secs
+    ## Time difference of 1.571142 secs
