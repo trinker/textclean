@@ -23,6 +23,7 @@
 #'   \item{missing_value}{- Text that contains missing values (i.e., \code{NA}).}
 #'   \item{containing_escaped}{- Text that contains escaped (see \code{?Quotes}).}
 #'   \item{containing_digits}{- Text that contains digits.}
+#'   \item{containing_html}{- Text that potentially contains HTML markup.}
 #'   \item{indicating_incomplete}{- Text that contains endmarks that are indicative of incomplete/trailing sentences (e.g., \code{...}).}
 #'   \item{potentially_misspelled}{- Text that contains potentially misspelled words.}
 #' }
@@ -33,8 +34,8 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' x <- c("i like", "i want. thet them ther .", "I am ! that|", "", NA, 
-#'     "they,were there", ".", "   ", "?", "3;", "I like goud eggs!", 
+#' x <- c("i like", "<p>i want. </p>thet them ther .", "I am ! that|", "", NA, 
+#'     "&quot;they&quot;,were there", ".", "   ", "?", "3;", "I like goud eggs!", 
 #'     "i 4like...", "\\tgreat",  "She said \"yes\"")
 #' check_text(x)
 #' print(check_text(x), include.text=FALSE)
@@ -69,6 +70,7 @@ check_text <- function(x, file = NULL) {
         missing_value = missing, 
         containing_escaped = which.escaped(x),
         containing_digits = which.digit(x),
+	containing_html = which.html(x),	    
         indicating_incomplete = which.incomplete(x),
         potentially_misspelled = misspelled
     )
@@ -170,6 +172,7 @@ spaste <- function(x) paste0(" ", x, " ")
     missing_value = "running `filter_NA`", 
     containing_escaped = "using `replace_white`",
     containing_digits = "using `replace_number`",
+    containing_html = "running `replace_html`",
     indicating_incomplete = "using `replace_incomplete`",   
     potentially_misspelled = "running `hunspell::hunspell_find` & `hunspell::hunspell_suggest`"
 )
@@ -258,6 +261,12 @@ which.digit <- function(x) {
     out
 }
 
+which.html <- function(x) {
+    pat <- paste0("<[^>]+>|", paste(html_symbols[['html']], collapse ="|"))
+    out <- grep(pat, x)
+    if(length(out) == 0) return(NULL)
+    out
+}
 
 all_good <- function(){
 	message <- paste0(
