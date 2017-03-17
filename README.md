@@ -843,7 +843,7 @@ this task.
     ## [1] "I give an very excellent excellent"             
     ## [2] "He deserves an very very bad"                   
     ## [3] "It's slightly above average work"               
-    ## [4] "very excellent poor example deserves a average!"
+    ## [4] "A poor example deserves a average!"
 
 ### HTML
 
