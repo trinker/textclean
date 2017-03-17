@@ -251,9 +251,10 @@ information on the following:
 9.  **containing\_escaped** - Text that contains escaped (see
     `?Quotes`).
 10. **containing\_digits** - Text that contains digits.
-11. **indicating\_incomplete** - Text that contains endmarks that are
+11. **containing\_html** - Text that potentially contains HTML markup.
+12. **indicating\_incomplete** - Text that contains endmarks that are
     indicative of incomplete/trailing sentences (e.g., `...`).
-12. **potentially\_misspelled** - Text that contains potentially
+13. **potentially\_misspelled** - Text that contains potentially
     misspelled words.
 
 Here is an example:
@@ -808,10 +809,10 @@ this task.
     )
     replace_grade(text)
 
-    ## [1] "I give an very excellent excellent+"                                     
-    ## [2] "He deserves an very bad"                                                 
-    ## [3] "It's slightly above average+ work"                                       
-    ## [4] "very excellent excellent poor example deserves a slightly above average!"
+    ## [1] "I give an very excellent excellent"             
+    ## [2] "He deserves an very very bad"                   
+    ## [3] "It's slightly above average work"               
+    ## [4] "very excellent poor example deserves a average!"
 
 ### HTML
 
@@ -1041,21 +1042,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "corruptions Tuan faradised Krystina nonspeaking geneticists dejecta Shira Francesca Chang inched brownish!"   
-    ## [2] "Reagan caroljean lunt undried Yolande mishit muns Teri ovaries upfolded aroint spunkily?"                     
-    ## [3] "David rig seismographic chaffering presumers Sindy calypter expanses Basilia mesquites yarrow Lauryn!"        
-    ## [4] "steaks preplanned formalize duffles Tasia bradly potterer tribunals Hye bonspiel Fidela Ashlyn."              
-    ## [5] "Travis Charis surcoats cultural Shaunta pilseners excruciatingly bedraped serenading Milan Shanell wearables!"
-    ## [6] "plenists Indira ingroup licence paraquet cystoids garrulousnesses Janel kesley zippered jacinthes washdays."
+    ## [1] "milos nudity Sunni oppugn itemization divested hilloa Kathern highjack snooked antlike miasmas."                      
+    ## [2] "Silvia Kelsie Bernita engraves flitters Teresia sternnesses crowing pulpy Katlyn unhitched Emerson."                  
+    ## [3] "algal normalizations damners Javier Athena Raylene Charlsie overexaggeration ventilation hesitant disendowed pyxidia?"
+    ## [4] "wreathy Jennifer August Johna Autumn avid priesthood flunkey Kimberely purvey rehang bondsmen!"                       
+    ## [5] "sleepwalking panders Gena galletas diaster Alycia Marvel Mallie sewer Denese devolution segmenting."                  
+    ## [6] "Kacy ratan Arlena trope mammitis kerfing agoroth Alvaro latching Ettie refluxed Sean."
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "corruptions NAME faradised NAME nonspeaking geneticists dejecta NAME NAME NAME inched brownish!"         
-    ## [2] "NAME caroljean lunt undried NAME mishit muns NAME ovaries upfolded aroint spunkily?"                     
-    ## [3] "NAME rig seismographic chaffering presumers NAME calypter expanses NAME mesquites yarrow NAME!"          
-    ## [4] "steaks preplanned formalize duffles NAME bradly potterer tribunals NAME bonspiel NAME NAME."             
-    ## [5] "NAME NAME surcoats cultural NAME pilseners excruciatingly bedraped serenading NAME NAME wearables!"      
-    ## [6] "plenists NAME ingroup licence paraquet cystoids garrulousnesses NAME kesley zippered jacinthes washdays."
+    ## [1] "milos nudity NAME oppugn itemization divested hilloa NAME highjack snooked antlike miasmas."               
+    ## [2] "NAME NAME NAME engraves flitters NAME sternnesses crowing pulpy NAME unhitched NAME."                      
+    ## [3] "algal normalizations damners NAME NAME NAME NAME overexaggeration ventilation hesitant disendowed pyxidia?"
+    ## [4] "wreathy NAME NAME NAME NAME avid priesthood flunkey NAME purvey rehang bondsmen!"                          
+    ## [5] "sleepwalking panders NAME galletas diaster NAME NAME NAME sewer NAME devolution segmenting."               
+    ## [6] "NAME ratan NAME trope mammitis kerfing agoroth NAME latching NAME refluxed NAME."
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1064,37 +1065,37 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "corruptions NAME faradised NAME nonspeaking geneticists dejecta NAME NAME NAME inched brownish!"         
-    ## [2] "NAME caroljean lunt undried NAME mishit muns NAME ovaries upfolded aroint spunkily?"                     
-    ## [3] "NAME rig seismographic chaffering presumers NAME calypter expanses NAME mesquites yarrow NAME!"          
-    ## [4] "steaks preplanned formalize duffles NAME bradly potterer tribunals NAME bonspiel NAME NAME."             
-    ## [5] "NAME NAME surcoats cultural NAME pilseners excruciatingly bedraped serenading NAME NAME wearables!"      
-    ## [6] "plenists NAME ingroup licence paraquet cystoids garrulousnesses NAME kesley zippered jacinthes washdays."
+    ## [1] "milos nudity NAME oppugn itemization divested hilloa NAME highjack snooked antlike miasmas."               
+    ## [2] "NAME NAME NAME engraves flitters NAME sternnesses crowing pulpy NAME unhitched NAME."                      
+    ## [3] "algal normalizations damners NAME NAME NAME NAME overexaggeration ventilation hesitant disendowed pyxidia?"
+    ## [4] "wreathy NAME NAME NAME NAME avid priesthood flunkey NAME purvey rehang bondsmen!"                          
+    ## [5] "sleepwalking panders NAME galletas diaster NAME NAME NAME sewer NAME devolution segmenting."               
+    ## [6] "NAME ratan NAME trope mammitis kerfing agoroth NAME latching NAME refluxed NAME."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 6.267544 secs
+    ## Time difference of 6.054685 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "corruptions NAME faradised NAME nonspeaking geneticists dejecta NAME NAME NAME inched brownish!"         
-    ## [2] "NAME caroljean lunt undried NAME mishit muns NAME ovaries upfolded aroint spunkily?"                     
-    ## [3] "NAME rig seismographic chaffering presumers NAME calypter expanses NAME mesquites yarrow NAME!"          
-    ## [4] "steaks preplanned formalize duffles NAME bradly potterer tribunals NAME bonspiel NAME NAME."             
-    ## [5] "NAME NAME surcoats cultural NAME pilseners excruciatingly bedraped serenading NAME NAME wearables!"      
-    ## [6] "plenists NAME ingroup licence paraquet cystoids garrulousnesses NAME kesley zippered jacinthes washdays."
+    ## [1] "milos nudity NAME oppugn itemization divested hilloa NAME highjack snooked antlike miasmas."               
+    ## [2] "NAME NAME NAME engraves flitters NAME sternnesses crowing pulpy NAME unhitched NAME."                      
+    ## [3] "algal normalizations damners NAME NAME NAME NAME overexaggeration ventilation hesitant disendowed pyxidia?"
+    ## [4] "wreathy NAME NAME NAME NAME avid priesthood flunkey NAME purvey rehang bondsmen!"                          
+    ## [5] "sleepwalking panders NAME galletas diaster NAME NAME NAME sewer NAME devolution segmenting."               
+    ## [6] "NAME ratan NAME trope mammitis kerfing agoroth NAME latching NAME refluxed NAME."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.05503893 secs
+    ## Time difference of 0.06904793 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,020 words) and 5,493 replacement tokens in 1.6 seconds.
+(600,160 words) and 5,493 replacement tokens in 1.6 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.571142 secs
+    ## Time difference of 1.599966 secs

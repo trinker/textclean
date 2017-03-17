@@ -96,17 +96,18 @@ pacman::p_load_gh("trinker/textshape", "trinker/lexicon", "trinker/textclean")
 One of the most useful tools in **textclean** is `check_text` which scans text variables and reports potential problems.  Not all potential problems are definite problems for analysis but the report provides an overview of what may need further preparation.  The report also provides suggested functions for the reported problems.  The report provides information on the following:
 
 1. **non_character** - Text that is `factor`.
-2. **missing_ending_punctuation** - Text with no endmark at the end of the string.
-3. **empty** - Text that contains an empty element (i.e., `""`).
-4. **double_punctuation** - Text that contains two punctuation marks in the same string.
-5. **non_space_after_comma** - Text that contains commas with no space after them.
-6. **no_alpha** - Text that contains string elements with no alphabetic characters.
-7. **non_ascii** - Text that contains non-ASCII characters.
-8. **missing_value** - Text that contains missing values (i.e., `NA`).
-9. **containing_escaped** - Text that contains escaped (see `?Quotes`).
-10. **containing_digits** - Text that contains digits.
-11. **indicating_incomplete** - Text that contains endmarks that are indicative of incomplete/trailing sentences (e.g., `...`).
-12. **potentially_misspelled** - Text that contains potentially misspelled words.
+1. **missing_ending_punctuation** - Text with no endmark at the end of the string.
+1. **empty** - Text that contains an empty element (i.e., `""`).
+1. **double_punctuation** - Text that contains two punctuation marks in the same string.
+1. **non_space_after_comma** - Text that contains commas with no space after them.
+1. **no_alpha** - Text that contains string elements with no alphabetic characters.
+1. **non_ascii** - Text that contains non-ASCII characters.
+1. **missing_value** - Text that contains missing values (i.e., `NA`).
+1. **containing_escaped** - Text that contains escaped (see `?Quotes`).
+1. **containing_digits** - Text that contains digits.
+1. **containing_html** - Text that potentially contains HTML markup.
+1. **indicating_incomplete** - Text that contains endmarks that are indicative of incomplete/trailing sentences (e.g., `...`).
+1. **potentially_misspelled** - Text that contains potentially misspelled words.
 
 Here is an example:
 

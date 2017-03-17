@@ -18,6 +18,31 @@ And constructed with the following guidelines:
 
 
 
+textclean 0.4.0 - 
+----------------------------------------------------------------
+
+**BUG FIXES**
+
+* `replace_grade` did not use `fixed = TRUE` for its call to `mgsub`.  This could
+  result in the plus signs being interpreted as meta-characters.  This has been 
+  corrected.
+
+**NEW FEATURES**
+
+**MINOR FEATURES**
+
+**IMPROVEMENTS**
+
+* `replace_non_ascii` now uses `stringi::stri_trans_general` to coerce more 
+  non-ASCII characters to ASCII format.
+  
+* `check_text` now checks for HTML characters/tags.  Thanks to @Peter Gensler
+  for suggesting this (see <a href="https://github.com/trinker/textclean/issues/15">issue #15</a>). 
+
+**CHANGES**
+
+
+
 textclean 0.3.1
 ----------------------------------------------------------------
 
