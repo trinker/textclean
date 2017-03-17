@@ -259,8 +259,8 @@ information on the following:
 
 Here is an example:
 
-    x <- c("i like", "i want. thet them ther .", "I am ! that|", "", NA, 
-        "they,were there", ".", "   ", "?", "3;", "I like goud eggs!", 
+    x <- c("i like", "<p>i want. </p>. thet them ther .", "I am ! that|", "", NA, 
+        "&quot;they&quot; they,were there", ".", "   ", "?", "3;", "I like goud eggs!", 
         "bi\xdfchen Z\xfcrcher", "i 4like...", "\\tgreat",  "She said \"yes\"")
     Encoding(x) <- "latin1"
     x <- as.factor(x)
@@ -289,7 +289,7 @@ Here is an example:
     ## 3: I am ! that|
     ## 4: 
     ## 5: NA
-    ## 6: they,were there
+    ## 6: &quot;they&quot; they,were there
     ## 8:    
     ## 10: 3;
     ## 12: bißchen Zürcher
@@ -315,6 +315,21 @@ Here is an example:
     ## *Suggestion: Consider running `filter_empty`
     ## 
     ## 
+    ## ==================
+    ## DOUBLE PUNCTUATION
+    ## ==================
+    ## 
+    ## The following observations were double punctuation:
+    ## 
+    ## 2
+    ## 
+    ## The following text is double punctuation:
+    ## 
+    ## 2: <p>i want. </p>. thet them ther .
+    ## 
+    ## *Suggestion: Consider running `textshape::split_sentence`
+    ## 
+    ## 
     ## =====================
     ## NON SPACE AFTER COMMA
     ## =====================
@@ -325,7 +340,7 @@ Here is an example:
     ## 
     ## The following text is non space after comma:
     ## 
-    ## 6: they,were there
+    ## 6: &quot;they&quot; they,were there
     ## 
     ## *Suggestion: Consider running `add_comma_space`
     ## 
@@ -406,6 +421,22 @@ Here is an example:
     ## *Suggestion: Consider using `replace_number`
     ## 
     ## 
+    ## ===============
+    ## CONTAINING HTML
+    ## ===============
+    ## 
+    ## The following observations were containing html:
+    ## 
+    ## 2, 6
+    ## 
+    ## The following text is containing html:
+    ## 
+    ## 2: <p>i want. </p>. thet them ther .
+    ## 6: &quot;they&quot; they,were there
+    ## 
+    ## *Suggestion: Consider running `replace_html`
+    ## 
+    ## 
     ## =====================
     ## INDICATING INCOMPLETE
     ## =====================
@@ -431,7 +462,7 @@ Here is an example:
     ## 
     ## The following text is potentially misspelled:
     ## 
-    ## 2: i want. <<thet>> them <<ther>> .
+    ## 2: <p>i want. </p>. <<thet>> them <<ther>> .
     ## 11: I like <<goud>> eggs!
     ## 12: <<bißchen>> <<Zürcher>>
     ## 14: \<<tgreat>>
@@ -446,7 +477,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are wickedly awesome! 
+    ## You are transcendent! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -1042,21 +1073,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "milos nudity Sunni oppugn itemization divested hilloa Kathern highjack snooked antlike miasmas."                      
-    ## [2] "Silvia Kelsie Bernita engraves flitters Teresia sternnesses crowing pulpy Katlyn unhitched Emerson."                  
-    ## [3] "algal normalizations damners Javier Athena Raylene Charlsie overexaggeration ventilation hesitant disendowed pyxidia?"
-    ## [4] "wreathy Jennifer August Johna Autumn avid priesthood flunkey Kimberely purvey rehang bondsmen!"                       
-    ## [5] "sleepwalking panders Gena galletas diaster Alycia Marvel Mallie sewer Denese devolution segmenting."                  
-    ## [6] "Kacy ratan Arlena trope mammitis kerfing agoroth Alvaro latching Ettie refluxed Sean."
+    ## [1] "Claretta hooraying Daphine Johnson psephite Jeanice roasting musca rynds Erik quainter lian."             
+    ## [2] "Muoi bemeaned inattentively noblest ferry Pam Deena haunt lonelily validation coadmires skatings?"        
+    ## [3] "yurt Tyrone foreshowed Kallie Tonette Celia Landon correspondence Siobhan climaxing karmen preponderates!"
+    ## [4] "piasava partible smelt inkwell beanos mane fronted compatability cowbells slue integument convertor!"     
+    ## [5] "leukon Mallie Adela eyeshots manteaux Deena sync tressier Kaley insinuations Kaye termitic."              
+    ## [6] "kingcup hilltop Tad deranging clach bight outlast herons sunglasses tups stilettoing danseurs!"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "milos nudity NAME oppugn itemization divested hilloa NAME highjack snooked antlike miasmas."               
-    ## [2] "NAME NAME NAME engraves flitters NAME sternnesses crowing pulpy NAME unhitched NAME."                      
-    ## [3] "algal normalizations damners NAME NAME NAME NAME overexaggeration ventilation hesitant disendowed pyxidia?"
-    ## [4] "wreathy NAME NAME NAME NAME avid priesthood flunkey NAME purvey rehang bondsmen!"                          
-    ## [5] "sleepwalking panders NAME galletas diaster NAME NAME NAME sewer NAME devolution segmenting."               
-    ## [6] "NAME ratan NAME trope mammitis kerfing agoroth NAME latching NAME refluxed NAME."
+    ## [1] "NAME hooraying NAME NAME psephite NAME roasting musca rynds NAME quainter lian."                     
+    ## [2] "NAME bemeaned inattentively noblest ferry NAME NAME haunt lonelily validation coadmires skatings?"   
+    ## [3] "yurt NAME foreshowed NAME NAME NAME NAME correspondence NAME climaxing karmen preponderates!"        
+    ## [4] "piasava partible smelt inkwell beanos mane fronted compatability cowbells slue integument convertor!"
+    ## [5] "leukon NAME NAME eyeshots manteaux NAME sync tressier NAME insinuations NAME termitic."              
+    ## [6] "kingcup hilltop NAME deranging clach bight outlast herons sunglasses tups stilettoing danseurs!"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1065,37 +1096,37 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "milos nudity NAME oppugn itemization divested hilloa NAME highjack snooked antlike miasmas."               
-    ## [2] "NAME NAME NAME engraves flitters NAME sternnesses crowing pulpy NAME unhitched NAME."                      
-    ## [3] "algal normalizations damners NAME NAME NAME NAME overexaggeration ventilation hesitant disendowed pyxidia?"
-    ## [4] "wreathy NAME NAME NAME NAME avid priesthood flunkey NAME purvey rehang bondsmen!"                          
-    ## [5] "sleepwalking panders NAME galletas diaster NAME NAME NAME sewer NAME devolution segmenting."               
-    ## [6] "NAME ratan NAME trope mammitis kerfing agoroth NAME latching NAME refluxed NAME."
+    ## [1] "NAME hooraying NAME NAME psephite NAME roasting musca rynds NAME quainter lian."                     
+    ## [2] "NAME bemeaned inattentively noblest ferry NAME NAME haunt lonelily validation coadmires skatings?"   
+    ## [3] "yurt NAME foreshowed NAME NAME NAME NAME correspondence NAME climaxing karmen preponderates!"        
+    ## [4] "piasava partible smelt inkwell beanos mane fronted compatability cowbells slue integument convertor!"
+    ## [5] "leukon NAME NAME eyeshots manteaux NAME sync tressier NAME insinuations NAME termitic."              
+    ## [6] "kingcup hilltop NAME deranging clach bight outlast herons sunglasses tups stilettoing danseurs!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 6.054685 secs
+    ## Time difference of 6.944436 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "milos nudity NAME oppugn itemization divested hilloa NAME highjack snooked antlike miasmas."               
-    ## [2] "NAME NAME NAME engraves flitters NAME sternnesses crowing pulpy NAME unhitched NAME."                      
-    ## [3] "algal normalizations damners NAME NAME NAME NAME overexaggeration ventilation hesitant disendowed pyxidia?"
-    ## [4] "wreathy NAME NAME NAME NAME avid priesthood flunkey NAME purvey rehang bondsmen!"                          
-    ## [5] "sleepwalking panders NAME galletas diaster NAME NAME NAME sewer NAME devolution segmenting."               
-    ## [6] "NAME ratan NAME trope mammitis kerfing agoroth NAME latching NAME refluxed NAME."
+    ## [1] "NAME hooraying NAME NAME psephite NAME roasting musca rynds NAME quainter lian."                     
+    ## [2] "NAME bemeaned inattentively noblest ferry NAME NAME haunt lonelily validation coadmires skatings?"   
+    ## [3] "yurt NAME foreshowed NAME NAME NAME NAME correspondence NAME climaxing karmen preponderates!"        
+    ## [4] "piasava partible smelt inkwell beanos mane fronted compatability cowbells slue integument convertor!"
+    ## [5] "leukon NAME NAME eyeshots manteaux NAME sync tressier NAME insinuations NAME termitic."              
+    ## [6] "kingcup hilltop NAME deranging clach bight outlast herons sunglasses tups stilettoing danseurs!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.06904793 secs
+    ## Time difference of 0.194124 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,160 words) and 5,493 replacement tokens in 1.6 seconds.
+(600,060 words) and 5,493 replacement tokens in 2 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.599966 secs
+    ## Time difference of 2.002412 secs
