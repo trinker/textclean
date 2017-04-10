@@ -114,4 +114,4 @@ replace_string_elements_generic  <- function(x, y, z = NULL, ignore.case = FALSE
 
 
 #' @importFrom lexicon available_data
-ad <- lexicon available_data
+ad <- lexicon::available_data
