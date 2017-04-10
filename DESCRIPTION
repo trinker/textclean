@@ -14,7 +14,7 @@ Description: Tools to clean and process text.  Tools are geared at
 Depends: R (>= 3.2.3)
 Imports: english(>= 1.0-2), lexicon (>= 0.3.0), qdapRegex, stringi, textshape(>= 1.0.1),
         utils
-Suggests: testthat, lexicon(>= 0.1.0)
+Suggests: testthat
 Date: 2017-04-09
 License: GPL-2
 LazyData: TRUE
