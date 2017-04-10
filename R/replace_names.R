@@ -9,7 +9,6 @@
 #' @param \dots Other arguments passed to \code{\link[textclean]{replace_tokens}}.
 #' @return Returns a vector with names replaced.
 #' @export
-#' @import lexicon
 #' @examples
 #' x <- c(
 #'     "Mary Smith is not here",
