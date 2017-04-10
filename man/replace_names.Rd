@@ -2,7 +2,7 @@
 % Please edit documentation in R/replace_names.R
 \name{replace_names}
 \alias{replace_names}
-\title{Replace First Names}
+\title{Replace First/Last Names}
 \usage{
 replace_names(x, names = gsub("(^.)(.*)", "\\\\U\\\\1\\\\L\\\\2",
   c(lexicon::freq_last_names[[1]], lexicon::common_names), perl = TRUE),
@@ -22,7 +22,7 @@ through a vector provided from a named entity extractor.}
 Returns a vector with names replaced.
 }
 \description{
-Replaces first names.
+Replaces first/last names.
 }
 \examples{
 x <- c(
