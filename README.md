@@ -10,9 +10,10 @@ Status](https://travis-ci.org/trinker/textclean.svg?branch=master)](https://trav
 [![Coverage
 Status](https://coveralls.io/repos/trinker/textclean/badge.svg?branch=master)](https://coveralls.io/r/trinker/textclean?branch=master)
 [![](http://cranlogs.r-pkg.org/badges/textclean)](https://cran.r-project.org/package=textclean)
-<a href="https://img.shields.io/badge/Version-0.4.0-orange.svg"><img src="https://img.shields.io/badge/Version-0.4.0-orange.svg" alt="Version"/></a>
+<a href="https://img.shields.io/badge/Version-0.4.1-orange.svg"><img src="https://img.shields.io/badge/Version-0.4.1-orange.svg" alt="Version"/></a>
 </p>
-<img src="tools/textclean_logo/r_textclean2.png" width="200" alt="textclean Logo">
+
+![](tools/textclean_logo/r_textclean.png)
 
 **textclean** is a collection of tools to clean and process text. Many
 of these tools have been taken from the **qdap** package and revamped to
@@ -39,6 +40,7 @@ Table of Contents
         -   [Grades](#grades)
         -   [HTML](#html)
         -   [Incomplete Sentences](#incomplete-sentences)
+        -   [Names](#names)
         -   [Non-ASCII Characters](#non-ascii-characters)
         -   [Numbers](#numbers)
         -   [Ratings](#ratings)
@@ -134,56 +136,61 @@ table below:
 <td>Replace incomplete sentence end-marks</td>
 </tr>
 <tr class="even">
+<td><code>replace_names</code></td>
+<td>replacement</td>
+<td>Replace common first/last names</td>
+</tr>
+<tr class="odd">
 <td><code>replace_non_ascii</code></td>
 <td>replacement</td>
 <td>Replace non-ascii with equivalent or remove</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_number</code></td>
 <td>replacement</td>
 <td>Replace common numbers</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_ordinal</code></td>
 <td>replacement</td>
 <td>Replace common ordinal number form</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_rating</code></td>
 <td>repalcement</td>
 <td>Replace ratings (e.g., &quot;10 out of 10&quot;, &quot;3 stars&quot;) with word equivalent</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_symbol</code></td>
 <td>replacement</td>
 <td>Replace common symbols</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_white</code></td>
 <td>replacement</td>
 <td>Replace regex white space characters</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_token</code></td>
 <td>replacement</td>
 <td>Remove or replace a vector of tokens with a single value</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>add_comma_space</code></td>
 <td>replacement</td>
 <td>Replace non-space after comma</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>add_missing_endmark</code></td>
 <td>replacement</td>
 <td>Replace missing endmarks with desired symbol</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>check_text</code></td>
 <td>check</td>
 <td>Text report of potential issues</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>has_endmark</code></td>
 <td>check</td>
 <td>Check if an element has an end-mark</td>
@@ -259,7 +266,8 @@ information on the following:
 
 Here is an example:
 
-    x <- c("i like", "<p>i want. </p>. thet them ther .", "I am ! that|", "", NA, 
+    x <- c("i like", "<p>i want. </p>
+. thet them ther .", "I am ! that|", "", NA, 
         "&quot;they&quot; they,were there", ".", "   ", "?", "3;", "I like goud eggs!", 
         "bi\xdfchen Z\xfcrcher", "i 4like...", "\\tgreat",  "She said \"yes\"")
     Encoding(x) <- "latin1"
@@ -325,7 +333,8 @@ Here is an example:
     ## 
     ## The following text is double punctuation:
     ## 
-    ## 2: <p>i want. </p>. thet them ther .
+    ## 2: <p>i want. </p>
+. thet them ther .
     ## 
     ## *Suggestion: Consider running `textshape::split_sentence`
     ## 
@@ -431,7 +440,8 @@ Here is an example:
     ## 
     ## The following text is containing html:
     ## 
-    ## 2: <p>i want. </p>. thet them ther .
+    ## 2: <p>i want. </p>
+. thet them ther .
     ## 6: &quot;they&quot; they,were there
     ## 
     ## *Suggestion: Consider running `replace_html`
@@ -462,7 +472,8 @@ Here is an example:
     ## 
     ## The following text is potentially misspelled:
     ## 
-    ## 2: <p>i want. </p>. <<thet>> them <<ther>> .
+    ## 2: <p>i want. </p>
+. <<thet>> them <<ther>> .
     ## 11: I like <<goud>> eggs!
     ## 12: <<bißchen>> <<Zürcher>>
     ## 14: \<<tgreat>>
@@ -477,7 +488,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are transcendent! 
+    ## You are marvelous! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -840,9 +851,9 @@ this task.
     )
     replace_grade(text)
 
-    ## [1] "I give an very excellent excellent"             
-    ## [2] "He deserves an very very bad"                   
-    ## [3] "It's slightly above average work"               
+    ## [1] "I give an very excellent excellent"
+    ## [2] "He deserves an very very bad"      
+    ## [3] "It's slightly above average work"  
     ## [4] "A poor example deserves a average!"
 
 ### HTML
@@ -852,7 +863,8 @@ Sometimes HTML tags and symbols stick around like pesky gnats. The
 
     x <- c(
         "<bold>Random</bold> text with symbols: &nbsp; &lt; &gt; &amp; &quot; &apos;",
-        "<p>More text</p> &cent; &pound; &yen; &euro; &copy; &reg;"
+        "<p>More text</p>
+ &cent; &pound; &yen; &euro; &copy; &reg;"
     )
 
     replace_html(x)
@@ -874,6 +886,30 @@ with a pipe (`|`) endmark (or one of the user's choice).
     replace_incomplete(x, '...')
 
     ## [1] "the..."   "I..."     "you."     "threw..." "we?"
+
+### Names
+
+Often one will want to standardize text by removing first and last
+names. The `replace_names` function quickly removes/replaces common
+first and last names. This can be made more targeted by feeding a vector
+of names extractracted via a named entity extractor.
+
+    x <- c(
+        "Mary Smith is not here",
+         "Karen is not a nice person",
+         "Will will do it",
+        NA
+    )
+     
+    replace_names(x)
+
+    ## [1] "  is not here"         " is not a nice person" " will do it"          
+    ## [4] NA
+
+    replace_names(x, replacement = '<<NAME>>')
+
+    ## [1] "<<NAME>> <<NAME>> is not here" "<<NAME>> is not a nice person"
+    ## [3] "<<NAME>> will do it"           NA
 
 ### Non-ASCII Characters
 
@@ -1073,21 +1109,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "Claretta hooraying Daphine Johnson psephite Jeanice roasting musca rynds Erik quainter lian."             
-    ## [2] "Muoi bemeaned inattentively noblest ferry Pam Deena haunt lonelily validation coadmires skatings?"        
-    ## [3] "yurt Tyrone foreshowed Kallie Tonette Celia Landon correspondence Siobhan climaxing karmen preponderates!"
-    ## [4] "piasava partible smelt inkwell beanos mane fronted compatability cowbells slue integument convertor!"     
-    ## [5] "leukon Mallie Adela eyeshots manteaux Deena sync tressier Kaley insinuations Kaye termitic."              
-    ## [6] "kingcup hilltop Tad deranging clach bight outlast herons sunglasses tups stilettoing danseurs!"
+    ## [1] "swanned sunlamps misbehaving optimistically Zora difficult atticist blurt georgeanna portentous cerates karine?"
+    ## [2] "rabbiting unnerving Shanta tutoresses syringa subtotal Pinkie Margert compressor hijacker Dell nightmares."     
+    ## [3] "catch aedes outfitter schools sutras freshest underacts criminal frederic Willian Hope Anton!"                  
+    ## [4] "piggie fuzz provocations parlous golfed Milly crafting zsazsa chancellorships Mose east decern."                
+    ## [5] "paughty bruised studiously pensioned stephani slaved toyer cerement Boyd Jaunita akenes xeroses."               
+    ## [6] "Lynwood Luciana weighers roguishnesses seisin duckiest pop sceptral winnah grievances Deja Gidget?"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "NAME hooraying NAME NAME psephite NAME roasting musca rynds NAME quainter lian."                     
-    ## [2] "NAME bemeaned inattentively noblest ferry NAME NAME haunt lonelily validation coadmires skatings?"   
-    ## [3] "yurt NAME foreshowed NAME NAME NAME NAME correspondence NAME climaxing karmen preponderates!"        
-    ## [4] "piasava partible smelt inkwell beanos mane fronted compatability cowbells slue integument convertor!"
-    ## [5] "leukon NAME NAME eyeshots manteaux NAME sync tressier NAME insinuations NAME termitic."              
-    ## [6] "kingcup hilltop NAME deranging clach bight outlast herons sunglasses tups stilettoing danseurs!"
+    ## [1] "swanned sunlamps misbehaving optimistically NAME difficult atticist blurt georgeanna portentous cerates karine?"
+    ## [2] "rabbiting unnerving NAME tutoresses syringa subtotal NAME NAME compressor hijacker NAME nightmares."            
+    ## [3] "catch aedes outfitter schools sutras freshest underacts criminal frederic NAME NAME NAME!"                      
+    ## [4] "piggie fuzz provocations parlous golfed NAME crafting zsazsa chancellorships NAME east decern."                 
+    ## [5] "paughty bruised studiously pensioned stephani slaved toyer cerement NAME NAME akenes xeroses."                  
+    ## [6] "NAME NAME weighers roguishnesses seisin duckiest pop sceptral winnah grievances NAME NAME?"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1096,37 +1132,37 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "NAME hooraying NAME NAME psephite NAME roasting musca rynds NAME quainter lian."                     
-    ## [2] "NAME bemeaned inattentively noblest ferry NAME NAME haunt lonelily validation coadmires skatings?"   
-    ## [3] "yurt NAME foreshowed NAME NAME NAME NAME correspondence NAME climaxing karmen preponderates!"        
-    ## [4] "piasava partible smelt inkwell beanos mane fronted compatability cowbells slue integument convertor!"
-    ## [5] "leukon NAME NAME eyeshots manteaux NAME sync tressier NAME insinuations NAME termitic."              
-    ## [6] "kingcup hilltop NAME deranging clach bight outlast herons sunglasses tups stilettoing danseurs!"
+    ## [1] "swanned sunlamps misbehaving optimistically NAME difficult atticist blurt georgeanna portentous cerates karine?"
+    ## [2] "rabbiting unnerving NAME tutoresses syringa subtotal NAME NAME compressor hijacker NAME nightmares."            
+    ## [3] "catch aedes outfitter schools sutras freshest underacts criminal frederic NAME NAME NAME!"                      
+    ## [4] "piggie fuzz provocations parlous golfed NAME crafting zsazsa chancellorships NAME east decern."                 
+    ## [5] "paughty bruised studiously pensioned stephani slaved toyer cerement NAME NAME akenes xeroses."                  
+    ## [6] "NAME NAME weighers roguishnesses seisin duckiest pop sceptral winnah grievances NAME NAME?"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 6.944436 secs
+    ## Time difference of 6.012216 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "NAME hooraying NAME NAME psephite NAME roasting musca rynds NAME quainter lian."                     
-    ## [2] "NAME bemeaned inattentively noblest ferry NAME NAME haunt lonelily validation coadmires skatings?"   
-    ## [3] "yurt NAME foreshowed NAME NAME NAME NAME correspondence NAME climaxing karmen preponderates!"        
-    ## [4] "piasava partible smelt inkwell beanos mane fronted compatability cowbells slue integument convertor!"
-    ## [5] "leukon NAME NAME eyeshots manteaux NAME sync tressier NAME insinuations NAME termitic."              
-    ## [6] "kingcup hilltop NAME deranging clach bight outlast herons sunglasses tups stilettoing danseurs!"
+    ## [1] "swanned sunlamps misbehaving optimistically NAME difficult atticist blurt georgeanna portentous cerates karine?"
+    ## [2] "rabbiting unnerving NAME tutoresses syringa subtotal NAME NAME compressor hijacker NAME nightmares."            
+    ## [3] "catch aedes outfitter schools sutras freshest underacts criminal frederic NAME NAME NAME!"                      
+    ## [4] "piggie fuzz provocations parlous golfed NAME crafting zsazsa chancellorships NAME east decern."                 
+    ## [5] "paughty bruised studiously pensioned stephani slaved toyer cerement NAME NAME akenes xeroses."                  
+    ## [6] "NAME NAME weighers roguishnesses seisin duckiest pop sceptral winnah grievances NAME NAME?"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.194124 secs
+    ## Time difference of 0.07604003 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,060 words) and 5,493 replacement tokens in 2 seconds.
+(600,160 words) and 5,493 replacement tokens in 1.5 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 2.002412 secs
+    ## Time difference of 1.526092 secs

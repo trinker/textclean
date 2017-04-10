@@ -29,6 +29,9 @@ textclean 0.4.0 -
 
 **NEW FEATURES**
 
+* `replace_names` added to remove/replace common first and last names from text 
+  data.
+
 **MINOR FEATURES**
 
 **IMPROVEMENTS**

@@ -9,7 +9,7 @@
 #' spaces.
 #' @param remove logical.  If \code{TRUE} numbers are removed from the text.
 #' @param \ldots Other arguments passed to  \code{\link[english]{as.english}}
-#' @return Returns a vector with abbreviations replaced.
+#' @return Returns a vector with numbers replaced.
 #' @references Fox, J. (2005). Programmer's niche: How do you spell that number? 
 #' R News. Vol. 5(1), pp. 51-55.
 #' @note The user may want to use \code{\link[textclean]{replace_ordinal}} first to 

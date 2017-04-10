@@ -15,7 +15,9 @@ README.Rmd
 README.R
 travis.yml
 inst/maintenance.R
-inst/textmod_logo
+tools/textclean_logo/r_textcleana.png
+tools/textclean_logo/r_textclean.pptx
+tools/textclean_logo/resize_icon.txt
 inst/staticdocs
 inst/extra_statdoc
 r_textclean.pptx

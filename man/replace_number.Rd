@@ -18,7 +18,7 @@ spaces.}
 \item{\ldots}{Other arguments passed to  \code{\link[english]{as.english}}}
 }
 \value{
-Returns a vector with abbreviations replaced.
+Returns a vector with numbers replaced.
 }
 \description{
 Replaces numeric represented numbers with words (e.g., 1001 becomes one 

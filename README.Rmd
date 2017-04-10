@@ -23,7 +23,7 @@ developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repos
 [![](http://cranlogs.r-pkg.org/badges/textclean)](https://cran.r-project.org/package=textclean)
 `r verbadge`
 
-<img src="tools/textclean_logo/r_textclean2.png" width="200" alt="textclean Logo">
+![](tools/textclean_logo/r_textclean.png)
 
 **textclean** is a collection of tools to clean and process text.  Many of these tools have been taken from the **qdap** package and revamped to be more intuitive, better named, and faster.
 
@@ -47,6 +47,7 @@ The main functions, task category, & descriptions are summarized in the table be
 | `replace_grade`           | repalcement | Replace grades (e.g., "A+") with word equivalent     |
 | `replace_html`            | replacement | Replace HTML tags and symbols  |
 | `replace_incomplete`      | replacement | Replace incomplete sentence end-marks  |
+| `replace_names`           | replacement | Replace common first/last names     |
 | `replace_non_ascii`       | replacement | Replace non-ascii with equivalent or remove   |
 | `replace_number`          | replacement | Replace common numbers                |
 | `replace_ordinal`         | replacement | Replace common ordinal number form    |
@@ -265,6 +266,21 @@ replace_incomplete(x)
 replace_incomplete(x, '...')
 ```
 
+### Names
+
+Often one will want to standardize text by removing first and last names.  The `replace_names` function quickly removes/replaces common first and last names.  This can be made more targeted by feeding a vector of names extractracted via a named entity extractor.
+
+```{r}
+x <- c(
+    "Mary Smith is not here",
+     "Karen is not a nice person",
+     "Will will do it",
+    NA
+)
+ 
+replace_names(x)
+replace_names(x, replacement = '<<NAME>>')
+```
 ### Non-ASCII Characters
 
 R can choke on non-ASCII characters.  They can be re-encoded but the new encoding may lack interpretability (e.g., &cent; may be converted to `\xA2` which is not easily understood or likely to be matched in a hash look up).  `replace_non_ascii` attempts to replace common non-ASCII characters with a text representation (e.g., &cent; becomes "cent")  Non recognized non-ASCII characters are simply removed (unless `remove.nonconverted = FALSE`).

@@ -1,0 +1,2 @@
+cd C:\Users\Tyler\GitHub\textclean\tools\textclean_logo
+ffmpeg -i r_textcleana.png -vf scale=250:-1 r_textclean.png
