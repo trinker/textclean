@@ -12,6 +12,8 @@ Status](https://coveralls.io/repos/trinker/textclean/badge.svg?branch=master)](h
 [![](http://cranlogs.r-pkg.org/badges/textclean)](https://cran.r-project.org/package=textclean)
 <a href="https://img.shields.io/badge/Version-0.4.1-orange.svg"><img src="https://img.shields.io/badge/Version-0.4.1-orange.svg" alt="Version"/></a>
 </p>
+
+
 ![](tools/textclean_logo/r_textclean.png)
 
 **textclean** is a collection of tools to clean and process text. Many
@@ -483,7 +485,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are superb! 
+    ## You are splendiferous! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -1103,21 +1105,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "entrusted halite Bonnie romaunt charlott cutlass Lyla Lesia seemings Tosha watercolor nastier!"
-    ## [2] "iq Diego groans caron Daniell Maryln gasolenes nib rubbaboos Mavis cardiograph slugabed!"      
-    ## [3] "waiver January Lucas Luke Geneva dejected neurone Coleen infixing nels anthea Hiroko?"         
-    ## [4] "biometry abakas Ezekiel cubers Margy cines waxbill vugg combination dipolar inveighs afeard!"  
-    ## [5] "Myrtis Clair Tamisha Lourie Danille raimund Dennis autobuses worsening antigenes abri favorer."
-    ## [6] "Stephani ukes Anamaria Sophie steamering pushiest Derek Perry Alisa anemones Vincenzo lamed?"
+    ## [1] "Gwen Matilde fierinesses Melinda witches dietary Summer candidas Dusty Lashay bipod disobeyed!"                   
+    ## [2] "woodchopper Eliana Trinidad partly Marylynn Alton overhauled melts undergods cowshed witless Milagro?"            
+    ## [3] "symptomatically lamp improvisations garnished gumshoe burglarizing pressured leguminous bine Cole Sherie Brianne!"
+    ## [4] "redbay gutlike unobservable detaining canoness voyager hearth shawna golconda Kathie jessalyn Mallie."            
+    ## [5] "ignition Mirtha nattered captors ramona loneness bogles misgive hundreds capsulated Kati forequarters!"           
+    ## [6] "Iesha raf yawls Jacquelyn vandykes Sybil Cruz little Dylan Maryanne disavowed cognizance!"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "entrusted halite NAME romaunt charlott cutlass NAME NAME seemings NAME watercolor nastier!"
-    ## [2] "iq NAME groans caron NAME NAME gasolenes nib rubbaboos NAME cardiograph slugabed!"         
-    ## [3] "waiver NAME NAME NAME NAME dejected neurone NAME infixing nels anthea NAME?"               
-    ## [4] "biometry abakas NAME cubers NAME cines waxbill vugg combination dipolar inveighs afeard!"  
-    ## [5] "NAME NAME NAME NAME NAME raimund NAME autobuses worsening antigenes abri favorer."         
-    ## [6] "NAME ukes NAME NAME steamering pushiest NAME NAME NAME anemones NAME lamed?"
+    ## [1] "NAME NAME fierinesses NAME witches dietary NAME candidas NAME NAME bipod disobeyed!"                         
+    ## [2] "woodchopper NAME NAME partly NAME NAME overhauled melts undergods cowshed witless NAME?"                     
+    ## [3] "symptomatically lamp improvisations garnished gumshoe burglarizing pressured leguminous bine NAME NAME NAME!"
+    ## [4] "redbay gutlike unobservable detaining canoness voyager hearth shawna golconda NAME jessalyn NAME."           
+    ## [5] "ignition NAME nattered captors ramona loneness bogles misgive hundreds capsulated NAME forequarters!"        
+    ## [6] "NAME raf yawls NAME vandykes NAME NAME little NAME NAME disavowed cognizance!"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1126,37 +1128,37 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "entrusted halite NAME romaunt charlott cutlass NAME NAME seemings NAME watercolor nastier!"
-    ## [2] "iq NAME groans caron NAME NAME gasolenes nib rubbaboos NAME cardiograph slugabed!"         
-    ## [3] "waiver NAME NAME NAME NAME dejected neurone NAME infixing nels anthea NAME?"               
-    ## [4] "biometry abakas NAME cubers NAME cines waxbill vugg combination dipolar inveighs afeard!"  
-    ## [5] "NAME NAME NAME NAME NAME raimund NAME autobuses worsening antigenes abri favorer."         
-    ## [6] "NAME ukes NAME NAME steamering pushiest NAME NAME NAME anemones NAME lamed?"
+    ## [1] "NAME NAME fierinesses NAME witches dietary NAME candidas NAME NAME bipod disobeyed!"                         
+    ## [2] "woodchopper NAME NAME partly NAME NAME overhauled melts undergods cowshed witless NAME?"                     
+    ## [3] "symptomatically lamp improvisations garnished gumshoe burglarizing pressured leguminous bine NAME NAME NAME!"
+    ## [4] "redbay gutlike unobservable detaining canoness voyager hearth shawna golconda NAME jessalyn NAME."           
+    ## [5] "ignition NAME nattered captors ramona loneness bogles misgive hundreds capsulated NAME forequarters!"        
+    ## [6] "NAME raf yawls NAME vandykes NAME NAME little NAME NAME disavowed cognizance!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 8.34833 secs
+    ## Time difference of 7.607921 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "entrusted halite NAME romaunt charlott cutlass NAME NAME seemings NAME watercolor nastier!"
-    ## [2] "iq NAME groans caron NAME NAME gasolenes nib rubbaboos NAME cardiograph slugabed!"         
-    ## [3] "waiver NAME NAME NAME NAME dejected neurone NAME infixing nels anthea NAME?"               
-    ## [4] "biometry abakas NAME cubers NAME cines waxbill vugg combination dipolar inveighs afeard!"  
-    ## [5] "NAME NAME NAME NAME NAME raimund NAME autobuses worsening antigenes abri favorer."         
-    ## [6] "NAME ukes NAME NAME steamering pushiest NAME NAME NAME anemones NAME lamed?"
+    ## [1] "NAME NAME fierinesses NAME witches dietary NAME candidas NAME NAME bipod disobeyed!"                         
+    ## [2] "woodchopper NAME NAME partly NAME NAME overhauled melts undergods cowshed witless NAME?"                     
+    ## [3] "symptomatically lamp improvisations garnished gumshoe burglarizing pressured leguminous bine NAME NAME NAME!"
+    ## [4] "redbay gutlike unobservable detaining canoness voyager hearth shawna golconda NAME jessalyn NAME."           
+    ## [5] "ignition NAME nattered captors ramona loneness bogles misgive hundreds capsulated NAME forequarters!"        
+    ## [6] "NAME raf yawls NAME vandykes NAME NAME little NAME NAME disavowed cognizance!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.07604218 secs
+    ## Time difference of 0.08004212 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,200 words) and 5,493 replacement tokens in 1.9 seconds.
+(600,180 words) and 5,493 replacement tokens in 2.4 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.887348 secs
+    ## Time difference of 2.354663 secs
