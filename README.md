@@ -12,7 +12,6 @@ Status](https://coveralls.io/repos/trinker/textclean/badge.svg?branch=master)](h
 [![](http://cranlogs.r-pkg.org/badges/textclean)](https://cran.r-project.org/package=textclean)
 <a href="https://img.shields.io/badge/Version-0.4.1-orange.svg"><img src="https://img.shields.io/badge/Version-0.4.1-orange.svg" alt="Version"/></a>
 </p>
-
 ![](tools/textclean_logo/r_textclean.png)
 
 **textclean** is a collection of tools to clean and process text. Many
@@ -266,7 +265,7 @@ information on the following:
 
 Here is an example:
 
-    x <- c("i like", "<p>i want. </p> . thet them ther .", "I am ! that|", "", NA, 
+    x <- c("i like", "<p>i want. </p>. thet them ther .", "I am ! that|", "", NA, 
         "&quot;they&quot; they,were there", ".", "   ", "?", "3;", "I like goud eggs!", 
         "bi\xdfchen Z\xfcrcher", "i 4like...", "\\tgreat",  "She said \"yes\"")
     Encoding(x) <- "latin1"
@@ -332,7 +331,7 @@ Here is an example:
     ## 
     ## The following text is double punctuation:
     ## 
-    ## 2: <p>i want. </p> . thet them ther .
+    ## 2: <p>i want. </p>. thet them ther .
     ## 
     ## *Suggestion: Consider running `textshape::split_sentence`
     ## 
@@ -438,7 +437,7 @@ Here is an example:
     ## 
     ## The following text is containing html:
     ## 
-    ## 2: <p>i want. </p> . thet them ther .
+    ## 2: <p>i want. </p>. thet them ther .
     ## 6: &quot;they&quot; they,were there
     ## 
     ## *Suggestion: Consider running `replace_html`
@@ -469,8 +468,7 @@ Here is an example:
     ## 
     ## The following text is potentially misspelled:
     ## 
-    ## 2: <p>i want. </p>
-. <<thet>> them <<ther>> .
+    ## 2: <p>i want. </p>. <<thet>> them <<ther>> .
     ## 11: I like <<goud>> eggs!
     ## 12: <<bißchen>> <<Zürcher>>
     ## 14: \<<tgreat>>
@@ -485,7 +483,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are transcendent! 
+    ## You are superb! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -860,8 +858,7 @@ Sometimes HTML tags and symbols stick around like pesky gnats. The
 
     x <- c(
         "<bold>Random</bold> text with symbols: &nbsp; &lt; &gt; &amp; &quot; &apos;",
-        "<p>More text</p>
- &cent; &pound; &yen; &euro; &copy; &reg;"
+        "<p>More text</p> &cent; &pound; &yen; &euro; &copy; &reg;"
     )
 
     replace_html(x)
@@ -1106,21 +1103,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "snatchy powters Jess keckled aconitum mustily succumb choughs parises imposting sharker Josephina."    
-    ## [2] "theses Cameron unsolder federacy Cornelia Fairy intrusions chorales stepsons execs shaven davens!"     
-    ## [3] "slav waltz traipsing Kerry raticides Tula Shenita misalters trumpets eldritch intervention bartizan?"  
-    ## [4] "argots palmettos cropland Romeo deploy gynecologic Kermit recharting bahadurs Stephaine Mitsuko Tamra!"
-    ## [5] "messy velours Billye pietism loyalist twosome instate retrace spiteful Glenn catch piton!"             
-    ## [6] "stellify Sharla Marlana vilify hairpieces Jalisa thiram Tammera Jina hills Arla pentad!"
+    ## [1] "entrusted halite Bonnie romaunt charlott cutlass Lyla Lesia seemings Tosha watercolor nastier!"
+    ## [2] "iq Diego groans caron Daniell Maryln gasolenes nib rubbaboos Mavis cardiograph slugabed!"      
+    ## [3] "waiver January Lucas Luke Geneva dejected neurone Coleen infixing nels anthea Hiroko?"         
+    ## [4] "biometry abakas Ezekiel cubers Margy cines waxbill vugg combination dipolar inveighs afeard!"  
+    ## [5] "Myrtis Clair Tamisha Lourie Danille raimund Dennis autobuses worsening antigenes abri favorer."
+    ## [6] "Stephani ukes Anamaria Sophie steamering pushiest Derek Perry Alisa anemones Vincenzo lamed?"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "snatchy powters NAME keckled aconitum mustily succumb choughs parises imposting sharker NAME."   
-    ## [2] "theses NAME unsolder federacy NAME NAME intrusions chorales stepsons execs shaven davens!"       
-    ## [3] "slav waltz traipsing NAME raticides NAME NAME misalters trumpets eldritch intervention bartizan?"
-    ## [4] "argots palmettos cropland NAME deploy gynecologic NAME recharting bahadurs NAME NAME NAME!"      
-    ## [5] "messy velours NAME pietism loyalist twosome instate retrace spiteful NAME catch piton!"          
-    ## [6] "stellify NAME NAME vilify hairpieces NAME thiram NAME NAME hills NAME pentad!"
+    ## [1] "entrusted halite NAME romaunt charlott cutlass NAME NAME seemings NAME watercolor nastier!"
+    ## [2] "iq NAME groans caron NAME NAME gasolenes nib rubbaboos NAME cardiograph slugabed!"         
+    ## [3] "waiver NAME NAME NAME NAME dejected neurone NAME infixing nels anthea NAME?"               
+    ## [4] "biometry abakas NAME cubers NAME cines waxbill vugg combination dipolar inveighs afeard!"  
+    ## [5] "NAME NAME NAME NAME NAME raimund NAME autobuses worsening antigenes abri favorer."         
+    ## [6] "NAME ukes NAME NAME steamering pushiest NAME NAME NAME anemones NAME lamed?"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1129,37 +1126,37 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "snatchy powters NAME keckled aconitum mustily succumb choughs parises imposting sharker NAME."   
-    ## [2] "theses NAME unsolder federacy NAME NAME intrusions chorales stepsons execs shaven davens!"       
-    ## [3] "slav waltz traipsing NAME raticides NAME NAME misalters trumpets eldritch intervention bartizan?"
-    ## [4] "argots palmettos cropland NAME deploy gynecologic NAME recharting bahadurs NAME NAME NAME!"      
-    ## [5] "messy velours NAME pietism loyalist twosome instate retrace spiteful NAME catch piton!"          
-    ## [6] "stellify NAME NAME vilify hairpieces NAME thiram NAME NAME hills NAME pentad!"
+    ## [1] "entrusted halite NAME romaunt charlott cutlass NAME NAME seemings NAME watercolor nastier!"
+    ## [2] "iq NAME groans caron NAME NAME gasolenes nib rubbaboos NAME cardiograph slugabed!"         
+    ## [3] "waiver NAME NAME NAME NAME dejected neurone NAME infixing nels anthea NAME?"               
+    ## [4] "biometry abakas NAME cubers NAME cines waxbill vugg combination dipolar inveighs afeard!"  
+    ## [5] "NAME NAME NAME NAME NAME raimund NAME autobuses worsening antigenes abri favorer."         
+    ## [6] "NAME ukes NAME NAME steamering pushiest NAME NAME NAME anemones NAME lamed?"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 8.30187 secs
+    ## Time difference of 8.34833 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "snatchy powters NAME keckled aconitum mustily succumb choughs parises imposting sharker NAME."   
-    ## [2] "theses NAME unsolder federacy NAME NAME intrusions chorales stepsons execs shaven davens!"       
-    ## [3] "slav waltz traipsing NAME raticides NAME NAME misalters trumpets eldritch intervention bartizan?"
-    ## [4] "argots palmettos cropland NAME deploy gynecologic NAME recharting bahadurs NAME NAME NAME!"      
-    ## [5] "messy velours NAME pietism loyalist twosome instate retrace spiteful NAME catch piton!"          
-    ## [6] "stellify NAME NAME vilify hairpieces NAME thiram NAME NAME hills NAME pentad!"
+    ## [1] "entrusted halite NAME romaunt charlott cutlass NAME NAME seemings NAME watercolor nastier!"
+    ## [2] "iq NAME groans caron NAME NAME gasolenes nib rubbaboos NAME cardiograph slugabed!"         
+    ## [3] "waiver NAME NAME NAME NAME dejected neurone NAME infixing nels anthea NAME?"               
+    ## [4] "biometry abakas NAME cubers NAME cines waxbill vugg combination dipolar inveighs afeard!"  
+    ## [5] "NAME NAME NAME NAME NAME raimund NAME autobuses worsening antigenes abri favorer."         
+    ## [6] "NAME ukes NAME NAME steamering pushiest NAME NAME NAME anemones NAME lamed?"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.09706998 secs
+    ## Time difference of 0.07604218 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,100 words) and 5,493 replacement tokens in 2.5 seconds.
+(600,200 words) and 5,493 replacement tokens in 1.9 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 2.46174 secs
+    ## Time difference of 1.887348 secs
