@@ -12,10 +12,10 @@ Description: Tools to clean and process text.  Tools are geared at
         'replace_emoticon' function replaces emoticons with word
         equivalents.
 Depends: R (>= 3.2.3)
-Imports: english(>= 1.0-2), lexicon (>= 0.3.0), qdapRegex, stringi, textshape(>= 1.0.1),
-        utils
+Imports: english(>= 1.0-2), lexicon (>= 0.3.0), qdapRegex, stringi,
+        textshape(>= 1.0.1), utils
 Suggests: testthat
-Date: 2017-04-09
+Date: 2017-04-13
 License: GPL-2
 LazyData: TRUE
 Roxygen: list(wrap = FALSE)

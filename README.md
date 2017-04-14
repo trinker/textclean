@@ -266,8 +266,7 @@ information on the following:
 
 Here is an example:
 
-    x <- c("i like", "<p>i want. </p>
-. thet them ther .", "I am ! that|", "", NA, 
+    x <- c("i like", "<p>i want. </p> . thet them ther .", "I am ! that|", "", NA, 
         "&quot;they&quot; they,were there", ".", "   ", "?", "3;", "I like goud eggs!", 
         "bi\xdfchen Z\xfcrcher", "i 4like...", "\\tgreat",  "She said \"yes\"")
     Encoding(x) <- "latin1"
@@ -333,8 +332,7 @@ Here is an example:
     ## 
     ## The following text is double punctuation:
     ## 
-    ## 2: <p>i want. </p>
-. thet them ther .
+    ## 2: <p>i want. </p> . thet them ther .
     ## 
     ## *Suggestion: Consider running `textshape::split_sentence`
     ## 
@@ -440,8 +438,7 @@ Here is an example:
     ## 
     ## The following text is containing html:
     ## 
-    ## 2: <p>i want. </p>
-. thet them ther .
+    ## 2: <p>i want. </p> . thet them ther .
     ## 6: &quot;they&quot; they,were there
     ## 
     ## *Suggestion: Consider running `replace_html`
@@ -488,7 +485,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are marvelous! 
+    ## You are transcendent! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -1109,21 +1106,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "swanned sunlamps misbehaving optimistically Zora difficult atticist blurt georgeanna portentous cerates karine?"
-    ## [2] "rabbiting unnerving Shanta tutoresses syringa subtotal Pinkie Margert compressor hijacker Dell nightmares."     
-    ## [3] "catch aedes outfitter schools sutras freshest underacts criminal frederic Willian Hope Anton!"                  
-    ## [4] "piggie fuzz provocations parlous golfed Milly crafting zsazsa chancellorships Mose east decern."                
-    ## [5] "paughty bruised studiously pensioned stephani slaved toyer cerement Boyd Jaunita akenes xeroses."               
-    ## [6] "Lynwood Luciana weighers roguishnesses seisin duckiest pop sceptral winnah grievances Deja Gidget?"
+    ## [1] "snatchy powters Jess keckled aconitum mustily succumb choughs parises imposting sharker Josephina."    
+    ## [2] "theses Cameron unsolder federacy Cornelia Fairy intrusions chorales stepsons execs shaven davens!"     
+    ## [3] "slav waltz traipsing Kerry raticides Tula Shenita misalters trumpets eldritch intervention bartizan?"  
+    ## [4] "argots palmettos cropland Romeo deploy gynecologic Kermit recharting bahadurs Stephaine Mitsuko Tamra!"
+    ## [5] "messy velours Billye pietism loyalist twosome instate retrace spiteful Glenn catch piton!"             
+    ## [6] "stellify Sharla Marlana vilify hairpieces Jalisa thiram Tammera Jina hills Arla pentad!"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "swanned sunlamps misbehaving optimistically NAME difficult atticist blurt georgeanna portentous cerates karine?"
-    ## [2] "rabbiting unnerving NAME tutoresses syringa subtotal NAME NAME compressor hijacker NAME nightmares."            
-    ## [3] "catch aedes outfitter schools sutras freshest underacts criminal frederic NAME NAME NAME!"                      
-    ## [4] "piggie fuzz provocations parlous golfed NAME crafting zsazsa chancellorships NAME east decern."                 
-    ## [5] "paughty bruised studiously pensioned stephani slaved toyer cerement NAME NAME akenes xeroses."                  
-    ## [6] "NAME NAME weighers roguishnesses seisin duckiest pop sceptral winnah grievances NAME NAME?"
+    ## [1] "snatchy powters NAME keckled aconitum mustily succumb choughs parises imposting sharker NAME."   
+    ## [2] "theses NAME unsolder federacy NAME NAME intrusions chorales stepsons execs shaven davens!"       
+    ## [3] "slav waltz traipsing NAME raticides NAME NAME misalters trumpets eldritch intervention bartizan?"
+    ## [4] "argots palmettos cropland NAME deploy gynecologic NAME recharting bahadurs NAME NAME NAME!"      
+    ## [5] "messy velours NAME pietism loyalist twosome instate retrace spiteful NAME catch piton!"          
+    ## [6] "stellify NAME NAME vilify hairpieces NAME thiram NAME NAME hills NAME pentad!"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1132,37 +1129,37 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "swanned sunlamps misbehaving optimistically NAME difficult atticist blurt georgeanna portentous cerates karine?"
-    ## [2] "rabbiting unnerving NAME tutoresses syringa subtotal NAME NAME compressor hijacker NAME nightmares."            
-    ## [3] "catch aedes outfitter schools sutras freshest underacts criminal frederic NAME NAME NAME!"                      
-    ## [4] "piggie fuzz provocations parlous golfed NAME crafting zsazsa chancellorships NAME east decern."                 
-    ## [5] "paughty bruised studiously pensioned stephani slaved toyer cerement NAME NAME akenes xeroses."                  
-    ## [6] "NAME NAME weighers roguishnesses seisin duckiest pop sceptral winnah grievances NAME NAME?"
+    ## [1] "snatchy powters NAME keckled aconitum mustily succumb choughs parises imposting sharker NAME."   
+    ## [2] "theses NAME unsolder federacy NAME NAME intrusions chorales stepsons execs shaven davens!"       
+    ## [3] "slav waltz traipsing NAME raticides NAME NAME misalters trumpets eldritch intervention bartizan?"
+    ## [4] "argots palmettos cropland NAME deploy gynecologic NAME recharting bahadurs NAME NAME NAME!"      
+    ## [5] "messy velours NAME pietism loyalist twosome instate retrace spiteful NAME catch piton!"          
+    ## [6] "stellify NAME NAME vilify hairpieces NAME thiram NAME NAME hills NAME pentad!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 6.012216 secs
+    ## Time difference of 8.30187 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "swanned sunlamps misbehaving optimistically NAME difficult atticist blurt georgeanna portentous cerates karine?"
-    ## [2] "rabbiting unnerving NAME tutoresses syringa subtotal NAME NAME compressor hijacker NAME nightmares."            
-    ## [3] "catch aedes outfitter schools sutras freshest underacts criminal frederic NAME NAME NAME!"                      
-    ## [4] "piggie fuzz provocations parlous golfed NAME crafting zsazsa chancellorships NAME east decern."                 
-    ## [5] "paughty bruised studiously pensioned stephani slaved toyer cerement NAME NAME akenes xeroses."                  
-    ## [6] "NAME NAME weighers roguishnesses seisin duckiest pop sceptral winnah grievances NAME NAME?"
+    ## [1] "snatchy powters NAME keckled aconitum mustily succumb choughs parises imposting sharker NAME."   
+    ## [2] "theses NAME unsolder federacy NAME NAME intrusions chorales stepsons execs shaven davens!"       
+    ## [3] "slav waltz traipsing NAME raticides NAME NAME misalters trumpets eldritch intervention bartizan?"
+    ## [4] "argots palmettos cropland NAME deploy gynecologic NAME recharting bahadurs NAME NAME NAME!"      
+    ## [5] "messy velours NAME pietism loyalist twosome instate retrace spiteful NAME catch piton!"          
+    ## [6] "stellify NAME NAME vilify hairpieces NAME thiram NAME NAME hills NAME pentad!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.07604003 secs
+    ## Time difference of 0.09706998 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,160 words) and 5,493 replacement tokens in 1.5 seconds.
+(600,100 words) and 5,493 replacement tokens in 2.5 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.526092 secs
+    ## Time difference of 2.46174 secs
