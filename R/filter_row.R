@@ -31,6 +31,8 @@
 #' }
 filter_row <- function(dataframe, column, terms, ...) {
     
+    warning("Deprecated, use textclean::drop_row() instead.", call. = FALSE)
+        
     terms <- paste(terms, collapse="|")
     if (length(dataframe[[column]]) == 0) stop("No columns in the data appear to match supplied `column`")    
     dataframe <- dataframe[!grepl(terms, dataframe[[column]], perl=TRUE, ...), ]
@@ -49,6 +51,9 @@ filter_row <- function(dataframe, column, terms, ...) {
 #' @rdname filter_row
 #' @export
 filter_empty_row <- function(dataframe) {
+    
+    warning("Deprecated, use textclean::drop_empty_row() instead.", call. = FALSE)
+    
     x <- apply(dataframe, 1, function(x) paste(stats::na.omit(x), collapse = ""))
     return(dataframe[!grepl("^\\s*$", x),  ,drop = FALSE] )
 }
@@ -62,6 +67,8 @@ filter_empty_row <- function(dataframe) {
 #' @rdname filter_row
 #' @export
 filter_NA <- function(dataframe, column = TRUE, ...){
+
+    warning("Deprecated, use textclean::drop_NA() instead.", call. = FALSE)
     
     if (isTRUE(column)) {
         column <- names(which.max(sapply(as.data.frame(dataframe), function(y) {

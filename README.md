@@ -1,4 +1,4 @@
-textclean   [![Follow](https://img.shields.io/twitter/follow/tylerrinker.svg?style=social)](https://twitter.com/intent/follow?screen_name=tylerrinker)
+textclean   
 ============
 
 
@@ -10,9 +10,6 @@ Status](https://travis-ci.org/trinker/textclean.svg?branch=master)](https://trav
 [![Coverage
 Status](https://coveralls.io/repos/trinker/textclean/badge.svg?branch=master)](https://coveralls.io/r/trinker/textclean?branch=master)
 [![](http://cranlogs.r-pkg.org/badges/textclean)](https://cran.r-project.org/package=textclean)
-<a href="https://img.shields.io/badge/Version-0.4.1-orange.svg"><img src="https://img.shields.io/badge/Version-0.4.1-orange.svg" alt="Version"/></a>
-</p>
-
 
 ![](tools/textclean_logo/r_textclean.png)
 
@@ -92,24 +89,24 @@ table below:
 <td>Remove all non word characters</td>
 </tr>
 <tr class="odd">
-<td><code>filter_empty_row</code></td>
+<td><code>drop_empty_row</code></td>
 <td>filter rows</td>
 <td>Remove empty rows</td>
 </tr>
 <tr class="even">
-<td><code>filter_row</code></td>
+<td><code>drop_row</code>/<code>keep_row</code></td>
 <td>filter rows</td>
-<td>Remove rows matching a regex</td>
+<td>Filter rows matching a regex</td>
 </tr>
 <tr class="odd">
-<td><code>filter_NA</code></td>
+<td><code>drop_NA</code></td>
 <td>filter rows</td>
 <td>Remove <code>NA</code> text rows</td>
 </tr>
 <tr class="even">
-<td><code>filter_element</code></td>
+<td><code>drop_element</code>/<code>keep_element</code></td>
 <td>filter elements</td>
-<td>Remove matching elements from a vector</td>
+<td>Filter matching elements from a vector</td>
 </tr>
 <tr class="odd">
 <td><code>replace_contractions</code></td>
@@ -485,7 +482,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are splendiferous! 
+    ## You are funkadelic! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -496,9 +493,9 @@ And if all is well the user should be greeted by a cow:
 Row Filtering
 -------------
 
-It is useful to filter/remove empty rows or unwanted rows (for example
-the researcher dialogue from a transcript). The `filter_empty_row` &
-`filter_row` do empty row do just this. First I'll demo the removal of
+It is useful to drop/remove empty rows or unwanted rows (for example the
+researcher dialogue from a transcript). The `drop_empty_row` &
+`drop_row` do empty row do just this. First I'll demo the removal of
 empty rows.
 
     ## create a data set wit empty rows
@@ -506,9 +503,9 @@ empty rows.
         ncol =2, dimnames=list(12:13, colnames(DATA)[c(1, 4)]))))
 
     ##        person                                 state
-    ## 1         sam         Computer is fun. Not too fun.
-    ## 2        greg               No it's not, it's dumb.
-    ## 3     teacher                    What should we do?
+    ## 1         sam                                  <NA>
+    ## 2        greg                                  <NA>
+    ## 3     teacher                                  <NA>
     ## 4         sam                  You liar, it stinks!
     ## 5        greg               I am telling the truth!
     ## 6       sally                How can we be certain?
@@ -520,12 +517,12 @@ empty rows.
     ## 12                                                 
     ## 13
 
-    filter_empty_row(dat)
+    drop_empty_row(dat)
 
     ##        person                                 state
-    ## 1         sam         Computer is fun. Not too fun.
-    ## 2        greg               No it's not, it's dumb.
-    ## 3     teacher                    What should we do?
+    ## 1         sam                                  <NA>
+    ## 2        greg                                  <NA>
+    ## 3     teacher                                  <NA>
     ## 4         sam                  You liar, it stinks!
     ## 5        greg               I am telling the truth!
     ## 6       sally                How can we be certain?
@@ -535,47 +532,59 @@ empty rows.
     ## 10 researcher         Shall we move on?  Good then.
     ## 11       greg I'm hungry.  Let's eat.  You already?
 
-Next we filter out rows. The `filter_row` function takes a data set, a
+Next we drop out rows. The `drop_row` function takes a data set, a
 column (named or numeric position) and regex terms to search for. The
 `terms` argument takes regex(es) allowing for partial matching. `terms`
 is case sensitive but can be changed via the `ignore.case` argument.
 
-    filter_row(dataframe = DATA, column = "person", terms = c("sam", "greg"))
+    drop_row(dataframe = DATA, column = "person", terms = c("sam", "greg"))
 
     ##       person sex adult                         state code
-    ## 1    teacher   m     1            What should we do?   K3
+    ## 1    teacher   m     1                          <NA>   K3
     ## 2      sally   f     0        How can we be certain?   K6
     ## 3      sally   f     0   What are you talking about?   K9
     ## 4 researcher   f     1 Shall we move on?  Good then.  K10
 
-    filter_row(DATA, 1, c("sam", "greg"))
+    drop_row(DATA, 1, c("sam", "greg"))
 
     ##       person sex adult                         state code
-    ## 1    teacher   m     1            What should we do?   K3
+    ## 1    teacher   m     1                          <NA>   K3
     ## 2      sally   f     0        How can we be certain?   K6
     ## 3      sally   f     0   What are you talking about?   K9
     ## 4 researcher   f     1 Shall we move on?  Good then.  K10
 
-    filter_row(DATA, "state", c("Comp"))
+    keep_row(DATA, 1, c("sam", "greg"))
+
+    ##   person sex adult                                 state code
+    ## 1    sam   m     0                                  <NA>   K1
+    ## 2   greg   m     0                                  <NA>   K2
+    ## 3    sam   m     0                  You liar, it stinks!   K4
+    ## 4   greg   m     0               I am telling the truth!   K5
+    ## 5   greg   m     0                      There is no way.   K7
+    ## 6    sam   m     0                       I distrust you.   K8
+    ## 7   greg   m     0 I'm hungry.  Let's eat.  You already?  K11
+
+    drop_row(DATA, "state", c("Comp"))
 
     ##        person sex adult                                 state code
-    ## 1        greg   m     0               No it's not, it's dumb.   K2
-    ## 2     teacher   m     1                    What should we do?   K3
-    ## 3         sam   m     0                  You liar, it stinks!   K4
-    ## 4        greg   m     0               I am telling the truth!   K5
-    ## 5       sally   f     0                How can we be certain?   K6
-    ## 6        greg   m     0                      There is no way.   K7
-    ## 7         sam   m     0                       I distrust you.   K8
-    ## 8       sally   f     0           What are you talking about?   K9
-    ## 9  researcher   f     1         Shall we move on?  Good then.  K10
-    ## 10       greg   m     0 I'm hungry.  Let's eat.  You already?  K11
+    ## 1         sam   m     0                                  <NA>   K1
+    ## 2        greg   m     0                                  <NA>   K2
+    ## 3     teacher   m     1                                  <NA>   K3
+    ## 4         sam   m     0                  You liar, it stinks!   K4
+    ## 5        greg   m     0               I am telling the truth!   K5
+    ## 6       sally   f     0                How can we be certain?   K6
+    ## 7        greg   m     0                      There is no way.   K7
+    ## 8         sam   m     0                       I distrust you.   K8
+    ## 9       sally   f     0           What are you talking about?   K9
+    ## 10 researcher   f     1         Shall we move on?  Good then.  K10
+    ## 11       greg   m     0 I'm hungry.  Let's eat.  You already?  K11
 
-    filter_row(DATA, "state", c("I "))
+    drop_row(DATA, "state", c("I "))
 
     ##       person sex adult                                 state code
-    ## 1        sam   m     0         Computer is fun. Not too fun.   K1
-    ## 2       greg   m     0               No it's not, it's dumb.   K2
-    ## 3    teacher   m     1                    What should we do?   K3
+    ## 1        sam   m     0                                  <NA>   K1
+    ## 2       greg   m     0                                  <NA>   K2
+    ## 3    teacher   m     1                                  <NA>   K3
     ## 4        sam   m     0                  You liar, it stinks!   K4
     ## 5      sally   f     0                How can we be certain?   K6
     ## 6       greg   m     0                      There is no way.   K7
@@ -583,12 +592,12 @@ is case sensitive but can be changed via the `ignore.case` argument.
     ## 8 researcher   f     1         Shall we move on?  Good then.  K10
     ## 9       greg   m     0 I'm hungry.  Let's eat.  You already?  K11
 
-    filter_row(DATA, "state", c("you"), ignore.case = TRUE)
+    drop_row(DATA, "state", c("you"), ignore.case = TRUE)
 
     ##       person sex adult                         state code
-    ## 1        sam   m     0 Computer is fun. Not too fun.   K1
-    ## 2       greg   m     0       No it's not, it's dumb.   K2
-    ## 3    teacher   m     1            What should we do?   K3
+    ## 1        sam   m     0                          <NA>   K1
+    ## 2       greg   m     0                          <NA>   K2
+    ## 3    teacher   m     1                          <NA>   K3
     ## 4       greg   m     0       I am telling the truth!   K5
     ## 5      sally   f     0        How can we be certain?   K6
     ## 6       greg   m     0              There is no way.   K7
@@ -604,8 +613,8 @@ retain characters.
 
     strip(DATA$state)
 
-    ##  [1] "computer is fun not too fun"      "no it's not it's dumb"           
-    ##  [3] "what should we do"                "you liar it stinks"              
+    ##  [1] NA                                 NA                                
+    ##  [3] NA                                 "you liar it stinks"              
     ##  [5] "i am telling the truth"           "how can we be certain"           
     ##  [7] "there is no way"                  "i distrust you"                  
     ##  [9] "what are you talking about"       "shall we move on good then"      
@@ -613,8 +622,8 @@ retain characters.
 
     strip(DATA$state, apostrophe.remove = TRUE)
 
-    ##  [1] "computer is fun not too fun"    "no its not its dumb"           
-    ##  [3] "what should we do"              "you liar it stinks"            
+    ##  [1] NA                               NA                              
+    ##  [3] NA                               "you liar it stinks"            
     ##  [5] "i am telling the truth"         "how can we be certain"         
     ##  [7] "there is no way"                "i distrust you"                
     ##  [9] "what are you talking about"     "shall we move on good then"    
@@ -622,9 +631,9 @@ retain characters.
 
     strip(DATA$state, char.keep = c("?", "."))
 
-    ##  [1] "computer is fun. not too fun."      
-    ##  [2] "no it's not it's dumb."             
-    ##  [3] "what should we do?"                 
+    ##  [1] NA                                   
+    ##  [2] NA                                   
+    ##  [3] NA                                   
     ##  [4] "you liar it stinks"                 
     ##  [5] "i am telling the truth"             
     ##  [6] "how can we be certain?"             
@@ -654,9 +663,9 @@ this feature).
 
     mgsub(DATA$state, c("it's", "I'm"), c("<<it is>>", "<<I am>>"))
 
-    ##  [1] "Computer is fun. Not too fun."             
-    ##  [2] "No <<it is>> not, <<it is>> dumb."         
-    ##  [3] "What should we do?"                        
+    ##  [1] NA                                          
+    ##  [2] NA                                          
+    ##  [3] NA                                          
     ##  [4] "You liar, it stinks!"                      
     ##  [5] "I am telling the truth!"                   
     ##  [6] "How can we be certain?"                    
@@ -668,9 +677,9 @@ this feature).
 
     mgsub(DATA$state, "[[:punct:]]", "<<PUNCT>>", fixed = FALSE)
 
-    ##  [1] "Computer is fun<<PUNCT>> Not too fun<<PUNCT>>"                                
-    ##  [2] "No it<<PUNCT>>s not<<PUNCT>> it<<PUNCT>>s dumb<<PUNCT>>"                      
-    ##  [3] "What should we do<<PUNCT>>"                                                   
+    ##  [1] NA                                                                             
+    ##  [2] NA                                                                             
+    ##  [3] NA                                                                             
     ##  [4] "You liar<<PUNCT>> it stinks<<PUNCT>>"                                         
     ##  [5] "I am telling the truth<<PUNCT>>"                                              
     ##  [6] "How can we be certain<<PUNCT>>"                                               
@@ -682,9 +691,9 @@ this feature).
 
     mgsub(DATA$state, c("i", "it"), c("<<I>>", "[[IT]]"))
 
-    ##  [1] "Computer <<I>>s fun. Not too fun."    
-    ##  [2] "No [[IT]]'s not, [[IT]]'s dumb."      
-    ##  [3] "What should we do?"                   
+    ##  [1] NA                                     
+    ##  [2] NA                                     
+    ##  [3] NA                                     
     ##  [4] "You l<<I>>ar, [[IT]] st<<I>>nks!"     
     ##  [5] "I am tell<<I>>ng the truth!"          
     ##  [6] "How can we be certa<<I>>n?"           
@@ -696,9 +705,9 @@ this feature).
 
     mgsub(DATA$state, c("i", "it"), c("<<I>>", "[[IT]]"), order.pattern = FALSE)
 
-    ##  [1] "Computer <<I>>s fun. Not too fun."    
-    ##  [2] "No <<I>>t's not, <<I>>t's dumb."      
-    ##  [3] "What should we do?"                   
+    ##  [1] NA                                     
+    ##  [2] NA                                     
+    ##  [3] NA                                     
     ##  [4] "You l<<I>>ar, <<I>>t st<<I>>nks!"     
     ##  [5] "I am tell<<I>>ng the truth!"          
     ##  [6] "How can we be certa<<I>>n?"           
@@ -721,9 +730,9 @@ punctuation, and last put the stashed emoticons back.
 
     (fake_dat <- paste(hash_emoticons[1:11, 1, with=FALSE][[1]], DATA$state))
 
-    ##  [1] "#-o Computer is fun. Not too fun."        
-    ##  [2] "$_$ No it's not, it's dumb."              
-    ##  [3] "(*v*) What should we do?"                 
+    ##  [1] "#-o NA"                                   
+    ##  [2] "$_$ NA"                                   
+    ##  [3] "(*v*) NA"                                 
     ##  [4] "(-: You liar, it stinks!"                 
     ##  [5] "(-}{-) I am telling the truth!"           
     ##  [6] "(.V.) How can we be certain?"             
@@ -735,9 +744,9 @@ punctuation, and last put the stashed emoticons back.
 
     (m <- sub_holder(fake_dat, hash_emoticons[[1]]))
 
-    ##  [1] "zzzplaceholderazzz Computer is fun. Not too fun."        
-    ##  [2] "zzzplaceholderbzzz No it's not, it's dumb."              
-    ##  [3] "zzzplaceholderczzz What should we do?"                   
+    ##  [1] "zzzplaceholderazzz NA"                                   
+    ##  [2] "zzzplaceholderbzzz NA"                                   
+    ##  [3] "zzzplaceholderczzz NA"                                   
     ##  [4] "zzzplaceholderdzzz You liar, it stinks!"                 
     ##  [5] "zzzplaceholderezzz I am telling the truth!"              
     ##  [6] "zzzplaceholderfzzz How can we be certain?"               
@@ -749,9 +758,9 @@ punctuation, and last put the stashed emoticons back.
 
     (m_stripped <-strip(m$output))
 
-    ##  [1] "zzzplaceholderazzz computer is fun not too fun"     
-    ##  [2] "zzzplaceholderbzzz no it's not it's dumb"           
-    ##  [3] "zzzplaceholderczzz what should we do"               
+    ##  [1] "zzzplaceholderazzz na"                              
+    ##  [2] "zzzplaceholderbzzz na"                              
+    ##  [3] "zzzplaceholderczzz na"                              
     ##  [4] "zzzplaceholderdzzz you liar it stinks"              
     ##  [5] "zzzplaceholderezzz i am telling the truth"          
     ##  [6] "zzzplaceholderfzzz how can we be certain"           
@@ -763,9 +772,9 @@ punctuation, and last put the stashed emoticons back.
 
     m$unhold(m_stripped)
 
-    ##  [1] "#-o computer is fun not too fun"     
-    ##  [2] "$_$ no it's not it's dumb"           
-    ##  [3] "(*v*) what should we do"             
+    ##  [1] "#-o na"                              
+    ##  [2] "$_$ na"                              
+    ##  [3] "(*v*) na"                            
     ##  [4] "(-: you liar it stinks"              
     ##  [5] "(-}{-) i am telling the truth"       
     ##  [6] "(.V.) how can we be certain"         
@@ -1105,21 +1114,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "Gwen Matilde fierinesses Melinda witches dietary Summer candidas Dusty Lashay bipod disobeyed!"                   
-    ## [2] "woodchopper Eliana Trinidad partly Marylynn Alton overhauled melts undergods cowshed witless Milagro?"            
-    ## [3] "symptomatically lamp improvisations garnished gumshoe burglarizing pressured leguminous bine Cole Sherie Brianne!"
-    ## [4] "redbay gutlike unobservable detaining canoness voyager hearth shawna golconda Kathie jessalyn Mallie."            
-    ## [5] "ignition Mirtha nattered captors ramona loneness bogles misgive hundreds capsulated Kati forequarters!"           
-    ## [6] "Iesha raf yawls Jacquelyn vandykes Sybil Cruz little Dylan Maryanne disavowed cognizance!"
+    ## [1] "sesamoid Faustino mushed Brenton Agatha Craig isomer indicator burger uniforming Ellen hoatzin."                  
+    ## [2] "cradlers Gerardo pennis Brent pansy glumly Theo Crystle prepublication photographies mahjongs finches!"           
+    ## [3] "turbots Williemae refolded Marisa fashing zymoses intruded Verla behest Meghan antennal stane!"                   
+    ## [4] "preexistences coco compensatory stealthier surfboat abbotcies wabbler infixed transit storerooms pretenses Raven!"
+    ## [5] "perforates upholding Gerry eternises Lacresha tarriest Brett trompe stauncher Krissy whirred megabar?"            
+    ## [6] "Liberty Donte relegation stockade Martin cookless Cassy flag Richelle stopovers Wilfred hotchpot!"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "NAME NAME fierinesses NAME witches dietary NAME candidas NAME NAME bipod disobeyed!"                         
-    ## [2] "woodchopper NAME NAME partly NAME NAME overhauled melts undergods cowshed witless NAME?"                     
-    ## [3] "symptomatically lamp improvisations garnished gumshoe burglarizing pressured leguminous bine NAME NAME NAME!"
-    ## [4] "redbay gutlike unobservable detaining canoness voyager hearth shawna golconda NAME jessalyn NAME."           
-    ## [5] "ignition NAME nattered captors ramona loneness bogles misgive hundreds capsulated NAME forequarters!"        
-    ## [6] "NAME raf yawls NAME vandykes NAME NAME little NAME NAME disavowed cognizance!"
+    ## [1] "sesamoid NAME mushed NAME NAME NAME isomer indicator burger uniforming NAME hoatzin."                            
+    ## [2] "cradlers NAME pennis NAME pansy glumly NAME NAME prepublication photographies mahjongs finches!"                 
+    ## [3] "turbots NAME refolded NAME fashing zymoses intruded NAME behest NAME antennal stane!"                            
+    ## [4] "preexistences coco compensatory stealthier surfboat abbotcies wabbler infixed transit storerooms pretenses NAME!"
+    ## [5] "perforates upholding NAME eternises NAME tarriest NAME trompe stauncher NAME whirred megabar?"                   
+    ## [6] "NAME NAME relegation stockade NAME cookless NAME flag NAME stopovers NAME hotchpot!"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1128,37 +1137,37 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "NAME NAME fierinesses NAME witches dietary NAME candidas NAME NAME bipod disobeyed!"                         
-    ## [2] "woodchopper NAME NAME partly NAME NAME overhauled melts undergods cowshed witless NAME?"                     
-    ## [3] "symptomatically lamp improvisations garnished gumshoe burglarizing pressured leguminous bine NAME NAME NAME!"
-    ## [4] "redbay gutlike unobservable detaining canoness voyager hearth shawna golconda NAME jessalyn NAME."           
-    ## [5] "ignition NAME nattered captors ramona loneness bogles misgive hundreds capsulated NAME forequarters!"        
-    ## [6] "NAME raf yawls NAME vandykes NAME NAME little NAME NAME disavowed cognizance!"
+    ## [1] "sesamoid NAME mushed NAME NAME NAME isomer indicator burger uniforming NAME hoatzin."                            
+    ## [2] "cradlers NAME pennis NAME pansy glumly NAME NAME prepublication photographies mahjongs finches!"                 
+    ## [3] "turbots NAME refolded NAME fashing zymoses intruded NAME behest NAME antennal stane!"                            
+    ## [4] "preexistences coco compensatory stealthier surfboat abbotcies wabbler infixed transit storerooms pretenses NAME!"
+    ## [5] "perforates upholding NAME eternises NAME tarriest NAME trompe stauncher NAME whirred megabar?"                   
+    ## [6] "NAME NAME relegation stockade NAME cookless NAME flag NAME stopovers NAME hotchpot!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 7.607921 secs
+    ## Time difference of 6.691251 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "NAME NAME fierinesses NAME witches dietary NAME candidas NAME NAME bipod disobeyed!"                         
-    ## [2] "woodchopper NAME NAME partly NAME NAME overhauled melts undergods cowshed witless NAME?"                     
-    ## [3] "symptomatically lamp improvisations garnished gumshoe burglarizing pressured leguminous bine NAME NAME NAME!"
-    ## [4] "redbay gutlike unobservable detaining canoness voyager hearth shawna golconda NAME jessalyn NAME."           
-    ## [5] "ignition NAME nattered captors ramona loneness bogles misgive hundreds capsulated NAME forequarters!"        
-    ## [6] "NAME raf yawls NAME vandykes NAME NAME little NAME NAME disavowed cognizance!"
+    ## [1] "sesamoid NAME mushed NAME NAME NAME isomer indicator burger uniforming NAME hoatzin."                            
+    ## [2] "cradlers NAME pennis NAME pansy glumly NAME NAME prepublication photographies mahjongs finches!"                 
+    ## [3] "turbots NAME refolded NAME fashing zymoses intruded NAME behest NAME antennal stane!"                            
+    ## [4] "preexistences coco compensatory stealthier surfboat abbotcies wabbler infixed transit storerooms pretenses NAME!"
+    ## [5] "perforates upholding NAME eternises NAME tarriest NAME trompe stauncher NAME whirred megabar?"                   
+    ## [6] "NAME NAME relegation stockade NAME cookless NAME flag NAME stopovers NAME hotchpot!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.08004212 secs
+    ## Time difference of 0.077039 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,180 words) and 5,493 replacement tokens in 2.4 seconds.
+(600,160 words) and 5,493 replacement tokens in 1.9 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 2.354663 secs
+    ## Time difference of 1.876326 secs

@@ -13,6 +13,7 @@ loc <- grep(regex, desc)
 ver <- gsub(regex, "\\2", desc[loc])
 pacman::p_load_current_gh('trinker/numform')
 verbadge <- sprintf('<a href="https://img.shields.io/badge/Version-%s-orange.svg"><img src="https://img.shields.io/badge/Version-%s-orange.svg" alt="Version"/></a></p>', ver, ver)
+verbadge <- ""
 ````
 
 [![Project Status: Active - The project has reached a stable, usable
@@ -38,10 +39,10 @@ The main functions, task category, & descriptions are summarized in the table be
 | `sub_holder`              | subbing     | Hold a value prior to a `strip`       |
 | `swap`                    | subbing     | Simultaneously swap patterns 1 & 2    |
 | `strip`                   | deletion    | Remove all non word characters        |
-| `filter_empty_row`        | filter rows | Remove empty rows                     |
-| `filter_row`              | filter rows | Remove rows matching a regex          |
-| `filter_NA`               | filter rows | Remove `NA` text rows                 |
-| `filter_element`          | filter elements | Remove matching elements from a vector   |
+| `drop_empty_row`          | filter rows | Remove empty rows                     |
+| `drop_row`/`keep_row`     | filter rows | Filter rows matching a regex          |
+| `drop_NA`                 | filter rows | Remove `NA` text rows                 |
+| `drop_element`/`keep_element` | filter elements | Filter matching elements from a vector   |
 | `replace_contractions`    | replacement | Replace contractions with both words  |
 | `replace_emoticon`        | repalcement | Replace emoticons with word equivalent               |
 | `replace_grade`           | repalcement | Replace grades (e.g., "A+") with word equivalent     |
@@ -131,7 +132,7 @@ check_text(y)
 
 ## Row Filtering
 
-It is useful to filter/remove empty rows or unwanted rows (for example the researcher dialogue from a transcript).  The `filter_empty_row` & `filter_row` do empty row do just this.  First I'll demo the removal of empty rows.
+It is useful to drop/remove empty rows or unwanted rows (for example the researcher dialogue from a transcript).  The `drop_empty_row` & `drop_row` do empty row do just this.  First I'll demo the removal of empty rows.
 
 
 ```{r}
@@ -139,17 +140,18 @@ It is useful to filter/remove empty rows or unwanted rows (for example the resea
 (dat <- rbind.data.frame(DATA[, c(1, 4)], matrix(rep(" ", 4), 
     ncol =2, dimnames=list(12:13, colnames(DATA)[c(1, 4)]))))
 
-filter_empty_row(dat)
+drop_empty_row(dat)
 ```
 
-Next we filter out rows.  The `filter_row` function takes a data set, a column (named or numeric position) and regex terms to search for.  The `terms` argument takes regex(es) allowing for partial matching.  `terms` is case sensitive  but can be changed via the `ignore.case` argument.
+Next we drop out rows.  The `drop_row` function takes a data set, a column (named or numeric position) and regex terms to search for.  The `terms` argument takes regex(es) allowing for partial matching.  `terms` is case sensitive  but can be changed via the `ignore.case` argument.
 
 ```{r}
-filter_row(dataframe = DATA, column = "person", terms = c("sam", "greg"))
-filter_row(DATA, 1, c("sam", "greg"))
-filter_row(DATA, "state", c("Comp"))
-filter_row(DATA, "state", c("I "))
-filter_row(DATA, "state", c("you"), ignore.case = TRUE)
+drop_row(dataframe = DATA, column = "person", terms = c("sam", "greg"))
+drop_row(DATA, 1, c("sam", "greg"))
+keep_row(DATA, 1, c("sam", "greg"))
+drop_row(DATA, "state", c("Comp"))
+drop_row(DATA, "state", c("I "))
+drop_row(DATA, "state", c("you"), ignore.case = TRUE)
 ```
 
 ## Stripping

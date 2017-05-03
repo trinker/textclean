@@ -44,6 +44,9 @@ textclean 0.4.0 -
 
 **CHANGES**
 
+* `filter_` fuctions deprecated in favor of `drop_`/`keep_` versions of filter
+  functions.
+
 
 
 textclean 0.3.1
