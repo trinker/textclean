@@ -44,8 +44,9 @@ textclean 0.4.0 -
 
 **CHANGES**
 
-* `filter_` fuctions deprecated in favor of `drop_`/`keep_` versions of filter
-  functions.
+* `filter_` functions deprecated in favor of `drop_`/`keep_` versions of filter
+  functions.  This was change was to address the opposite meaning that **dplyr**'s 
+  `filter` has, which retains rows matching a pattern be default.
 
 
 
