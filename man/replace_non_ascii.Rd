@@ -19,7 +19,7 @@ Returns a text variable (character sting) with non-ascii characters
 replaced.
 }
 \description{
-Replaces common non-ASCII characters.
+\code{replace_non_ascii} - Replaces common non-ASCII characters.
 }
 \examples{
 x <- c(
@@ -32,5 +32,6 @@ x
 
 replace_non_ascii(x)
 replace_non_ascii(x, remove.nonconverted = FALSE)
+
 }
 \keyword{ascii}
