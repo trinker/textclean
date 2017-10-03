@@ -58,6 +58,7 @@ The main functions, task category, & descriptions are summarized in the table be
 | `replace_token`           | replacement | Remove or replace a vector of tokens with a single value  |
 | `add_comma_space`         | replacement | Replace non-space after comma         |
 | `add_missing_endmark`     | replacement | Replace missing endmarks with desired symbol |
+| `make_plural`             | replacement | Add plural endings to singular noun forms |
 | `check_text`              | check       | Text report of potential issues       | 
 | `has_endmark`             | check       | Check if an element has an end-mark   | 
 

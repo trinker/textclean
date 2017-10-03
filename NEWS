@@ -31,6 +31,8 @@ NEW FEATURES
 
 * `replace_names` added to remove/replace common first and last names from text 
   data.
+  
+* `make_plural` added to make a vector of singular noun forms plural.
 
 MINOR FEATURES
 
