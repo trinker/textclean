@@ -34,6 +34,9 @@ NEW FEATURES
 
 MINOR FEATURES
 
+* `mgsub_regex` and `mgsub_fixed` to provide wrappers for `mgsub` that makes
+  their use apprent without setting the `fixed` command.
+
 IMPROVEMENTS
 
 * `replace_non_ascii` now uses `stringi::stri_trans_general` to coerce more 

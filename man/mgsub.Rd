@@ -2,10 +2,18 @@
 % Please edit documentation in R/mgsub.R
 \name{mgsub}
 \alias{mgsub}
+\alias{mgsub_fixed}
+\alias{mgsub_regex}
 \title{Multiple \code{\link[base]{gsub}}}
 \usage{
 mgsub(x, pattern, replacement, leadspace = FALSE, trailspace = FALSE,
   fixed = TRUE, trim = FALSE, order.pattern = fixed, ...)
+
+mgsub_fixed(x, pattern, replacement, leadspace = FALSE, trailspace = FALSE,
+  fixed = TRUE, trim = FALSE, order.pattern = fixed, ...)
+
+mgsub_regex(x, pattern, replacement, leadspace = FALSE, trailspace = FALSE,
+  fixed = FALSE, trim = FALSE, order.pattern = fixed, ...)
 }
 \arguments{
 \item{x}{A character vector.}
@@ -38,8 +46,12 @@ search for "then" first).}
 \code{mgsub} - Returns a vector with the pattern replaced.
 }
 \description{
-A wrapper for \code{\link[base]{gsub}} that takes a vector 
+\code{mgsub} - A wrapper for \code{\link[base]{gsub}} that takes a vector 
 of search terms and a vector or single value of replacements.
+
+\code{mgsub_fixed} - An alias for \code{mgsub}.
+
+\code{mgsub_regex} - An wrapper for \code{mgsub} with \code{fixed = FALSE}.
 }
 \examples{
 mgsub(DATA$state, c("it's", "I'm"), c("it is", "I am"))
