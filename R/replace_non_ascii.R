@@ -27,11 +27,10 @@
 #' Encoding(z) <- "latin1"
 #' z
 #' 
-#' replace_curly(z)
+#' replace_curly_quote(z)
 #' replace_non_ascii(z)
-#' replace_non_ascii(replace_curly(z))
-replace_non_ascii <-
-function(x, remove.nonconverted = TRUE, ...) {
+replace_non_ascii <- function(x, remove.nonconverted = TRUE, ...) {
+    x <- replace_curly_quote(x)
     x <- stringi::stri_trans_general(x, "latin-ascii")
     x <- iconv(as.character(x), "", "ASCII", "byte")
     Encoding(x) <-"latin1"    
@@ -46,20 +45,13 @@ function(x, remove.nonconverted = TRUE, ...) {
 #' provides a subset of functionality found in \code{replace_non_ascii} specific 
 #' to quotes.
 #' 
-#' @param pattern Quotes as a character string to be matched in the given 
-#' character vector. 
-#' @param replacement Character string equal in length to pattern or of length 
-#' one which are  a replacement for matched pattern.
 #' @rdname replace_non_ascii
 #' @export
-replace_curly <- function(x, pattern = c('\x91', '\x92', '\x93', '\x94'), 
-    replacement = c("'", "'", "\"", "\""), ...){
-
-    stopifnot(length(pattern) == length(replacement))
-
-    Encoding(pattern) <- "latin1"
-    for (i in seq_along(pattern)) {
-        x <- gsub(pattern[i], replacement[i], x, fixed = TRUE)
+replace_curly_quote <- function(x, ...){
+    replaces <- c('\x91', '\x92', '\x93', '\x94')
+    Encoding(replaces) <- "latin1"
+    for (i in 1:4) {
+        x <- gsub(replaces[i], c("'", "'", "\"", "\"")[i], x, fixed = TRUE)
     }
     x
 }

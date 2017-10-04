@@ -6,7 +6,7 @@ output:
     toc: true      
 ---
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE, error=FALSE}
 desc <- suppressWarnings(readLines("DESCRIPTION"))
 regex <- "(^Version:\\s+)(\\d+\\.\\d+\\.\\d+)"
 loc <- grep(regex, desc)

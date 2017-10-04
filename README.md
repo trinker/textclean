@@ -2,10 +2,6 @@ textclean
 ============
 
 
-    ## Warning in p_install_gh(package, dependencies = dependencies, ...): The following may have incorrect capitalization specification:
-    ## 
-    ## numform
-
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active)
@@ -289,7 +285,7 @@ Here is an example:
     ## package 'hunspell' successfully unpacked and MD5 sums checked
     ## 
     ## The downloaded binary packages are in
-    ##  C:\Users\trinker\AppData\Local\Temp\RtmpodcD1S\downloaded_packages
+    ##  C:\Users\Tyler\AppData\Local\Temp\RtmpYl0O9q\downloaded_packages
 
     ## 
     ## =============
@@ -502,7 +498,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are funkadelic! 
+    ## You are legendary! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -1133,21 +1129,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "niffered vatfuls gondolas modernities Alexander ingles Marx Silas abed Leilani quatre earthed."             
-    ## [2] "presweeten Idella dash Collin vent ingesting hellgrammites abstractions Sheila Torrie familiarly sharpness?"
-    ## [3] "Isaac Miranda Christin emmers lobes Janise excluding earmuff faculty Allegra Alfredia cruel."               
-    ## [4] "Lacy Brigida Darell dumbfounds windage Denis Shantay halavahs providers daydream filibusters Floy!"         
-    ## [5] "Gabriele Sherilyn Edythe mollification Vallie Cecil comment Synthia Veola rehemmed damian Ines."            
-    ## [6] "Ashleigh woodbinds armhole verbids fibrin Teressa despised Horace Eve contractor Lanette provoke."
+    ## [1] "enmeshed Les Lorenzo flipping Rina calibers Talia Breana skiagram Charise snazziest feinting!"        
+    ## [2] "Paulene parsonages masonic soberize redouble pliers restraining resorted Su Wilhelmina benito acorn!" 
+    ## [3] "Caterina Lona insist defiles sixtes Camila grayout cercis hessian outglared Sanford Georgeann!"       
+    ## [4] "Calista Ta concordances Aaron habituate Isa pushed trapnested iodizing compliance critiquing Angelic!"
+    ## [5] "paymaster peptid Peggy roebucks roust foulard aba degrading stagier Elayne haen ort!"                 
+    ## [6] "Laurine bunglers helmeted postboy templeton deticked juicier amides Gary nephrisms titis twaddled!"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "niffered vatfuls gondolas modernities NAME ingles NAME NAME abed NAME quatre earthed."              
-    ## [2] "presweeten NAME dash NAME vent ingesting hellgrammites abstractions NAME NAME familiarly sharpness?"
-    ## [3] "NAME NAME NAME emmers lobes NAME excluding earmuff faculty NAME NAME cruel."                        
-    ## [4] "NAME NAME NAME dumbfounds windage NAME NAME halavahs providers daydream filibusters NAME!"          
-    ## [5] "NAME NAME NAME mollification NAME NAME comment NAME NAME rehemmed damian NAME."                     
-    ## [6] "NAME woodbinds armhole verbids fibrin NAME despised NAME NAME contractor NAME provoke."
+    ## [1] "enmeshed NAME NAME flipping NAME calibers NAME NAME skiagram NAME snazziest feinting!"            
+    ## [2] "NAME parsonages masonic soberize redouble pliers restraining resorted NAME NAME benito acorn!"    
+    ## [3] "NAME NAME insist defiles sixtes NAME grayout cercis hessian outglared NAME NAME!"                 
+    ## [4] "NAME NAME concordances NAME habituate NAME pushed trapnested iodizing compliance critiquing NAME!"
+    ## [5] "paymaster peptid NAME roebucks roust foulard aba degrading stagier NAME haen ort!"                
+    ## [6] "NAME bunglers helmeted postboy templeton deticked juicier amides NAME nephrisms titis twaddled!"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1156,37 +1152,37 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "niffered vatfuls gondolas modernities NAME ingles NAME NAME abed NAME quatre earthed."              
-    ## [2] "presweeten NAME dash NAME vent ingesting hellgrammites abstractions NAME NAME familiarly sharpness?"
-    ## [3] "NAME NAME NAME emmers lobes NAME excluding earmuff faculty NAME NAME cruel."                        
-    ## [4] "NAME NAME NAME dumbfounds windage NAME NAME halavahs providers daydream filibusters NAME!"          
-    ## [5] "NAME NAME NAME mollification NAME NAME comment NAME NAME rehemmed damian NAME."                     
-    ## [6] "NAME woodbinds armhole verbids fibrin NAME despised NAME NAME contractor NAME provoke."
+    ## [1] "enmeshed NAME NAME flipping NAME calibers NAME NAME skiagram NAME snazziest feinting!"            
+    ## [2] "NAME parsonages masonic soberize redouble pliers restraining resorted NAME NAME benito acorn!"    
+    ## [3] "NAME NAME insist defiles sixtes NAME grayout cercis hessian outglared NAME NAME!"                 
+    ## [4] "NAME NAME concordances NAME habituate NAME pushed trapnested iodizing compliance critiquing NAME!"
+    ## [5] "paymaster peptid NAME roebucks roust foulard aba degrading stagier NAME haen ort!"                
+    ## [6] "NAME bunglers helmeted postboy templeton deticked juicier amides NAME nephrisms titis twaddled!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 8.152614 secs
+    ## Time difference of 7.466281 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "niffered vatfuls gondolas modernities NAME ingles NAME NAME abed NAME quatre earthed."              
-    ## [2] "presweeten NAME dash NAME vent ingesting hellgrammites abstractions NAME NAME familiarly sharpness?"
-    ## [3] "NAME NAME NAME emmers lobes NAME excluding earmuff faculty NAME NAME cruel."                        
-    ## [4] "NAME NAME NAME dumbfounds windage NAME NAME halavahs providers daydream filibusters NAME!"          
-    ## [5] "NAME NAME NAME mollification NAME NAME comment NAME NAME rehemmed damian NAME."                     
-    ## [6] "NAME woodbinds armhole verbids fibrin NAME despised NAME NAME contractor NAME provoke."
+    ## [1] "enmeshed NAME NAME flipping NAME calibers NAME NAME skiagram NAME snazziest feinting!"            
+    ## [2] "NAME parsonages masonic soberize redouble pliers restraining resorted NAME NAME benito acorn!"    
+    ## [3] "NAME NAME insist defiles sixtes NAME grayout cercis hessian outglared NAME NAME!"                 
+    ## [4] "NAME NAME concordances NAME habituate NAME pushed trapnested iodizing compliance critiquing NAME!"
+    ## [5] "paymaster peptid NAME roebucks roust foulard aba degrading stagier NAME haen ort!"                
+    ## [6] "NAME bunglers helmeted postboy templeton deticked juicier amides NAME nephrisms titis twaddled!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.06254101 secs
+    ## Time difference of 0.0940659 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,200 words) and 5,493 replacement tokens in 1.6 seconds.
+(600,100 words) and 5,493 replacement tokens in 1.8 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.556324 secs
+    ## Time difference of 1.783275 secs

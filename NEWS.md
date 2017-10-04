@@ -38,6 +38,8 @@ textclean 0.4.0 -
 
 * `mgsub_regex` and `mgsub_fixed` to provide wrappers for `mgsub` that makes
   their use apprent without setting the `fixed` command.
+  
+* `replace_curly_quote` added to replace curly quotes with straight versions.
 
 **IMPROVEMENTS**
 
