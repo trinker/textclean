@@ -1,0 +1,12 @@
+Person	Handle	Tweet
+Mara Averick‏	@dataandme	Hello, helpful! 📦❌👾 "debugme: Easy & efficient debugging for R packages" 👨🏻‍💻 @GaborCsardi https://buff.ly/2nNKcps  #rstats
+Mark Sellors‏	@sellorm	Did you ever get bored and accidentally create a 📦 to make #Rstats speak on a Mac? I have -> 
+Alex Bresler‏	@abresler	A gift to my fellow nfl loving #rstats folks this package is 💥💥
+Julia Silge‏	@juliasilge	Julia Silge Retweeted Jesse Sadler Ah, the REAL JOY of sitting and coding with another live person... 😅
+Julia Silge‏	@juliasilge	💯 talk on algorithmic fairness by @geomblog at our SLC data science meetup
+Julia Silge‏	@juliasilge	I ❤️💛💚💙💜 emoji, but 😭😭😭 also this:
+Julia Silge‏	@juliasilge	NEW POST: Inspired by xkcd, generate new emoji sports in #rstats, like ⭐️🐣🔪  (so scary, if you ask me) and 🤷🏻🏃🏻‍♂️ (already popular???) https://juliasilge.com/blog/emoji-sports/ …
+Maëlle Salmon	@ma_salmon	I had the honour to join @rweekly_org team last week. 😍 You too should contribute by sharing the fantastic #rstats content you stumble upon! How? ➡️
+Lucy	@LucyStats	Excited about the new R Release? #rstats 😋🎋 Welcome "Kite-Eating Tree"! 🙌🎥 gif courtesy of @pdalgd! 🤔👇 Curious about the other R release name origins? Check out our post! 🔗 http://livefreeordichotomize.com/2017/09/28/r-release-names/ …
+Julia Silge‏	@juliasilge	This post has helpful examples of how to find and fix various encoding issues in #rstats 👍 “Functions with R and rvest: A Laymen’s Guide” by @stankyy_pete
+Hadley Wickham‏	@hadleywickham	So 🎉😁👍🤗 to announce that @dataandme has joined my team as #tidyverse developer advocate #rstats
