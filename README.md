@@ -35,6 +35,7 @@ Table of Contents
     -   [Replacement](#replacement)
         -   [Contractions](#contractions)
         -   [Emoticons](#emoticons)
+        -   [Emojis](#emojis)
         -   [Grades](#grades)
         -   [HTML](#html)
         -   [Incomplete Sentences](#incomplete-sentences)
@@ -119,81 +120,86 @@ table below:
 <td>Replace emoticons with word equivalent</td>
 </tr>
 <tr class="odd">
+<td><code>replace_emoji</code></td>
+<td>repalcement</td>
+<td>Replace emojis with word equivalent or unique identifier</td>
+</tr>
+<tr class="even">
 <td><code>replace_grade</code></td>
 <td>repalcement</td>
 <td>Replace grades (e.g., &quot;A+&quot;) with word equivalent</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_html</code></td>
 <td>replacement</td>
 <td>Replace HTML tags and symbols</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_incomplete</code></td>
 <td>replacement</td>
 <td>Replace incomplete sentence end-marks</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_names</code></td>
 <td>replacement</td>
 <td>Replace common first/last names</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_non_ascii</code></td>
 <td>replacement</td>
 <td>Replace non-ascii with equivalent or remove</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_number</code></td>
 <td>replacement</td>
 <td>Replace common numbers</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_ordinal</code></td>
 <td>replacement</td>
 <td>Replace common ordinal number form</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_rating</code></td>
 <td>repalcement</td>
 <td>Replace ratings (e.g., &quot;10 out of 10&quot;, &quot;3 stars&quot;) with word equivalent</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_symbol</code></td>
 <td>replacement</td>
 <td>Replace common symbols</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_white</code></td>
 <td>replacement</td>
 <td>Replace regex white space characters</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_token</code></td>
 <td>replacement</td>
 <td>Remove or replace a vector of tokens with a single value</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>add_comma_space</code></td>
 <td>replacement</td>
 <td>Replace non-space after comma</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>add_missing_endmark</code></td>
 <td>replacement</td>
 <td>Replace missing endmarks with desired symbol</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>make_plural</code></td>
 <td>replacement</td>
 <td>Add plural endings to singular noun forms</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>check_text</code></td>
 <td>check</td>
 <td>Text report of potential issues</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>has_endmark</code></td>
 <td>check</td>
 <td>Check if an element has an end-mark</td>
@@ -275,17 +281,6 @@ Here is an example:
     Encoding(x) <- "latin1"
     x <- as.factor(x)
     check_text(x)
-
-    ## hunspell package not found.  Do you want to install?
-
-    ## 
-    ## 1: Yes
-    ## 2: No
-    ## 
-    ## package 'hunspell' successfully unpacked and MD5 sums checked
-    ## 
-    ## The downloaded binary packages are in
-    ##  C:\Users\Tyler\AppData\Local\Temp\RtmpYl0O9q\downloaded_packages
 
     ## 
     ## =============
@@ -498,7 +493,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are legendary! 
+    ## You are virtuosic! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -829,7 +824,7 @@ provides this functionality.
 ### Emoticons
 
 Some analysis techniques examine words, meaning emoticons may be
-ignored. `replace_emoticons` replaces emoticons with their word forms
+ignored. `replace_emoticon` replaces emoticons with their word forms
 equivalents.
 
     x <- c(
@@ -857,6 +852,18 @@ equivalents.
     ##  [8] "Put a zero 0 (halo) on top and now you have a winking, smiling angel angel with a nose angel "
     ##  [9] "Use the letter 8 in place of the colon for sunglasses glasses "                               
     ## [10] "Use the open bracket ( to turn the smile into a frown sad "
+
+### Emojis
+
+Similar to emoticons, emoji tokens may be ignored if they are not in a
+computer readable form. `replace_emoji` replaces emojis with their word
+forms equivalents.
+
+    x <- readLines(system.file("docs/emoji_sample.txt", package = "textclean"))[1]
+
+    replace_emoji(x)
+
+    ## [1] "Proin smiling face with heart-eyes ut maecenas smirking face condimentum pensive face purus eget. Erat, face with tears of joy vitae nunc elit. Condimentum crying face semper iaculis bibendum sed tellus. Ut suscipit interdum expressionless face in. Faucib disappointed face us nunc quis a vitae posuere. face with tongue Eget amet sit condimentum non. Nascetur vitae frowning face et. Auctor ornare smiling face vestibulum primis justo congue grinning face urna ac magna. Quam sad but relieved face pharetra worried face eros unamused face facilisis ac lectus nibh est kissing face with smiling eyes vehicula neutral face ornare! Vitae, malesuada smiling face with sunglasses erat sociosqu urna, smirking face nec sed ad aliquet face with open mouth ."
 
 ### Grades
 
@@ -1129,21 +1136,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "enmeshed Les Lorenzo flipping Rina calibers Talia Breana skiagram Charise snazziest feinting!"        
-    ## [2] "Paulene parsonages masonic soberize redouble pliers restraining resorted Su Wilhelmina benito acorn!" 
-    ## [3] "Caterina Lona insist defiles sixtes Camila grayout cercis hessian outglared Sanford Georgeann!"       
-    ## [4] "Calista Ta concordances Aaron habituate Isa pushed trapnested iodizing compliance critiquing Angelic!"
-    ## [5] "paymaster peptid Peggy roebucks roust foulard aba degrading stagier Elayne haen ort!"                 
-    ## [6] "Laurine bunglers helmeted postboy templeton deticked juicier amides Gary nephrisms titis twaddled!"
+    ## [1] "invar loon wiretapper endamage wontons nadiral laithly morph Karry affined Deanna Ike!"                          
+    ## [2] "Alba Pearl grouter Brooks recanter pupped forceps sarodists Ema sonnnie Jasper Kitty?"                           
+    ## [3] "interfraternity hana Lanelle rerecorded marigold Tomoko sabine pentad besiege background vaulting Andria?"       
+    ## [4] "Alice tuberculoses creamers Mattie Neoma factures overaggresive recoaled acquisitive Donnell accelerating waxes!"
+    ## [5] "guillemette exploders Madonna vivienne linkman Nova ankushes Miguel sulfa biogenies contingency systoles."       
+    ## [6] "sambhar Harriette linksmen dumfound fluoridating John zoe learns Terrell pandours crowding dealer!"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "enmeshed NAME NAME flipping NAME calibers NAME NAME skiagram NAME snazziest feinting!"            
-    ## [2] "NAME parsonages masonic soberize redouble pliers restraining resorted NAME NAME benito acorn!"    
-    ## [3] "NAME NAME insist defiles sixtes NAME grayout cercis hessian outglared NAME NAME!"                 
-    ## [4] "NAME NAME concordances NAME habituate NAME pushed trapnested iodizing compliance critiquing NAME!"
-    ## [5] "paymaster peptid NAME roebucks roust foulard aba degrading stagier NAME haen ort!"                
-    ## [6] "NAME bunglers helmeted postboy templeton deticked juicier amides NAME nephrisms titis twaddled!"
+    ## [1] "invar loon wiretapper endamage wontons nadiral laithly morph NAME affined NAME NAME!"                     
+    ## [2] "NAME NAME grouter NAME recanter pupped forceps sarodists NAME sonnnie NAME NAME?"                         
+    ## [3] "interfraternity hana NAME rerecorded marigold NAME sabine pentad besiege background vaulting NAME?"       
+    ## [4] "NAME tuberculoses creamers NAME NAME factures overaggresive recoaled acquisitive NAME accelerating waxes!"
+    ## [5] "guillemette exploders NAME vivienne linkman NAME ankushes NAME sulfa biogenies contingency systoles."     
+    ## [6] "sambhar NAME linksmen dumfound fluoridating NAME zoe learns NAME pandours crowding dealer!"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1152,37 +1159,37 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "enmeshed NAME NAME flipping NAME calibers NAME NAME skiagram NAME snazziest feinting!"            
-    ## [2] "NAME parsonages masonic soberize redouble pliers restraining resorted NAME NAME benito acorn!"    
-    ## [3] "NAME NAME insist defiles sixtes NAME grayout cercis hessian outglared NAME NAME!"                 
-    ## [4] "NAME NAME concordances NAME habituate NAME pushed trapnested iodizing compliance critiquing NAME!"
-    ## [5] "paymaster peptid NAME roebucks roust foulard aba degrading stagier NAME haen ort!"                
-    ## [6] "NAME bunglers helmeted postboy templeton deticked juicier amides NAME nephrisms titis twaddled!"
+    ## [1] "invar loon wiretapper endamage wontons nadiral laithly morph NAME affined NAME NAME!"                     
+    ## [2] "NAME NAME grouter NAME recanter pupped forceps sarodists NAME sonnnie NAME NAME?"                         
+    ## [3] "interfraternity hana NAME rerecorded marigold NAME sabine pentad besiege background vaulting NAME?"       
+    ## [4] "NAME tuberculoses creamers NAME NAME factures overaggresive recoaled acquisitive NAME accelerating waxes!"
+    ## [5] "guillemette exploders NAME vivienne linkman NAME ankushes NAME sulfa biogenies contingency systoles."     
+    ## [6] "sambhar NAME linksmen dumfound fluoridating NAME zoe learns NAME pandours crowding dealer!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 7.466281 secs
+    ## Time difference of 6.309034 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "enmeshed NAME NAME flipping NAME calibers NAME NAME skiagram NAME snazziest feinting!"            
-    ## [2] "NAME parsonages masonic soberize redouble pliers restraining resorted NAME NAME benito acorn!"    
-    ## [3] "NAME NAME insist defiles sixtes NAME grayout cercis hessian outglared NAME NAME!"                 
-    ## [4] "NAME NAME concordances NAME habituate NAME pushed trapnested iodizing compliance critiquing NAME!"
-    ## [5] "paymaster peptid NAME roebucks roust foulard aba degrading stagier NAME haen ort!"                
-    ## [6] "NAME bunglers helmeted postboy templeton deticked juicier amides NAME nephrisms titis twaddled!"
+    ## [1] "invar loon wiretapper endamage wontons nadiral laithly morph NAME affined NAME NAME!"                     
+    ## [2] "NAME NAME grouter NAME recanter pupped forceps sarodists NAME sonnnie NAME NAME?"                         
+    ## [3] "interfraternity hana NAME rerecorded marigold NAME sabine pentad besiege background vaulting NAME?"       
+    ## [4] "NAME tuberculoses creamers NAME NAME factures overaggresive recoaled acquisitive NAME accelerating waxes!"
+    ## [5] "guillemette exploders NAME vivienne linkman NAME ankushes NAME sulfa biogenies contingency systoles."     
+    ## [6] "sambhar NAME linksmen dumfound fluoridating NAME zoe learns NAME pandours crowding dealer!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.0940659 secs
+    ## Time difference of 0.05702901 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,100 words) and 5,493 replacement tokens in 1.8 seconds.
+(600,200 words) and 5,493 replacement tokens in 1.4 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.783275 secs
+    ## Time difference of 1.362442 secs

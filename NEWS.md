@@ -34,6 +34,9 @@ textclean 0.4.0 -
   
 * `make_plural` added to make a vector of singular noun forms plural.
 
+* `replace_emoji` and `replace_emoji_identifier` added for replacing emojis with
+  text or an identifier token for use in the **sentimentr** package.
+
 **MINOR FEATURES**
 
 * `mgsub_regex` and `mgsub_fixed` to provide wrappers for `mgsub` that makes

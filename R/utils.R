@@ -112,3 +112,9 @@ replace_string_elements_generic  <- function(x, y, z = NULL, ignore.case = FALSE
     gsub("(\\s+)([.!?,;:])", "\\2", out, perl = TRUE)
 }
 
+
+to_byte <- function(x){
+    Encoding(x) <- "latin1"
+    iconv(x, "latin1", "ASCII", "byte")
+}
+

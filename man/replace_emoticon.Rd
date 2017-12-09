@@ -13,7 +13,7 @@ replace_emoticon(x, emoticon_dt = lexicon::hash_emoticons, ...)
 and corresponding word meanings.}
 
 \item{\ldots}{Other arguments passed to \code{.mgsub} (see
-\code{sentimentr:::.mgsub} for details).}
+\code{textclean:::.mgsub} for details).}
 }
 \value{
 Returns a vector of strings with emoticons replaced with word

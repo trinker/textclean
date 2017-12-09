@@ -6,7 +6,7 @@
 #' @param emoticon_dt A \pkg{data.table} of emoticons (graphical representations)
 #' and corresponding word meanings.
 #' @param \ldots Other arguments passed to \code{.mgsub} (see
-#' \code{sentimentr:::.mgsub} for details).
+#' \code{textclean:::.mgsub} for details).
 #' @return Returns a vector of strings with emoticons replaced with word
 #' equivalents.
 #' @keywords emoticon
