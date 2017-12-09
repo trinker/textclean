@@ -2,14 +2,14 @@
 #'
 #' Replaces emojis with word equivalents or a token identifier for use in the
 #' \pkg{sentimentr} package.  Not that this function will coerce the text to 
-#' ascii using \code{Encoding(x) <- "latin1"; iconv(x, "latin1", "ASCII", "byte")}.
+#' ASCII using \code{Encoding(x) <- "latin1"; iconv(x, "latin1", "ASCII", "byte")}.
 #' The function \code{replace_emoji} replaces emojis with text representations
 #' while \code{replace_emoji_identifier} replaces with a unique identifier that
 #' corresponds to \code{lexicon::hash_sentiment_emoji} for use in the 
 #' \pkg{sentimentr} package.
 #' 
 #' @param x The text variable.
-#' @param emoji_dt A \pkg{data.table} of emojis (ascii byte representations)
+#' @param emoji_dt A \pkg{data.table} of emojis (ASCII byte representations)
 #' and corresponding word/identifier meanings.  
 #' @param \ldots Other arguments passed to \code{.mgsub} (see
 #' \code{textclean:::.mgsub} for details).

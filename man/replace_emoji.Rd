@@ -12,7 +12,7 @@ replace_emoji_identifier(x, emoji_dt = lexicon::hash_emojis_identifier, ...)
 \arguments{
 \item{x}{The text variable.}
 
-\item{emoji_dt}{A \pkg{data.table} of emojis (ascii byte representations)
+\item{emoji_dt}{A \pkg{data.table} of emojis (ASCII byte representations)
 and corresponding word/identifier meanings.}
 
 \item{\ldots}{Other arguments passed to \code{.mgsub} (see
@@ -25,7 +25,7 @@ equivalents.
 \description{
 Replaces emojis with word equivalents or a token identifier for use in the
 \pkg{sentimentr} package.  Not that this function will coerce the text to 
-ascii using \code{Encoding(x) <- "latin1"; iconv(x, "latin1", "ASCII", "byte")}.
+ASCII using \code{Encoding(x) <- "latin1"; iconv(x, "latin1", "ASCII", "byte")}.
 The function \code{replace_emoji} replaces emojis with text representations
 while \code{replace_emoji_identifier} replaces with a unique identifier that
 corresponds to \code{lexicon::hash_sentiment_emoji} for use in the 
