@@ -238,7 +238,7 @@ replace_emoticon(x)
 Similar to emoticons, emoji tokens may be ignored if they are not in a computer readable form.  `replace_emoji` replaces emojis with their word forms equivalents.
 
 ```{r}
-x <- readLines(system.file("docs/emoji_sample.txt", package = "textclean"))[1]
+x <- strwrap(readLines(system.file("docs/emoji_sample.txt", package = "textclean"))[1])
 
 replace_emoji(x)
 ```

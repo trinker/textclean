@@ -493,7 +493,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are virtuosic! 
+    ## You are transcendent! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -859,11 +859,18 @@ Similar to emoticons, emoji tokens may be ignored if they are not in a
 computer readable form. `replace_emoji` replaces emojis with their word
 forms equivalents.
 
-    x <- readLines(system.file("docs/emoji_sample.txt", package = "textclean"))[1]
+    x <- strwrap(readLines(system.file("docs/emoji_sample.txt", package = "textclean"))[1])
 
     replace_emoji(x)
 
-    ## [1] "Proin smiling face with heart-eyes ut maecenas smirking face condimentum pensive face purus eget. Erat, face with tears of joy vitae nunc elit. Condimentum crying face semper iaculis bibendum sed tellus. Ut suscipit interdum expressionless face in. Faucib disappointed face us nunc quis a vitae posuere. face with tongue Eget amet sit condimentum non. Nascetur vitae frowning face et. Auctor ornare smiling face vestibulum primis justo congue grinning face urna ac magna. Quam sad but relieved face pharetra worried face eros unamused face facilisis ac lectus nibh est kissing face with smiling eyes vehicula neutral face ornare! Vitae, malesuada smiling face with sunglasses erat sociosqu urna, smirking face nec sed ad aliquet face with open mouth ."
+    ## [1] "Proin <c3><b0><c5><b8><cb><9c><c2><8d> ut maecenas <c3><b0><c5><b8><cb><9c><c2><8f> condimentum <c3><b0><c5><b8><cb><9c><e2><80><9d> purus eget. Erat,"
+    ## [2] "<c3><b0><c5><b8><cb><9c><e2><80><9a>vitae nunc elit. Condimentum <c3><b0><c5><b8><cb><9c><c2><a2> semper iaculis bibendum sed"                         
+    ## [3] "tellus. Ut suscipit interdum<c3><b0><c5><b8><cb><9c><e2><80><98> in. Faucib<c3><b0><c5><b8><cb><9c><c5><be> us nunc quis a"                            
+    ## [4] "vitae posuere. <c3><b0><c5><b8><cb><9c><e2><80><ba> Eget amet sit condimentum non. Nascetur vitae"                                                     
+    ## [5] "<c3><a2><cb><9c><c2><b9> et. Auctor ornare <c3><a2><cb><9c><c2><ba> vestibulum primis justo congue <c3><b0><c5><b8><cb><9c><e2><82><ac>urna"           
+    ## [6] "ac magna. Quam <c3><b0><c5><b8><cb><9c><c2><a5> pharetra <c3><b0><c5><b8><cb><9c><c5><b8> eros <c3><b0><c5><b8><cb><9c><e2><80><99>facilisis ac lectus"
+    ## [7] "nibh est <c3><b0><c5><b8><cb><9c><e2><84><a2>vehicula <c3><b0><c5><b8><cb><9c><c2><90> ornare! Vitae, malesuada <c3><b0><c5><b8><cb><9c><c5><bd> erat" 
+    ## [8] "sociosqu urna, <c3><b0><c5><b8><cb><9c><c2><8f> nec sed ad aliquet <c3><b0><c5><b8><cb><9c><c2><ae> ."
 
 ### Grades
 
@@ -1136,21 +1143,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "invar loon wiretapper endamage wontons nadiral laithly morph Karry affined Deanna Ike!"                          
-    ## [2] "Alba Pearl grouter Brooks recanter pupped forceps sarodists Ema sonnnie Jasper Kitty?"                           
-    ## [3] "interfraternity hana Lanelle rerecorded marigold Tomoko sabine pentad besiege background vaulting Andria?"       
-    ## [4] "Alice tuberculoses creamers Mattie Neoma factures overaggresive recoaled acquisitive Donnell accelerating waxes!"
-    ## [5] "guillemette exploders Madonna vivienne linkman Nova ankushes Miguel sulfa biogenies contingency systoles."       
-    ## [6] "sambhar Harriette linksmen dumfound fluoridating John zoe learns Terrell pandours crowding dealer!"
+    ## [1] "Gaye preparatory Tammera Lucretia bromal sullenest iolande overhanded heth Rusty cripples Nicky."       
+    ## [2] "recruitment Delores sinful Anissa Tora chattily Audrie vindictively Alba assisting variability Cristin!"
+    ## [3] "cheryl bison Alline pigsticks gridlock arquebuses rebuttons bonnet bubaline wrongdoing draying Micah!"  
+    ## [4] "Louis teetotals quarriers taxmen livery preprints chieftains presides outrange marrer leches sestet!"   
+    ## [5] "Chloe Romana pimps spicey wrangles Valentine handgrip orogeny Jeni acidified norina yevette."           
+    ## [6] "Ola gallate thankfullest wastrels veinule Jaymie kerri Sumiko Larraine rifeness Lorina axseeds."
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "invar loon wiretapper endamage wontons nadiral laithly morph NAME affined NAME NAME!"                     
-    ## [2] "NAME NAME grouter NAME recanter pupped forceps sarodists NAME sonnnie NAME NAME?"                         
-    ## [3] "interfraternity hana NAME rerecorded marigold NAME sabine pentad besiege background vaulting NAME?"       
-    ## [4] "NAME tuberculoses creamers NAME NAME factures overaggresive recoaled acquisitive NAME accelerating waxes!"
-    ## [5] "guillemette exploders NAME vivienne linkman NAME ankushes NAME sulfa biogenies contingency systoles."     
-    ## [6] "sambhar NAME linksmen dumfound fluoridating NAME zoe learns NAME pandours crowding dealer!"
+    ## [1] "NAME preparatory NAME NAME bromal sullenest iolande overhanded heth NAME cripples NAME."            
+    ## [2] "recruitment NAME sinful NAME NAME chattily NAME vindictively NAME assisting variability NAME!"      
+    ## [3] "cheryl bison NAME pigsticks gridlock arquebuses rebuttons bonnet bubaline wrongdoing draying NAME!" 
+    ## [4] "NAME teetotals quarriers taxmen livery preprints chieftains presides outrange marrer leches sestet!"
+    ## [5] "NAME NAME pimps spicey wrangles NAME handgrip orogeny NAME acidified norina yevette."               
+    ## [6] "NAME gallate thankfullest wastrels veinule NAME kerri NAME NAME rifeness NAME axseeds."
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1159,37 +1166,37 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "invar loon wiretapper endamage wontons nadiral laithly morph NAME affined NAME NAME!"                     
-    ## [2] "NAME NAME grouter NAME recanter pupped forceps sarodists NAME sonnnie NAME NAME?"                         
-    ## [3] "interfraternity hana NAME rerecorded marigold NAME sabine pentad besiege background vaulting NAME?"       
-    ## [4] "NAME tuberculoses creamers NAME NAME factures overaggresive recoaled acquisitive NAME accelerating waxes!"
-    ## [5] "guillemette exploders NAME vivienne linkman NAME ankushes NAME sulfa biogenies contingency systoles."     
-    ## [6] "sambhar NAME linksmen dumfound fluoridating NAME zoe learns NAME pandours crowding dealer!"
+    ## [1] "NAME preparatory NAME NAME bromal sullenest iolande overhanded heth NAME cripples NAME."            
+    ## [2] "recruitment NAME sinful NAME NAME chattily NAME vindictively NAME assisting variability NAME!"      
+    ## [3] "cheryl bison NAME pigsticks gridlock arquebuses rebuttons bonnet bubaline wrongdoing draying NAME!" 
+    ## [4] "NAME teetotals quarriers taxmen livery preprints chieftains presides outrange marrer leches sestet!"
+    ## [5] "NAME NAME pimps spicey wrangles NAME handgrip orogeny NAME acidified norina yevette."               
+    ## [6] "NAME gallate thankfullest wastrels veinule NAME kerri NAME NAME rifeness NAME axseeds."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 6.309034 secs
+    ## Time difference of 7.430263 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "invar loon wiretapper endamage wontons nadiral laithly morph NAME affined NAME NAME!"                     
-    ## [2] "NAME NAME grouter NAME recanter pupped forceps sarodists NAME sonnnie NAME NAME?"                         
-    ## [3] "interfraternity hana NAME rerecorded marigold NAME sabine pentad besiege background vaulting NAME?"       
-    ## [4] "NAME tuberculoses creamers NAME NAME factures overaggresive recoaled acquisitive NAME accelerating waxes!"
-    ## [5] "guillemette exploders NAME vivienne linkman NAME ankushes NAME sulfa biogenies contingency systoles."     
-    ## [6] "sambhar NAME linksmen dumfound fluoridating NAME zoe learns NAME pandours crowding dealer!"
+    ## [1] "NAME preparatory NAME NAME bromal sullenest iolande overhanded heth NAME cripples NAME."            
+    ## [2] "recruitment NAME sinful NAME NAME chattily NAME vindictively NAME assisting variability NAME!"      
+    ## [3] "cheryl bison NAME pigsticks gridlock arquebuses rebuttons bonnet bubaline wrongdoing draying NAME!" 
+    ## [4] "NAME teetotals quarriers taxmen livery preprints chieftains presides outrange marrer leches sestet!"
+    ## [5] "NAME NAME pimps spicey wrangles NAME handgrip orogeny NAME acidified norina yevette."               
+    ## [6] "NAME gallate thankfullest wastrels veinule NAME kerri NAME NAME rifeness NAME axseeds."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.05702901 secs
+    ## Time difference of 0.08504796 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,200 words) and 5,493 replacement tokens in 1.4 seconds.
+(600,100 words) and 5,493 replacement tokens in 2 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.362442 secs
+    ## Time difference of 1.961398 secs
