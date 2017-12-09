@@ -493,7 +493,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are transcendent! 
+    ## You are staggering! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -859,18 +859,20 @@ Similar to emoticons, emoji tokens may be ignored if they are not in a
 computer readable form. `replace_emoji` replaces emojis with their word
 forms equivalents.
 
-    x <- strwrap(readLines(system.file("docs/emoji_sample.txt", package = "textclean"))[1])
+    x <- read.delim(system.file("docs/r_tweets.txt", package = "textclean"), 
+        stringsAsFactors = FALSE)[[3]][1:3]
+
+    x
+
+    ## [1] "Hello, helpful! ðŸ“¦âŒðŸ‘¾ debugme: Easy & efficient debugging for R packages ðŸ‘¨ðŸ»â€ðŸ’» @GaborCsardi https://buff.ly/2nNKcps  #rstats"
+    ## [2] "Did you ever get bored and accidentally create a ðŸ“¦ to make #Rstats speak on a Mac? I have -> "                                            
+    ## [3] "A gift to my fellow nfl loving #rstats folks this package is ðŸ’¥ðŸ’¥"
 
     replace_emoji(x)
 
-    ## [1] "Proin <c3><b0><c5><b8><cb><9c><c2><8d> ut maecenas <c3><b0><c5><b8><cb><9c><c2><8f> condimentum <c3><b0><c5><b8><cb><9c><e2><80><9d> purus eget. Erat,"
-    ## [2] "<c3><b0><c5><b8><cb><9c><e2><80><9a>vitae nunc elit. Condimentum <c3><b0><c5><b8><cb><9c><c2><a2> semper iaculis bibendum sed"                         
-    ## [3] "tellus. Ut suscipit interdum<c3><b0><c5><b8><cb><9c><e2><80><98> in. Faucib<c3><b0><c5><b8><cb><9c><c5><be> us nunc quis a"                            
-    ## [4] "vitae posuere. <c3><b0><c5><b8><cb><9c><e2><80><ba> Eget amet sit condimentum non. Nascetur vitae"                                                     
-    ## [5] "<c3><a2><cb><9c><c2><b9> et. Auctor ornare <c3><a2><cb><9c><c2><ba> vestibulum primis justo congue <c3><b0><c5><b8><cb><9c><e2><82><ac>urna"           
-    ## [6] "ac magna. Quam <c3><b0><c5><b8><cb><9c><c2><a5> pharetra <c3><b0><c5><b8><cb><9c><c5><b8> eros <c3><b0><c5><b8><cb><9c><e2><80><99>facilisis ac lectus"
-    ## [7] "nibh est <c3><b0><c5><b8><cb><9c><e2><84><a2>vehicula <c3><b0><c5><b8><cb><9c><c2><90> ornare! Vitae, malesuada <c3><b0><c5><b8><cb><9c><c5><bd> erat" 
-    ## [8] "sociosqu urna, <c3><b0><c5><b8><cb><9c><c2><8f> nec sed ad aliquet <c3><b0><c5><b8><cb><9c><c2><ae> ."
+    ## [1] "Hello, helpful! package cross mark alien monster debugme: Easy & efficient debugging for R packages man <f0><9f><8f><bb><e2><80><8d> laptop computer @GaborCsardi https://buff.ly/2nNKcps #rstats"
+    ## [2] "Did you ever get bored and accidentally create a package to make #Rstats speak on a Mac? I have -> "                                                                                              
+    ## [3] "A gift to my fellow nfl loving #rstats folks this package is collision collision "
 
 ### Grades
 
@@ -1143,21 +1145,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "Gaye preparatory Tammera Lucretia bromal sullenest iolande overhanded heth Rusty cripples Nicky."       
-    ## [2] "recruitment Delores sinful Anissa Tora chattily Audrie vindictively Alba assisting variability Cristin!"
-    ## [3] "cheryl bison Alline pigsticks gridlock arquebuses rebuttons bonnet bubaline wrongdoing draying Micah!"  
-    ## [4] "Louis teetotals quarriers taxmen livery preprints chieftains presides outrange marrer leches sestet!"   
-    ## [5] "Chloe Romana pimps spicey wrangles Valentine handgrip orogeny Jeni acidified norina yevette."           
-    ## [6] "Ola gallate thankfullest wastrels veinule Jaymie kerri Sumiko Larraine rifeness Lorina axseeds."
+    ## [1] "immunologic sanction Julieann generous Shelby wiliness mutase cuticula Michelle theres counterblockade Sheba!"
+    ## [2] "redefeats mitigation cascading bio virtuosos shins contingencies dyne Khadijah maftirs safe Ashlyn?"          
+    ## [3] "unprobed wherrying ascertain Willow stateroom wenches mistrial Lyle Shavonne punition Fidel aircondition!"    
+    ## [4] "Kisha surroundings dentin pouring throb friaries Venita deanna complying hilarie Thora pinger."               
+    ## [5] "saltworks rubying Yelena arturo aggrandizing affixal Collen cyclamen mauritius gamb growable iodine!"         
+    ## [6] "Gertha eloise Talitha Milda networked amplification centrisms aroints therme Jon carhop fixatifs?"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "NAME preparatory NAME NAME bromal sullenest iolande overhanded heth NAME cripples NAME."            
-    ## [2] "recruitment NAME sinful NAME NAME chattily NAME vindictively NAME assisting variability NAME!"      
-    ## [3] "cheryl bison NAME pigsticks gridlock arquebuses rebuttons bonnet bubaline wrongdoing draying NAME!" 
-    ## [4] "NAME teetotals quarriers taxmen livery preprints chieftains presides outrange marrer leches sestet!"
-    ## [5] "NAME NAME pimps spicey wrangles NAME handgrip orogeny NAME acidified norina yevette."               
-    ## [6] "NAME gallate thankfullest wastrels veinule NAME kerri NAME NAME rifeness NAME axseeds."
+    ## [1] "immunologic sanction NAME generous NAME wiliness mutase cuticula NAME theres counterblockade NAME!"
+    ## [2] "redefeats mitigation cascading bio virtuosos shins contingencies dyne NAME maftirs safe NAME?"     
+    ## [3] "unprobed wherrying ascertain NAME stateroom wenches mistrial NAME NAME punition NAME aircondition!"
+    ## [4] "NAME surroundings dentin pouring throb friaries NAME deanna complying hilarie NAME pinger."        
+    ## [5] "saltworks rubying NAME arturo aggrandizing affixal NAME cyclamen mauritius gamb growable iodine!"  
+    ## [6] "NAME eloise NAME NAME networked amplification centrisms aroints therme NAME carhop fixatifs?"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1166,37 +1168,37 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "NAME preparatory NAME NAME bromal sullenest iolande overhanded heth NAME cripples NAME."            
-    ## [2] "recruitment NAME sinful NAME NAME chattily NAME vindictively NAME assisting variability NAME!"      
-    ## [3] "cheryl bison NAME pigsticks gridlock arquebuses rebuttons bonnet bubaline wrongdoing draying NAME!" 
-    ## [4] "NAME teetotals quarriers taxmen livery preprints chieftains presides outrange marrer leches sestet!"
-    ## [5] "NAME NAME pimps spicey wrangles NAME handgrip orogeny NAME acidified norina yevette."               
-    ## [6] "NAME gallate thankfullest wastrels veinule NAME kerri NAME NAME rifeness NAME axseeds."
+    ## [1] "immunologic sanction NAME generous NAME wiliness mutase cuticula NAME theres counterblockade NAME!"
+    ## [2] "redefeats mitigation cascading bio virtuosos shins contingencies dyne NAME maftirs safe NAME?"     
+    ## [3] "unprobed wherrying ascertain NAME stateroom wenches mistrial NAME NAME punition NAME aircondition!"
+    ## [4] "NAME surroundings dentin pouring throb friaries NAME deanna complying hilarie NAME pinger."        
+    ## [5] "saltworks rubying NAME arturo aggrandizing affixal NAME cyclamen mauritius gamb growable iodine!"  
+    ## [6] "NAME eloise NAME NAME networked amplification centrisms aroints therme NAME carhop fixatifs?"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 7.430263 secs
+    ## Time difference of 6.151008 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "NAME preparatory NAME NAME bromal sullenest iolande overhanded heth NAME cripples NAME."            
-    ## [2] "recruitment NAME sinful NAME NAME chattily NAME vindictively NAME assisting variability NAME!"      
-    ## [3] "cheryl bison NAME pigsticks gridlock arquebuses rebuttons bonnet bubaline wrongdoing draying NAME!" 
-    ## [4] "NAME teetotals quarriers taxmen livery preprints chieftains presides outrange marrer leches sestet!"
-    ## [5] "NAME NAME pimps spicey wrangles NAME handgrip orogeny NAME acidified norina yevette."               
-    ## [6] "NAME gallate thankfullest wastrels veinule NAME kerri NAME NAME rifeness NAME axseeds."
+    ## [1] "immunologic sanction NAME generous NAME wiliness mutase cuticula NAME theres counterblockade NAME!"
+    ## [2] "redefeats mitigation cascading bio virtuosos shins contingencies dyne NAME maftirs safe NAME?"     
+    ## [3] "unprobed wherrying ascertain NAME stateroom wenches mistrial NAME NAME punition NAME aircondition!"
+    ## [4] "NAME surroundings dentin pouring throb friaries NAME deanna complying hilarie NAME pinger."        
+    ## [5] "saltworks rubying NAME arturo aggrandizing affixal NAME cyclamen mauritius gamb growable iodine!"  
+    ## [6] "NAME eloise NAME NAME networked amplification centrisms aroints therme NAME carhop fixatifs?"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.08504796 secs
+    ## Time difference of 0.07305217 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,100 words) and 5,493 replacement tokens in 2 seconds.
+(600,100 words) and 5,493 replacement tokens in 1.4 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.961398 secs
+    ## Time difference of 1.398986 secs
