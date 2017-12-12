@@ -4,13 +4,12 @@ citHeader("To cite textclean in publications, please use:")
 citEntry(entry = "manual",
     title = "{textclean}: Text Cleaning Tools",
     author = "Tyler W. Rinker",
-    organization = "University at Buffalo/SUNY",
     address = "Buffalo, New York",
-    note = "version 0.5.0",
+    note = "version 0.5.1",
     year = "2017",
     url = "http://github.com/trinker/textclean", 
     textVersion  = paste("Rinker, T. W. (2017).",
         "textclean: Text Cleaning Tools",
-        "version 0.5.0. University at Buffalo. Buffalo, New York.",
+        "version 0.5.1. Buffalo, New York.",
         "http://github.com/trinker/textclean")
 )

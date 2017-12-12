@@ -18,7 +18,7 @@ deleted from the string.}
 \item{\dots}{ignored.}
 }
 \value{
-Returns a text variable (character sting) with non-ascii characters 
+Returns a text variable (character sting) with non-ASCII characters 
 replaced.
 }
 \description{

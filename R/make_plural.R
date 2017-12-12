@@ -6,7 +6,7 @@
 #' @param keep.original logical.  If \code{TRUE} the original words are kept in 
 #' the return vector.
 #' @param irregular A \code{data.frame} of singular and plural conversions for 
-#' irregular nouns.  The first columnshould be singular and the second plural 
+#' irregular nouns.  The first column should be singular and the second plural 
 #' form of the irregular noun.
 #' @return Returns a vector of plural words.
 #' @keywords plural

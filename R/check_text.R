@@ -4,7 +4,7 @@
 #' subsequent analysis.  \code{check_text} checks text for potential problems 
 #' and suggests possible fixes.  Potential text anomalies that are detected 
 #' include: factors, missing ending punctuation, empty cells, double punctuation, 
-#' non-space after comma, no alphabetic characters, non-ascii, missing value, 
+#' non-space after comma, no alphabetic characters, non-ASCII, missing value, 
 #' and potentially misspelled words.
 #' 
 #' @param x The text variable.

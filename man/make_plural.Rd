@@ -14,7 +14,7 @@ make_plural(x, keep.original = FALSE,
 the return vector.}
 
 \item{irregular}{A \code{data.frame} of singular and plural conversions for 
-irregular nouns.  The first columnshould be singular and the second plural 
+irregular nouns.  The first column should be singular and the second plural 
 form of the irregular noun.}
 }
 \value{

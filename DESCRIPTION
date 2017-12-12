@@ -1,6 +1,6 @@
 Package: textclean
 Title: Text Cleaning Tools
-Version: 0.5.0
+Version: 0.5.1
 Authors@R: c(person("Tyler", "Rinker", email = "tyler.rinker@gmail.com", role = c("aut",
           "cre")))
 Maintainer: Tyler Rinker <tyler.rinker@gmail.com>
@@ -10,10 +10,10 @@ Description: Tools to clean and process text.  Tools are geared at checking for 
           not always easily handled by analysis algorithms.  The 'replace_emoticon' function
           replaces emoticons with word equivalents.
 Depends: R (>= 3.2.3)
-Imports: english(>= 1.0-2), lexicon (>= 0.4.0), qdapRegex, stringi, textshape(>= 1.0.1),
+Imports: english(>= 1.0-2), lexicon (>= 0.6.2), qdapRegex, stringi, textshape(>= 1.0.1),
           utils
 Suggests: testthat
-Date: 2017-12-09
+Date: 2017-12-11
 License: GPL-2
 LazyData: TRUE
 Roxygen: list(wrap = FALSE)

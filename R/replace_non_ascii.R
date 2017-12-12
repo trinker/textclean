@@ -6,7 +6,7 @@
 #' @param remove.nonconverted logical.  If \code{TRUE} unmapped encodings are
 #' deleted from the string.
 #' @param \dots ignored.
-#' @return Returns a text variable (character sting) with non-ascii characters 
+#' @return Returns a text variable (character sting) with non-ASCII characters 
 #' replaced.
 #' @keywords ascii
 #' @rdname replace_non_ascii

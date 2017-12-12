@@ -22,8 +22,8 @@
 #' }
 #' 
 #' @param x The text variable.
-#' @param symbol lofical.  If code{TRUE} the sybols are retained with appropriate
-#' replacments.  If \code{FALSE} they are removed.
+#' @param symbol logical.  If code{TRUE} the symbols are retained with appropriate
+#' replacements.  If \code{FALSE} they are removed.
 #' @param \ldots Ignored.
 #' @return Returns a vector with HTML markup replaced.
 #' @keywords html
