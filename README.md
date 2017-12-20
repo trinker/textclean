@@ -2,9 +2,6 @@ textclean
 ============
 
 
-    ## package 'digest' successfully unpacked and MD5 sums checked
-    ## package 'withr' successfully unpacked and MD5 sums checked
-
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active)
@@ -42,6 +39,7 @@ Table of Contents
         -   [Grades](#grades)
         -   [HTML](#html)
         -   [Incomplete Sentences](#incomplete-sentences)
+        -   [Kerning](#kerning)
         -   [Names](#names)
         -   [Non-ASCII Characters](#non-ascii-characters)
         -   [Numbers](#numbers)
@@ -143,7 +141,7 @@ table below:
 <td>Replace incomplete sentence end-marks</td>
 </tr>
 <tr class="odd">
-<td><code>replace_kerning</code></td>
+<td><code>replace_kern</code></td>
 <td>replacement</td>
 <td>Replace spaces for &gt;2 letter, all cap, words containing spaces in between letters</td>
 </tr>
@@ -501,7 +499,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are rapturous! 
+    ## You are marvelous! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -931,6 +929,30 @@ with a pipe (`|`) endmark (or one of the user's choice).
 
     ## [1] "the..."   "I..."     "you."     "threw..." "we?"
 
+### Kerning
+
+In typography kerning is the adjustment of spacing. Often, in informal
+writing, adding manual spaces (a form of kerning) coupled with all
+capital letters is used for emphasis (e.g., `"She's the B O M B!"`).
+These word forms would look like noise in most analysis and would likely
+be removed as a stopword when in fact they likely carry a great deal of
+meaning. The `replace_kern` function looks for 3 or more consecutive
+capital letters with spaces in between and removes the spaces.
+
+    x <- c(
+        "Welcome to A I: the best W O R L D!",
+        "Hi I R is the B O M B for sure: we A G R E E indeed.",
+        "A sort C A T indeed!",
+        NA
+    )
+
+    replace_kern(x)
+
+    ## [1] "Welcome to A I: the best WORLD!"              
+    ## [2] "Hi I R is the BOMB for sure: we AGREE indeed."
+    ## [3] "A sort CAT indeed!"                           
+    ## [4] NA
+
 ### Names
 
 Often one will want to standardize text by removing first and last
@@ -1153,21 +1175,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "claughted hysterectomize oatcakes overstirs hinds etiolated jingall narwal Cody Darell acnes Berna?"      
-    ## [2] "jubhahs gayeties unfettered Christi idealize cahiers helmeted kvases Rena neoteric sceptring sootiest."   
-    ## [3] "Jesus picolins headmen dentine lipstick jori folioing Camila Lashonda meggie hessite cataloger!"          
-    ## [4] "venomer stoke propound Kaley bewilderment justnesses Li djellaba playoff bevel Kristen categorically."    
-    ## [5] "padlocks Karen churr ungainlinesses enunciate compeered carabin enumeration Layla whilst Winnifred Jann." 
-    ## [6] "dandelion Aleisha enwombing refurbishing gloried cryostats palates Hazel deadlines Nereida Thomas spinny?"
+    ## [1] "doorjamb wanders gallying begets mesquite ionospheres Abdul risibly alienating evaluating adventitious Sima."  
+    ## [2] "euthenics analcite bezzants slaughtered coliforms degusted crofts endwise Brittany adah Stacy Annett."         
+    ## [3] "Jay Ewa lipper presold cabestros Alida Carin commencements scurfiest Lorriane Elly restocked."                 
+    ## [4] "Concetta deprecating Asley dentistries adhibited Roxana indulgent Noble Kim kamacites honeycombing Alicia."    
+    ## [5] "Francisca nervate feazed peroration overprases epizoites Gema Maddie maund boogers loch dowel!"                
+    ## [6] "qualify limnetic gentrice forefending hardboots misalters Bryanna Allison Charisse Rebecka fomenters Rosamond!"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "claughted hysterectomize oatcakes overstirs hinds etiolated jingall narwal NAME NAME acnes NAME?"   
-    ## [2] "jubhahs gayeties unfettered NAME idealize cahiers helmeted kvases NAME neoteric sceptring sootiest."
-    ## [3] "NAME picolins headmen dentine lipstick jori folioing NAME NAME meggie hessite cataloger!"           
-    ## [4] "venomer stoke propound NAME bewilderment justnesses NAME djellaba playoff bevel NAME categorically."
-    ## [5] "padlocks NAME churr ungainlinesses enunciate compeered carabin enumeration NAME whilst NAME NAME."  
-    ## [6] "dandelion NAME enwombing refurbishing gloried cryostats palates NAME deadlines NAME NAME spinny?"
+    ## [1] "doorjamb wanders gallying begets mesquite ionospheres NAME risibly alienating evaluating adventitious NAME."
+    ## [2] "euthenics analcite bezzants slaughtered coliforms degusted crofts endwise NAME adah NAME NAME."             
+    ## [3] "NAME NAME lipper presold cabestros NAME NAME commencements scurfiest NAME NAME restocked."                  
+    ## [4] "NAME deprecating NAME dentistries adhibited NAME indulgent NAME NAME kamacites honeycombing NAME."          
+    ## [5] "NAME nervate feazed peroration overprases epizoites NAME NAME maund boogers loch dowel!"                    
+    ## [6] "qualify limnetic gentrice forefending hardboots misalters NAME NAME NAME NAME fomenters NAME!"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1176,37 +1198,37 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "claughted hysterectomize oatcakes overstirs hinds etiolated jingall narwal NAME NAME acnes NAME?"   
-    ## [2] "jubhahs gayeties unfettered NAME idealize cahiers helmeted kvases NAME neoteric sceptring sootiest."
-    ## [3] "NAME picolins headmen dentine lipstick jori folioing NAME NAME meggie hessite cataloger!"           
-    ## [4] "venomer stoke propound NAME bewilderment justnesses NAME djellaba playoff bevel NAME categorically."
-    ## [5] "padlocks NAME churr ungainlinesses enunciate compeered carabin enumeration NAME whilst NAME NAME."  
-    ## [6] "dandelion NAME enwombing refurbishing gloried cryostats palates NAME deadlines NAME NAME spinny?"
+    ## [1] "doorjamb wanders gallying begets mesquite ionospheres NAME risibly alienating evaluating adventitious NAME."
+    ## [2] "euthenics analcite bezzants slaughtered coliforms degusted crofts endwise NAME adah NAME NAME."             
+    ## [3] "NAME NAME lipper presold cabestros NAME NAME commencements scurfiest NAME NAME restocked."                  
+    ## [4] "NAME deprecating NAME dentistries adhibited NAME indulgent NAME NAME kamacites honeycombing NAME."          
+    ## [5] "NAME nervate feazed peroration overprases epizoites NAME NAME maund boogers loch dowel!"                    
+    ## [6] "qualify limnetic gentrice forefending hardboots misalters NAME NAME NAME NAME fomenters NAME!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 8.284616 secs
+    ## Time difference of 6.968971 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "claughted hysterectomize oatcakes overstirs hinds etiolated jingall narwal NAME NAME acnes NAME?"   
-    ## [2] "jubhahs gayeties unfettered NAME idealize cahiers helmeted kvases NAME neoteric sceptring sootiest."
-    ## [3] "NAME picolins headmen dentine lipstick jori folioing NAME NAME meggie hessite cataloger!"           
-    ## [4] "venomer stoke propound NAME bewilderment justnesses NAME djellaba playoff bevel NAME categorically."
-    ## [5] "padlocks NAME churr ungainlinesses enunciate compeered carabin enumeration NAME whilst NAME NAME."  
-    ## [6] "dandelion NAME enwombing refurbishing gloried cryostats palates NAME deadlines NAME NAME spinny?"
+    ## [1] "doorjamb wanders gallying begets mesquite ionospheres NAME risibly alienating evaluating adventitious NAME."
+    ## [2] "euthenics analcite bezzants slaughtered coliforms degusted crofts endwise NAME adah NAME NAME."             
+    ## [3] "NAME NAME lipper presold cabestros NAME NAME commencements scurfiest NAME NAME restocked."                  
+    ## [4] "NAME deprecating NAME dentistries adhibited NAME indulgent NAME NAME kamacites honeycombing NAME."          
+    ## [5] "NAME nervate feazed peroration overprases epizoites NAME NAME maund boogers loch dowel!"                    
+    ## [6] "qualify limnetic gentrice forefending hardboots misalters NAME NAME NAME NAME fomenters NAME!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.06153893 secs
+    ## Time difference of 0.0830729 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,120 words) and 5,493 replacement tokens in 1.6 seconds.
+(600,120 words) and 5,493 replacement tokens in 1.8 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.561614 secs
+    ## Time difference of 1.836358 secs

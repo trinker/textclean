@@ -1,9 +1,10 @@
-#' Replace Kerning Space with No Space
+#' Replace Kerned (Spaced) with No Space Version
 #' 
-#' In typography kerning is the adjustment of spacing.  Often in informal writing 
-#' a form of kerning and all capital letters is used for emphasis.  This tool looks 
-#' for 3 or mor consecutive capital letters with spaces in between and removes the 
-#' spaces.  The kerned version is replaced with the word equivalent.
+#' In typography kerning is the adjustment of spacing.  Often, in informal writing, 
+#' adding manual spaces (a form of kerning) coupled with all capital letters is 
+#' used for emphasis.  This tool looks for 3 or more consecutive capital letters 
+#' with spaces in between and removes the spaces.  Essentially, the capitalized,
+#' kerned version is replaced with the word equivalent.
 #' 
 #' @param x  The text variable.
 #' @param \ldots ignored.
@@ -19,7 +20,7 @@
 #'     NA
 #' )
 #' 
-#' replace_kerning(x)
-replace_kerning <- function(x, ...){
+#' replace_kern(x)
+replace_kern <- function(x, ...){
     gsub("(?:(?=\\b(?:\\p{Lu}\\h+){2}\\p{Lu})|\\G(?!\\A))\\p{Lu}\\K\\h+(?=\\p{Lu})", "", x, perl=TRUE)
 }

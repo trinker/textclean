@@ -25,7 +25,7 @@ BUG FIXES
 
 NEW FEATURES
 
-* `replace_kerning` added to replace a form of informal emphasis in which the
+* `replace_kern` added to replace a form of informal emphasis in which the
   writer takes words >2 letters long, capitalizes the entire word, and places
   spaces in between each letter.  This was contributed by Stack Overflow's
   @ctwheels: https://stackoverflow.com/a/47438305/1000343.

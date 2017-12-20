@@ -49,7 +49,7 @@ The main functions, task category, & descriptions are summarized in the table be
 | `replace_grade`           | repalcement | Replace grades (e.g., "A+") with word equivalent     |
 | `replace_html`            | replacement | Replace HTML tags and symbols  |
 | `replace_incomplete`      | replacement | Replace incomplete sentence end-marks  |
-| `replace_kerning`         | replacement | Replace spaces for >2 letter, all cap, words containing spaces in between letters  |
+| `replace_kern`            | replacement | Replace spaces for >2 letter, all cap, words containing spaces in between letters  |
 | `replace_names`           | replacement | Replace common first/last names     |
 | `replace_non_ascii`       | replacement | Replace non-ascii with equivalent or remove   |
 | `replace_number`          | replacement | Replace common numbers                |
@@ -285,6 +285,22 @@ Sometimes an incomplete sentence is denoted with multiple end marks or no punctu
 x <- c("the...",  "I.?", "you.", "threw..", "we?")
 replace_incomplete(x)
 replace_incomplete(x, '...')
+```
+
+### Kerning
+
+In typography kerning is the adjustment of spacing.  Often, in informal writing, adding manual spaces (a form of kerning) coupled with all capital letters is  used for emphasis (e.g., `"She's the B O M B!"`).  These word forms would look like noise in most analysis and would likely be removed as a stopword when in fact they likely carry a great deal of meaning.  The `replace_kern` function looks for 3 or more consecutive capital letters with spaces in between and removes the spaces.  
+
+
+```{r}
+x <- c(
+    "Welcome to A I: the best W O R L D!",
+    "Hi I R is the B O M B for sure: we A G R E E indeed.",
+    "A sort C A T indeed!",
+    NA
+)
+
+replace_kern(x)
 ```
 
 ### Names
