@@ -2,6 +2,9 @@ textclean
 ============
 
 
+    ## package 'digest' successfully unpacked and MD5 sums checked
+    ## package 'withr' successfully unpacked and MD5 sums checked
+
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active)
@@ -140,66 +143,71 @@ table below:
 <td>Replace incomplete sentence end-marks</td>
 </tr>
 <tr class="odd">
+<td><code>replace_kerning</code></td>
+<td>replacement</td>
+<td>Replace spaces for &gt;2 letter, all cap, words containing spaces in between letters</td>
+</tr>
+<tr class="even">
 <td><code>replace_names</code></td>
 <td>replacement</td>
 <td>Replace common first/last names</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_non_ascii</code></td>
 <td>replacement</td>
 <td>Replace non-ascii with equivalent or remove</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_number</code></td>
 <td>replacement</td>
 <td>Replace common numbers</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_ordinal</code></td>
 <td>replacement</td>
 <td>Replace common ordinal number form</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_rating</code></td>
 <td>repalcement</td>
 <td>Replace ratings (e.g., &quot;10 out of 10&quot;, &quot;3 stars&quot;) with word equivalent</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_symbol</code></td>
 <td>replacement</td>
 <td>Replace common symbols</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_white</code></td>
 <td>replacement</td>
 <td>Replace regex white space characters</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_token</code></td>
 <td>replacement</td>
 <td>Remove or replace a vector of tokens with a single value</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>add_comma_space</code></td>
 <td>replacement</td>
 <td>Replace non-space after comma</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>add_missing_endmark</code></td>
 <td>replacement</td>
 <td>Replace missing endmarks with desired symbol</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>make_plural</code></td>
 <td>replacement</td>
 <td>Add plural endings to singular noun forms</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>check_text</code></td>
 <td>check</td>
 <td>Text report of potential issues</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>has_endmark</code></td>
 <td>check</td>
 <td>Check if an element has an end-mark</td>
@@ -493,7 +501,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are staggering! 
+    ## You are rapturous! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -1145,21 +1153,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "immunologic sanction Julieann generous Shelby wiliness mutase cuticula Michelle theres counterblockade Sheba!"
-    ## [2] "redefeats mitigation cascading bio virtuosos shins contingencies dyne Khadijah maftirs safe Ashlyn?"          
-    ## [3] "unprobed wherrying ascertain Willow stateroom wenches mistrial Lyle Shavonne punition Fidel aircondition!"    
-    ## [4] "Kisha surroundings dentin pouring throb friaries Venita deanna complying hilarie Thora pinger."               
-    ## [5] "saltworks rubying Yelena arturo aggrandizing affixal Collen cyclamen mauritius gamb growable iodine!"         
-    ## [6] "Gertha eloise Talitha Milda networked amplification centrisms aroints therme Jon carhop fixatifs?"
+    ## [1] "claughted hysterectomize oatcakes overstirs hinds etiolated jingall narwal Cody Darell acnes Berna?"      
+    ## [2] "jubhahs gayeties unfettered Christi idealize cahiers helmeted kvases Rena neoteric sceptring sootiest."   
+    ## [3] "Jesus picolins headmen dentine lipstick jori folioing Camila Lashonda meggie hessite cataloger!"          
+    ## [4] "venomer stoke propound Kaley bewilderment justnesses Li djellaba playoff bevel Kristen categorically."    
+    ## [5] "padlocks Karen churr ungainlinesses enunciate compeered carabin enumeration Layla whilst Winnifred Jann." 
+    ## [6] "dandelion Aleisha enwombing refurbishing gloried cryostats palates Hazel deadlines Nereida Thomas spinny?"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "immunologic sanction NAME generous NAME wiliness mutase cuticula NAME theres counterblockade NAME!"
-    ## [2] "redefeats mitigation cascading bio virtuosos shins contingencies dyne NAME maftirs safe NAME?"     
-    ## [3] "unprobed wherrying ascertain NAME stateroom wenches mistrial NAME NAME punition NAME aircondition!"
-    ## [4] "NAME surroundings dentin pouring throb friaries NAME deanna complying hilarie NAME pinger."        
-    ## [5] "saltworks rubying NAME arturo aggrandizing affixal NAME cyclamen mauritius gamb growable iodine!"  
-    ## [6] "NAME eloise NAME NAME networked amplification centrisms aroints therme NAME carhop fixatifs?"
+    ## [1] "claughted hysterectomize oatcakes overstirs hinds etiolated jingall narwal NAME NAME acnes NAME?"   
+    ## [2] "jubhahs gayeties unfettered NAME idealize cahiers helmeted kvases NAME neoteric sceptring sootiest."
+    ## [3] "NAME picolins headmen dentine lipstick jori folioing NAME NAME meggie hessite cataloger!"           
+    ## [4] "venomer stoke propound NAME bewilderment justnesses NAME djellaba playoff bevel NAME categorically."
+    ## [5] "padlocks NAME churr ungainlinesses enunciate compeered carabin enumeration NAME whilst NAME NAME."  
+    ## [6] "dandelion NAME enwombing refurbishing gloried cryostats palates NAME deadlines NAME NAME spinny?"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1168,37 +1176,37 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "immunologic sanction NAME generous NAME wiliness mutase cuticula NAME theres counterblockade NAME!"
-    ## [2] "redefeats mitigation cascading bio virtuosos shins contingencies dyne NAME maftirs safe NAME?"     
-    ## [3] "unprobed wherrying ascertain NAME stateroom wenches mistrial NAME NAME punition NAME aircondition!"
-    ## [4] "NAME surroundings dentin pouring throb friaries NAME deanna complying hilarie NAME pinger."        
-    ## [5] "saltworks rubying NAME arturo aggrandizing affixal NAME cyclamen mauritius gamb growable iodine!"  
-    ## [6] "NAME eloise NAME NAME networked amplification centrisms aroints therme NAME carhop fixatifs?"
+    ## [1] "claughted hysterectomize oatcakes overstirs hinds etiolated jingall narwal NAME NAME acnes NAME?"   
+    ## [2] "jubhahs gayeties unfettered NAME idealize cahiers helmeted kvases NAME neoteric sceptring sootiest."
+    ## [3] "NAME picolins headmen dentine lipstick jori folioing NAME NAME meggie hessite cataloger!"           
+    ## [4] "venomer stoke propound NAME bewilderment justnesses NAME djellaba playoff bevel NAME categorically."
+    ## [5] "padlocks NAME churr ungainlinesses enunciate compeered carabin enumeration NAME whilst NAME NAME."  
+    ## [6] "dandelion NAME enwombing refurbishing gloried cryostats palates NAME deadlines NAME NAME spinny?"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 6.151008 secs
+    ## Time difference of 8.284616 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "immunologic sanction NAME generous NAME wiliness mutase cuticula NAME theres counterblockade NAME!"
-    ## [2] "redefeats mitigation cascading bio virtuosos shins contingencies dyne NAME maftirs safe NAME?"     
-    ## [3] "unprobed wherrying ascertain NAME stateroom wenches mistrial NAME NAME punition NAME aircondition!"
-    ## [4] "NAME surroundings dentin pouring throb friaries NAME deanna complying hilarie NAME pinger."        
-    ## [5] "saltworks rubying NAME arturo aggrandizing affixal NAME cyclamen mauritius gamb growable iodine!"  
-    ## [6] "NAME eloise NAME NAME networked amplification centrisms aroints therme NAME carhop fixatifs?"
+    ## [1] "claughted hysterectomize oatcakes overstirs hinds etiolated jingall narwal NAME NAME acnes NAME?"   
+    ## [2] "jubhahs gayeties unfettered NAME idealize cahiers helmeted kvases NAME neoteric sceptring sootiest."
+    ## [3] "NAME picolins headmen dentine lipstick jori folioing NAME NAME meggie hessite cataloger!"           
+    ## [4] "venomer stoke propound NAME bewilderment justnesses NAME djellaba playoff bevel NAME categorically."
+    ## [5] "padlocks NAME churr ungainlinesses enunciate compeered carabin enumeration NAME whilst NAME NAME."  
+    ## [6] "dandelion NAME enwombing refurbishing gloried cryostats palates NAME deadlines NAME NAME spinny?"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.07305217 secs
+    ## Time difference of 0.06153893 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,100 words) and 5,493 replacement tokens in 1.4 seconds.
+(600,120 words) and 5,493 replacement tokens in 1.6 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.398986 secs
+    ## Time difference of 1.561614 secs

@@ -25,6 +25,11 @@ textclean 0.6.0 -
 
 **NEW FEATURES**
 
+* `replace_kerning` added to replace a form of informal emphasis in which the
+  writer takes words &gt;2 letters long, capitalizes the entire word, and places
+  spaces in between each letter.  This was contributed by Stack Overflow's
+  @ctwheels: https://stackoverflow.com/a/47438305/1000343.
+
 **MINOR FEATURES**
 
 **IMPROVEMENTS**

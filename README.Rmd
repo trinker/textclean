@@ -49,6 +49,7 @@ The main functions, task category, & descriptions are summarized in the table be
 | `replace_grade`           | repalcement | Replace grades (e.g., "A+") with word equivalent     |
 | `replace_html`            | replacement | Replace HTML tags and symbols  |
 | `replace_incomplete`      | replacement | Replace incomplete sentence end-marks  |
+| `replace_kerning`         | replacement | Replace spaces for >2 letter, all cap, words containing spaces in between letters  |
 | `replace_names`           | replacement | Replace common first/last names     |
 | `replace_non_ascii`       | replacement | Replace non-ascii with equivalent or remove   |
 | `replace_number`          | replacement | Replace common numbers                |
