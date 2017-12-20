@@ -2,8 +2,8 @@
 #' 
 #' In typography kerning is the adjustment of spacing.  Often in informal writing 
 #' a form of kerning and all capital letters is used for emphasis.  This tool looks 
-#' for3 or mor consecutive capital letters with spaces in between and removes the 
-#' spaces.
+#' for 3 or mor consecutive capital letters with spaces in between and removes the 
+#' spaces.  The kerned version is replaced with the word equivalent.
 #' 
 #' @param x  The text variable.
 #' @param \ldots ignored.
