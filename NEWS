@@ -30,6 +30,9 @@ NEW FEATURES
   spaces in between each letter.  This was contributed by Stack Overflow's
   @ctwheels: https://stackoverflow.com/a/47438305/1000343.
 
+* `replace_internet_slang` added to replace Internet acronyms and abbreviations
+  with machine friendly word equivalents.
+  
 MINOR FEATURES
 
 IMPROVEMENTS

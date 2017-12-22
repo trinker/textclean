@@ -39,6 +39,7 @@ Table of Contents
         -   [Grades](#grades)
         -   [HTML](#html)
         -   [Incomplete Sentences](#incomplete-sentences)
+        -   [Internet Slang](#internet-slang)
         -   [Kerning](#kerning)
         -   [Names](#names)
         -   [Non-ASCII Characters](#non-ascii-characters)
@@ -141,71 +142,76 @@ table below:
 <td>Replace incomplete sentence end-marks</td>
 </tr>
 <tr class="odd">
+<td><code>replace_internet_slang</code></td>
+<td>replacment</td>
+<td>Replace Internet slang with word equivalents</td>
+</tr>
+<tr class="even">
 <td><code>replace_kern</code></td>
 <td>replacement</td>
 <td>Replace spaces for &gt;2 letter, all cap, words containing spaces in between letters</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_names</code></td>
 <td>replacement</td>
 <td>Replace common first/last names</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_non_ascii</code></td>
 <td>replacement</td>
 <td>Replace non-ascii with equivalent or remove</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_number</code></td>
 <td>replacement</td>
 <td>Replace common numbers</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_ordinal</code></td>
 <td>replacement</td>
 <td>Replace common ordinal number form</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_rating</code></td>
 <td>repalcement</td>
 <td>Replace ratings (e.g., &quot;10 out of 10&quot;, &quot;3 stars&quot;) with word equivalent</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_symbol</code></td>
 <td>replacement</td>
 <td>Replace common symbols</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_white</code></td>
 <td>replacement</td>
 <td>Replace regex white space characters</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_token</code></td>
 <td>replacement</td>
 <td>Remove or replace a vector of tokens with a single value</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>add_comma_space</code></td>
 <td>replacement</td>
 <td>Replace non-space after comma</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>add_missing_endmark</code></td>
 <td>replacement</td>
 <td>Replace missing endmarks with desired symbol</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>make_plural</code></td>
 <td>replacement</td>
 <td>Add plural endings to singular noun forms</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>check_text</code></td>
 <td>check</td>
 <td>Text report of potential issues</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>has_endmark</code></td>
 <td>check</td>
 <td>Check if an element has an end-mark</td>
@@ -499,7 +505,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are marvelous! 
+    ## You are majestic! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -929,6 +935,30 @@ with a pipe (`|`) endmark (or one of the user's choice).
 
     ## [1] "the..."   "I..."     "you."     "threw..." "we?"
 
+### Internet Slang
+
+Often in informal written and spoken communication (e.g., Twitter,
+texting, Facebook, etc.) people use Internet slang, shorter
+abbreviations and acronyms, to replace longer word sequences. These
+replacements may obfuscate the meaning when the machine attempts to
+analyze the text. The `replace_internet_slang` function replaces the
+slang with longer word equivalents that are more easily analyzed by
+machines.
+
+    x <- c(
+        "TGIF and a big w00t!  The weekend is GR8!",
+        "NP it was my pleasure: EOM",
+        'w8...this n00b needs me to say LMGTFY...lol.',
+        NA
+    )
+
+    replace_internet_slang(x)
+
+    ## [1] "thank god, it's friday and a big hooray!  The weekend is great!"                   
+    ## [2] "no problem it was my pleasure: end of message"                                     
+    ## [3] "wait...this newbie needs me to say let me google that for you...laughing out loud."
+    ## [4] NA
+
 ### Kerning
 
 In typography kerning is the adjustment of spacing. Often, in informal
@@ -1175,21 +1205,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "doorjamb wanders gallying begets mesquite ionospheres Abdul risibly alienating evaluating adventitious Sima."  
-    ## [2] "euthenics analcite bezzants slaughtered coliforms degusted crofts endwise Brittany adah Stacy Annett."         
-    ## [3] "Jay Ewa lipper presold cabestros Alida Carin commencements scurfiest Lorriane Elly restocked."                 
-    ## [4] "Concetta deprecating Asley dentistries adhibited Roxana indulgent Noble Kim kamacites honeycombing Alicia."    
-    ## [5] "Francisca nervate feazed peroration overprases epizoites Gema Maddie maund boogers loch dowel!"                
-    ## [6] "qualify limnetic gentrice forefending hardboots misalters Bryanna Allison Charisse Rebecka fomenters Rosamond!"
+    ## [1] "multidisciplinary tangling Sherita penurious Kit obstreperousnesses invalided Demetra rodsman ribosomes Chris Cruz?"
+    ## [2] "Maudie Jon revisiting capitalistic Quincy Lacey rogue brulots Delcie kelped pouches Hugh."                          
+    ## [3] "Lynn sizy reembody abrasions Dee souvenir Tim Winnie odium Tommie werner trusser."                                  
+    ## [4] "Kathlene Maureen tortrix Apryl hadrons recoin cutches clingy enlightened snugs blessing cats?"                      
+    ## [5] "Agatha Melba banyan basally reseal debars locutions sensor Angelica sudsless Dedra Astrid?"                         
+    ## [6] "Neely shoshanna fiberglass relabeling Adelina reinfects Kali Adelaida Sunshine kristian Theodore yaws."
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "doorjamb wanders gallying begets mesquite ionospheres NAME risibly alienating evaluating adventitious NAME."
-    ## [2] "euthenics analcite bezzants slaughtered coliforms degusted crofts endwise NAME adah NAME NAME."             
-    ## [3] "NAME NAME lipper presold cabestros NAME NAME commencements scurfiest NAME NAME restocked."                  
-    ## [4] "NAME deprecating NAME dentistries adhibited NAME indulgent NAME NAME kamacites honeycombing NAME."          
-    ## [5] "NAME nervate feazed peroration overprases epizoites NAME NAME maund boogers loch dowel!"                    
-    ## [6] "qualify limnetic gentrice forefending hardboots misalters NAME NAME NAME NAME fomenters NAME!"
+    ## [1] "multidisciplinary tangling NAME penurious NAME obstreperousnesses invalided NAME rodsman ribosomes NAME NAME?"
+    ## [2] "NAME NAME revisiting capitalistic NAME NAME rogue brulots NAME kelped pouches NAME."                          
+    ## [3] "NAME sizy reembody abrasions NAME souvenir NAME NAME odium NAME werner trusser."                              
+    ## [4] "NAME NAME tortrix NAME hadrons recoin cutches clingy enlightened snugs blessing cats?"                        
+    ## [5] "NAME NAME banyan basally reseal debars locutions sensor NAME sudsless NAME NAME?"                             
+    ## [6] "NAME shoshanna fiberglass relabeling NAME reinfects NAME NAME NAME kristian NAME yaws."
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1198,37 +1228,37 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "doorjamb wanders gallying begets mesquite ionospheres NAME risibly alienating evaluating adventitious NAME."
-    ## [2] "euthenics analcite bezzants slaughtered coliforms degusted crofts endwise NAME adah NAME NAME."             
-    ## [3] "NAME NAME lipper presold cabestros NAME NAME commencements scurfiest NAME NAME restocked."                  
-    ## [4] "NAME deprecating NAME dentistries adhibited NAME indulgent NAME NAME kamacites honeycombing NAME."          
-    ## [5] "NAME nervate feazed peroration overprases epizoites NAME NAME maund boogers loch dowel!"                    
-    ## [6] "qualify limnetic gentrice forefending hardboots misalters NAME NAME NAME NAME fomenters NAME!"
+    ## [1] "multidisciplinary tangling NAME penurious NAME obstreperousnesses invalided NAME rodsman ribosomes NAME NAME?"
+    ## [2] "NAME NAME revisiting capitalistic NAME NAME rogue brulots NAME kelped pouches NAME."                          
+    ## [3] "NAME sizy reembody abrasions NAME souvenir NAME NAME odium NAME werner trusser."                              
+    ## [4] "NAME NAME tortrix NAME hadrons recoin cutches clingy enlightened snugs blessing cats?"                        
+    ## [5] "NAME NAME banyan basally reseal debars locutions sensor NAME sudsless NAME NAME?"                             
+    ## [6] "NAME shoshanna fiberglass relabeling NAME reinfects NAME NAME NAME kristian NAME yaws."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 6.968971 secs
+    ## Time difference of 7.036815 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "doorjamb wanders gallying begets mesquite ionospheres NAME risibly alienating evaluating adventitious NAME."
-    ## [2] "euthenics analcite bezzants slaughtered coliforms degusted crofts endwise NAME adah NAME NAME."             
-    ## [3] "NAME NAME lipper presold cabestros NAME NAME commencements scurfiest NAME NAME restocked."                  
-    ## [4] "NAME deprecating NAME dentistries adhibited NAME indulgent NAME NAME kamacites honeycombing NAME."          
-    ## [5] "NAME nervate feazed peroration overprases epizoites NAME NAME maund boogers loch dowel!"                    
-    ## [6] "qualify limnetic gentrice forefending hardboots misalters NAME NAME NAME NAME fomenters NAME!"
+    ## [1] "multidisciplinary tangling NAME penurious NAME obstreperousnesses invalided NAME rodsman ribosomes NAME NAME?"
+    ## [2] "NAME NAME revisiting capitalistic NAME NAME rogue brulots NAME kelped pouches NAME."                          
+    ## [3] "NAME sizy reembody abrasions NAME souvenir NAME NAME odium NAME werner trusser."                              
+    ## [4] "NAME NAME tortrix NAME hadrons recoin cutches clingy enlightened snugs blessing cats?"                        
+    ## [5] "NAME NAME banyan basally reseal debars locutions sensor NAME sudsless NAME NAME?"                             
+    ## [6] "NAME shoshanna fiberglass relabeling NAME reinfects NAME NAME NAME kristian NAME yaws."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.0830729 secs
+    ## Time difference of 0.08205819 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,120 words) and 5,493 replacement tokens in 1.8 seconds.
+(600,200 words) and 5,493 replacement tokens in 1.9 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.836358 secs
+    ## Time difference of 1.855311 secs
