@@ -60,7 +60,8 @@ canonical %>%
 
 
 canonical <- readRDS('C:\\Users\\Tyler\\Desktop/canonical.rds')
-
+## canonical <- textclean:::canonical
+data.table::setkey(canonical, 'canonical')
 devtools::use_data(canonical, internal = TRUE)
 
 

@@ -45,8 +45,8 @@ The main functions, task category, & descriptions are summarized in the table be
 | `drop_NA`                 | filter rows | Remove `NA` text rows                 |
 | `drop_element`/`keep_element` | filter elements | Filter matching elements from a vector   |
 | `replace_contractions`    | replacement | Replace contractions with both words  |
+| `replace_emoji`           | repalcement | Replace emojis with word equivalent or unique identifier |
 | `replace_emoticon`        | repalcement | Replace emoticons with word equivalent               |
-| `replace_emoji`           | repalcement | Replace emojis with word equivalent or unique identifier              |
 | `replace_grade`           | repalcement | Replace grades (e.g., "A+") with word equivalent     |
 | `replace_html`            | replacement | Replace HTML tags and symbols  |
 | `replace_incomplete`      | replacement | Replace incomplete sentence end-marks  |
@@ -59,7 +59,8 @@ The main functions, task category, & descriptions are summarized in the table be
 | `replace_rating`          | repalcement | Replace ratings (e.g., "10 out of 10", "3 stars") with word equivalent |
 | `replace_symbol`          | replacement | Replace common symbols                |
 | `replace_white`           | replacement | Replace regex white space characters  |
-| `replace_token`           | replacement | Remove or replace a vector of tokens with a single value  |
+| `replace_token`           | replacement | Remove or replace a vector of tokens with a single value |
+| `replace_word_elongation` | repalcement | Replace word elongations with shortened form  |
 | `add_comma_space`         | replacement | Replace non-space after comma         |
 | `add_missing_endmark`     | replacement | Replace missing endmarks with desired symbol |
 | `make_plural`             | replacement | Add plural endings to singular noun forms |
@@ -230,6 +231,23 @@ x <- c("Mr. Jones isn't going.",
 replace_contraction(x)
 ```
 
+
+### Emojis
+
+Similar to emoticons, emoji tokens may be ignored if they are not in a computer readable form.  `replace_emoji` replaces emojis with their word forms equivalents.
+
+```{r}
+x <- read.delim(system.file("docs/r_tweets.txt", package = "textclean"), 
+    stringsAsFactors = FALSE)[[3]][1:3]
+
+x
+```
+
+```{r}
+replace_emoji(x)
+```
+
+
 ### Emoticons
 
 Some analysis techniques examine words, meaning emoticons may be ignored.  `replace_emoticon` replaces emoticons with their word forms equivalents.
@@ -249,21 +267,6 @@ x <- c(
 )
 
 replace_emoticon(x)
-```
-
-### Emojis
-
-Similar to emoticons, emoji tokens may be ignored if they are not in a computer readable form.  `replace_emoji` replaces emojis with their word forms equivalents.
-
-```{r}
-x <- read.delim(system.file("docs/r_tweets.txt", package = "textclean"), 
-    stringsAsFactors = FALSE)[[3]][1:3]
-
-x
-```
-
-```{r}
-replace_emoji(x)
 ```
 
 
@@ -352,6 +355,7 @@ x <- c(
 replace_names(x)
 replace_names(x, replacement = '<<NAME>>')
 ```
+
 ### Non-ASCII Characters
 
 R can choke on non-ASCII characters.  They can be re-encoded but the new encoding may lack interpretability (e.g., &cent; may be converted to `\xA2` which is not easily understood or likely to be matched in a hash look up).  `replace_non_ascii` attempts to replace common non-ASCII characters with a text representation (e.g., &cent; becomes "cent")  Non recognized non-ASCII characters are simply removed (unless `remove.nonconverted = FALSE`).
@@ -446,6 +450,22 @@ x
 cat(x)
 replace_white(x)
 ```
+
+### Word Elongation
+
+In informal writing people may use a form of text embellishment to emphasize or alter word meanings called elongation (a.k.a. "word lengthening").  For example, the use of "Whyyyyy" conveys frustration.  Other times the usage may be to be more sexy (e.g., "Heyyyy there").  Other times it may be used for emphasis (e.g., "This is so gooood").
+
+The `replace_word_elongation` function replaces these un-normalized forms with the most likely normalized form.  The `impart.meaning` argument can replace a short list of known elongations with semantic replacements.
+
+```{r}
+x <- c('look', 'noooooo!', 'real coooool!', "it's sooo goooood", 'fsdfds',
+    'fdddf', 'as', "aaaahahahahaha", "aabbccxccbbaa", 'I said heyyy!',
+    "I'm liiiike whyyyyy me?", "Wwwhhatttt!", NA)
+
+replace_word_elongation(x)
+replace_word_elongation(x, impart.meaning = TRUE)
+```
+
 
 
 ### Tokens

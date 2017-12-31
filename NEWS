@@ -33,6 +33,10 @@ NEW FEATURES
 * `replace_internet_slang` added to replace Internet acronyms and abbreviations
   with machine friendly word equivalents.
   
+* `replace_word_elongation` added to replace word elongations (a.k.a. "word 
+  lengthening") with the most likely normalized word form.  See 
+  http://www.aclweb.org/anthology/D11-105 for details.
+  
 * `fgsub` added for the ability to match, extract, operate a function over the
   extracted strings, & replace the original matches with the extracted strings.
   This performs similar functionality to `gsubfn::gsubfn` but is less powerful.

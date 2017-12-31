@@ -119,7 +119,20 @@ to_byte <- function(x){
 }
 
 
+.fgsub <- function(x, pattern, fun, ...){
+    
 
+    hits <- stringi::stri_extract_all_regex(x, pattern)
+    pats <- unique(unlist(hits))
+    reps <- paste0('textcleanholder', seq_along(pats), 'textcleanholder')
+    freps <- unlist(lapply(pats, fun))
+        
+    x <- mgsub(x, pats, reps)
+    
+    mgsub(x, reps, freps)
+
+
+}
 
 
 

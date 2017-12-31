@@ -35,8 +35,8 @@ Table of Contents
         -   [Stashing Character Pre-Sub](#stashing-character-pre-sub)
     -   [Replacement](#replacement)
         -   [Contractions](#contractions)
-        -   [Emoticons](#emoticons)
         -   [Emojis](#emojis)
+        -   [Emoticons](#emoticons)
         -   [Grades](#grades)
         -   [HTML](#html)
         -   [Incomplete Sentences](#incomplete-sentences)
@@ -49,6 +49,7 @@ Table of Contents
         -   [Ordinal Numbers](#ordinal-numbers)
         -   [Symbols](#symbols)
         -   [White Space](#white-space)
+        -   [Word Elongation](#word-elongation)
         -   [Tokens](#tokens)
 
 Functions
@@ -123,14 +124,14 @@ table below:
 <td>Replace contractions with both words</td>
 </tr>
 <tr class="odd">
-<td><code>replace_emoticon</code></td>
-<td>repalcement</td>
-<td>Replace emoticons with word equivalent</td>
-</tr>
-<tr class="even">
 <td><code>replace_emoji</code></td>
 <td>repalcement</td>
 <td>Replace emojis with word equivalent or unique identifier</td>
+</tr>
+<tr class="even">
+<td><code>replace_emoticon</code></td>
+<td>repalcement</td>
+<td>Replace emoticons with word equivalent</td>
 </tr>
 <tr class="odd">
 <td><code>replace_grade</code></td>
@@ -198,26 +199,31 @@ table below:
 <td>Remove or replace a vector of tokens with a single value</td>
 </tr>
 <tr class="even">
+<td><code>replace_word_elongation</code></td>
+<td>repalcement</td>
+<td>Replace word elongations with shortened form</td>
+</tr>
+<tr class="odd">
 <td><code>add_comma_space</code></td>
 <td>replacement</td>
 <td>Replace non-space after comma</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>add_missing_endmark</code></td>
 <td>replacement</td>
 <td>Replace missing endmarks with desired symbol</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>make_plural</code></td>
 <td>replacement</td>
 <td>Add plural endings to singular noun forms</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>check_text</code></td>
 <td>check</td>
 <td>Text report of potential issues</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>has_endmark</code></td>
 <td>check</td>
 <td>Check if an element has an end-mark</td>
@@ -511,7 +517,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are virtuosic! 
+    ## You are astounding! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -857,6 +863,27 @@ provides this functionality.
     ## [4] "the robot at t.s. was not nice"     
     ## [5] "he would like it if I would go away"
 
+### Emojis
+
+Similar to emoticons, emoji tokens may be ignored if they are not in a
+computer readable form. `replace_emoji` replaces emojis with their word
+forms equivalents.
+
+    x <- read.delim(system.file("docs/r_tweets.txt", package = "textclean"), 
+        stringsAsFactors = FALSE)[[3]][1:3]
+
+    x
+
+    ## [1] "Hello, helpful! ðŸ“¦âŒðŸ‘¾ debugme: Easy & efficient debugging for R packages ðŸ‘¨ðŸ»â€ðŸ’» @GaborCsardi https://buff.ly/2nNKcps  #rstats"
+    ## [2] "Did you ever get bored and accidentally create a ðŸ“¦ to make #Rstats speak on a Mac? I have -> "                                            
+    ## [3] "A gift to my fellow nfl loving #rstats folks this package is ðŸ’¥ðŸ’¥"
+
+    replace_emoji(x)
+
+    ## [1] "Hello, helpful! package cross mark alien monster debugme: Easy & efficient debugging for R packages man <f0><9f><8f><bb><e2><80><8d> laptop computer @GaborCsardi https://buff.ly/2nNKcps #rstats"
+    ## [2] "Did you ever get bored and accidentally create a package to make #Rstats speak on a Mac? I have -> "                                                                                              
+    ## [3] "A gift to my fellow nfl loving #rstats folks this package is collision collision "
+
 ### Emoticons
 
 Some analysis techniques examine words, meaning emoticons may be
@@ -888,27 +915,6 @@ equivalents.
     ##  [8] "Put a zero 0 (halo) on top and now you have a winking, smiling angel angel with a nose angel "
     ##  [9] "Use the letter 8 in place of the colon for sunglasses glasses "                               
     ## [10] "Use the open bracket ( to turn the smile into a frown sad "
-
-### Emojis
-
-Similar to emoticons, emoji tokens may be ignored if they are not in a
-computer readable form. `replace_emoji` replaces emojis with their word
-forms equivalents.
-
-    x <- read.delim(system.file("docs/r_tweets.txt", package = "textclean"), 
-        stringsAsFactors = FALSE)[[3]][1:3]
-
-    x
-
-    ## [1] "Hello, helpful! ðŸ“¦âŒðŸ‘¾ debugme: Easy & efficient debugging for R packages ðŸ‘¨ðŸ»â€ðŸ’» @GaborCsardi https://buff.ly/2nNKcps  #rstats"
-    ## [2] "Did you ever get bored and accidentally create a ðŸ“¦ to make #Rstats speak on a Mac? I have -> "                                            
-    ## [3] "A gift to my fellow nfl loving #rstats folks this package is ðŸ’¥ðŸ’¥"
-
-    replace_emoji(x)
-
-    ## [1] "Hello, helpful! package cross mark alien monster debugme: Easy & efficient debugging for R packages man <f0><9f><8f><bb><e2><80><8d> laptop computer @GaborCsardi https://buff.ly/2nNKcps #rstats"
-    ## [2] "Did you ever get bored and accidentally create a package to make #Rstats speak on a Mac? I have -> "                                                                                              
-    ## [3] "A gift to my fellow nfl loving #rstats folks this package is collision collision "
 
 ### Grades
 
@@ -1205,6 +1211,41 @@ the `replace_white` function.
 
     ## [1] "I go to the next line"
 
+### Word Elongation
+
+In informal writing people may use a form of text embellishment to
+emphasize or alter word meanings called elongation (a.k.a. "word
+lengthening"). For example, the use of "Whyyyyy" conveys frustration.
+Other times the usage may be to be more sexy (e.g., "Heyyyy there").
+Other times it may be used for emphasis (e.g., "This is so gooood").
+
+The `replace_word_elongation` function replaces these un-normalized
+forms with the most likely normalized form. The `impart.meaning`
+argument can replace a short list of known elongations with semantic
+replacements.
+
+    x <- c('look', 'noooooo!', 'real coooool!', "it's sooo goooood", 'fsdfds',
+        'fdddf', 'as', "aaaahahahahaha", "aabbccxccbbaa", 'I said heyyy!',
+        "I'm liiiike whyyyyy me?", "Wwwhhatttt!", NA)
+
+    replace_word_elongation(x)
+
+    ##  [1] "look"             "no!"              "real cool!"      
+    ##  [4] "it's so good"     "fsdfds"           "fdf"             
+    ##  [7] "as"               "ahahahahaha"      "aabbccxccbbaa"   
+    ## [10] "I said hey!"      "I'm like why me?" "what!"           
+    ## [13] NA
+
+    replace_word_elongation(x, impart.meaning = TRUE)
+
+    ##  [1] "look"                     "sarcastic!"              
+    ##  [3] "real cool!"               "it's so good"            
+    ##  [5] "fsdfds"                   "fdf"                     
+    ##  [7] "as"                       "ahahahahaha"             
+    ##  [9] "aabbccxccbbaa"            "I said hey sexy!"        
+    ## [11] "I'm like frustration me?" "what!"                   
+    ## [13] NA
+
 ### Tokens
 
 Often an analysis requires converting tokens of a certain type into a
@@ -1229,21 +1270,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "kin Berta spoliates Yolando Cristopher Jeni Thelma Mammie antifat shooting Sandy trisecting?"      
-    ## [2] "Sherrell Chrissy jigsawn Amanda polyuria Lida Josette accumulation Darlene Francina Xuan dopiness!"
-    ## [3] "greek capitals Glynis Meda acts ataraxic wampished teaberries bills Sherron Edgardo techily?"      
-    ## [4] "Gabriele aylmer amtracs goiter limeless Gwenn subtends Danny matriarchies joscelin Alyse swished?" 
-    ## [5] "ionicity celebrities Riley hankie pianisms insecure myself Emmaline spicer Charita gobans hustler!"
-    ## [6] "Ilana Jeana randomized Rosaline Dorinda track Parker fluxes whipping pustular doxy gays!"
+    ## [1] "islander Rosella Anya Julio Ermelinda clutters sonovox Joseph buttony mispaging annuluses requirement?"       
+    ## [2] "Joseph aecidium pygmyish narcoses speired halvas dehorts scapes whir cheerly Elisha flightier?"               
+    ## [3] "subjections mallorie robbin impugns Shantay chameleons bads tilths siltiest Jermaine Lavada quamash!"         
+    ## [4] "Ona crane Adena Brook Lezlie orphanage Ivelisse Kym fatherlands Aurelio Frederic Jennine."                    
+    ## [5] "puddled Felicitas splits selenic xanthomas priesthood embruting rajas Rayford witch fiscs phosphorous?"       
+    ## [6] "plebiscite stopes Audrea Kiersten aerator ruderal alienable teasers subscribed simplifications fanny Zachery."
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "kin NAME spoliates NAME NAME NAME NAME NAME antifat shooting NAME trisecting?"             
-    ## [2] "NAME NAME jigsawn NAME polyuria NAME NAME accumulation NAME NAME NAME dopiness!"           
-    ## [3] "greek capitals NAME NAME acts ataraxic wampished teaberries bills NAME NAME techily?"      
-    ## [4] "NAME aylmer amtracs goiter limeless NAME subtends NAME matriarchies joscelin NAME swished?"
-    ## [5] "ionicity celebrities NAME hankie pianisms insecure myself NAME spicer NAME gobans hustler!"
-    ## [6] "NAME NAME randomized NAME NAME track NAME fluxes whipping pustular doxy gays!"
+    ## [1] "islander NAME NAME NAME NAME clutters sonovox NAME buttony mispaging annuluses requirement?"         
+    ## [2] "NAME aecidium pygmyish narcoses speired halvas dehorts scapes whir cheerly NAME flightier?"          
+    ## [3] "subjections mallorie robbin impugns NAME chameleons bads tilths siltiest NAME NAME quamash!"         
+    ## [4] "NAME crane NAME NAME NAME orphanage NAME NAME fatherlands NAME NAME NAME."                           
+    ## [5] "puddled NAME splits selenic xanthomas priesthood embruting rajas NAME witch fiscs phosphorous?"      
+    ## [6] "plebiscite stopes NAME NAME aerator ruderal alienable teasers subscribed simplifications fanny NAME."
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1252,37 +1293,37 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "kin NAME spoliates NAME NAME NAME NAME NAME antifat shooting NAME trisecting?"             
-    ## [2] "NAME NAME jigsawn NAME polyuria NAME NAME accumulation NAME NAME NAME dopiness!"           
-    ## [3] "greek capitals NAME NAME acts ataraxic wampished teaberries bills NAME NAME techily?"      
-    ## [4] "NAME aylmer amtracs goiter limeless NAME subtends NAME matriarchies joscelin NAME swished?"
-    ## [5] "ionicity celebrities NAME hankie pianisms insecure myself NAME spicer NAME gobans hustler!"
-    ## [6] "NAME NAME randomized NAME NAME track NAME fluxes whipping pustular doxy gays!"
+    ## [1] "islander NAME NAME NAME NAME clutters sonovox NAME buttony mispaging annuluses requirement?"         
+    ## [2] "NAME aecidium pygmyish narcoses speired halvas dehorts scapes whir cheerly NAME flightier?"          
+    ## [3] "subjections mallorie robbin impugns NAME chameleons bads tilths siltiest NAME NAME quamash!"         
+    ## [4] "NAME crane NAME NAME NAME orphanage NAME NAME fatherlands NAME NAME NAME."                           
+    ## [5] "puddled NAME splits selenic xanthomas priesthood embruting rajas NAME witch fiscs phosphorous?"      
+    ## [6] "plebiscite stopes NAME NAME aerator ruderal alienable teasers subscribed simplifications fanny NAME."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 7.179827 secs
+    ## Time difference of 9.015718 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "kin NAME spoliates NAME NAME NAME NAME NAME antifat shooting NAME trisecting?"             
-    ## [2] "NAME NAME jigsawn NAME polyuria NAME NAME accumulation NAME NAME NAME dopiness!"           
-    ## [3] "greek capitals NAME NAME acts ataraxic wampished teaberries bills NAME NAME techily?"      
-    ## [4] "NAME aylmer amtracs goiter limeless NAME subtends NAME matriarchies joscelin NAME swished?"
-    ## [5] "ionicity celebrities NAME hankie pianisms insecure myself NAME spicer NAME gobans hustler!"
-    ## [6] "NAME NAME randomized NAME NAME track NAME fluxes whipping pustular doxy gays!"
+    ## [1] "islander NAME NAME NAME NAME clutters sonovox NAME buttony mispaging annuluses requirement?"         
+    ## [2] "NAME aecidium pygmyish narcoses speired halvas dehorts scapes whir cheerly NAME flightier?"          
+    ## [3] "subjections mallorie robbin impugns NAME chameleons bads tilths siltiest NAME NAME quamash!"         
+    ## [4] "NAME crane NAME NAME NAME orphanage NAME NAME fatherlands NAME NAME NAME."                           
+    ## [5] "puddled NAME splits selenic xanthomas priesthood embruting rajas NAME witch fiscs phosphorous?"      
+    ## [6] "plebiscite stopes NAME NAME aerator ruderal alienable teasers subscribed simplifications fanny NAME."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.07004905 secs
+    ## Time difference of 0.072052 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,180 words) and 5,493 replacement tokens in 1.7 seconds.
+(600,060 words) and 5,493 replacement tokens in 2.1 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.724229 secs
+    ## Time difference of 2.082474 secs
