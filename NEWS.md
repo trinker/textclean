@@ -33,6 +33,11 @@ textclean 0.6.0 -
 * `replace_internet_slang` added to replace Internet acronyms and abbreviations
   with machine friendly word equivalents.
   
+* `fgsub` added for the ability to match, extract, operate a function over the
+  extracted strings, & replace the original matches with the extracted strings.
+  This performs similar functionality to `gsubfn::gsubfn` but is less powerful.
+  For more powerful needs see the **gsubfn** package.
+  
 **MINOR FEATURES**
 
 **IMPROVEMENTS**

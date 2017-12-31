@@ -36,6 +36,7 @@ The main functions, task category, & descriptions are summarized in the table be
 | Function                  | Task        | Description                           | 
 |---------------------------|-------------|---------------------------------------| 
 | `mgsub`                   | subbing     | Multiple `gsub`                       |
+| `fgsub`                   | subbing     | Functional matching replacement `gsub`                       |
 | `sub_holder`              | subbing     | Hold a value prior to a `strip`       |
 | `swap`                    | subbing     | Simultaneously swap patterns 1 & 2    |
 | `strip`                   | deletion    | Remove all non word characters        |
@@ -182,6 +183,21 @@ mgsub(DATA$state, "[[:punct:]]", "<<PUNCT>>", fixed = FALSE)
 mgsub(DATA$state, c("i", "it"), c("<<I>>", "[[IT]]"))
 mgsub(DATA$state, c("i", "it"), c("<<I>>", "[[IT]]"), order.pattern = FALSE)
 ```
+
+
+### Match, Extract, Operate, Replacement Subs
+
+Again, `gsub` is a great tool but sometimes the user wants to match a pattern, extract that pattern, operate a function over that pattern, and then replace the original match.  The `fgsub` function allows the user to perform this operation.  It is a stripped down version of `gsubfn` from the **gsubfn** package.  For more versatile needs please see the **gsubfn** package.
+
+```{r}
+fgsub(
+    x = c(NA, 'df dft sdf', 'sd fdggg sd dfhhh d', 'ddd'),
+    pattern = "\\b\\w*([a-z])(\\1{2,})\\w*\\b",
+    fun = function(x) {paste0('<<', paste(rev(strsplit(x, '')[[1]]), collapse =''), '>>')}
+)
+```
+
+
 
 ### Stashing Character Pre-Sub
 

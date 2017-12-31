@@ -118,3 +118,8 @@ to_byte <- function(x){
     iconv(x, "latin1", "ASCII", "byte")
 }
 
+
+
+
+
+

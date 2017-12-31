@@ -1,5 +1,7 @@
+if (!require("pacman")) install.packages("pacman")
 pacman::p_load(dplyr, data.table, stringi, R.utils)
 
+if (!dir.exists('google_ngram')) dir.create('google_ngram')
 
 #letter <- 'b'
 
