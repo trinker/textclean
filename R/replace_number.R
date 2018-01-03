@@ -32,6 +32,8 @@
 #' replace_number(x, remove=TRUE)
 replace_number  <- function(x, num.paste = FALSE, remove = FALSE, ...) {
 
+    x <- as.character(x)
+    
     if (remove) return(stringi::stri_replace_all_regex(x, num_regex, ""))
 
     ## extract the numbers
