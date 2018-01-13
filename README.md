@@ -517,7 +517,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are astounding! 
+    ## You are flawless! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -1270,21 +1270,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "islander Rosella Anya Julio Ermelinda clutters sonovox Joseph buttony mispaging annuluses requirement?"       
-    ## [2] "Joseph aecidium pygmyish narcoses speired halvas dehorts scapes whir cheerly Elisha flightier?"               
-    ## [3] "subjections mallorie robbin impugns Shantay chameleons bads tilths siltiest Jermaine Lavada quamash!"         
-    ## [4] "Ona crane Adena Brook Lezlie orphanage Ivelisse Kym fatherlands Aurelio Frederic Jennine."                    
-    ## [5] "puddled Felicitas splits selenic xanthomas priesthood embruting rajas Rayford witch fiscs phosphorous?"       
-    ## [6] "plebiscite stopes Audrea Kiersten aerator ruderal alienable teasers subscribed simplifications fanny Zachery."
+    ## [1] "incidentals Alycia undertaxed like proclivity sensibles bradley Maria envy Forrest triazin stiffens?"           
+    ## [2] "Carissa assists Gina bemingle Miles Colene educe Cortez Melita realisers congruence Bethel!"                    
+    ## [3] "hisses bred voyageurs stabler hadleigh tapers Princess paucities junketer aversion Maryann oncologist."         
+    ## [4] "Syreeta rehung tediously Anita hoers amplifying unlives mammeys Myrtice Blanche Trisha Cortez?"                 
+    ## [5] "Susana kaliph downhill jubilee clearness sieved superintend Garret flops shiftlessness confers quarrier."       
+    ## [6] "Mellissa contraindicated Michell Gracia joshed inactivating Willy saltbush oiliest tubules circulatory Glennie."
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "islander NAME NAME NAME NAME clutters sonovox NAME buttony mispaging annuluses requirement?"         
-    ## [2] "NAME aecidium pygmyish narcoses speired halvas dehorts scapes whir cheerly NAME flightier?"          
-    ## [3] "subjections mallorie robbin impugns NAME chameleons bads tilths siltiest NAME NAME quamash!"         
-    ## [4] "NAME crane NAME NAME NAME orphanage NAME NAME fatherlands NAME NAME NAME."                           
-    ## [5] "puddled NAME splits selenic xanthomas priesthood embruting rajas NAME witch fiscs phosphorous?"      
-    ## [6] "plebiscite stopes NAME NAME aerator ruderal alienable teasers subscribed simplifications fanny NAME."
+    ## [1] "incidentals NAME undertaxed like proclivity sensibles bradley NAME envy NAME triazin stiffens?"      
+    ## [2] "NAME assists NAME bemingle NAME NAME educe NAME NAME realisers congruence NAME!"                     
+    ## [3] "hisses bred voyageurs stabler hadleigh tapers NAME paucities junketer aversion NAME oncologist."     
+    ## [4] "NAME rehung tediously NAME hoers amplifying unlives mammeys NAME NAME NAME NAME?"                    
+    ## [5] "NAME kaliph downhill jubilee clearness sieved superintend NAME flops shiftlessness confers quarrier."
+    ## [6] "NAME contraindicated NAME NAME joshed inactivating NAME saltbush oiliest tubules circulatory NAME."
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1293,37 +1293,37 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "islander NAME NAME NAME NAME clutters sonovox NAME buttony mispaging annuluses requirement?"         
-    ## [2] "NAME aecidium pygmyish narcoses speired halvas dehorts scapes whir cheerly NAME flightier?"          
-    ## [3] "subjections mallorie robbin impugns NAME chameleons bads tilths siltiest NAME NAME quamash!"         
-    ## [4] "NAME crane NAME NAME NAME orphanage NAME NAME fatherlands NAME NAME NAME."                           
-    ## [5] "puddled NAME splits selenic xanthomas priesthood embruting rajas NAME witch fiscs phosphorous?"      
-    ## [6] "plebiscite stopes NAME NAME aerator ruderal alienable teasers subscribed simplifications fanny NAME."
+    ## [1] "incidentals NAME undertaxed like proclivity sensibles bradley NAME envy NAME triazin stiffens?"      
+    ## [2] "NAME assists NAME bemingle NAME NAME educe NAME NAME realisers congruence NAME!"                     
+    ## [3] "hisses bred voyageurs stabler hadleigh tapers NAME paucities junketer aversion NAME oncologist."     
+    ## [4] "NAME rehung tediously NAME hoers amplifying unlives mammeys NAME NAME NAME NAME?"                    
+    ## [5] "NAME kaliph downhill jubilee clearness sieved superintend NAME flops shiftlessness confers quarrier."
+    ## [6] "NAME contraindicated NAME NAME joshed inactivating NAME saltbush oiliest tubules circulatory NAME."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 9.015718 secs
+    ## Time difference of 7.30424 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "islander NAME NAME NAME NAME clutters sonovox NAME buttony mispaging annuluses requirement?"         
-    ## [2] "NAME aecidium pygmyish narcoses speired halvas dehorts scapes whir cheerly NAME flightier?"          
-    ## [3] "subjections mallorie robbin impugns NAME chameleons bads tilths siltiest NAME NAME quamash!"         
-    ## [4] "NAME crane NAME NAME NAME orphanage NAME NAME fatherlands NAME NAME NAME."                           
-    ## [5] "puddled NAME splits selenic xanthomas priesthood embruting rajas NAME witch fiscs phosphorous?"      
-    ## [6] "plebiscite stopes NAME NAME aerator ruderal alienable teasers subscribed simplifications fanny NAME."
+    ## [1] "incidentals NAME undertaxed like proclivity sensibles bradley NAME envy NAME triazin stiffens?"      
+    ## [2] "NAME assists NAME bemingle NAME NAME educe NAME NAME realisers congruence NAME!"                     
+    ## [3] "hisses bred voyageurs stabler hadleigh tapers NAME paucities junketer aversion NAME oncologist."     
+    ## [4] "NAME rehung tediously NAME hoers amplifying unlives mammeys NAME NAME NAME NAME?"                    
+    ## [5] "NAME kaliph downhill jubilee clearness sieved superintend NAME flops shiftlessness confers quarrier."
+    ## [6] "NAME contraindicated NAME NAME joshed inactivating NAME saltbush oiliest tubules circulatory NAME."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.072052 secs
+    ## Time difference of 0.0790689 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,060 words) and 5,493 replacement tokens in 2.1 seconds.
+(600,120 words) and 5,493 replacement tokens in 1.7 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 2.082474 secs
+    ## Time difference of 1.721217 secs
