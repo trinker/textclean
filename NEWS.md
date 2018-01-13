@@ -18,10 +18,8 @@ And constructed with the following guidelines:
 
 
 
-textclean 0.6.0 - 
+textclean 0.6.0 - 0.6.1
 ----------------------------------------------------------------
-
-**BUG FIXES**
 
 **NEW FEATURES**
 
@@ -41,13 +39,6 @@ textclean 0.6.0 -
   extracted strings, & replace the original matches with the extracted strings.
   This performs similar functionality to `gsubfn::gsubfn` but is less powerful.
   For more powerful needs see the **gsubfn** package.
-  
-**MINOR FEATURES**
-
-**IMPROVEMENTS**
-
-**CHANGES**
-
 
 
 
