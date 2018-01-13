@@ -1,6 +1,6 @@
 Package: textclean
 Title: Text Cleaning Tools
-Version: 0.6.1
+Version: 0.7.0
 Authors@R: c( person("Tyler", "Rinker", email = "tyler.rinker@gmail.com", role = c("aut",
           "cre")), person("ctwheels", "StackOverflow", role = "ctb") )
 Maintainer: Tyler Rinker <tyler.rinker@gmail.com>
@@ -18,5 +18,5 @@ License: GPL-2
 LazyData: TRUE
 Roxygen: list(wrap = FALSE)
 RoxygenNote: 6.0.1
-URL: http://github.com/trinker/textclean
-BugReports: http://github.com/trinker/textclean/issues
+URL: https://github.com/trinker/textclean
+BugReports: https://github.com/trinker/textclean/issues
