@@ -19,7 +19,7 @@
 #' together.  The strings are not guaranteed to retain exact spacing of the
 #' original.
 #' @export
-#' @seealso \code{\link[textclean]{mgsub}}
+#' @seealso \code{\link[textclean]{mgsub}}, \code{\link[textclean]{match_tokens}}
 #' @examples 
 #' replace_tokens(DATA$state, c('No', 'what', "it's"))
 #' replace_tokens(DATA$state, c('No', 'what', "it's"), "<<TOKEN>>")

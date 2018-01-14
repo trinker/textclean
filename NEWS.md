@@ -18,7 +18,25 @@ And constructed with the following guidelines:
 
 
 
-textclean 0.6.0 - 0.6.1
+textclean 0.7.0 -
+----------------------------------------------------------------
+
+**BUG FIXES**
+
+**NEW FEATURES**
+
+* `match_tokens` added to find all the tokens that match a regex(es) within a
+  given text vector.  This useful when combined with the `replace_tokens` 
+  function.
+  
+**MINOR FEATURES**
+
+**IMPROVEMENTS**
+
+**CHANGES**
+
+
+textclean 0.6.0 - 0.6.3
 ----------------------------------------------------------------
 
 **NEW FEATURES**

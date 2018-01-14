@@ -74,5 +74,5 @@ replace_tokens(x$text.var, nms, 'NAME')
 }
 }
 \seealso{
-\code{\link[textclean]{mgsub}}
+\code{\link[textclean]{mgsub}}, \code{\link[textclean]{match_tokens}}
 }

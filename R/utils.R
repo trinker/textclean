@@ -135,4 +135,4 @@ to_byte <- function(x){
 }
 
 
-
+rm_na <- function(x) x[!is.na(x)]
