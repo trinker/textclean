@@ -29,6 +29,12 @@ NEW FEATURES
   given text vector.  This useful when combined with the `replace_tokens` 
   function.
   
+* Fixed versions of `drop_element`/`keep_element` added to allow for dropping
+  elements specified by a known vector rather than a regex.
+
+* The `collapse` and `glue` functions from the **glue** package are reexported
+  for easy string manipulation.
+  
 MINOR FEATURES
 
 IMPROVEMENTS
