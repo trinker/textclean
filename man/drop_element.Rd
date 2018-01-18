@@ -2,19 +2,36 @@
 % Please edit documentation in R/drop_element.R
 \name{drop_element}
 \alias{drop_element}
+\alias{drop_element_regex}
+\alias{drop_element_fixed}
 \alias{keep_element}
+\alias{keep_element_fixed}
+\alias{keep_element_regex}
 \title{Filter Elements in a Vetor}
 \usage{
-drop_element(x, pattern, ...)
+drop_element(x, pattern, regex = TRUE, ...)
 
-keep_element(x, pattern, ...)
+drop_element_regex(x, pattern, ...)
+
+drop_element_fixed(x, ...)
+
+keep_element(x, pattern, regex = TRUE, ...)
+
+keep_element_fixed(x, ...)
+
+keep_element_regex(x, pattern, ...)
 }
 \arguments{
 \item{x}{A character vector.}
 
 \item{pattern}{A regex pattern to match for exclusion.}
 
-\item{\ldots}{Other arguments passed to \code{\link[base]{grep}}.}
+\item{regex}{logical.  If setting this to \code{TRUE} please use 
+\code{drop_element_regex} or \code{keep_element_regex} directly as this will
+provide better control and optimization.}
+
+\item{\ldots}{Other arguments passed to \code{\link[base]{grep}} if 
+\code{regex}.  If \code{fixed}, then elements to drop/keep.}
 }
 \value{
 Returns a vector with matching elements removed.
@@ -31,4 +48,8 @@ keep_element(x, '^d.+?g')
 drop_element(x, 'at$')
 drop_element(x, '^d')
 drop_element(x, '\\\\b(dog|cat)\\\\b')
+
+drop_element_fixed(x, 'bat', 'cat')
+drops <- c('bat', 'cat')
+drop_element_fixed(x, drops)
 }
