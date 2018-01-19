@@ -21,12 +21,8 @@
 #' replace_names(x)
 #' replace_names(x, replacement = '<<NAME>>')
 replace_names  <- function(x, 
-    names = gsub("(^.)(.*)", "\\U\\1\\L\\2", c(lexicon::freq_last_names[[1]], lexicon::common_names), perl = TRUE), 
+    names = textclean::drop_element(gsub("(^.)(.*)", "\\U\\1\\L\\2", c(lexicon::freq_last_names[[1]], lexicon::common_names), perl = TRUE), "^([AIU]n|[TSD]o|H[ea]Pa|Oh)$"), 
     replacement = "",  ...) {
 
     replace_tokens(x, names, replacement, ...)
 }
-
-
-
-
