@@ -66,5 +66,6 @@ x <- c(
 
 replace_html(x)
 replace_html(x, FALSE)
+replace_white(replace_html(x, FALSE))
 }
 \keyword{html}

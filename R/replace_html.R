@@ -54,6 +54,7 @@
 #' 
 #' replace_html(x)
 #' replace_html(x, FALSE)
+#' replace_white(replace_html(x, FALSE))
 replace_html <- function(x, symbol = TRUE, ...){
     if (isTRUE(symbol)) {
         reps <-  html_symbols[['symbol']]
@@ -72,7 +73,7 @@ html_symbols <- data.frame(
         "&hellip;", "&nbsp;", "&lt;", "&gt;", "&amp;", "&quot;", "&apos;",
         "&yen;"
     ), 
-    replace = c("(c)", "(r)", "tm", "\"", "\"", "'", 
+    symbol = c("(c)", "(r)", "tm", "\"", "\"", "'", 
         "'", "-", "-", "[]", "-", "-", "cents", "pounds", "euro", "!=", 
         "half", "quarter", "three fourths", "degrees", "<-", "->", "...",
         " ", "<", ">", "&", '"', "'", "yen"
