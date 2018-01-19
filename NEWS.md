@@ -29,9 +29,24 @@ textclean 0.7.0 -
   given text vector.  This useful when combined with the `replace_tokens` 
   function.
   
+* Fixed versions of `drop_element`/`keep_element` added to allow for dropping
+  elements specified by a known vector rather than a regex.
+
+* The `collapse` and `glue` functions from the **glue** package are reexported
+  for easy string manipulation.
+  
 **MINOR FEATURES**
 
 **IMPROVEMENTS**
+
+* `replace_names` drops the replacement of 
+    `c('An', 'To', 'Oh', 'So', 'Do', 'He', 'Ha', 'In', 'Pa', 'Un')` which are 
+    likely words and not names.
+    
+* `replace_html` picks ups some additional symbol replacments including:
+  `c("&trade;", "&ldquo;", "&rdquo;", "&lsquo;", "&rsquo;", "&bull;", "&middot;", 
+  "&sdot;", "&ndash;", "&mdash;", "&ne;", "&frac12;", "&frac14;", "&frac34;", 
+  "&deg;", "&larr;", "&rarr;", "&hellip;")`.
 
 **CHANGES**
 
