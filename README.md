@@ -121,7 +121,7 @@ table below:
 <tr class="even">
 <td><code>match_tokens</code></td>
 <td>filter elements</td>
-<td>Filter out tokens from strings that match a regex criteria</td>
+<td>Find tokens from strings that match a regex criteria</td>
 </tr>
 <tr class="odd">
 <td><code>replace_contractions</code></td>
