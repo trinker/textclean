@@ -119,7 +119,7 @@ table below:
 <td>Filter matching elements from a vector</td>
 </tr>
 <tr class="even">
-<td>&quot; <code>match_tokens</code></td>
+<td><code>match_tokens</code></td>
 <td>filter elements</td>
 <td>Filter out tokens from strings that match a regex criteria</td>
 </tr>
