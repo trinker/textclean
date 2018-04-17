@@ -44,7 +44,7 @@ The main functions, task category, & descriptions are summarized in the table be
 | `drop_row`/`keep_row`     | filter rows | Filter rows matching a regex          |
 | `drop_NA`                 | filter rows | Remove `NA` text rows                 |
 | `drop_element`/`keep_element` | filter elements | Filter matching elements from a vector   |
-" `match_tokens`            | filter elements | Filter out tokens from strings that match a regex criteria |
+| `match_tokens`            | filter elements | Filter out tokens from strings that match a regex criteria |
 | `replace_contractions`    | replacement | Replace contractions with both words  |
 | `replace_emoji`           | repalcement | Replace emojis with word equivalent or unique identifier |
 | `replace_emoticon`        | repalcement | Replace emoticons with word equivalent               |
