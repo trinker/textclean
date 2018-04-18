@@ -10,7 +10,7 @@
 #' @param \ldots ignored.
 #' @return Returns a vector with kern spaces removed.
 #' @references \url{https://stackoverflow.com/a/47438305/1000343}
-#' @author StackOverflow user @ctwheels 
+#' @author StackOverflow user @@ctwheels 
 #' @export
 #' @examples
 #' x <- c(
