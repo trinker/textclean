@@ -6,7 +6,7 @@
 #' @param x A character vector.
 #' @param pattern Character string to be matched in the given character vector. 
 #' @param replacement Character string equal in length to pattern or of length 
-#' one which are  a replacement for matched pattern. 
+#' one which are a replacement for matched pattern. 
 #' @param leadspace logical.  If \code{TRUE} inserts a leading space in the 
 #' replacements.
 #' @param trailspace logical.  If \code{TRUE} inserts a trailing space in the 
@@ -28,6 +28,24 @@
 #' @examples
 #' mgsub(DATA$state, c("it's", "I'm"), c("it is", "I am"))
 #' mgsub(DATA$state, "[[:punct:]]", "PUNC", fixed = FALSE)
+#' \dontrun{
+#' library(textclean)
+#' hunthou <- replace_number(seq_len(1e5)) 
+#' 
+#' textclean::mgsub("'twenty thousand three hundred five' into 20305", hunthou, seq_len(1e5))
+#' ## "'20305' into 20305"
+#' 
+#' ## Larger example from: https://stackoverflow.com/q/18332463/1000343
+#' ## A slower approach
+#' fivehunthou <- replace_number(seq_len(5e5)) 
+#' 
+#' testvect <- c("fifty seven", "four hundred fifty seven", "six thousand four hundred fifty seven", 
+#'     "forty six thousand four hundred fifty seven", "forty six thousand four hundred fifty seven", 
+#'     "three hundred forty six thousand four hundred fifty seven"
+#' )
+#' 
+#' textclean::mgsub(testvect, fivehunthou, seq_len(5e5))
+#' }
 mgsub <- function (x, pattern, replacement, leadspace = FALSE, 
     trailspace = FALSE, fixed = TRUE, trim = FALSE, order.pattern = fixed, 
     ...) {

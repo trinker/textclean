@@ -9,7 +9,7 @@ developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repos
 Status](https://travis-ci.org/trinker/textclean.svg?branch=master)](https://travis-ci.org/trinker/textclean)
 [![Coverage
 Status](https://coveralls.io/repos/trinker/textclean/badge.svg?branch=master)](https://coveralls.io/r/trinker/textclean?branch=master)
-[![](http://cranlogs.r-pkg.org/badges/textclean)](https://cran.r-project.org/package=textclean)
+[![](https://cranlogs.r-pkg.org/badges/textclean)](https://cran.r-project.org/package=textclean)
 
 ![](tools/textclean_logo/r_textclean.png)
 
@@ -522,7 +522,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are resplendent! 
+    ## You are superb! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -952,8 +952,8 @@ Sometimes HTML tags and symbols stick around like pesky gnats. The
 
     replace_html(x)
 
-    ## [1] " Random  text with symbols:   < > & \" '"         
-    ## [2] " More text   cents   pounds   yen   euro  (c) (r)"
+    ## [1] " Random  text with symbols:   < > & \" '" 
+    ## [2] " More text  cents pounds yen euro (c) (r)"
 
 ### Incomplete Sentences
 
@@ -1275,21 +1275,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "harianas lowers medicinal Lyndsay hoariness biodegradability Eileen entrain artists inadvisable righting unbelievable!"
-    ## [2] "sacbut boy verbalizations bialys Tennille Carolee Michelle Laureen seignory Elba diacid educe?"                        
-    ## [3] "heired Angelena Velia emigrations Timmy seth Matha disbursing ostmark besmudged Brendan outfinding!"                   
-    ## [4] "winona gonocytes Denny deluder cowls Belen axenic Dominque transom embower Dori Dorene!"                               
-    ## [5] "Joye Mac allegra Hilario gild queen shrewdly Fay discreetly Addie ratal Maynard?"                                      
-    ## [6] "musky spawn lamp scarf poach fervently lazare craals schmo who've cheekfuls encloser."
+    ## [1] "pottos import Dusty Sherman Wesley willamina joanne Jonie seise Madie golly houseling."                 
+    ## [2] "Lara quippus Janis click Altha Larita hollyhock tiding vanish Iola shampooed Lillia!"                   
+    ## [3] "Gidget Ardith beverages vitiate austen prostrated Delta Della zoologies wheelie vagrants combine."      
+    ## [4] "Sunni porridge maidhood imbitter romaines aimful resends Lelia Donny overlands thoughtless archduke."   
+    ## [5] "equipper sourest iss Shantel anabaenas Adrian bejumbles Roseanna hardpans xylocarp airdrops inspectors."
+    ## [6] "wrapper Nathanial based boyarisms Tessie Lulu rebid greegrees boxfishes tomorrows understated eristic?"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "harianas lowers medicinal NAME hoariness biodegradability NAME entrain artists inadvisable righting unbelievable!"
-    ## [2] "sacbut boy verbalizations bialys NAME NAME NAME NAME seignory NAME diacid educe?"                                 
-    ## [3] "heired NAME NAME emigrations NAME seth NAME disbursing ostmark besmudged NAME outfinding!"                        
-    ## [4] "winona gonocytes NAME deluder cowls NAME axenic NAME transom embower NAME NAME!"                                  
-    ## [5] "NAME NAME allegra NAME gild queen shrewdly NAME discreetly NAME ratal NAME?"                                      
-    ## [6] "musky spawn lamp scarf poach fervently lazare craals schmo who've cheekfuls encloser."
+    ## [1] "pottos import NAME NAME NAME willamina joanne NAME seise NAME golly houseling."                   
+    ## [2] "NAME quippus NAME click NAME NAME hollyhock tiding vanish NAME shampooed NAME!"                   
+    ## [3] "NAME NAME beverages vitiate austen prostrated NAME NAME zoologies wheelie vagrants combine."      
+    ## [4] "NAME porridge maidhood imbitter romaines aimful resends NAME NAME overlands thoughtless archduke."
+    ## [5] "equipper sourest iss NAME anabaenas NAME bejumbles NAME hardpans xylocarp airdrops inspectors."   
+    ## [6] "wrapper NAME based boyarisms NAME NAME rebid greegrees boxfishes tomorrows understated eristic?"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1298,37 +1298,37 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "harianas lowers medicinal NAME hoariness biodegradability NAME entrain artists inadvisable righting unbelievable!"
-    ## [2] "sacbut boy verbalizations bialys NAME NAME NAME NAME seignory NAME diacid educe?"                                 
-    ## [3] "heired NAME NAME emigrations NAME seth NAME disbursing ostmark besmudged NAME outfinding!"                        
-    ## [4] "winona gonocytes NAME deluder cowls NAME axenic NAME transom embower NAME NAME!"                                  
-    ## [5] "NAME NAME allegra NAME gild queen shrewdly NAME discreetly NAME ratal NAME?"                                      
-    ## [6] "musky spawn lamp scarf poach fervently lazare craals schmo who've cheekfuls encloser."
+    ## [1] "pottos import NAME NAME NAME willamina joanne NAME seise NAME golly houseling."                   
+    ## [2] "NAME quippus NAME click NAME NAME hollyhock tiding vanish NAME shampooed NAME!"                   
+    ## [3] "NAME NAME beverages vitiate austen prostrated NAME NAME zoologies wheelie vagrants combine."      
+    ## [4] "NAME porridge maidhood imbitter romaines aimful resends NAME NAME overlands thoughtless archduke."
+    ## [5] "equipper sourest iss NAME anabaenas NAME bejumbles NAME hardpans xylocarp airdrops inspectors."   
+    ## [6] "wrapper NAME based boyarisms NAME NAME rebid greegrees boxfishes tomorrows understated eristic?"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 8.24045 secs
+    ## Time difference of 7.605041 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "harianas lowers medicinal NAME hoariness biodegradability NAME entrain artists inadvisable righting unbelievable!"
-    ## [2] "sacbut boy verbalizations bialys NAME NAME NAME NAME seignory NAME diacid educe?"                                 
-    ## [3] "heired NAME NAME emigrations NAME seth NAME disbursing ostmark besmudged NAME outfinding!"                        
-    ## [4] "winona gonocytes NAME deluder cowls NAME axenic NAME transom embower NAME NAME!"                                  
-    ## [5] "NAME NAME allegra NAME gild queen shrewdly NAME discreetly NAME ratal NAME?"                                      
-    ## [6] "musky spawn lamp scarf poach fervently lazare craals schmo who've cheekfuls encloser."
+    ## [1] "pottos import NAME NAME NAME willamina joanne NAME seise NAME golly houseling."                   
+    ## [2] "NAME quippus NAME click NAME NAME hollyhock tiding vanish NAME shampooed NAME!"                   
+    ## [3] "NAME NAME beverages vitiate austen prostrated NAME NAME zoologies wheelie vagrants combine."      
+    ## [4] "NAME porridge maidhood imbitter romaines aimful resends NAME NAME overlands thoughtless archduke."
+    ## [5] "equipper sourest iss NAME anabaenas NAME bejumbles NAME hardpans xylocarp airdrops inspectors."   
+    ## [6] "wrapper NAME based boyarisms NAME NAME rebid greegrees boxfishes tomorrows understated eristic?"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.09105897 secs
+    ## Time difference of 0.104073 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,140 words) and 5,493 replacement tokens in 1.5 seconds.
+(600,080 words) and 5,493 replacement tokens in 1.7 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.522087 secs
+    ## Time difference of 1.722218 secs
