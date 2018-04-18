@@ -171,7 +171,7 @@ table below:
 <tr class="even">
 <td><code>replace_money</code></td>
 <td>replacement</td>
-<td>Replace money in the form of @\d+.?\d{0,2}</td>
+<td>Replace money in the form of $\d+.?\d{0,2}</td>
 </tr>
 <tr class="odd">
 <td><code>replace_names</code></td>
@@ -537,7 +537,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are phenomenal! 
+    ## You are stupendous! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -1290,21 +1290,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "curdlers chubbinesses preponderate steak bluebill somnolence hangovers Jacinta adjoins Kyle berate Vernon!"
-    ## [2] "phimosis slaughtered snooze Elsy myself Blanch Delores overcooling Brittney rend pulpital Rafael?"         
-    ## [3] "Letha tongueless weedy cowled Neida reorganized andriette Hai metastatic backless Nanci morselling!"       
-    ## [4] "immediacy traction tongers neptunium staph overemotional Larisa scilicet Katy Shanita ravagers Francie!"   
-    ## [5] "antimilitarist Charolette Kyle levelling cryogeny auklets reappoints Armandina rotting nougat Lina Ina?"   
-    ## [6] "wesley ganging Melissa Yaeko ingroup trista rudders glibber brain positron Martin Gerry!"
+    ## [1] "gladness pigpens lissom Lucia rebirth drivelled retelling maximums them Piedad jemmies hoard?"         
+    ## [2] "Fae millponds sudsless Karolyn gartering Andra Isabella helots guesser mopeds jugsful analgesia."      
+    ## [3] "grudgers perigee Stacey garvey Mariann cholla humidity arcs Tillie boffola kail Jetta!"                
+    ## [4] "Lorna fatherless Emmanuel Jeana Marry edna opinion freeness fastiduousness aglycone clotted hundredth."
+    ## [5] "whiffing pastilles avian Darrel Evalyn Angelo Vera thecal Syreeta Andrew influenza copalm."            
+    ## [6] "scup soapbox reglued Katrice emodin hunches aguste apnoeas monastics inclose sauls Angeline."
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "curdlers chubbinesses preponderate steak bluebill somnolence hangovers NAME adjoins NAME berate NAME!"
-    ## [2] "phimosis slaughtered snooze NAME myself NAME NAME overcooling NAME rend pulpital NAME?"               
-    ## [3] "NAME tongueless weedy cowled NAME reorganized andriette NAME metastatic backless NAME morselling!"    
-    ## [4] "immediacy traction tongers neptunium staph overemotional NAME scilicet NAME NAME ravagers NAME!"      
-    ## [5] "antimilitarist NAME NAME levelling cryogeny auklets reappoints NAME rotting nougat NAME NAME?"        
-    ## [6] "wesley ganging NAME NAME ingroup trista rudders glibber brain positron NAME NAME!"
+    ## [1] "gladness pigpens lissom NAME rebirth drivelled retelling maximums them NAME jemmies hoard?"     
+    ## [2] "NAME millponds sudsless NAME gartering NAME NAME helots guesser mopeds jugsful analgesia."      
+    ## [3] "grudgers perigee NAME garvey NAME cholla humidity arcs NAME boffola kail NAME!"                 
+    ## [4] "NAME fatherless NAME NAME NAME edna opinion freeness fastiduousness aglycone clotted hundredth."
+    ## [5] "whiffing pastilles avian NAME NAME NAME NAME thecal NAME NAME influenza copalm."                
+    ## [6] "scup soapbox reglued NAME emodin hunches aguste apnoeas monastics inclose sauls NAME."
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1313,37 +1313,37 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "curdlers chubbinesses preponderate steak bluebill somnolence hangovers NAME adjoins NAME berate NAME!"
-    ## [2] "phimosis slaughtered snooze NAME myself NAME NAME overcooling NAME rend pulpital NAME?"               
-    ## [3] "NAME tongueless weedy cowled NAME reorganized andriette NAME metastatic backless NAME morselling!"    
-    ## [4] "immediacy traction tongers neptunium staph overemotional NAME scilicet NAME NAME ravagers NAME!"      
-    ## [5] "antimilitarist NAME NAME levelling cryogeny auklets reappoints NAME rotting nougat NAME NAME?"        
-    ## [6] "wesley ganging NAME NAME ingroup trista rudders glibber brain positron NAME NAME!"
+    ## [1] "gladness pigpens lissom NAME rebirth drivelled retelling maximums them NAME jemmies hoard?"     
+    ## [2] "NAME millponds sudsless NAME gartering NAME NAME helots guesser mopeds jugsful analgesia."      
+    ## [3] "grudgers perigee NAME garvey NAME cholla humidity arcs NAME boffola kail NAME!"                 
+    ## [4] "NAME fatherless NAME NAME NAME edna opinion freeness fastiduousness aglycone clotted hundredth."
+    ## [5] "whiffing pastilles avian NAME NAME NAME NAME thecal NAME NAME influenza copalm."                
+    ## [6] "scup soapbox reglued NAME emodin hunches aguste apnoeas monastics inclose sauls NAME."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 7.04666 secs
+    ## Time difference of 7.36219 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "curdlers chubbinesses preponderate steak bluebill somnolence hangovers NAME adjoins NAME berate NAME!"
-    ## [2] "phimosis slaughtered snooze NAME myself NAME NAME overcooling NAME rend pulpital NAME?"               
-    ## [3] "NAME tongueless weedy cowled NAME reorganized andriette NAME metastatic backless NAME morselling!"    
-    ## [4] "immediacy traction tongers neptunium staph overemotional NAME scilicet NAME NAME ravagers NAME!"      
-    ## [5] "antimilitarist NAME NAME levelling cryogeny auklets reappoints NAME rotting nougat NAME NAME?"        
-    ## [6] "wesley ganging NAME NAME ingroup trista rudders glibber brain positron NAME NAME!"
+    ## [1] "gladness pigpens lissom NAME rebirth drivelled retelling maximums them NAME jemmies hoard?"     
+    ## [2] "NAME millponds sudsless NAME gartering NAME NAME helots guesser mopeds jugsful analgesia."      
+    ## [3] "grudgers perigee NAME garvey NAME cholla humidity arcs NAME boffola kail NAME!"                 
+    ## [4] "NAME fatherless NAME NAME NAME edna opinion freeness fastiduousness aglycone clotted hundredth."
+    ## [5] "whiffing pastilles avian NAME NAME NAME NAME thecal NAME NAME influenza copalm."                
+    ## [6] "scup soapbox reglued NAME emodin hunches aguste apnoeas monastics inclose sauls NAME."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.068048 secs
+    ## Time difference of 0.07305193 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,100 words) and 5,493 replacement tokens in 1.7 seconds.
+(600,100 words) and 5,493 replacement tokens in 1.6 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.681204 secs
+    ## Time difference of 1.567124 secs

@@ -54,7 +54,7 @@ The main functions, task category, & descriptions are summarized in the table be
 | `replace_incomplete`      | replacement | Replace incomplete sentence end-marks  |
 | `replace_internet_slang`  | replacment  | Replace Internet slang with word equivalents |
 | `replace_kern`            | replacement | Replace spaces for >2 letter, all cap, words containing spaces in between letters  |
-| `replace_money`           | replacement | Replace money  in the form of @\\d+.?\\d{0,2}  |
+| `replace_money`           | replacement | Replace money  in the form of $\\d+.?\\d{0,2}  |
 | `replace_names`           | replacement | Replace common first/last names     |
 | `replace_non_ascii`       | replacement | Replace non-ascii with equivalent or remove   |
 | `replace_number`          | replacement | Replace common numbers                |
