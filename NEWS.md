@@ -35,6 +35,16 @@ textclean 0.7.0 -
 * The `collapse` and `glue` functions from the **glue** package are reexported
   for easy string manipulation.
   
+* `replace_date` added for normalizing dates.
+
+* `replace_time` added for normalizing time stamps.
+
+* `replace_money` added for normalizing money references.
+
+* `mgsub` picks up a `safe` argument using the **mgsub** package as the backend.
+  In addition `mgsub_regex_safe` added to make the usage explicit.  The safe mode
+  comes at the cost of speed.
+  
 **MINOR FEATURES**
 
 **IMPROVEMENTS**

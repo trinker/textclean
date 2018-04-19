@@ -4,16 +4,19 @@
 \alias{mgsub}
 \alias{mgsub_fixed}
 \alias{mgsub_regex}
+\alias{mgsub_regex_safe}
 \title{Multiple \code{\link[base]{gsub}}}
 \usage{
 mgsub(x, pattern, replacement, leadspace = FALSE, trailspace = FALSE,
-  fixed = TRUE, trim = FALSE, order.pattern = fixed, ...)
+  fixed = TRUE, trim = FALSE, order.pattern = fixed, safe = FALSE, ...)
 
 mgsub_fixed(x, pattern, replacement, leadspace = FALSE, trailspace = FALSE,
-  fixed = TRUE, trim = FALSE, order.pattern = fixed, ...)
+  fixed = TRUE, trim = FALSE, order.pattern = fixed, safe = FALSE, ...)
 
 mgsub_regex(x, pattern, replacement, leadspace = FALSE, trailspace = FALSE,
   fixed = FALSE, trim = FALSE, order.pattern = fixed, ...)
+
+mgsub_regex_safe(x, pattern, replacement, ...)
 }
 \arguments{
 \item{x}{A character vector.}
@@ -40,7 +43,12 @@ removed and multiple white spaces are reduced to a single white space.}
 replacing meta strings (e.g., \code{pattern = c("the", "then")} resorts to 
 search for "then" first).}
 
-\item{\dots}{Additional arguments passed to \code{\link[base]{gsub}}.}
+\item{safe}{logical.  If \code{TRUE} then the \pkg{mgsub} package is used as
+the backend and performs safe substitutions.  The trade-off is that this mode
+will slow the replacements down considerably.}
+
+\item{\dots}{Additional arguments passed to \code{\link[base]{gsub}}. In 
+\code{mgsub_regex_safe} this is other arguments passed to \code{\link[mgsub]{mgsub}}.}
 }
 \value{
 \code{mgsub} - Returns a vector with the pattern replaced.
@@ -52,6 +60,8 @@ of search terms and a vector or single value of replacements.
 \code{mgsub_fixed} - An alias for \code{mgsub}.
 
 \code{mgsub_regex} - An wrapper for \code{mgsub} with \code{fixed = FALSE}.
+
+\code{mgsub_regex_safe} - An wrapper for \code{\link[mgsub]{mgsub}}.
 }
 \examples{
 mgsub(DATA$state, c("it's", "I'm"), c("it is", "I am"))
@@ -73,6 +83,14 @@ testvect <- c("fifty seven", "four hundred fifty seven", "six thousand four hund
 )
 
 textclean::mgsub(testvect, fivehunthou, seq_len(5e5))
+
+## Safe substitution: Uses the mgsub package as the backend
+dubious_string <- "Dopazamine is a fake chemical"
+pattern <- c("dopazamin","do.*ne")
+replacement <- c("freakout","metazamine")
+
+mgsub(dubious_string, pattern, replacement, ignore.case = TRUE, fixed = FALSE)
+mgsub(dubious_string, pattern, replacement, safe = TRUE, fixed = FALSE)
 }
 }
 \seealso{
