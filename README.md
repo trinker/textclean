@@ -540,7 +540,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are splendiferous! 
+    ## You are marvelous! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -1285,7 +1285,7 @@ extracted pattern.
             z[1] <- 'hh'
             z[2] <- 'mm'
             if(!is.na(z[3])) z[3] <- 'ss'
-            collapse(z, ':')
+            textclean::collapse(z, ':')
         }
     )
 
@@ -1331,21 +1331,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "Renetta Roberto capitula antra mooched saltpetre Cecile wahines Olinda bagworms geomancies Avril."
-    ## [2] "undraping Nikole Amanda trysts tuffets Soon Ofelia Kelley Cassie Annalisa telegramming euphuists!"
-    ## [3] "hoped coria Lyndia Soledad Van Shalon Tenisha streamy intelligently coronachs stowps Justa!"      
-    ## [4] "Regan Otha butterscotches Celia extractors chaim Johnnie Rosanne Delmar Sondra answering cammi!"  
-    ## [5] "postern soli kaspar cannie Evita ninette westerly ambo blamable anjanette Kathie Jamey."          
-    ## [6] "Kathi Yer Casey sploshing indebtednesses limns Arline mortared condenser extoll Tena outpasses?"
+    ## [1] "zippering precede Miguel Hollis Elmo kenneling reuniter Domonique prejudged zoners striating Estrella?"   
+    ## [2] "falters muff wormwoods Kay Derek Rita penelope undergod pricing Hortencia Kelley accuse."                 
+    ## [3] "Natalia superiorities yale kamsin renaud perceptively besieger mavises undergoes Jaimie Rodrick wizening?"
+    ## [4] "Yevette Sally tambala Miquel Irish Zack Idella Tisa Danial evangelism heyday coldness."                   
+    ## [5] "Bette Wyatt threadbare Hassie duettist Marco starnose fictive winceys refloat Rufus madam?"               
+    ## [6] "teethers Deanne mousing readopting ungainlinesses auburn purport sirrah Jean Elenore dodger reevaluated!"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "NAME NAME capitula antra mooched saltpetre NAME wahines NAME bagworms geomancies NAME."      
-    ## [2] "undraping NAME NAME trysts tuffets NAME NAME NAME NAME NAME telegramming euphuists!"         
-    ## [3] "hoped coria NAME NAME NAME NAME NAME streamy intelligently coronachs stowps NAME!"           
-    ## [4] "NAME NAME butterscotches NAME extractors chaim NAME NAME NAME NAME answering cammi!"         
-    ## [5] "postern soli kaspar cannie NAME ninette westerly ambo blamable anjanette NAME NAME."         
-    ## [6] "NAME NAME NAME sploshing indebtednesses limns NAME mortared condenser extoll NAME outpasses?"
+    ## [1] "zippering precede NAME NAME NAME kenneling reuniter NAME prejudged zoners striating NAME?"          
+    ## [2] "falters muff wormwoods NAME NAME NAME penelope undergod pricing NAME NAME accuse."                  
+    ## [3] "NAME superiorities yale kamsin renaud perceptively besieger mavises undergoes NAME NAME wizening?"  
+    ## [4] "NAME NAME tambala NAME NAME NAME NAME NAME NAME evangelism heyday coldness."                        
+    ## [5] "NAME NAME threadbare NAME duettist NAME starnose fictive winceys refloat NAME madam?"               
+    ## [6] "teethers NAME mousing readopting ungainlinesses auburn purport sirrah NAME NAME dodger reevaluated!"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1354,40 +1354,40 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "NAME NAME capitula antra mooched saltpetre NAME wahines NAME bagworms geomancies NAME."      
-    ## [2] "undraping NAME NAME trysts tuffets NAME NAME NAME NAME NAME telegramming euphuists!"         
-    ## [3] "hoped coria NAME NAME NAME NAME NAME streamy intelligently coronachs stowps NAME!"           
-    ## [4] "NAME NAME butterscotches NAME extractors chaim NAME NAME NAME NAME answering cammi!"         
-    ## [5] "postern soli kaspar cannie NAME ninette westerly ambo blamable anjanette NAME NAME."         
-    ## [6] "NAME NAME NAME sploshing indebtednesses limns NAME mortared condenser extoll NAME outpasses?"
+    ## [1] "zippering precede NAME NAME NAME kenneling reuniter NAME prejudged zoners striating NAME?"          
+    ## [2] "falters muff wormwoods NAME NAME NAME penelope undergod pricing NAME NAME accuse."                  
+    ## [3] "NAME superiorities yale kamsin renaud perceptively besieger mavises undergoes NAME NAME wizening?"  
+    ## [4] "NAME NAME tambala NAME NAME NAME NAME NAME NAME evangelism heyday coldness."                        
+    ## [5] "NAME NAME threadbare NAME duettist NAME starnose fictive winceys refloat NAME madam?"               
+    ## [6] "teethers NAME mousing readopting ungainlinesses auburn purport sirrah NAME NAME dodger reevaluated!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 7.431794 secs
+    ## Time difference of 7.611885 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "NAME NAME capitula antra mooched saltpetre NAME wahines NAME bagworms geomancies NAME."      
-    ## [2] "undraping NAME NAME trysts tuffets NAME NAME NAME NAME NAME telegramming euphuists!"         
-    ## [3] "hoped coria NAME NAME NAME NAME NAME streamy intelligently coronachs stowps NAME!"           
-    ## [4] "NAME NAME butterscotches NAME extractors chaim NAME NAME NAME NAME answering cammi!"         
-    ## [5] "postern soli kaspar cannie NAME ninette westerly ambo blamable anjanette NAME NAME."         
-    ## [6] "NAME NAME NAME sploshing indebtednesses limns NAME mortared condenser extoll NAME outpasses?"
+    ## [1] "zippering precede NAME NAME NAME kenneling reuniter NAME prejudged zoners striating NAME?"          
+    ## [2] "falters muff wormwoods NAME NAME NAME penelope undergod pricing NAME NAME accuse."                  
+    ## [3] "NAME superiorities yale kamsin renaud perceptively besieger mavises undergoes NAME NAME wizening?"  
+    ## [4] "NAME NAME tambala NAME NAME NAME NAME NAME NAME evangelism heyday coldness."                        
+    ## [5] "NAME NAME threadbare NAME duettist NAME starnose fictive winceys refloat NAME madam?"               
+    ## [6] "teethers NAME mousing readopting ungainlinesses auburn purport sirrah NAME NAME dodger reevaluated!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.1060741 secs
+    ## Time difference of 0.08307314 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,080 words) and 5,493 replacement tokens in 1.7 seconds.
+(600,060 words) and 5,493 replacement tokens in 1.6 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.72727 secs
+    ## Time difference of 1.613157 secs
 
 ### White Space
 
