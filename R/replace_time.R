@@ -16,11 +16,13 @@
 #'     'what about 14:24.5', 'And then 99:99:99?'
 #' )
 #' 
+#' ## Textual: Word version
 #' replace_time(x)
 #' 
-#' 
+#' ## Normalization: <<TIME>>
 #' replace_time(x, replacement = '<<TIME>>')
 #' 
+#' ## Normalization: hh:mm:ss or hh:mm
 #' replace_time(x, replacement = function(y){
 #'         z <- unlist(strsplit(y, '[:.]'))
 #'         z[1] <- 'hh'
@@ -30,13 +32,15 @@
 #'     }
 #' )
 #' 
+#' ## Textual: Word version (forced seconds)
 #' replace_time(x, replacement = function(y){
 #'         z <- replace_number(unlist(strsplit(y, '[:.]')))
 #'         z[3] <- paste0('and ', ifelse(is.na(z[3]), '0', z[3]), ' seconds')
 #'         paste(z, collapse = ' ')
 #'     }
 #' )
-#' 
+#'  
+#' ## Normalization: hh:mm:ss
 #' replace_time(x, replacement = function(y){
 #'         z <- unlist(strsplit(y, '[:.]'))
 #'         z[1] <- 'hh'
