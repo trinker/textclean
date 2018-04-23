@@ -30,6 +30,24 @@
 #' replace_number(x)
 #' replace_number(x, num.paste = TRUE)
 #' replace_number(x, remove=TRUE)
+#' \dontrun{
+#' library(textclean)
+#' hunthou <- replace_number(seq_len(1e5)) 
+#' 
+#' textclean::mgsub("'twenty thousand three hundred five' into 20305", hunthou, seq_len(1e5))
+#' ## "'20305' into 20305"
+#' 
+#' ## Larger example from: https://stackoverflow.com/q/18332463/1000343
+#' ## A slower approach
+#' fivehunthou <- replace_number(seq_len(5e5)) 
+#' 
+#' testvect <- c("fifty seven", "four hundred fifty seven", "six thousand four hundred fifty seven", 
+#'     "forty six thousand four hundred fifty seven", "forty six thousand four hundred fifty seven", 
+#'     "three hundred forty six thousand four hundred fifty seven"
+#' )
+#' 
+#' textclean::mgsub(testvect, fivehunthou, seq_len(5e5))
+#' }
 replace_number  <- function(x, num.paste = FALSE, remove = FALSE, ...) {
 
     x <- as.character(x)

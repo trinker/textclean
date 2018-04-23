@@ -21,7 +21,7 @@ state and is being actively
 developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.org/trinker/textclean.svg?branch=master)](https://travis-ci.org/trinker/textclean)
 [![Coverage Status](https://coveralls.io/repos/trinker/textclean/badge.svg?branch=master)](https://coveralls.io/r/trinker/textclean?branch=master)
-[![](http://cranlogs.r-pkg.org/badges/textclean)](https://cran.r-project.org/package=textclean)
+[![](https://cranlogs.r-pkg.org/badges/textclean)](https://cran.r-project.org/package=textclean)
 `r verbadge`
 
 ![](tools/textclean_logo/r_textclean.png)
@@ -36,7 +36,7 @@ The main functions, task category, & descriptions are summarized in the table be
 | Function                  | Task        | Description                           | 
 |---------------------------|-------------|---------------------------------------| 
 | `mgsub`                   | subbing     | Multiple `gsub`                       |
-| `fgsub`                   | subbing     | Functional matching replacement `gsub`                       |
+| `fgsub`                   | subbing     | Functional matching replacement `gsub`  |
 | `sub_holder`              | subbing     | Hold a value prior to a `strip`       |
 | `swap`                    | subbing     | Simultaneously swap patterns 1 & 2    |
 | `strip`                   | deletion    | Remove all non word characters        |
@@ -44,24 +44,27 @@ The main functions, task category, & descriptions are summarized in the table be
 | `drop_row`/`keep_row`     | filter rows | Filter rows matching a regex          |
 | `drop_NA`                 | filter rows | Remove `NA` text rows                 |
 | `drop_element`/`keep_element` | filter elements | Filter matching elements from a vector   |
-" `match_tokens`            | filter elements | Filter out tokens from strings that match a regex criteria |
+| `match_tokens`            | filter elements | Filter out tokens from strings that match a regex criteria |
 | `replace_contractions`    | replacement | Replace contractions with both words  |
-| `replace_emoji`           | repalcement | Replace emojis with word equivalent or unique identifier |
-| `replace_emoticon`        | repalcement | Replace emoticons with word equivalent               |
-| `replace_grade`           | repalcement | Replace grades (e.g., "A+") with word equivalent     |
+| `replace_date`            | replacement | Replace dates                         |
+| `replace_emoji`           | replacement | Replace emojis with word equivalent or unique identifier |
+| `replace_emoticon`        | replacement | Replace emoticons with word equivalent               |
+| `replace_grade`           | replacement | Replace grades (e.g., "A+") with word equivalent     |
 | `replace_html`            | replacement | Replace HTML tags and symbols  |
 | `replace_incomplete`      | replacement | Replace incomplete sentence end-marks  |
-| `replace_internet_slang`  | replacment  | Replace Internet slang with word equivalents |
+| `replace_internet_slang`  | replacement  | Replace Internet slang with word equivalents |
 | `replace_kern`            | replacement | Replace spaces for >2 letter, all cap, words containing spaces in between letters  |
+| `replace_money`           | replacement | Replace money  in the form of $\\d+.?\\d{0,2}  |
 | `replace_names`           | replacement | Replace common first/last names     |
-| `replace_non_ascii`       | replacement | Replace non-ascii with equivalent or remove   |
+| `replace_non_ascii`       | replacement | Replace non-ASCII with equivalent or remove   |
 | `replace_number`          | replacement | Replace common numbers                |
 | `replace_ordinal`         | replacement | Replace common ordinal number form    |
-| `replace_rating`          | repalcement | Replace ratings (e.g., "10 out of 10", "3 stars") with word equivalent |
+| `replace_rating`          | replacement | Replace ratings (e.g., "10 out of 10", "3 stars") with word equivalent |
 | `replace_symbol`          | replacement | Replace common symbols                |
-| `replace_white`           | replacement | Replace regex white space characters  |
+| `replace_time`            | replacement | Replace time stamps                   |
 | `replace_token`           | replacement | Remove or replace a vector of tokens with a single value |
-| `replace_word_elongation` | repalcement | Replace word elongations with shortened form  |
+| `replace_white`           | replacement | Replace regex white space characters  |
+| `replace_word_elongation` | replacement | Replace word elongations with shortened form  |
 | `add_comma_space`         | replacement | Replace non-space after comma         |
 | `add_missing_endmark`     | replacement | Replace missing endmarks with desired symbol |
 | `make_plural`             | replacement | Add plural endings to singular noun forms |
@@ -233,6 +236,15 @@ replace_contraction(x)
 ```
 
 
+### Dates
+
+```{r}
+x <- c(NA, '11-16-1980 and 11/16/1980', "and 2017-02-08 but then there's 2/8/2017 too")
+
+replace_date(x)
+replace_date(x, replacement = '<<DATE>>')
+```
+
 ### Emojis
 
 Similar to emoticons, emoji tokens may be ignored if they are not in a computer readable form.  `replace_emoji` replaces emojis with their word forms equivalents.
@@ -341,9 +353,24 @@ x <- c(
 replace_kern(x)
 ```
 
+### Money
+
+There are times one may want to replace money mentions with text or normalized versions.  The `replace_money` function is designed to complete this task.
+
+```{r}
+x <- c(NA, '$3.16 into "three dollars, sixteen cents"', "-$20,333.18 too", 'fff')
+ 
+replace_money(x)
+```
+
+```{r}
+replace_money(x, replacement = '<<MONEY>>')
+```
+
+
 ### Names
 
-Often one will want to standardize text by removing first and last names.  The `replace_names` function quickly removes/replaces common first and last names.  This can be made more targeted by feeding a vector of names extractracted via a named entity extractor.
+Often one will want to standardize text by removing first and last names.  The `replace_names` function quickly removes/replaces common first and last names.  This can be made more targeted by feeding a vector of names extracted via a named entity extractor.
 
 ```{r}
 x <- c(
@@ -440,34 +467,41 @@ x <- c("I am @ Jon's & Jim's w/ Marry",
 replace_symbol(x)
 ```
 
-### White Space
+### Time Stamps
 
-Regex white space characters (e.g., `\n`, `\t`, `\r`) matched by `\s` may impede analysis.  These can be replaced with a single space `" "` via the `replace_white` function.
-
-```{r}
-x <- "I go \r
-    to   the \tnext line"
-x
-cat(x)
-replace_white(x)
-```
-
-### Word Elongation
-
-In informal writing people may use a form of text embellishment to emphasize or alter word meanings called elongation (a.k.a. "word lengthening").  For example, the use of "Whyyyyy" conveys frustration.  Other times the usage may be to be more sexy (e.g., "Heyyyy there").  Other times it may be used for emphasis (e.g., "This is so gooood").
-
-The `replace_word_elongation` function replaces these un-normalized forms with the most likely normalized form.  The `impart.meaning` argument can replace a short list of known elongations with semantic replacements.
+Often times the researcher will want to replace times with a text or normalized version.  The `replace_time` function works well for this task.  Notice that replacement takes a function that can operate on the extracted pattern.
 
 ```{r}
-x <- c('look', 'noooooo!', 'real coooool!', "it's sooo goooood", 'fsdfds',
-    'fdddf', 'as', "aaaahahahahaha", "aabbccxccbbaa", 'I said heyyy!',
-    "I'm liiiike whyyyyy me?", "Wwwhhatttt!", NA)
+x <- c(
+    NA, '12:47 to "twelve forty-seven" and also 8:35:02',
+    'what about 14:24.5', 'And then 99:99:99?'
+)
 
-replace_word_elongation(x)
-replace_word_elongation(x, impart.meaning = TRUE)
+## Textual: Word version
+replace_time(x)
+
+## Normalization: <<TIME>>
+replace_time(x, replacement = '<<TIME>>')
+
+## Normalization: hh:mm:ss or hh:mm
+replace_time(x, replacement = function(y){
+        z <- unlist(strsplit(y, '[:.]'))
+        z[1] <- 'hh'
+        z[2] <- 'mm'
+        if(!is.na(z[3])) z[3] <- 'ss'
+        textclean::collapse(z, ':')
+    }
+)
+
+## Textual: Word version (forced seconds)
+replace_time(x, replacement = function(y){
+        z <- replace_number(unlist(strsplit(y, '[:.]')))
+        z[3] <- paste0('and ', ifelse(is.na(z[3]), '0', z[3]), ' seconds')
+        paste(z, collapse = ' ')
+    }
+)
+
 ```
-
-
 
 ### Tokens
 
@@ -521,3 +555,32 @@ out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
 ```{r, echo=FALSE}
 toc
 ```
+
+
+### White Space
+
+Regex white space characters (e.g., `\n`, `\t`, `\r`) matched by `\s` may impede analysis.  These can be replaced with a single space `" "` via the `replace_white` function.
+
+```{r}
+x <- "I go \r
+    to   the \tnext line"
+x
+cat(x)
+replace_white(x)
+```
+
+### Word Elongation
+
+In informal writing people may use a form of text embellishment to emphasize or alter word meanings called elongation (a.k.a. "word lengthening").  For example, the use of "Whyyyyy" conveys frustration.  Other times the usage may be to be more sexy (e.g., "Heyyyy there").  Other times it may be used for emphasis (e.g., "This is so gooood").
+
+The `replace_word_elongation` function replaces these un-normalized forms with the most likely normalized form.  The `impart.meaning` argument can replace a short list of known elongations with semantic replacements.
+
+```{r}
+x <- c('look', 'noooooo!', 'real coooool!', "it's sooo goooood", 'fsdfds',
+    'fdddf', 'as', "aaaahahahahaha", "aabbccxccbbaa", 'I said heyyy!',
+    "I'm liiiike whyyyyy me?", "Wwwhhatttt!", NA)
+
+replace_word_elongation(x)
+replace_word_elongation(x, impart.meaning = TRUE)
+```
+

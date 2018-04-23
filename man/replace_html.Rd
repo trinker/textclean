@@ -25,19 +25,37 @@ markup is replaced with equivalent symbols.
 Replacements for symbols are as follows:
 
 \tabular{lr}{
-    \bold{html} \tab  \bold{symbol} \cr
-  &nbsp;   \tab      \cr
-    &lt;   \tab < \cr
-    &gt;   \tab  > \cr
-   &amp;   \tab & \cr
+ \bold{html} \tab  \bold{symbol} \cr
+  &copy;   \tab (c) \cr
+  &reg;   \tab (r) \cr
+  &trade;   \tab tm \cr
+  &ldquo;   \tab " \cr
+  &rdquo;   \tab " \cr
+  &lsquo;   \tab ' \cr
+  &rsquo;   \tab ' \cr
+  &bull;   \tab - \cr
+  &middot;   \tab - \cr
+  &sdot;   \tab [] \cr
+  &ndash;   \tab - \cr
+  &mdash;   \tab - \cr
+  &cent;   \tab cents \cr
+  &pound;   \tab pounds \cr
+  &euro;   \tab euro \cr
+  &ne;   \tab != \cr
+  &frac12;   \tab half \cr
+  &frac14;   \tab quarter \cr
+  &frac34;   \tab three fourths \cr
+  &deg;   \tab degrees \cr
+  &larr;   \tab <- \cr
+  &rarr;   \tab -> \cr
+  &hellip;   \tab ... \cr
+  &nbsp;   \tab   \cr
+  &lt;   \tab < \cr
+  &gt;   \tab > \cr
+  &amp;   \tab & \cr
   &quot;   \tab " \cr
   &apos;   \tab ' \cr
-  &cent;   \tab cents  \cr
- &pound;   \tab pounds  \cr
-   &yen;   \tab yen \cr
-  &euro;   \tab euro \cr
-  &copy;   \tab (c) \cr
-   &reg;   \tab (r) \cr
+  &yen;   \tab yen \cr
 }
 }
 \examples{
@@ -48,5 +66,6 @@ x <- c(
 
 replace_html(x)
 replace_html(x, FALSE)
+replace_white(replace_html(x, FALSE))
 }
 \keyword{html}

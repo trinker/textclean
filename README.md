@@ -9,7 +9,7 @@ developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repos
 Status](https://travis-ci.org/trinker/textclean.svg?branch=master)](https://travis-ci.org/trinker/textclean)
 [![Coverage
 Status](https://coveralls.io/repos/trinker/textclean/badge.svg?branch=master)](https://coveralls.io/r/trinker/textclean?branch=master)
-[![](http://cranlogs.r-pkg.org/badges/textclean)](https://cran.r-project.org/package=textclean)
+[![](https://cranlogs.r-pkg.org/badges/textclean)](https://cran.r-project.org/package=textclean)
 
 ![](tools/textclean_logo/r_textclean.png)
 
@@ -35,6 +35,7 @@ Table of Contents
         -   [Stashing Character Pre-Sub](#stashing-character-pre-sub)
     -   [Replacement](#replacement)
         -   [Contractions](#contractions)
+        -   [Dates](#dates)
         -   [Emojis](#emojis)
         -   [Emoticons](#emoticons)
         -   [Grades](#grades)
@@ -42,15 +43,17 @@ Table of Contents
         -   [Incomplete Sentences](#incomplete-sentences)
         -   [Internet Slang](#internet-slang)
         -   [Kerning](#kerning)
+        -   [Money](#money)
         -   [Names](#names)
         -   [Non-ASCII Characters](#non-ascii-characters)
         -   [Numbers](#numbers)
         -   [Ratings](#ratings)
         -   [Ordinal Numbers](#ordinal-numbers)
         -   [Symbols](#symbols)
+        -   [Time Stamps](#time-stamps)
+        -   [Tokens](#tokens)
         -   [White Space](#white-space)
         -   [Word Elongation](#word-elongation)
-        -   [Tokens](#tokens)
 
 Functions
 ============
@@ -119,7 +122,7 @@ table below:
 <td>Filter matching elements from a vector</td>
 </tr>
 <tr class="even">
-<td>&quot; <code>match_tokens</code></td>
+<td><code>match_tokens</code></td>
 <td>filter elements</td>
 <td>Filter out tokens from strings that match a regex criteria</td>
 </tr>
@@ -129,39 +132,49 @@ table below:
 <td>Replace contractions with both words</td>
 </tr>
 <tr class="even">
+<td><code>replace_date</code></td>
+<td>replacement</td>
+<td>Replace dates</td>
+</tr>
+<tr class="odd">
 <td><code>replace_emoji</code></td>
-<td>repalcement</td>
+<td>replacement</td>
 <td>Replace emojis with word equivalent or unique identifier</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_emoticon</code></td>
-<td>repalcement</td>
+<td>replacement</td>
 <td>Replace emoticons with word equivalent</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_grade</code></td>
-<td>repalcement</td>
+<td>replacement</td>
 <td>Replace grades (e.g., &quot;A+&quot;) with word equivalent</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_html</code></td>
 <td>replacement</td>
 <td>Replace HTML tags and symbols</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_incomplete</code></td>
 <td>replacement</td>
 <td>Replace incomplete sentence end-marks</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_internet_slang</code></td>
-<td>replacment</td>
+<td>replacement</td>
 <td>Replace Internet slang with word equivalents</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_kern</code></td>
 <td>replacement</td>
 <td>Replace spaces for &gt;2 letter, all cap, words containing spaces in between letters</td>
+</tr>
+<tr class="even">
+<td><code>replace_money</code></td>
+<td>replacement</td>
+<td>Replace money in the form of $\d+.?\d{0,2}</td>
 </tr>
 <tr class="odd">
 <td><code>replace_names</code></td>
@@ -171,7 +184,7 @@ table below:
 <tr class="even">
 <td><code>replace_non_ascii</code></td>
 <td>replacement</td>
-<td>Replace non-ascii with equivalent or remove</td>
+<td>Replace non-ASCII with equivalent or remove</td>
 </tr>
 <tr class="odd">
 <td><code>replace_number</code></td>
@@ -185,7 +198,7 @@ table below:
 </tr>
 <tr class="odd">
 <td><code>replace_rating</code></td>
-<td>repalcement</td>
+<td>replacement</td>
 <td>Replace ratings (e.g., &quot;10 out of 10&quot;, &quot;3 stars&quot;) with word equivalent</td>
 </tr>
 <tr class="even">
@@ -194,9 +207,9 @@ table below:
 <td>Replace common symbols</td>
 </tr>
 <tr class="odd">
-<td><code>replace_white</code></td>
+<td><code>replace_time</code></td>
 <td>replacement</td>
-<td>Replace regex white space characters</td>
+<td>Replace time stamps</td>
 </tr>
 <tr class="even">
 <td><code>replace_token</code></td>
@@ -204,31 +217,36 @@ table below:
 <td>Remove or replace a vector of tokens with a single value</td>
 </tr>
 <tr class="odd">
-<td><code>replace_word_elongation</code></td>
-<td>repalcement</td>
-<td>Replace word elongations with shortened form</td>
+<td><code>replace_white</code></td>
+<td>replacement</td>
+<td>Replace regex white space characters</td>
 </tr>
 <tr class="even">
+<td><code>replace_word_elongation</code></td>
+<td>replacement</td>
+<td>Replace word elongations with shortened form</td>
+</tr>
+<tr class="odd">
 <td><code>add_comma_space</code></td>
 <td>replacement</td>
 <td>Replace non-space after comma</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>add_missing_endmark</code></td>
 <td>replacement</td>
 <td>Replace missing endmarks with desired symbol</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>make_plural</code></td>
 <td>replacement</td>
 <td>Add plural endings to singular noun forms</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>check_text</code></td>
 <td>check</td>
 <td>Text report of potential issues</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>has_endmark</code></td>
 <td>check</td>
 <td>Check if an element has an end-mark</td>
@@ -522,7 +540,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are righteous! 
+    ## You are indomitable! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -868,6 +886,22 @@ provides this functionality.
     ## [4] "the robot at t.s. was not nice"     
     ## [5] "he would like it if I would go away"
 
+### Dates
+
+    x <- c(NA, '11-16-1980 and 11/16/1980', "and 2017-02-08 but then there's 2/8/2017 too")
+
+    replace_date(x)
+
+    ## [1] NA                                                                                                             
+    ## [2] "November sixteenth, one thousand nine hundred eighty and November sixteenth, one thousand nine hundred eighty"
+    ## [3] "and February eighth, two thousand seventeen but then there's February eighth, two thousand seventeen too"
+
+    replace_date(x, replacement = '<<DATE>>')
+
+    ## [1] NA                                          
+    ## [2] "<<DATE>> and <<DATE>>"                     
+    ## [3] "and <<DATE>> but then there's <<DATE>> too"
+
 ### Emojis
 
 Similar to emoticons, emoji tokens may be ignored if they are not in a
@@ -1018,12 +1052,34 @@ capital letters with spaces in between and removes the spaces.
     ## [3] "A sort CAT indeed!"                           
     ## [4] NA
 
+### Money
+
+There are times one may want to replace money mentions with text or
+normalized versions. The `replace_money` function is designed to
+complete this task.
+
+    x <- c(NA, '$3.16 into "three dollars, sixteen cents"', "-$20,333.18 too", 'fff')
+     
+    replace_money(x)
+
+    ## [1] NA                                                                                  
+    ## [2] "three dollars and sixteen cents into \"three dollars, sixteen cents\""             
+    ## [3] "negative twenty thousand three hundred thirty three dollars and eighteen cents too"
+    ## [4] "fff"
+
+    replace_money(x, replacement = '<<MONEY>>')
+
+    ## [1] NA                                               
+    ## [2] "<<MONEY>> into \"three dollars, sixteen cents\""
+    ## [3] "<<MONEY>> too"                                  
+    ## [4] "fff"
+
 ### Names
 
 Often one will want to standardize text by removing first and last
 names. The `replace_names` function quickly removes/replaces common
 first and last names. This can be made more targeted by feeding a vector
-of names extractracted via a named entity extractor.
+of names extracted via a named entity extractor.
 
     x <- c(
         "Mary Smith is not here",
@@ -1195,6 +1251,144 @@ symbols `c("$", "%", "#", "@", "& "w/")` with their word equivalents.
     ## [2] "I owe  dollar 41 for food"               
     ## [3] "two is 10 percent  of a  number "
 
+### Time Stamps
+
+Often times the researcher will want to replace times with a text or
+normalized version. The `replace_time` function works well for this
+task. Notice that replacement takes a function that can operate on the
+extracted pattern.
+
+    x <- c(
+        NA, '12:47 to "twelve forty-seven" and also 8:35:02',
+        'what about 14:24.5', 'And then 99:99:99?'
+    )
+
+    ## Textual: Word version
+    replace_time(x)
+
+    ## [1] NA                                                                                       
+    ## [2] "twelve forty seven to \"twelve forty-seven\" and also eight thirty five and two seconds"
+    ## [3] "what about fourteen twenty four and five seconds"                                       
+    ## [4] "And then 99:99:99?"
+
+    ## Normalization: <<TIME>>
+    replace_time(x, replacement = '<<TIME>>')
+
+    ## [1] NA                                                    
+    ## [2] "<<TIME>> to \"twelve forty-seven\" and also <<TIME>>"
+    ## [3] "what about <<TIME>>"                                 
+    ## [4] "And then 99:99:99?"
+
+    ## Normalization: hh:mm:ss or hh:mm
+    replace_time(x, replacement = function(y){
+            z <- unlist(strsplit(y, '[:.]'))
+            z[1] <- 'hh'
+            z[2] <- 'mm'
+            if(!is.na(z[3])) z[3] <- 'ss'
+            textclean::collapse(z, ':')
+        }
+    )
+
+    ## [1] NA                                                 
+    ## [2] "hh:mm to \"twelve forty-seven\" and also hh:mm:ss"
+    ## [3] "what about hh:mm:ss"                              
+    ## [4] "And then 99:99:99?"
+
+    ## Textual: Word version (forced seconds)
+    replace_time(x, replacement = function(y){
+            z <- replace_number(unlist(strsplit(y, '[:.]')))
+            z[3] <- paste0('and ', ifelse(is.na(z[3]), '0', z[3]), ' seconds')
+            paste(z, collapse = ' ')
+        }
+    )
+
+    ## [1] NA                                                                                                     
+    ## [2] "twelve forty seven and 0 seconds to \"twelve forty-seven\" and also eight thirty five and two seconds"
+    ## [3] "what about fourteen twenty four and five seconds"                                                     
+    ## [4] "And then 99:99:99?"
+
+### Tokens
+
+Often an analysis requires converting tokens of a certain type into a
+common form or removing them entirely. The `mgsub` function can do this
+task, however it is regex based and time consuming when the number of
+tokens to replace is large. For example, one may want to replace all
+proper nouns that are first names with the word name. The
+`replace_token` provides a fast way to replace a group of tokens with a
+single replacement.
+
+This example shows a use case for `replace_token`:
+
+    ## Set Up the Tokens to Replace
+    nms <- gsub("(^.)(.*)", "\\U\\1\\L\\2", lexicon::common_names, perl = TRUE)
+    head(nms)
+
+    ## [1] "Mary"      "Patricia"  "Linda"     "Barbara"   "Elizabeth" "Jennifer"
+
+    ## Set Up the Data
+    x <- textshape::split_portion(sample(c(sample(lexicon::grady_augmented, 20000), 
+        sample(nms, 10000, TRUE))), n.words = 12)
+    x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
+    head(x$text.var)
+
+    ## [1] "windigos Lorna holts constituting outdressed Athena Delaine Wyatt rummiest exhorts nationally merchanting?"   
+    ## [2] "Edgardo mists lionising Jackqueline racketiest cruel mitchell upcoiling showed potbellied ament fluxion."     
+    ## [3] "Yevette snools tenderizing puzzlers Chandra stablest berkeley twinnings dorolisa issues deerskins preening?"  
+    ## [4] "libelant Lanie sled motoric houselling Tommye baptists reeved romancer heteros loners skydive!"               
+    ## [5] "Jule Velma Emmie ghosted Erline Kenny kaiserin obligate benumbed Bambi Mathilde refounding."                  
+    ## [6] "Kasey cavefish bicycling slobbering pygmoid Luvenia swordmen caustic Laquanda Kiersten hyssop contradictions."
+
+    head(replace_tokens(x$text.var, nms, 'NAME'))
+
+    ## [1] "windigos NAME holts constituting outdressed NAME NAME NAME rummiest exhorts nationally merchanting?"  
+    ## [2] "NAME mists lionising NAME racketiest cruel mitchell upcoiling showed potbellied ament fluxion."       
+    ## [3] "NAME snools tenderizing puzzlers NAME stablest berkeley twinnings dorolisa issues deerskins preening?"
+    ## [4] "libelant NAME sled motoric houselling NAME baptists reeved romancer heteros loners skydive!"          
+    ## [5] "NAME NAME NAME ghosted NAME NAME kaiserin obligate benumbed NAME NAME refounding."                    
+    ## [6] "NAME cavefish bicycling slobbering pygmoid NAME swordmen caustic NAME NAME hyssop contradictions."
+
+This demonstration shows how fast token replacement can be with
+`replace_token`:
+
+    ## mgsub
+    tic <- Sys.time()
+    head(mgsub(x$text.var, nms, "NAME"))
+
+    ## [1] "windigos NAME holts constituting outdressed NAME NAME NAME rummiest exhorts nationally merchanting?"  
+    ## [2] "NAME mists lionising NAME racketiest cruel mitchell upcoiling showed potbellied ament fluxion."       
+    ## [3] "NAME snools tenderizing puzzlers NAME stablest berkeley twinnings dorolisa issues deerskins preening?"
+    ## [4] "libelant NAME sled motoric houselling NAME baptists reeved romancer heteros loners skydive!"          
+    ## [5] "NAME NAME NAME ghosted NAME NAME kaiserin obligate benumbed NAME NAME refounding."                    
+    ## [6] "NAME cavefish bicycling slobbering pygmoid NAME swordmen caustic NAME NAME hyssop contradictions."
+
+    (toc <- Sys.time() - tic)
+
+    ## Time difference of 8.195497 secs
+
+    ## replace_tokens
+    tic <- Sys.time()
+    head(replace_tokens(x$text.var, nms, "NAME"))
+
+    ## [1] "windigos NAME holts constituting outdressed NAME NAME NAME rummiest exhorts nationally merchanting?"  
+    ## [2] "NAME mists lionising NAME racketiest cruel mitchell upcoiling showed potbellied ament fluxion."       
+    ## [3] "NAME snools tenderizing puzzlers NAME stablest berkeley twinnings dorolisa issues deerskins preening?"
+    ## [4] "libelant NAME sled motoric houselling NAME baptists reeved romancer heteros loners skydive!"          
+    ## [5] "NAME NAME NAME ghosted NAME NAME kaiserin obligate benumbed NAME NAME refounding."                    
+    ## [6] "NAME cavefish bicycling slobbering pygmoid NAME swordmen caustic NAME NAME hyssop contradictions."
+
+    (toc <- Sys.time() - tic)
+
+    ## Time difference of 0.06850219 secs
+
+Now let's amp it up with 20x more text data. That's 50,000 rows of text
+(600,120 words) and 5,493 replacement tokens in 1.8 seconds.
+
+    tic <- Sys.time()
+    out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
+    (toc <- Sys.time() - tic)
+
+    ## Time difference of 1.769548 secs
+
 ### White Space
 
 Regex white space characters (e.g., `\n`, `\t`, `\r`) matched by `\s`
@@ -1250,85 +1444,3 @@ replacements.
     ##  [9] "aabbccxccbbaa"            "I said hey sexy!"        
     ## [11] "I'm like frustration me?" "what!"                   
     ## [13] NA
-
-### Tokens
-
-Often an analysis requires converting tokens of a certain type into a
-common form or removing them entirely. The `mgsub` function can do this
-task, however it is regex based and time consuming when the number of
-tokens to replace is large. For example, one may want to replace all
-proper nouns that are first names with the word name. The
-`replace_token` provides a fast way to replace a group of tokens with a
-single replacement.
-
-This example shows a use case for `replace_token`:
-
-    ## Set Up the Tokens to Replace
-    nms <- gsub("(^.)(.*)", "\\U\\1\\L\\2", lexicon::common_names, perl = TRUE)
-    head(nms)
-
-    ## [1] "Mary"      "Patricia"  "Linda"     "Barbara"   "Elizabeth" "Jennifer"
-
-    ## Set Up the Data
-    x <- textshape::split_portion(sample(c(sample(lexicon::grady_augmented, 20000), 
-        sample(nms, 10000, TRUE))), n.words = 12)
-    x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
-    head(x$text.var)
-
-    ## [1] "polygamists Sam pyjamas generousness argentine Lezlie sabres snobbish Ashton Florencia integument Edmund!"
-    ## [2] "cystitides argufiers Ione Zenia bagpipers Brandie retaste diversifications Jeremy gumwoods Alison Eun!"   
-    ## [3] "relaid Andre throaty eccentric ferrelling elegist Sherlene Gayla Milan logicising Salina lingam!"         
-    ## [4] "Audra Shyla margaretha cliquy gallimaufry Glendora coembodies Ethyl Larisa Mallory captures Camila."      
-    ## [5] "husks mediacy Candida canoes cesti prewar Elden pliantly optative engagements Dannielle wilmar!"          
-    ## [6] "daddled upwafts steamered civilise rest Saul panzer Shenita exhaustions Angelina pelvics Matthew?"
-
-    head(replace_tokens(x$text.var, nms, 'NAME'))
-
-    ## [1] "polygamists NAME pyjamas generousness argentine NAME sabres snobbish NAME NAME integument NAME!"
-    ## [2] "cystitides argufiers NAME NAME bagpipers NAME retaste diversifications NAME gumwoods NAME NAME!"
-    ## [3] "relaid NAME throaty eccentric ferrelling elegist NAME NAME NAME logicising NAME lingam!"        
-    ## [4] "NAME NAME margaretha cliquy gallimaufry NAME coembodies NAME NAME NAME captures NAME."          
-    ## [5] "husks mediacy NAME canoes cesti prewar NAME pliantly optative engagements NAME wilmar!"         
-    ## [6] "daddled upwafts steamered civilise rest NAME panzer NAME exhaustions NAME pelvics NAME?"
-
-This demonstration shows how fast token replacement can be with
-`replace_token`:
-
-    ## mgsub
-    tic <- Sys.time()
-    head(mgsub(x$text.var, nms, "NAME"))
-
-    ## [1] "polygamists NAME pyjamas generousness argentine NAME sabres snobbish NAME NAME integument NAME!"
-    ## [2] "cystitides argufiers NAME NAME bagpipers NAME retaste diversifications NAME gumwoods NAME NAME!"
-    ## [3] "relaid NAME throaty eccentric ferrelling elegist NAME NAME NAME logicising NAME lingam!"        
-    ## [4] "NAME NAME margaretha cliquy gallimaufry NAME coembodies NAME NAME NAME captures NAME."          
-    ## [5] "husks mediacy NAME canoes cesti prewar NAME pliantly optative engagements NAME wilmar!"         
-    ## [6] "daddled upwafts steamered civilise rest NAME panzer NAME exhaustions NAME pelvics NAME?"
-
-    (toc <- Sys.time() - tic)
-
-    ## Time difference of 8.35807 secs
-
-    ## replace_tokens
-    tic <- Sys.time()
-    head(replace_tokens(x$text.var, nms, "NAME"))
-
-    ## [1] "polygamists NAME pyjamas generousness argentine NAME sabres snobbish NAME NAME integument NAME!"
-    ## [2] "cystitides argufiers NAME NAME bagpipers NAME retaste diversifications NAME gumwoods NAME NAME!"
-    ## [3] "relaid NAME throaty eccentric ferrelling elegist NAME NAME NAME logicising NAME lingam!"        
-    ## [4] "NAME NAME margaretha cliquy gallimaufry NAME coembodies NAME NAME NAME captures NAME."          
-    ## [5] "husks mediacy NAME canoes cesti prewar NAME pliantly optative engagements NAME wilmar!"         
-    ## [6] "daddled upwafts steamered civilise rest NAME panzer NAME exhaustions NAME pelvics NAME?"
-
-    (toc <- Sys.time() - tic)
-
-    ## Time difference of 0.1064999 secs
-
-Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,060 words) and 5,493 replacement tokens in 1.8 seconds.
-
-    tic <- Sys.time()
-    out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
-    (toc <- Sys.time() - tic)
-
-    ## Time difference of 1.795341 secs
