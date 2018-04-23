@@ -13,7 +13,7 @@ Description: Tools to clean and process text.  Tools are geared at checking for
          handled by analysis algorithms.  The 'replace_emoticon()' function
          replaces emoticons with word equivalents.
 Depends: R (>= 3.4.0)
-Imports: data.table, english(>= 1.0-2), glue, lexicon (>= 0.7.4), mgsub (>=
+Imports: data.table, english(>= 1.0-2), glue, lexicon (>= 1.0.0), mgsub (>=
          1.5.0), qdapRegex, stringi, textshape(>= 1.0.1), utils
 Suggests: testthat
 Date: 2018-04-22
