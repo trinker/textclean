@@ -18,10 +18,8 @@ And constructed with the following guidelines:
 
 
 
-textclean 0.7.0 -
+textclean 0.7.0 - 0.7.2
 ----------------------------------------------------------------
-
-BUG FIXES
 
 NEW FEATURES
 
@@ -44,8 +42,6 @@ NEW FEATURES
 * `mgsub` picks up a `safe` argument using the **mgsub** package as the backend.
   In addition `mgsub_regex_safe` added to make the usage explicit.  The safe mode
   comes at the cost of speed.
-  
-MINOR FEATURES
 
 IMPROVEMENTS
 
@@ -58,7 +54,6 @@ IMPROVEMENTS
   "&sdot;", "&ndash;", "&mdash;", "&ne;", "&frac12;", "&frac14;", "&frac34;", 
   "&deg;", "&larr;", "&rarr;", "&hellip;")`.
 
-CHANGES
 
 
 textclean 0.6.0 - 0.6.3
