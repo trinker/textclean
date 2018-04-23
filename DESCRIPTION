@@ -1,19 +1,22 @@
 Package: textclean
 Title: Text Cleaning Tools
-Version: 0.7.2
-Authors@R: c( person("Tyler", "Rinker", email = "tyler.rinker@gmail.com", role = c("aut", "cre")), person("ctwheels",
-             "StackOverflow", role = "ctb") )
+Version: 0.7.3
+Authors@R: c( person("Tyler", "Rinker", email = "tyler.rinker@gmail.com", role =
+         c("aut", "cre")), person("ctwheels", "StackOverflow", role = "ctb") )
 Maintainer: Tyler Rinker <tyler.rinker@gmail.com>
-Description: Tools to clean and process text.  Tools are geared at checking for substrings that are not optimal for
-             analysis and replacing or removing them (normalizing) with more analysis friendly substrings (see Sproat,
-             Black, Chen, Kumar, Ostendorf, & Richards (2001) <doi:10.1006/csla.2001.0169>) or extracting them into new
-             variables. For example, emoticons are often used in text but not always easily handled by analysis
-             algorithms.  The 'replace_emoticon()' function replaces emoticons with word equivalents.
+Description: Tools to clean and process text.  Tools are geared at checking for
+         substrings that are not optimal for analysis and replacing or removing
+         them (normalizing) with more analysis friendly substrings (see Sproat,
+         Black, Chen, Kumar, Ostendorf, & Richards (2001)
+         <doi:10.1006/csla.2001.0169>) or extracting them into new variables.
+         For example, emoticons are often used in text but not always easily
+         handled by analysis algorithms.  The 'replace_emoticon()' function
+         replaces emoticons with word equivalents.
 Depends: R (>= 3.4.0)
-Imports: data.table, english(>= 1.0-2), glue, lexicon (>= 0.7.4), mgsub (>= 1.5.0), qdapRegex, stringi, textshape(>=
-             1.0.1), utils
+Imports: data.table, english(>= 1.0-2), glue, lexicon (>= 0.7.4), mgsub (>=
+         1.5.0), qdapRegex, stringi, textshape(>= 1.0.1), utils
 Suggests: testthat
-Date: 2018-04-18
+Date: 2018-04-22
 License: GPL-2
 LazyData: TRUE
 Roxygen: list(wrap = FALSE)

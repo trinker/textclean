@@ -18,6 +18,11 @@ And constructed with the following guidelines:
 
 
 
+textclean 0.7.3
+----------------------------------------------------------------
+
+Maintenance release to bring package up to date with the lexicon package API changes.
+
 textclean 0.7.0 - 0.7.2
 ----------------------------------------------------------------
 

@@ -540,7 +540,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are indomitable! 
+    ## You are stupendous! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -1331,21 +1331,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "windigos Lorna holts constituting outdressed Athena Delaine Wyatt rummiest exhorts nationally merchanting?"   
-    ## [2] "Edgardo mists lionising Jackqueline racketiest cruel mitchell upcoiling showed potbellied ament fluxion."     
-    ## [3] "Yevette snools tenderizing puzzlers Chandra stablest berkeley twinnings dorolisa issues deerskins preening?"  
-    ## [4] "libelant Lanie sled motoric houselling Tommye baptists reeved romancer heteros loners skydive!"               
-    ## [5] "Jule Velma Emmie ghosted Erline Kenny kaiserin obligate benumbed Bambi Mathilde refounding."                  
-    ## [6] "Kasey cavefish bicycling slobbering pygmoid Luvenia swordmen caustic Laquanda Kiersten hyssop contradictions."
+    ## [1] "Verlie concussion frizettes Paulita uniform linoleums Corine Sixta besmudging Iona Sheridan running?"               
+    ## [2] "japanizes unthroning Maira hammer sagacious probes Reed Cherry briskness mates mainlined breeks."                   
+    ## [3] "aperies portentous wooding Kathy Judi steamered tate Adella Renaldo Branden creeps tuftily."                        
+    ## [4] "Angila Gilberte Ilana repressurizing antimonies reigning desperadoes subideas meteorologies xenia unamused crudest."
+    ## [5] "froggiest foodless marblers outturn alienation marmalade Luther Audry disaffections katine madding Donetta?"        
+    ## [6] "limens Mitchell dean Karena schemer stabbers Grisel brazenly Jaime memorandums Annie Sindy."
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "windigos NAME holts constituting outdressed NAME NAME NAME rummiest exhorts nationally merchanting?"  
-    ## [2] "NAME mists lionising NAME racketiest cruel mitchell upcoiling showed potbellied ament fluxion."       
-    ## [3] "NAME snools tenderizing puzzlers NAME stablest berkeley twinnings dorolisa issues deerskins preening?"
-    ## [4] "libelant NAME sled motoric houselling NAME baptists reeved romancer heteros loners skydive!"          
-    ## [5] "NAME NAME NAME ghosted NAME NAME kaiserin obligate benumbed NAME NAME refounding."                    
-    ## [6] "NAME cavefish bicycling slobbering pygmoid NAME swordmen caustic NAME NAME hyssop contradictions."
+    ## [1] "NAME concussion frizettes NAME uniform linoleums NAME NAME besmudging NAME NAME running?"                    
+    ## [2] "japanizes unthroning NAME hammer sagacious probes NAME NAME briskness mates mainlined breeks."               
+    ## [3] "aperies portentous wooding NAME NAME steamered tate NAME NAME NAME creeps tuftily."                          
+    ## [4] "NAME NAME NAME repressurizing antimonies reigning desperadoes subideas meteorologies xenia unamused crudest."
+    ## [5] "froggiest foodless marblers outturn alienation marmalade NAME NAME disaffections katine madding NAME?"       
+    ## [6] "limens NAME dean NAME schemer stabbers NAME brazenly NAME memorandums NAME NAME."
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1354,40 +1354,40 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "windigos NAME holts constituting outdressed NAME NAME NAME rummiest exhorts nationally merchanting?"  
-    ## [2] "NAME mists lionising NAME racketiest cruel mitchell upcoiling showed potbellied ament fluxion."       
-    ## [3] "NAME snools tenderizing puzzlers NAME stablest berkeley twinnings dorolisa issues deerskins preening?"
-    ## [4] "libelant NAME sled motoric houselling NAME baptists reeved romancer heteros loners skydive!"          
-    ## [5] "NAME NAME NAME ghosted NAME NAME kaiserin obligate benumbed NAME NAME refounding."                    
-    ## [6] "NAME cavefish bicycling slobbering pygmoid NAME swordmen caustic NAME NAME hyssop contradictions."
+    ## [1] "NAME concussion frizettes NAME uniform linoleums NAME NAME besmudging NAME NAME running?"                    
+    ## [2] "japanizes unthroning NAME hammer sagacious probes NAME NAME briskness mates mainlined breeks."               
+    ## [3] "aperies portentous wooding NAME NAME steamered tate NAME NAME NAME creeps tuftily."                          
+    ## [4] "NAME NAME NAME repressurizing antimonies reigning desperadoes subideas meteorologies xenia unamused crudest."
+    ## [5] "froggiest foodless marblers outturn alienation marmalade NAME NAME disaffections katine madding NAME?"       
+    ## [6] "limens NAME dean NAME schemer stabbers NAME brazenly NAME memorandums NAME NAME."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 8.195497 secs
+    ## Time difference of 8.532315 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "windigos NAME holts constituting outdressed NAME NAME NAME rummiest exhorts nationally merchanting?"  
-    ## [2] "NAME mists lionising NAME racketiest cruel mitchell upcoiling showed potbellied ament fluxion."       
-    ## [3] "NAME snools tenderizing puzzlers NAME stablest berkeley twinnings dorolisa issues deerskins preening?"
-    ## [4] "libelant NAME sled motoric houselling NAME baptists reeved romancer heteros loners skydive!"          
-    ## [5] "NAME NAME NAME ghosted NAME NAME kaiserin obligate benumbed NAME NAME refounding."                    
-    ## [6] "NAME cavefish bicycling slobbering pygmoid NAME swordmen caustic NAME NAME hyssop contradictions."
+    ## [1] "NAME concussion frizettes NAME uniform linoleums NAME NAME besmudging NAME NAME running?"                    
+    ## [2] "japanizes unthroning NAME hammer sagacious probes NAME NAME briskness mates mainlined breeks."               
+    ## [3] "aperies portentous wooding NAME NAME steamered tate NAME NAME NAME creeps tuftily."                          
+    ## [4] "NAME NAME NAME repressurizing antimonies reigning desperadoes subideas meteorologies xenia unamused crudest."
+    ## [5] "froggiest foodless marblers outturn alienation marmalade NAME NAME disaffections katine madding NAME?"       
+    ## [6] "limens NAME dean NAME schemer stabbers NAME brazenly NAME memorandums NAME NAME."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.06850219 secs
+    ## Time difference of 0.06699586 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,120 words) and 5,493 replacement tokens in 1.8 seconds.
+(600,120 words) and 5,493 replacement tokens in 1.6 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.769548 secs
+    ## Time difference of 1.596291 secs
 
 ### White Space
 

@@ -5,11 +5,11 @@ citEntry(entry = "manual",
     title = "{textclean}: Text Cleaning Tools",
     author = "Tyler W. Rinker",
     address = "Buffalo, New York",
-    note = "version 0.7.2",
+    note = "version 0.7.3",
     year = "2018",
     url = "https://github.com/trinker/textclean", 
     textVersion  = paste("Rinker, T. W. (2018).",
         "textclean: Text Cleaning Tools",
-        "version 0.7.2. Buffalo, New York.",
+        "version 0.7.3. Buffalo, New York.",
         "https://github.com/trinker/textclean")
 )
