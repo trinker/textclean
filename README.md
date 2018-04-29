@@ -540,7 +540,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are stupendous! 
+    ## You are magnificent! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -783,6 +783,12 @@ perform this operation. It is a stripped down version of `gsubfn` from
 the **gsubfn** package. For more versatile needs please see the
 **gsubfn** package.
 
+In this example the regex looks for words that contain a lower case
+letter followed by the same letter at least 2 more times. It then
+extracts these words, splits them appart into letters, reverses the
+string, pastes them back together, wraps them with double angle braces,
+and then puts them back at the original locations.
+
     fgsub(
         x = c(NA, 'df dft sdf', 'sd fdggg sd dfhhh d', 'ddd'),
         pattern = "\\b\\w*([a-z])(\\1{2,})\\w*\\b",
@@ -791,6 +797,19 @@ the **gsubfn** package. For more versatile needs please see the
 
     ## [1] NA                            "df dft sdf"                 
     ## [3] "sd <<gggdf>> sd <<hhhfd>> d" "<<ddd>>"
+
+In this example we extract numbers, strip out non-digits, coerce them to
+numeric, cut them in half, round up to the closest integer, add the
+commas back, and replace back into the original locations.
+
+    fgsub(
+        x = c(NA, 'I want 32 grapes', 'he wants 4 ice creams', 'they want 1,234,567 dollars'),
+        pattern = "[\\d,]+",
+        fun = function(x) {prettyNum(ceiling(as.numeric(gsub('[^0-9]', '', x))/2), big.mark = ',')}
+    )
+
+    ## [1] NA                          "I want 16 grapes"         
+    ## [3] "he wants 2 ice creams"     "they want 617,284 dollars"
 
 ### Stashing Character Pre-Sub
 
@@ -1331,21 +1350,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "Verlie concussion frizettes Paulita uniform linoleums Corine Sixta besmudging Iona Sheridan running?"               
-    ## [2] "japanizes unthroning Maira hammer sagacious probes Reed Cherry briskness mates mainlined breeks."                   
-    ## [3] "aperies portentous wooding Kathy Judi steamered tate Adella Renaldo Branden creeps tuftily."                        
-    ## [4] "Angila Gilberte Ilana repressurizing antimonies reigning desperadoes subideas meteorologies xenia unamused crudest."
-    ## [5] "froggiest foodless marblers outturn alienation marmalade Luther Audry disaffections katine madding Donetta?"        
-    ## [6] "limens Mitchell dean Karena schemer stabbers Grisel brazenly Jaime memorandums Annie Sindy."
+    ## [1] "dehorted snigglers verismo conus Daniel Kimi flathead scotomata Ernie ligroin brucellae betoken."
+    ## [2] "Jerrica vagina dormouse eloquent Regena cumbrous olivia Anette reales bracelets Tarah guillaume!"
+    ## [3] "hep Wesley excision recreational Krystina Jeanett pends Dong flited dare navigability Janie!"    
+    ## [4] "fidging Marcelina Otha Dorethea skyman perm riffles Macy Loralee cherie Michele shrill!"         
+    ## [5] "hiker seamounts barons Terra tombs Kam naive protea Nicky exurbias Susie ostosises!"             
+    ## [6] "Gabriel renew Leigha Abe roto ribwort vetoed metered boccias Barabara snooled Malcolm?"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "NAME concussion frizettes NAME uniform linoleums NAME NAME besmudging NAME NAME running?"                    
-    ## [2] "japanizes unthroning NAME hammer sagacious probes NAME NAME briskness mates mainlined breeks."               
-    ## [3] "aperies portentous wooding NAME NAME steamered tate NAME NAME NAME creeps tuftily."                          
-    ## [4] "NAME NAME NAME repressurizing antimonies reigning desperadoes subideas meteorologies xenia unamused crudest."
-    ## [5] "froggiest foodless marblers outturn alienation marmalade NAME NAME disaffections katine madding NAME?"       
-    ## [6] "limens NAME dean NAME schemer stabbers NAME brazenly NAME memorandums NAME NAME."
+    ## [1] "dehorted snigglers verismo conus NAME NAME flathead scotomata NAME ligroin brucellae betoken."
+    ## [2] "NAME vagina dormouse eloquent NAME cumbrous olivia NAME reales bracelets NAME guillaume!"     
+    ## [3] "hep NAME excision recreational NAME NAME pends NAME flited dare navigability NAME!"           
+    ## [4] "fidging NAME NAME NAME skyman perm riffles NAME NAME cherie NAME shrill!"                     
+    ## [5] "hiker seamounts barons NAME tombs NAME naive protea NAME exurbias NAME ostosises!"            
+    ## [6] "NAME renew NAME NAME roto ribwort vetoed metered boccias NAME snooled NAME?"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1354,40 +1373,40 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "NAME concussion frizettes NAME uniform linoleums NAME NAME besmudging NAME NAME running?"                    
-    ## [2] "japanizes unthroning NAME hammer sagacious probes NAME NAME briskness mates mainlined breeks."               
-    ## [3] "aperies portentous wooding NAME NAME steamered tate NAME NAME NAME creeps tuftily."                          
-    ## [4] "NAME NAME NAME repressurizing antimonies reigning desperadoes subideas meteorologies xenia unamused crudest."
-    ## [5] "froggiest foodless marblers outturn alienation marmalade NAME NAME disaffections katine madding NAME?"       
-    ## [6] "limens NAME dean NAME schemer stabbers NAME brazenly NAME memorandums NAME NAME."
+    ## [1] "dehorted snigglers verismo conus NAME NAME flathead scotomata NAME ligroin brucellae betoken."
+    ## [2] "NAME vagina dormouse eloquent NAME cumbrous olivia NAME reales bracelets NAME guillaume!"     
+    ## [3] "hep NAME excision recreational NAME NAME pends NAME flited dare navigability NAME!"           
+    ## [4] "fidging NAME NAME NAME skyman perm riffles NAME NAME cherie NAME shrill!"                     
+    ## [5] "hiker seamounts barons NAME tombs NAME naive protea NAME exurbias NAME ostosises!"            
+    ## [6] "NAME renew NAME NAME roto ribwort vetoed metered boccias NAME snooled NAME?"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 8.532315 secs
+    ## Time difference of 7.286074 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "NAME concussion frizettes NAME uniform linoleums NAME NAME besmudging NAME NAME running?"                    
-    ## [2] "japanizes unthroning NAME hammer sagacious probes NAME NAME briskness mates mainlined breeks."               
-    ## [3] "aperies portentous wooding NAME NAME steamered tate NAME NAME NAME creeps tuftily."                          
-    ## [4] "NAME NAME NAME repressurizing antimonies reigning desperadoes subideas meteorologies xenia unamused crudest."
-    ## [5] "froggiest foodless marblers outturn alienation marmalade NAME NAME disaffections katine madding NAME?"       
-    ## [6] "limens NAME dean NAME schemer stabbers NAME brazenly NAME memorandums NAME NAME."
+    ## [1] "dehorted snigglers verismo conus NAME NAME flathead scotomata NAME ligroin brucellae betoken."
+    ## [2] "NAME vagina dormouse eloquent NAME cumbrous olivia NAME reales bracelets NAME guillaume!"     
+    ## [3] "hep NAME excision recreational NAME NAME pends NAME flited dare navigability NAME!"           
+    ## [4] "fidging NAME NAME NAME skyman perm riffles NAME NAME cherie NAME shrill!"                     
+    ## [5] "hiker seamounts barons NAME tombs NAME naive protea NAME exurbias NAME ostosises!"            
+    ## [6] "NAME renew NAME NAME roto ribwort vetoed metered boccias NAME snooled NAME?"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.06699586 secs
+    ## Time difference of 0.07004881 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,120 words) and 5,493 replacement tokens in 1.6 seconds.
+(600,120 words) and 5,493 replacement tokens in 1.8 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.596291 secs
+    ## Time difference of 1.838303 secs
 
 ### White Space
 

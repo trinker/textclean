@@ -194,6 +194,9 @@ mgsub(DATA$state, c("i", "it"), c("<<I>>", "[[IT]]"), order.pattern = FALSE)
 
 Again, `gsub` is a great tool but sometimes the user wants to match a pattern, extract that pattern, operate a function over that pattern, and then replace the original match.  The `fgsub` function allows the user to perform this operation.  It is a stripped down version of `gsubfn` from the **gsubfn** package.  For more versatile needs please see the **gsubfn** package.
 
+In this example the regex looks for words that contain a lower case letter followed by the same letter at least 2 more times.  It then extracts these words, splits them appart into letters, reverses the string, pastes them back together, wraps them with double angle braces, and then puts them back at the original locations.
+
+
 ```{r}
 fgsub(
     x = c(NA, 'df dft sdf', 'sd fdggg sd dfhhh d', 'ddd'),
@@ -202,7 +205,15 @@ fgsub(
 )
 ```
 
+In this example we extract numbers, strip out non-digits, coerce them to numeric, cut them in half, round up to the closest integer, add the commas back, and replace back into the original locations.
 
+```{r}
+fgsub(
+    x = c(NA, 'I want 32 grapes', 'he wants 4 ice creams', 'they want 1,234,567 dollars'),
+    pattern = "[\\d,]+",
+    fun = function(x) {prettyNum(ceiling(as.numeric(gsub('[^0-9]', '', x))/2), big.mark = ',')}
+)
+```
 
 ### Stashing Character Pre-Sub
 
