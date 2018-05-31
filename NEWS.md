@@ -17,11 +17,30 @@ And constructed with the following guidelines:
 * Bug fixes and misc changes bumps the patch
 
 
+textclean 0.8.0 -
+----------------------------------------------------------------
+
+**BUG FIXES**
+
+**NEW FEATURES**
+
+**MINOR FEATURES**
+
+**IMPROVEMENTS**
+
+* `replace_non_ascii` did not replace all non-ASCII characters.  This has been
+  fixed by an explicit replacement of '[^ -~]+' which are all non-ASCII characters.
+  See <a href="https://github.com/trinker/textclean/issues/34">issue #34</a> for details.
+
+**CHANGES**
+
+
 
 textclean 0.7.3
 ----------------------------------------------------------------
 
 Maintenance release to bring package up to date with the lexicon package API changes.
+
 
 textclean 0.7.0 - 0.7.2
 ----------------------------------------------------------------

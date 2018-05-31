@@ -3,6 +3,8 @@
 #' \code{replace_non_ascii} - Replaces common non-ASCII characters.
 #' 
 #' @param x The text variable.
+#' @param replacement Character string equal in length to pattern or of length 
+#' one which are a replacement for matched pattern. 
 #' @param remove.nonconverted logical.  If \code{TRUE} unmapped encodings are
 #' deleted from the string.
 #' @param \dots ignored.
@@ -29,15 +31,29 @@
 #' 
 #' replace_curly_quote(z)
 #' replace_non_ascii(z)
-replace_non_ascii <- function(x, remove.nonconverted = TRUE, ...) {
+replace_non_ascii <- function (x, replacement = '',  remove.nonconverted = TRUE, ...) {
     x <- replace_curly_quote(x)
     x <- stringi::stri_trans_general(x, "latin-ascii")
     x <- iconv(as.character(x), "", "ASCII", "byte")
-    Encoding(x) <-"latin1"    
+    Encoding(x) <- "latin1"
     x <- mgsub(x, ser, reps)
-    if (isTRUE(remove.nonconverted)) x <- qdapRegex::rm_angle(x)
+    if (isTRUE(remove.nonconverted)) {
+        x <- qdapRegex::rm_angle(x, replacement = replacement)
+        x <- stringi::stri_replace_all_regex(x, '[^ -~]+', replacement = replacement)
+    }
     x
 }
+
+
+# replace_non_ascii <- function(x, remove.nonconverted = TRUE, ...) {
+#     x <- replace_curly_quote(x)
+#     x <- stringi::stri_trans_general(x, "latin-ascii")
+#     x <- iconv(as.character(x), "", "ASCII", "byte")
+#     Encoding(x) <-"latin1"    
+#     x <- mgsub(x, ser, reps)
+#     if (isTRUE(remove.nonconverted)) x <- qdapRegex::rm_angle(x)
+#     x
+# }
 
 #' Replace Common Non-ASCII Characters
 #' 

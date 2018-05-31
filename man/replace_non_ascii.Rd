@@ -5,12 +5,15 @@
 \alias{replace_curly_quote}
 \title{Replace Common Non-ASCII Characters}
 \usage{
-replace_non_ascii(x, remove.nonconverted = TRUE, ...)
+replace_non_ascii(x, replacement = "", remove.nonconverted = TRUE, ...)
 
 replace_curly_quote(x, ...)
 }
 \arguments{
 \item{x}{The text variable.}
+
+\item{replacement}{Character string equal in length to pattern or of length 
+one which are a replacement for matched pattern.}
 
 \item{remove.nonconverted}{logical.  If \code{TRUE} unmapped encodings are
 deleted from the string.}
