@@ -540,7 +540,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are magnificent! 
+    ## You are stupendous! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -774,6 +774,58 @@ this feature).
     ## [10] "Shall we move on?  Good then."        
     ## [11] "I'm hungry.  Let's eat.  You already?"
 
+#### Safe Substitutions
+
+The default behavior of `mgsub` is optimized for speed. This means that
+it is very fast at multiple substitutions and in most cases works
+efficiently. However, it is not what Mark Ewing describes as "safe"
+substitution. I his vignette for the
+[**mgsub**](https://github.com/bmewing/mgsub) package, Mark defines
+"safe" as:
+
+> 1.  Longer matches are preferred over shorter matches for substitution
+>     first
+> 2.  No placeholders are used so accidental string collisions don't
+>     occur
+
+Because safety is sometimes required, `textclean::mgsub` provides a
+`safe` argument using the **mgsub** package as the backend. In addition
+to the `safe` argument the `mgsub_regex_safe` function is available to
+make the usage more explicit. The safe mode comes at the cost of speed.
+
+    x <- "Dopazamine is a fake chemical"
+    pattern <- c("dopazamin", "do.*ne")
+    replacement <- c("freakout", "metazamine")
+
+    ## Unsafe
+    mgsub(x, pattern, replacement, ignore.case=TRUE, fixed = FALSE)
+
+    ## [1] "freakoute is a fake chemical"
+
+    ## Safe
+    mgsub(x, pattern, replacement, ignore.case=TRUE, fixed = FALSE, safe = TRUE)
+
+    ## [1] "metazamine is a fake chemical"
+
+    ## Or alternatively
+    mgsub_regex_safe(x, pattern, replacement, ignore.case=TRUE)
+
+    ## [1] "metazamine is a fake chemical"
+
+    x <- "hey, how are you?"
+    pattern <- c("hey", "how", "are", "you")
+    replacement <- c("how", "are", "you", "hey")
+
+    ## Unsafe
+    mgsub(x, pattern,replacement)
+
+    ## [1] "how, are you how?"
+
+    ## Safe
+    mgsub_regex_safe(x, pattern,replacement)
+
+    ## [1] "how, are you hey?"
+
 ### Match, Extract, Operate, Replacement Subs
 
 Again, `gsub` is a great tool but sometimes the user wants to match a
@@ -932,7 +984,7 @@ forms equivalents.
 
     x
 
-    ## [1] "Hello, helpful! ðŸ“¦âŒðŸ‘¾ debugme: Easy & efficient debugging for R packages ðŸ‘¨ðŸ»â€ðŸ’» @GaborCsardi https://buff.ly/2nNKcps  #rstats"
+    ## [1] "Hello, helpful! ðŸ“¦â\235ŒðŸ‘¾ debugme: Easy & efficient debugging for R packages ðŸ‘¨ðŸ\217»â\200\215ðŸ’» @GaborCsardi https://buff.ly/2nNKcps  #rstats"
     ## [2] "Did you ever get bored and accidentally create a ðŸ“¦ to make #Rstats speak on a Mac? I have -> "                                            
     ## [3] "A gift to my fellow nfl loving #rstats folks this package is ðŸ’¥ðŸ’¥"
 
@@ -1350,21 +1402,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "dehorted snigglers verismo conus Daniel Kimi flathead scotomata Ernie ligroin brucellae betoken."
-    ## [2] "Jerrica vagina dormouse eloquent Regena cumbrous olivia Anette reales bracelets Tarah guillaume!"
-    ## [3] "hep Wesley excision recreational Krystina Jeanett pends Dong flited dare navigability Janie!"    
-    ## [4] "fidging Marcelina Otha Dorethea skyman perm riffles Macy Loralee cherie Michele shrill!"         
-    ## [5] "hiker seamounts barons Terra tombs Kam naive protea Nicky exurbias Susie ostosises!"             
-    ## [6] "Gabriel renew Leigha Abe roto ribwort vetoed metered boccias Barabara snooled Malcolm?"
+    ## [1] "trisemes siffre glouting Enda meatballs flump Miyoko atomizers hour Juan Laila coolish?"                
+    ## [2] "exposes Carlos Shenika Elois romancer Meghan adrick compilation chirm deterge bulimias Cody."           
+    ## [3] "grassier formulas biassing Karla Whitney decayers coft Tiesha Larita Krishna dither yawned?"            
+    ## [4] "tubing Zenobia bantam Vanda Alla lineup liquidly Irma puparium gerahs hepaticae annnora."               
+    ## [5] "Cinthia wrangs unequally Waylon Lanora lifesaver thoughtlessly Renita chippies vaulters Robert Abraham?"
+    ## [6] "tintypes pennames Dave Elizabeth Jocelyn Nell Jasper genital denudated Leilani misknow Yuette?"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "dehorted snigglers verismo conus NAME NAME flathead scotomata NAME ligroin brucellae betoken."
-    ## [2] "NAME vagina dormouse eloquent NAME cumbrous olivia NAME reales bracelets NAME guillaume!"     
-    ## [3] "hep NAME excision recreational NAME NAME pends NAME flited dare navigability NAME!"           
-    ## [4] "fidging NAME NAME NAME skyman perm riffles NAME NAME cherie NAME shrill!"                     
-    ## [5] "hiker seamounts barons NAME tombs NAME naive protea NAME exurbias NAME ostosises!"            
-    ## [6] "NAME renew NAME NAME roto ribwort vetoed metered boccias NAME snooled NAME?"
+    ## [1] "trisemes siffre glouting NAME meatballs flump NAME atomizers hour NAME NAME coolish?"     
+    ## [2] "exposes NAME NAME NAME romancer NAME adrick compilation chirm deterge bulimias NAME."     
+    ## [3] "grassier formulas biassing NAME NAME decayers coft NAME NAME NAME dither yawned?"         
+    ## [4] "tubing NAME bantam NAME NAME lineup liquidly NAME puparium gerahs hepaticae annnora."     
+    ## [5] "NAME wrangs unequally NAME NAME lifesaver thoughtlessly NAME chippies vaulters NAME NAME?"
+    ## [6] "tintypes pennames NAME NAME NAME NAME NAME genital denudated NAME misknow NAME?"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1373,40 +1425,40 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "dehorted snigglers verismo conus NAME NAME flathead scotomata NAME ligroin brucellae betoken."
-    ## [2] "NAME vagina dormouse eloquent NAME cumbrous olivia NAME reales bracelets NAME guillaume!"     
-    ## [3] "hep NAME excision recreational NAME NAME pends NAME flited dare navigability NAME!"           
-    ## [4] "fidging NAME NAME NAME skyman perm riffles NAME NAME cherie NAME shrill!"                     
-    ## [5] "hiker seamounts barons NAME tombs NAME naive protea NAME exurbias NAME ostosises!"            
-    ## [6] "NAME renew NAME NAME roto ribwort vetoed metered boccias NAME snooled NAME?"
+    ## [1] "trisemes siffre glouting NAME meatballs flump NAME atomizers hour NAME NAME coolish?"     
+    ## [2] "exposes NAME NAME NAME romancer NAME adrick compilation chirm deterge bulimias NAME."     
+    ## [3] "grassier formulas biassing NAME NAME decayers coft NAME NAME NAME dither yawned?"         
+    ## [4] "tubing NAME bantam NAME NAME lineup liquidly NAME puparium gerahs hepaticae annnora."     
+    ## [5] "NAME wrangs unequally NAME NAME lifesaver thoughtlessly NAME chippies vaulters NAME NAME?"
+    ## [6] "tintypes pennames NAME NAME NAME NAME NAME genital denudated NAME misknow NAME?"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 7.286074 secs
+    ## Time difference of 6.772872 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "dehorted snigglers verismo conus NAME NAME flathead scotomata NAME ligroin brucellae betoken."
-    ## [2] "NAME vagina dormouse eloquent NAME cumbrous olivia NAME reales bracelets NAME guillaume!"     
-    ## [3] "hep NAME excision recreational NAME NAME pends NAME flited dare navigability NAME!"           
-    ## [4] "fidging NAME NAME NAME skyman perm riffles NAME NAME cherie NAME shrill!"                     
-    ## [5] "hiker seamounts barons NAME tombs NAME naive protea NAME exurbias NAME ostosises!"            
-    ## [6] "NAME renew NAME NAME roto ribwort vetoed metered boccias NAME snooled NAME?"
+    ## [1] "trisemes siffre glouting NAME meatballs flump NAME atomizers hour NAME NAME coolish?"     
+    ## [2] "exposes NAME NAME NAME romancer NAME adrick compilation chirm deterge bulimias NAME."     
+    ## [3] "grassier formulas biassing NAME NAME decayers coft NAME NAME NAME dither yawned?"         
+    ## [4] "tubing NAME bantam NAME NAME lineup liquidly NAME puparium gerahs hepaticae annnora."     
+    ## [5] "NAME wrangs unequally NAME NAME lifesaver thoughtlessly NAME chippies vaulters NAME NAME?"
+    ## [6] "tintypes pennames NAME NAME NAME NAME NAME genital denudated NAME misknow NAME?"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.07004881 secs
+    ## Time difference of 0.07305121 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,120 words) and 5,493 replacement tokens in 1.8 seconds.
+(600,180 words) and 5,493 replacement tokens in 1.5 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.838303 secs
+    ## Time difference of 1.53109 secs
 
 ### White Space
 
