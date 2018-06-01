@@ -24,6 +24,9 @@ textclean 0.8.0 -
 
 **NEW FEATURES**
 
+*  `replace_to`/`replace_from` added to remove from/to begin/end of string to/from 
+  a character(s).
+
 **MINOR FEATURES**
 
 **IMPROVEMENTS**

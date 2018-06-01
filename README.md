@@ -212,41 +212,46 @@ table below:
 <td>Replace time stamps</td>
 </tr>
 <tr class="even">
+<td><code>replace_to</code>/<code>replace_from</code></td>
+<td>replacement</td>
+<td>Remove from/to begin/end of string to/from a character(s)</td>
+</tr>
+<tr class="odd">
 <td><code>replace_token</code></td>
 <td>replacement</td>
 <td>Remove or replace a vector of tokens with a single value</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_white</code></td>
 <td>replacement</td>
 <td>Replace regex white space characters</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_word_elongation</code></td>
 <td>replacement</td>
 <td>Replace word elongations with shortened form</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>add_comma_space</code></td>
 <td>replacement</td>
 <td>Replace non-space after comma</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>add_missing_endmark</code></td>
 <td>replacement</td>
 <td>Replace missing endmarks with desired symbol</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>make_plural</code></td>
 <td>replacement</td>
 <td>Add plural endings to singular noun forms</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>check_text</code></td>
 <td>check</td>
 <td>Text report of potential issues</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>has_endmark</code></td>
 <td>check</td>
 <td>Check if an element has an end-mark</td>
@@ -540,7 +545,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are stupendous! 
+    ## You are prodigious! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -1402,21 +1407,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "trisemes siffre glouting Enda meatballs flump Miyoko atomizers hour Juan Laila coolish?"                
-    ## [2] "exposes Carlos Shenika Elois romancer Meghan adrick compilation chirm deterge bulimias Cody."           
-    ## [3] "grassier formulas biassing Karla Whitney decayers coft Tiesha Larita Krishna dither yawned?"            
-    ## [4] "tubing Zenobia bantam Vanda Alla lineup liquidly Irma puparium gerahs hepaticae annnora."               
-    ## [5] "Cinthia wrangs unequally Waylon Lanora lifesaver thoughtlessly Renita chippies vaulters Robert Abraham?"
-    ## [6] "tintypes pennames Dave Elizabeth Jocelyn Nell Jasper genital denudated Leilani misknow Yuette?"
+    ## [1] "Lindsay Lesha dazzle bicarbs caucasian hesitation valency Trena dosers trysted Catherina schoolhouses!"
+    ## [2] "newscasters shaders tainting Masako museums Danyelle broadly Harrison Annita trudgeons nelumbos Genny?"
+    ## [3] "requisitioned Maxima essay champ gassiest ciphers pothole cigarets oxide souchong oblates faqirs?"     
+    ## [4] "stalkily Joselyn Meryl hart calculating windfalls overstating Sunday Ethan maigre jewry Odis!"         
+    ## [5] "Melaine immiscible nom Ivey Phuong lea Antonina romps hyenine charter constipates forwards!"           
+    ## [6] "Jose orbit livest karilynn drafters bernelle maddening Jamey exterminations osmosing heredes reviewer."
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "trisemes siffre glouting NAME meatballs flump NAME atomizers hour NAME NAME coolish?"     
-    ## [2] "exposes NAME NAME NAME romancer NAME adrick compilation chirm deterge bulimias NAME."     
-    ## [3] "grassier formulas biassing NAME NAME decayers coft NAME NAME NAME dither yawned?"         
-    ## [4] "tubing NAME bantam NAME NAME lineup liquidly NAME puparium gerahs hepaticae annnora."     
-    ## [5] "NAME wrangs unequally NAME NAME lifesaver thoughtlessly NAME chippies vaulters NAME NAME?"
-    ## [6] "tintypes pennames NAME NAME NAME NAME NAME genital denudated NAME misknow NAME?"
+    ## [1] "NAME NAME dazzle bicarbs caucasian hesitation valency NAME dosers trysted NAME schoolhouses!"         
+    ## [2] "newscasters shaders tainting NAME museums NAME broadly NAME NAME trudgeons nelumbos NAME?"            
+    ## [3] "requisitioned NAME essay champ gassiest ciphers pothole cigarets oxide souchong oblates faqirs?"      
+    ## [4] "stalkily NAME NAME hart calculating windfalls overstating NAME NAME maigre jewry NAME!"               
+    ## [5] "NAME immiscible nom NAME NAME lea NAME romps hyenine charter constipates forwards!"                   
+    ## [6] "NAME orbit livest karilynn drafters bernelle maddening NAME exterminations osmosing heredes reviewer."
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1425,40 +1430,40 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "trisemes siffre glouting NAME meatballs flump NAME atomizers hour NAME NAME coolish?"     
-    ## [2] "exposes NAME NAME NAME romancer NAME adrick compilation chirm deterge bulimias NAME."     
-    ## [3] "grassier formulas biassing NAME NAME decayers coft NAME NAME NAME dither yawned?"         
-    ## [4] "tubing NAME bantam NAME NAME lineup liquidly NAME puparium gerahs hepaticae annnora."     
-    ## [5] "NAME wrangs unequally NAME NAME lifesaver thoughtlessly NAME chippies vaulters NAME NAME?"
-    ## [6] "tintypes pennames NAME NAME NAME NAME NAME genital denudated NAME misknow NAME?"
+    ## [1] "NAME NAME dazzle bicarbs caucasian hesitation valency NAME dosers trysted NAME schoolhouses!"         
+    ## [2] "newscasters shaders tainting NAME museums NAME broadly NAME NAME trudgeons nelumbos NAME?"            
+    ## [3] "requisitioned NAME essay champ gassiest ciphers pothole cigarets oxide souchong oblates faqirs?"      
+    ## [4] "stalkily NAME NAME hart calculating windfalls overstating NAME NAME maigre jewry NAME!"               
+    ## [5] "NAME immiscible nom NAME NAME lea NAME romps hyenine charter constipates forwards!"                   
+    ## [6] "NAME orbit livest karilynn drafters bernelle maddening NAME exterminations osmosing heredes reviewer."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 6.772872 secs
+    ## Time difference of 6.79982 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "trisemes siffre glouting NAME meatballs flump NAME atomizers hour NAME NAME coolish?"     
-    ## [2] "exposes NAME NAME NAME romancer NAME adrick compilation chirm deterge bulimias NAME."     
-    ## [3] "grassier formulas biassing NAME NAME decayers coft NAME NAME NAME dither yawned?"         
-    ## [4] "tubing NAME bantam NAME NAME lineup liquidly NAME puparium gerahs hepaticae annnora."     
-    ## [5] "NAME wrangs unequally NAME NAME lifesaver thoughtlessly NAME chippies vaulters NAME NAME?"
-    ## [6] "tintypes pennames NAME NAME NAME NAME NAME genital denudated NAME misknow NAME?"
+    ## [1] "NAME NAME dazzle bicarbs caucasian hesitation valency NAME dosers trysted NAME schoolhouses!"         
+    ## [2] "newscasters shaders tainting NAME museums NAME broadly NAME NAME trudgeons nelumbos NAME?"            
+    ## [3] "requisitioned NAME essay champ gassiest ciphers pothole cigarets oxide souchong oblates faqirs?"      
+    ## [4] "stalkily NAME NAME hart calculating windfalls overstating NAME NAME maigre jewry NAME!"               
+    ## [5] "NAME immiscible nom NAME NAME lea NAME romps hyenine charter constipates forwards!"                   
+    ## [6] "NAME orbit livest karilynn drafters bernelle maddening NAME exterminations osmosing heredes reviewer."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.07305121 secs
+    ## Time difference of 0.0690341 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,180 words) and 5,493 replacement tokens in 1.5 seconds.
+(600,120 words) and 5,493 replacement tokens in 1.4 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.53109 secs
+    ## Time difference of 1.428013 secs
 
 ### White Space
 
