@@ -135,4 +135,9 @@ to_byte <- function(x){
 }
 
 
+set_names <- function(x, nms){
+    names(x) <- nms
+    x
+}
+
 rm_na <- function(x) x[!is.na(x)]

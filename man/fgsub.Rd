@@ -46,6 +46,14 @@ fgsub(
     pattern = "[\\\\d,]+",
     fun = function(x) {prettyNum(ceiling(as.numeric(gsub('[^0-9]', '', x))/2), big.mark = ',')}    
 )
+
+## In this example we extract leading zeros, convert to an equal number of 
+## spaces. 
+fgsub(
+    x = c(NA, "00:04", "00:08", "00:01", "06:14", "00:02", "00:04"),
+    pattern = '^0+',
+    fun = function(x) {gsub('0', ' ', x)}
+)
 }
 \seealso{
 \code{\link[gsubfn]{gsubfn}}

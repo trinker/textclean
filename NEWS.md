@@ -22,6 +22,15 @@ textclean 0.8.0 -
 
 **BUG FIXES**
 
+* `fgsub` had a bug in which the the original `pattern` in `fgsub` matches the 
+  location in the string but when the replacement occurs this was done on the 
+  entire string rather than the location of the first `pattern` match.  This
+  means the extracted string was used as a search and might be found in places
+  other than the original location (e.g., a leading boundary in '^T' replaced
+  with '__' may have led to '__he __itle' rather than '__he Title' as expected
+  in the string 'The Title').  See #35 for details.  The fix will add some time 
+  to the computation but is safer.
+
 **NEW FEATURES**
 
 *  `replace_to`/`replace_from` added to remove from/to begin/end of string to/from 
