@@ -22,5 +22,7 @@
 #' 
 #' replace_kern(x)
 replace_kern <- function(x, ...){
+    ## a possible second approach from: https://stackoverflow.com/a/47438305/1000343
+    ## '(?:(?<=\\P{L})(?=(?:\\p{Lu}\\h+){2}\\p{Lu})|\\G(?!\\A))\\p{Lu}\\K\\h+(?=\\p{Lu}(?!\\p{L}))'
     gsub("(?:(?=\\b(?:\\p{Lu}\\h+){2}\\p{Lu})|\\G(?!\\A))\\p{Lu}\\K\\h+(?=\\p{Lu})", "", x, perl=TRUE)
 }
