@@ -47,9 +47,11 @@ The main functions, task category, & descriptions are summarized in the table be
 | `match_tokens`            | filter elements | Filter out tokens from strings that match a regex criteria |
 | `replace_contractions`    | replacement | Replace contractions with both words  |
 | `replace_date`            | replacement | Replace dates                         |
+| `replace_email`           | replacement | Replace emails                        |
 | `replace_emoji`           | replacement | Replace emojis with word equivalent or unique identifier |
 | `replace_emoticon`        | replacement | Replace emoticons with word equivalent               |
 | `replace_grade`           | replacement | Replace grades (e.g., "A+") with word equivalent     |
+| `replace_hash`            | replacement | Replace Twitter style hash tags (e.g., #rstats) |
 | `replace_html`            | replacement | Replace HTML tags and symbols  |
 | `replace_incomplete`      | replacement | Replace incomplete sentence end-marks  |
 | `replace_internet_slang`  | replacement  | Replace Internet slang with word equivalents |
@@ -61,9 +63,11 @@ The main functions, task category, & descriptions are summarized in the table be
 | `replace_ordinal`         | replacement | Replace common ordinal number form    |
 | `replace_rating`          | replacement | Replace ratings (e.g., "10 out of 10", "3 stars") with word equivalent |
 | `replace_symbol`          | replacement | Replace common symbols                |
+| `replace_tag`             | replacement | Replace Twitter style handle tag (e.g., @trinker) |
 | `replace_time`            | replacement | Replace time stamps                   |
 | `replace_to`/`replace_from` | replacement | Remove from/to begin/end of string to/from a character(s) |
 | `replace_token`           | replacement | Remove or replace a vector of tokens with a single value |
+| `replace_url`             | replacement | Replace URLs                          |
 | `replace_white`           | replacement | Replace regex white space characters  |
 | `replace_word_elongation` | replacement | Replace word elongations with shortened form  |
 | `add_comma_space`         | replacement | Replace non-space after comma         |

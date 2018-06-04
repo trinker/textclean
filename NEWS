@@ -35,6 +35,10 @@ NEW FEATURES
 
 *  `replace_to`/`replace_from` added to remove from/to begin/end of string to/from 
   a character(s).
+  
+* The following replacement functions were added to provide remediation for 
+  problems found in `check_text`: `replace_email`, `replace_hash`, 
+  `replace_tag`, & `replace_url`.
 
 MINOR FEATURES
 

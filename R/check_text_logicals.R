@@ -84,14 +84,6 @@ is_funs <- c(
 meta_funs <- c('list_column', 'non_character')
 
 
-  
-# make a 
-# replace_email (in style of replace_name)
-# replace_hash (in style of replace_name)
-# replace_tag (in style of replace_name)
-# replace_url (in style of replace_name)
-# unnest text
-
 checks <- list(
     
     contraction = list(fun = "contraction", is_meta = FALSE, problem = "contains contractions", fix = "running `replace_contraction`"),
@@ -101,11 +93,11 @@ checks <- list(
     emoticon = list(fun = "emoticon", is_meta = FALSE, problem = "contains emoticons", fix = "using `replace_emoticons`"),
     empty = list(fun = "empty", is_meta = FALSE, problem = "contains empty text cells (all white space)", fix = "running `drop_empty_row`"),
     escaped = list(fun = "escaped", is_meta = FALSE, problem = "contains escaped back spaced characters", fix = "using `replace_white`"),
-    hash = list(fun = "hash", is_meta = FALSE, problem = "contains Twitter style hash tags (e.g., #rstats)", fix = "using replace_hash"),
+    hash = list(fun = "hash", is_meta = FALSE, problem = "contains Twitter style hash tags (e.g., #rstats)", fix = "using `qdapRegex::ex_tag' (to capture meta-data) and/or replace_hash"),
     html = list(fun = "html", is_meta = FALSE, problem = "", fix =  "running `replace_html`"),
     incomplete = list(fun = "incomplete", is_meta = FALSE, problem = "contains incomplete sentences (e.g., uses ending punctuation like ...)", fix = "using `replace_incomplete`"), 
     kern = list(fun = "kern", is_meta = FALSE, problem = "contains kerning (e.g., 'The B O M B!'", fix = "using `replace_kern`"),
-    list_column = list(fun = "list_column", is_meta = TRUE, problem = "is a list column", fix = "using `unnest_text`"),
+    list_column = list(fun = "list_column", is_meta = TRUE, problem = "is a list column", fix = "using `textclean::unnest_text`"),
     missing_value = list(fun = "missing_value", is_meta = FALSE, problem = "contains missing values", fix = "running `drop_NA`"),    
     misspelled = list(fun = "misspelled", is_meta = FALSE, problem = "", fix = "running `hunspell::hunspell_find` & `hunspell::hunspell_suggest`"),
     no_alpha = list(fun = "no_alpha", is_meta = FALSE, problem = "contains elements with no alphabetic (a-z) letters", fix = "cleaning the raw text or running `filter_row`"),
@@ -114,7 +106,7 @@ checks <- list(
     non_ascii = list(fun = "non_ascii", is_meta = FALSE, problem = "contains non-ASCII text", fix = "running `replace_non_ascii`"),
     non_character = list(fun = "non_character", is_meta = TRUE, problem = "is not a character column (likely factor)", fix =  "using `as.character` or `stringsAsFactors = FALSE` when reading in"),
     non_split_sentence = list(fun = "non_split_sentence", is_meta = FALSE, problem = "contains unsplit sentences (more than one sentence per element)", fix = "running `textshape::split_sentence`"),
-    tag = list(fun = "tag", is_meta = FALSE, problem = "contains Twitter style handle tags (e.g., @trinker)", fix = "using `replace_tag`"),
+    tag = list(fun = "tag", is_meta = FALSE, problem = "contains Twitter style handle tags (e.g., @trinker)", fix = "using `qdapRegex::ex_tag' (to capture meta-data) and/or `replace_tag`"),
     time = list(fun = "time", is_meta = FALSE, problem = "contains timestamps", fix = "using `replace_time`"),
     url = list(fun = "url", is_meta = FALSE, problem = "contains URLs", fix = "using `replace_url`")
 
