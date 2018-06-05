@@ -154,7 +154,7 @@ truncated <- function(x, n = 100, ...){
     no_endmark = list(fun = "no_endmark", is_meta = FALSE, problem = "contain elements with missing ending punctuation", fix = "cleaning the raw text or running `add_missing_endmark`"),
     no_space_after_comma = list(fun = "no_space_after_comma", is_meta = FALSE, problem = "contain commas with no space afterwards", fix = "running `add_comma_space`"),
     non_ascii = list(fun = "non_ascii", is_meta = FALSE, problem = "contain non-ASCII text", fix = "running `replace_non_ascii`"),
-    non_character = list(fun = "non_character", is_meta = TRUE, problem = "is not a character column (likely factor)", fix =  "using `as.character` or `stringsAsFactors = FALSE` when reading in\n             Also, consider rerunning `check_text` after fixing"),
+    non_character = list(fun = "non_character", is_meta = TRUE, problem = "is not a character column (likely `factor`)", fix =  "using `as.character` or `stringsAsFactors = FALSE` when reading in\n             Also, consider rerunning `check_text` after fixing"),
     non_split_sentence = list(fun = "non_split_sentence", is_meta = FALSE, problem = "contain unsplit sentences (more than one sentence per element)", fix = "running `textshape::split_sentence`"),
     tag = list(fun = "tag", is_meta = FALSE, problem = "contain Twitter style handle tags (e.g., @trinker)", fix = "using `qdapRegex::ex_tag' (to capture meta-data) and/or `replace_tag`"),
     time = list(fun = "time", is_meta = FALSE, problem = "contain timestamps", fix = "using `replace_time`"),

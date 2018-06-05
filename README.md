@@ -359,27 +359,6 @@ information on the following:
 22. **time** - Text elements that contain timestamps
 23. **url** - Text elements that contain URLs
 
-24. **non\_character** - Text that is `factor`.
-25. **missing\_ending\_punctuation** - Text with no endmark at the end
-    of the string.
-26. **empty** - Text that contains an empty element (i.e., `""`).
-27. **double\_punctuation** - Text that contains two punctuation marks
-    in the same string.
-28. **non\_space\_after\_comma** - Text that contains commas with no
-    space after them.
-29. **no\_alpha** - Text that contains string elements with no
-    alphabetic characters.
-30. **non\_ascii** - Text that contains non-ASCII characters.
-31. **missing\_value** - Text that contains missing values (i.e., `NA`).
-32. **containing\_escaped** - Text that contains escaped (see
-    `?Quotes`).
-33. **containing\_digits** - Text that contains digits.
-34. **containing\_html** - Text that potentially contains HTML markup.
-35. **indicating\_incomplete** - Text that contains endmarks that are
-    indicative of incomplete/trailing sentences (e.g., `...`).
-36. **potentially\_misspelled** - Text that contains potentially
-    misspelled words.
-
 Here is an example:
 
     x <- c("i like", "<p>i want. </p>. thet them ther .", "I am ! that|", "", NA, 
@@ -398,6 +377,7 @@ Here is an example:
     ## 
     ## 
     ## *Suggestion: Consider using `as.character` or `stringsAsFactors = FALSE` when reading in
+    ##              Also, consider rerunning `check_text` after fixing
     ## 
     ## 
     ## =====
@@ -598,7 +578,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## This text is outstanding! 
+    ## This text is righteous! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -1460,21 +1440,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "dilapidation noach Nakesha peculiarity Latrina Refugia clarioned Jeanelle Salvador grabbler lamellae Shaina."   
-    ## [2] "Timothy Garry dad dustrags vanmen Bonny gynecomasty briana angelical syke hyte nightie!"                        
-    ## [3] "wiredrawing Aaron weeper confident dorpers Amira doorways raphides handicrafsmen imp spoke Roma?"               
-    ## [4] "peering puzzlements Clare panics pushpins becalmed Garnett nonspecialist Ernestina Kathline Bridgette Leonie?"  
-    ## [5] "pussier wariest apocalyptic Blake concoction rubbled Alethea backdoor Mellisa blemishing broadcloth profitless."
-    ## [6] "Laurette outright Myrtis bund sulfone sprawled caroming Micaela lambasted Dorthey arachnids psychopathic!"
+    ## [1] "triangulate summated Shaunna Charlette wenching advisers Brunilda stillest Debera pow Dwight Theda!"          
+    ## [2] "definite Marybeth gonna Mattie cosponsors securest Earlean Farah mouthing dependences Ina Sheba!"             
+    ## [3] "gudes tumoral conicity garrett Aracely Joy quintupling canulated sleeveless fabian Luanna Arianna."           
+    ## [4] "hadjs shortliffe Arlen Latoria Sulema Emely muffed Zada Jenifer scent tininess Bryant."                       
+    ## [5] "freda grubbers merchanting strangeness ichnites nodosities darkeys Donnell abolishes sassafrases Nobuko loss!"
+    ## [6] "aphidian nestlers Britney strategic redbones Warren Kendrick groovy Enda consecrated grain individual!"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "dilapidation noach NAME peculiarity NAME NAME clarioned NAME NAME grabbler lamellae NAME."               
-    ## [2] "NAME NAME dad dustrags vanmen NAME gynecomasty briana angelical syke hyte nightie!"                      
-    ## [3] "wiredrawing NAME weeper confident dorpers NAME doorways raphides handicrafsmen imp spoke NAME?"          
-    ## [4] "peering puzzlements NAME panics pushpins becalmed NAME nonspecialist NAME NAME NAME NAME?"               
-    ## [5] "pussier wariest apocalyptic NAME concoction rubbled NAME backdoor NAME blemishing broadcloth profitless."
-    ## [6] "NAME outright NAME bund sulfone sprawled caroming NAME lambasted NAME arachnids psychopathic!"
+    ## [1] "triangulate summated NAME NAME wenching advisers NAME stillest NAME pow NAME NAME!"                      
+    ## [2] "definite NAME gonna NAME cosponsors securest NAME NAME mouthing dependences NAME NAME!"                  
+    ## [3] "gudes tumoral conicity garrett NAME NAME quintupling canulated sleeveless fabian NAME NAME."             
+    ## [4] "hadjs shortliffe NAME NAME NAME NAME muffed NAME NAME scent tininess NAME."                              
+    ## [5] "freda grubbers merchanting strangeness ichnites nodosities darkeys NAME abolishes sassafrases NAME loss!"
+    ## [6] "aphidian nestlers NAME strategic redbones NAME NAME groovy NAME consecrated grain individual!"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1483,40 +1463,40 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "dilapidation noach NAME peculiarity NAME NAME clarioned NAME NAME grabbler lamellae NAME."               
-    ## [2] "NAME NAME dad dustrags vanmen NAME gynecomasty briana angelical syke hyte nightie!"                      
-    ## [3] "wiredrawing NAME weeper confident dorpers NAME doorways raphides handicrafsmen imp spoke NAME?"          
-    ## [4] "peering puzzlements NAME panics pushpins becalmed NAME nonspecialist NAME NAME NAME NAME?"               
-    ## [5] "pussier wariest apocalyptic NAME concoction rubbled NAME backdoor NAME blemishing broadcloth profitless."
-    ## [6] "NAME outright NAME bund sulfone sprawled caroming NAME lambasted NAME arachnids psychopathic!"
+    ## [1] "triangulate summated NAME NAME wenching advisers NAME stillest NAME pow NAME NAME!"                      
+    ## [2] "definite NAME gonna NAME cosponsors securest NAME NAME mouthing dependences NAME NAME!"                  
+    ## [3] "gudes tumoral conicity garrett NAME NAME quintupling canulated sleeveless fabian NAME NAME."             
+    ## [4] "hadjs shortliffe NAME NAME NAME NAME muffed NAME NAME scent tininess NAME."                              
+    ## [5] "freda grubbers merchanting strangeness ichnites nodosities darkeys NAME abolishes sassafrases NAME loss!"
+    ## [6] "aphidian nestlers NAME strategic redbones NAME NAME groovy NAME consecrated grain individual!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 8.312045 secs
+    ## Time difference of 8.472147 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "dilapidation noach NAME peculiarity NAME NAME clarioned NAME NAME grabbler lamellae NAME."               
-    ## [2] "NAME NAME dad dustrags vanmen NAME gynecomasty briana angelical syke hyte nightie!"                      
-    ## [3] "wiredrawing NAME weeper confident dorpers NAME doorways raphides handicrafsmen imp spoke NAME?"          
-    ## [4] "peering puzzlements NAME panics pushpins becalmed NAME nonspecialist NAME NAME NAME NAME?"               
-    ## [5] "pussier wariest apocalyptic NAME concoction rubbled NAME backdoor NAME blemishing broadcloth profitless."
-    ## [6] "NAME outright NAME bund sulfone sprawled caroming NAME lambasted NAME arachnids psychopathic!"
+    ## [1] "triangulate summated NAME NAME wenching advisers NAME stillest NAME pow NAME NAME!"                      
+    ## [2] "definite NAME gonna NAME cosponsors securest NAME NAME mouthing dependences NAME NAME!"                  
+    ## [3] "gudes tumoral conicity garrett NAME NAME quintupling canulated sleeveless fabian NAME NAME."             
+    ## [4] "hadjs shortliffe NAME NAME NAME NAME muffed NAME NAME scent tininess NAME."                              
+    ## [5] "freda grubbers merchanting strangeness ichnites nodosities darkeys NAME abolishes sassafrases NAME loss!"
+    ## [6] "aphidian nestlers NAME strategic redbones NAME NAME groovy NAME consecrated grain individual!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.07001591 secs
+    ## Time difference of 0.1600142 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,140 words) and 5,493 replacement tokens in 1.7 seconds.
+(600,080 words) and 5,493 replacement tokens in 2.1 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.669623 secs
+    ## Time difference of 2.117372 secs
 
 ### White Space
 
