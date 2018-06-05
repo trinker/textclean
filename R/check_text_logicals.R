@@ -1,6 +1,6 @@
 #' Detect/Locate Potential Non-Normalized Text 
 #' 
-#' Detect/Locate potential issues with text data.  This family of function 
+#' Detect/Locate potential issues with text data.  This family of functions 
 #' generates a list of detections/location functions that can be accessed via 
 #' the dollar sign or square bracket operators.  Accessible functions include:
 #' 
@@ -34,7 +34,7 @@
 #' meta functions will return a logical of length one and are not available under
 #' \code{which_are}.
 #' 
-#' @return \code{which_are} returns a list of functions that can be used to 
+#' @return \code{which_are} returns an environment of functions that can be used to 
 #' locate and return the integer locations of the particular non-normalized text
 #' named by the function.
 #' @export
@@ -49,28 +49,42 @@
 which_are <- function(){
     
     funs <- is_it()
+    nms <- ls(funs)[!ls(funs) %in% meta_funs]
 
-    funs <- funs[!names(funs) %in% meta_funs]
-    
-    stats::setNames(lapply(funs, function(f){
+    funs <- mget(nms, funs) #funs[!names(funs) %in% meta_funs]
+  
+    out <- list2env(stats::setNames(Map(function(f, nm){
         function(x) {
             out <- which(f(x)) 
-            if (length(out) == 0) return(NULL)
-            out
+            #if (length(out) == 0) out <- NULL
+            set_class(out, nm)
         }
-    }), names(funs))
+    }, funs, names(funs)), names(funs)))
+    
+    class(out) <- 'which_are'
+    attributes(out)[['functions']] <- names(funs)
+    out
     
 }
 
+set_class <- function(x, nms){
+    class(x) <- c('which_are_locs', class(x))    
+    attributes(x)[['fun']] <- nms
+    x
+}
 
-#' @return \code{is_it} returns a list of functions that can be used to 
+
+#' @return \code{is_it} returns an environment of functions that can be used to 
 #' detect and return a logical atomic vector of equal length to the input vector
 #' (except for meta functions) of the particular non-normalized text
 #' named by the function.
 #' @export
 #' @rdname which_are
 is_it <- function(){
-    stats::setNames(lapply(is_funs, match.fun), is_funs)
+    out <- list2env(stats::setNames(lapply(is_funs, match.fun), is_funs), hash = FALSE)
+    class(out) <- 'is_it'
+    attributes(out)[['functions']] <- is_funs
+    out
 }
 
 
@@ -84,31 +98,61 @@ is_funs <- c(
 meta_funs <- c('list_column', 'non_character')
 
 
-checks <- list(
+#' Prints a which_are_locs Object
+#' 
+#' Prints a which_are_locs object
+#' 
+#' @param x A which_are_locs object 
+#' @param n The number of affected elements to print out
+#' @param file Path to an external file to print to
+#' @param \ldots ignored.
+#' @method print which_are_locs
+#' @export
+print.which_are_locs <- function(x, n = 100, file = NULL, ...){
+   
+    x <- rm_class(x, 'which_are_locs')
+    if (is.null(file)) file <- ''
+    if (length(x) == 0) return(invisible(NULL))
+    parts <- .checks[[attributes(x)[['fun']]]]
     
-    contraction = list(fun = "contraction", is_meta = FALSE, problem = "contains contractions", fix = "running `replace_contraction`"),
-    date = list(fun = "date", is_meta = FALSE, problem = "contains dates", fix = "running `replace date`"),
-    digit = list(fun = "digit", is_meta = FALSE, problem = "contains digits/numbers", fix = "using `replace_number`"),
-    email = list(fun = "email", is_meta = FALSE, problem = "contains email addresses", fix = "using `replace_email`"),
-    emoticon = list(fun = "emoticon", is_meta = FALSE, problem = "contains emoticons", fix = "using `replace_emoticons`"),
-    empty = list(fun = "empty", is_meta = FALSE, problem = "contains empty text cells (all white space)", fix = "running `drop_empty_row`"),
-    escaped = list(fun = "escaped", is_meta = FALSE, problem = "contains escaped back spaced characters", fix = "using `replace_white`"),
-    hash = list(fun = "hash", is_meta = FALSE, problem = "contains Twitter style hash tags (e.g., #rstats)", fix = "using `qdapRegex::ex_tag' (to capture meta-data) and/or replace_hash"),
-    html = list(fun = "html", is_meta = FALSE, problem = "", fix =  "running `replace_html`"),
-    incomplete = list(fun = "incomplete", is_meta = FALSE, problem = "contains incomplete sentences (e.g., uses ending punctuation like ...)", fix = "using `replace_incomplete`"), 
-    kern = list(fun = "kern", is_meta = FALSE, problem = "contains kerning (e.g., 'The B O M B!'", fix = "using `replace_kern`"),
+    mess <- sprintf("\nThe following observations %s:\n", parts[['problem']])
+    affected <- truncated(x, n)
+    mess3 <- paste("\n*Suggestion: Consider", parts[['fix']])
+    cat(mess, affected, mess3, sep ="\n", file = file)
+
+}
+
+truncated <- function(x, n = 100, ...){
+    is_truncated <- length(x) > n
+    if (is_truncated) x <- x[seq_len(n)]
+    paste0(paste(x, collapse = ', '), ifelse(is_truncated, '...[truncated]...', ''))
+}
+
+.checks <- list(
+    
+    contraction = list(fun = "contraction", is_meta = FALSE, problem = "contain contractions", fix = "running `replace_contraction`"),
+    date = list(fun = "date", is_meta = FALSE, problem = "contain dates", fix = "running `replace date`"),
+    digit = list(fun = "digit", is_meta = FALSE, problem = "contain digits/numbers", fix = "using `replace_number`"),
+    email = list(fun = "email", is_meta = FALSE, problem = "contain email addresses", fix = "using `replace_email`"),
+    emoticon = list(fun = "emoticon", is_meta = FALSE, problem = "contain emoticons", fix = "using `replace_emoticons`"),
+    empty = list(fun = "empty", is_meta = FALSE, problem = "contain empty text cells (all white space)", fix = "running `drop_empty_row`"),
+    escaped = list(fun = "escaped", is_meta = FALSE, problem = "contain escaped back spaced characters", fix = "using `replace_white`"),
+    hash = list(fun = "hash", is_meta = FALSE, problem = "contain Twitter style hash tags (e.g., #rstats)", fix = "using `qdapRegex::ex_tag' (to capture meta-data) and/or replace_hash"),
+    html = list(fun = "html", is_meta = FALSE, problem = "contain HTML markup", fix =  "running `replace_html`"),
+    incomplete = list(fun = "incomplete", is_meta = FALSE, problem = "contain incomplete sentences (e.g., uses ending punctuation like ...)", fix = "using `replace_incomplete`"), 
+    kern = list(fun = "kern", is_meta = FALSE, problem = "contain kerning (e.g., 'The B O M B!'", fix = "using `replace_kern`"),
     list_column = list(fun = "list_column", is_meta = TRUE, problem = "is a list column", fix = "using `textclean::unnest_text`"),
-    missing_value = list(fun = "missing_value", is_meta = FALSE, problem = "contains missing values", fix = "running `drop_NA`"),    
-    misspelled = list(fun = "misspelled", is_meta = FALSE, problem = "", fix = "running `hunspell::hunspell_find` & `hunspell::hunspell_suggest`"),
-    no_alpha = list(fun = "no_alpha", is_meta = FALSE, problem = "contains elements with no alphabetic (a-z) letters", fix = "cleaning the raw text or running `filter_row`"),
-    no_endmark = list(fun = "no_endmark", is_meta = FALSE, problem = "contains elements with missing ending punctuation", fix = "cleaning the raw text or running `add_missing_endmark`"),
-    no_space_after_comma = list(fun = "no_space_after_comma", is_meta = FALSE, problem = "contains commas with no space afterwards", fix = "running `add_comma_space`"),
-    non_ascii = list(fun = "non_ascii", is_meta = FALSE, problem = "contains non-ASCII text", fix = "running `replace_non_ascii`"),
+    missing_value = list(fun = "missing_value", is_meta = FALSE, problem = "contain missing values", fix = "running `drop_NA`"),    
+    misspelled = list(fun = "misspelled", is_meta = FALSE, problem = "contain potentially misspelled words", fix = "running `hunspell::hunspell_find` & `hunspell::hunspell_suggest`"),
+    no_alpha = list(fun = "no_alpha", is_meta = FALSE, problem = "contain elements with no alphabetic (a-z) letters", fix = "cleaning the raw text or running `filter_row`"),
+    no_endmark = list(fun = "no_endmark", is_meta = FALSE, problem = "contain elements with missing ending punctuation", fix = "cleaning the raw text or running `add_missing_endmark`"),
+    no_space_after_comma = list(fun = "no_space_after_comma", is_meta = FALSE, problem = "contain commas with no space afterwards", fix = "running `add_comma_space`"),
+    non_ascii = list(fun = "non_ascii", is_meta = FALSE, problem = "contain non-ASCII text", fix = "running `replace_non_ascii`"),
     non_character = list(fun = "non_character", is_meta = TRUE, problem = "is not a character column (likely factor)", fix =  "using `as.character` or `stringsAsFactors = FALSE` when reading in"),
-    non_split_sentence = list(fun = "non_split_sentence", is_meta = FALSE, problem = "contains unsplit sentences (more than one sentence per element)", fix = "running `textshape::split_sentence`"),
-    tag = list(fun = "tag", is_meta = FALSE, problem = "contains Twitter style handle tags (e.g., @trinker)", fix = "using `qdapRegex::ex_tag' (to capture meta-data) and/or `replace_tag`"),
-    time = list(fun = "time", is_meta = FALSE, problem = "contains timestamps", fix = "using `replace_time`"),
-    url = list(fun = "url", is_meta = FALSE, problem = "contains URLs", fix = "using `replace_url`")
+    non_split_sentence = list(fun = "non_split_sentence", is_meta = FALSE, problem = "contain unsplit sentences (more than one sentence per element)", fix = "running `textshape::split_sentence`"),
+    tag = list(fun = "tag", is_meta = FALSE, problem = "contain Twitter style handle tags (e.g., @trinker)", fix = "using `qdapRegex::ex_tag' (to capture meta-data) and/or `replace_tag`"),
+    time = list(fun = "time", is_meta = FALSE, problem = "contain timestamps", fix = "using `replace_time`"),
+    url = list(fun = "url", is_meta = FALSE, problem = "contain URLs", fix = "using `replace_url`")
 
 )
  
@@ -131,10 +175,7 @@ contraction <- function(x){
 #contraction(c('jon\'s a good man', "'cause I want to", '4was\'nt', 'the dog', "I'm happy", "He's sad", "I here she's there", NA))
 
 ## dates
-date <- function(x) {
-    grepl(replace_date_pattern, x)    
-}
-
+date <- qr2fun('rm_date')
 
 ## digits
 digit <- function(x) {
@@ -187,7 +228,7 @@ list_column <-  function(x) {
 
 ## missing values
 missing <- function(x){
-    is.na()    
+    is.na(x)    
 }
 
 ## mis-splelled words
@@ -224,7 +265,7 @@ non_ascii <- function(x) {
 
 ## not character
 non_character <- function(x) {
-    !is.character(x) 
+    !is.character(x) && !all(lapply(x, function(y) is.character(y)))
 }
 
 ## unique sentences

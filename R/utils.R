@@ -141,3 +141,8 @@ set_names <- function(x, nms){
 }
 
 rm_na <- function(x) x[!is.na(x)]
+
+rm_class <- function(x, cls){
+    class(x) <- class(x)[!class(x) %in% cls]    
+    x
+}

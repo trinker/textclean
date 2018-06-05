@@ -11,6 +11,11 @@
 #' @param file A connection, or a character string naming the file to print to.  
 #' If \code{NULL} prints to the console.  Note that this is assigned as an 
 #' attribute and passed to \code{print}.
+#' @param checks A vector of checks to include from \code{which_are}.  If 
+#' \code{checks = NULL}, all checks from \code{which_are} which be used.  Note
+#' that all meta checks will be conducted (see \code{which_are} for details on
+#' meta checks).
+#' @param \ldots ignored.
 #' @return Returns a list with the following potential text faults reports:\cr
 #' \itemize{
 #'   \item{non_character}{- Text that is \code{factor}.}
@@ -43,42 +48,32 @@
 #' y <- c("A valid sentence.", "yet another!")
 #' check_text(y)
 #' }
-check_text <- function(x, file = NULL) {
+check_text <- function(x, file = NULL, checks = NULL, ...) {
 
     if (is.data.frame(x)) stop("`x` is a data.frame.  Pass a text vector.")
     check_install('hunspell')
     
-    non_character <- is.factor(x) 
-    x <- as.character(x)
-    missing <- which(is.na(x))
+    ## meta checks
+    metas <- mget(meta_funs, is_it())
+    meta_checks <- lapply(metas, function(fun) {
+        try(fun(x))
+    })
     
-    pot_spell <- eval(parse(text = "hunspell::hunspell_find(x)")) 
-    misspelled <- which(sapply(pot_spell, function(x) length(x) != 0 ))
-
-    if (length(missing) == 0) missing <- NULL
-    if (!non_character) non_character <- NULL
-    if (length(misspelled) == 0) misspelled <- NULL
-
-    out <- list(
-        non_character = non_character,
-        missing_ending_punctuation = which.mp(x),
-        empty = which.empty(x),
-        double_punctuation = which.dp(x),
-        non_space_after_comma = which.cns(x),
-        no_alpha = which.non.alpha(x),
-        non_ascii = which.non.ascii(x),
-        missing_value = missing, 
-        containing_escaped = which.escaped(x),
-        containing_digits = which.digit(x),
-	containing_html = which.html(x),	    
-        indicating_incomplete = which.incomplete(x),
-        potentially_misspelled = misspelled
-    )
+    ## elemental checks
+    elementals <- which_are()
+    if (is.null(checks)) checks <- ls(elementals)
+    elementals <- mget(checks, elementals)
+    elemental_checks <- lapply(elementals, function(fun) {
+        try(fun(x))
+    })    
+    
+    out <- list(metas = metas, elemental_checks = elemental_checks)
+    
     class(out) <- "check_text"
     attributes(out)[["text.var"]] <- x
     attributes(out)[["file"]] <- file
-    attributes(out)[["misspelled"]] <- unname(unlist(pot_spell))
     out
+    
 }
 
 #' Prints a check_text Object
