@@ -4,7 +4,8 @@
 \alias{print.check_text}
 \title{Prints a check_text Object}
 \usage{
-\method{print}{check_text}(x, include.text = TRUE, file = NULL, ...)
+\method{print}{check_text}(x, include.text = TRUE, file = NULL, n = NULL,
+  ...)
 }
 \arguments{
 \item{x}{The check_text object.}
@@ -14,6 +15,8 @@ well.}
 
 \item{file}{A connection, or a character string naming the file to print to.
 If \code{NULL} prints to the console.}
+
+\item{n}{The number of affected elements to print out (the rest are truncated)}
 
 \item{\ldots}{ignored}
 }

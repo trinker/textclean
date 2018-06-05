@@ -35,6 +35,7 @@ x <- c("@hadley I like #rstats for #ggplot2 work. ftp://cran.r-project.org/incom
 replace_url(x)
 replace_url(x, replacement = '<<URL>>')
 
+\dontrun{
 ## Replacement with a function
 library(urltools)
 replace_url(x, 
@@ -42,4 +43,5 @@ replace_url(x,
         sprintf('{{\%s}}', urltools::url_parse(x)$domain)
     }
 )
+}
 }

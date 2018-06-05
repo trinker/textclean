@@ -10,17 +10,17 @@ which_are()
 is_it()
 }
 \value{
-\code{which_are} returns a list of functions that can be used to 
+\code{which_are} returns an environment of functions that can be used to 
 locate and return the integer locations of the particular non-normalized text
 named by the function.
 
-\code{is_it} returns a list of functions that can be used to 
+\code{is_it} returns an environment of functions that can be used to 
 detect and return a logical atomic vector of equal length to the input vector
 (except for meta functions) of the particular non-normalized text
 named by the function.
 }
 \description{
-Detect/Locate potential issues with text data.  This family of function 
+Detect/Locate potential issues with text data.  This family of functions 
 generates a list of detections/location functions that can be accessed via 
 the dollar sign or square bracket operators.  Accessible functions include:
 }
@@ -62,4 +62,5 @@ wa$digit(c('The dog',  "I like 2", NA))
 it$digit(c('The dog',  "I like 2", NA))
 
 is_it()$list_column(c('the dog', 'ate the chicken'))
+
 }

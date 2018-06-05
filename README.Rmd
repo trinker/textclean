@@ -112,6 +112,15 @@ pacman::p_load_gh("trinker/textshape", "trinker/lexicon", "trinker/textclean")
 
 One of the most useful tools in **textclean** is `check_text` which scans text variables and reports potential problems.  Not all potential problems are definite problems for analysis but the report provides an overview of what may need further preparation.  The report also provides suggested functions for the reported problems.  The report provides information on the following:
 
+```{r, results = 'asis', comment = NA, echo = FALSE}
+cat(sapply(textclean:::.checks, function(x){
+
+    frame <- ifelse(x$is_meta, "1. **%s** - Text variable that %s", "1. **%s** - Text elements that %s")
+    sprintf(frame, x$fun, x$problem)
+
+}), sep = '\n')
+```
+
 1. **non_character** - Text that is `factor`.
 1. **missing_ending_punctuation** - Text with no endmark at the end of the string.
 1. **empty** - Text that contains an empty element (i.e., `""`).

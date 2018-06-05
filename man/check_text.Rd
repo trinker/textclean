@@ -4,7 +4,7 @@
 \alias{check_text}
 \title{Check Text For Potential Problems}
 \usage{
-check_text(x, file = NULL)
+check_text(x, file = NULL, checks = NULL, n = 10, ...)
 }
 \arguments{
 \item{x}{The text variable.}
@@ -12,23 +12,42 @@ check_text(x, file = NULL)
 \item{file}{A connection, or a character string naming the file to print to.
 If \code{NULL} prints to the console.  Note that this is assigned as an 
 attribute and passed to \code{print}.}
+
+\item{checks}{A vector of checks to include from \code{which_are}.  If 
+\code{checks = NULL}, all checks from \code{which_are} which be used.  Note
+that all meta checks will be conducted (see \code{which_are} for details on
+meta checks).}
+
+\item{n}{The number of affected elements to print out (the rest are truncated).}
+
+\item{\ldots}{ignored.}
 }
 \value{
-Returns a list with the following potential text faults reports:\cr
+Returns a list with the following potential text faults report:\cr
 \itemize{
-  \item{non_character}{- Text that is \code{factor}.}
-  \item{missing_ending_punctuation}{- Text with no endmark at the end of the string.}
-  \item{empty}{- Text that contains an empty element (i.e., \code{""}).}
-  \item{double_punctuation}{- Text that contains two punctuation marks in the same string.}
-  \item{non_space_after_comma}{- Text that contains commas with no space after them.}
-  \item{no_alpha}{- Text that contains string elements with no alphabetic characters.}
-  \item{non_ascii}{- Text that contains non-ASCII characters.}
-  \item{missing_value}{- Text that contains missing values (i.e., \code{NA}).}
-  \item{containing_escaped}{- Text that contains escaped (see \code{?Quotes}).}
-  \item{containing_digits}{- Text that contains digits.}
-  \item{containing_html}{- Text that potentially contains HTML markup.}
-  \item{indicating_incomplete}{- Text that contains endmarks that are indicative of incomplete/trailing sentences (e.g., \code{...}).}
-  \item{potentially_misspelled}{- Text that contains potentially misspelled words.}
+  \item{contraction}{- Text elements that contain contractions}
+  \item{date}{- Text elements that contain dates}
+  \item{digit}{- Text elements that contain digits/numbers}
+  \item{email}{- Text elements that contain email addresses}
+  \item{emoticon}{- Text elements that contain emoticons}
+  \item{empty}{- Text elements that contain empty text cells (all white space)}
+  \item{escaped}{- Text elements that contain escaped back spaced characters}
+  \item{hash}{- Text elements that contain Twitter style hash tags (e.g., #rstats)}
+  \item{html}{- Text elements that contain HTML markup}
+  \item{incomplete}{- Text elements that contain incomplete sentences (e.g., uses ending punctuation like ...)}
+  \item{kern}{- Text elements that contain kerning (e.g., 'The B O M B!')}
+  \item{list_column}{- Text variable that is a list column}
+  \item{missing_value}{- Text elements that contain missing values}
+  \item{misspelled}{- Text elements that contain potentially misspelled words}
+  \item{no_alpha}{- Text elements that contain elements with no alphabetic (a-z) letters}
+  \item{no_endmark}{- Text elements that contain elements with missing ending punctuation}
+  \item{no_space_after_comma}{- Text elements that contain commas with no space afterwards}
+  \item{non_ascii}{- Text elements that contain non-ASCII text}
+  \item{non_character}{- Text variable that is not a character column (likely \code{factor})}
+  \item{non_split_sentence}{- Text elements that contain unsplit sentences (more than one sentence per element)}
+  \item{tag}{- Text elements that contain Twitter style handle tags (e.g., @trinker)}
+  \item{time}{- Text elements that contain timestamps}
+  \item{url}{- Text elements that contain URLs}
 }
 }
 \description{
@@ -40,21 +59,9 @@ non-space after comma, no alphabetic characters, non-ASCII, missing value,
 and potentially misspelled words.
 }
 \note{
-The output is a list but prints as a pretty formatted output with 
-potential problem elements, the accompanying text, and possible suggestions 
-to fix the text.
-}
-\examples{
-\dontrun{
-x <- c("i like", "<p>i want. </p>thet them ther .", "I am ! that|", "", NA, 
-    "&quot;they&quot;,were there", ".", "   ", "?", "3;", "I like goud eggs!", 
-    "i 4like...", "\\\\tgreat",  "She said \\"yes\\"")
-check_text(x)
-print(check_text(x), include.text=FALSE)
-
-y <- c("A valid sentence.", "yet another!")
-check_text(y)
-}
+The output is a list containing meta checks and elemental checks
+but prints as a pretty formatted output with potential problem elements, the 
+accompanying text, and possible suggestions to fix the text.
 }
 \keyword{check}
 \keyword{spelling}

@@ -42,6 +42,10 @@ textclean 0.8.0 -
 
 **MINOR FEATURES**
 
+* `check_text` picks up a `checks` and `n` argument.  The former allows the user
+  to specify which checks to conduct.  The latter allows the user to truncate the
+  output to n number of elements with a closing `...[truncated]...`.
+
 **IMPROVEMENTS**
 
 * `replace_non_ascii` did not replace all non-ASCII characters.  This has been

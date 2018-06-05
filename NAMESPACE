@@ -2,6 +2,7 @@
 
 S3method(print,check_text)
 S3method(print,sub_holder)
+S3method(print,which_are_locs)
 S3method(strip,character)
 S3method(strip,default)
 S3method(strip,factor)

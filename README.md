@@ -137,19 +137,29 @@ table below:
 <td>Replace dates</td>
 </tr>
 <tr class="odd">
+<td><code>replace_email</code></td>
+<td>replacement</td>
+<td>Replace emails</td>
+</tr>
+<tr class="even">
 <td><code>replace_emoji</code></td>
 <td>replacement</td>
 <td>Replace emojis with word equivalent or unique identifier</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_emoticon</code></td>
 <td>replacement</td>
 <td>Replace emoticons with word equivalent</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_grade</code></td>
 <td>replacement</td>
 <td>Replace grades (e.g., &quot;A+&quot;) with word equivalent</td>
+</tr>
+<tr class="odd">
+<td><code>replace_hash</code></td>
+<td>replacement</td>
+<td>Replace Twitter style hash tags (e.g., #rstats)</td>
 </tr>
 <tr class="even">
 <td><code>replace_html</code></td>
@@ -207,19 +217,29 @@ table below:
 <td>Replace common symbols</td>
 </tr>
 <tr class="odd">
+<td><code>replace_tag</code></td>
+<td>replacement</td>
+<td>Replace Twitter style handle tag (e.g., <span class="citation">@trinker</span>)</td>
+</tr>
+<tr class="even">
 <td><code>replace_time</code></td>
 <td>replacement</td>
 <td>Replace time stamps</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_to</code>/<code>replace_from</code></td>
 <td>replacement</td>
 <td>Remove from/to begin/end of string to/from a character(s)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_token</code></td>
 <td>replacement</td>
 <td>Remove or replace a vector of tokens with a single value</td>
+</tr>
+<tr class="odd">
+<td><code>replace_url</code></td>
+<td>replacement</td>
+<td>Replace URLs</td>
 </tr>
 <tr class="even">
 <td><code>replace_white</code></td>
@@ -304,25 +324,60 @@ overview of what may need further preparation. The report also provides
 suggested functions for the reported problems. The report provides
 information on the following:
 
-1.  **non\_character** - Text that is `factor`.
-2.  **missing\_ending\_punctuation** - Text with no endmark at the end
+1.  **contraction** - Text elements that contain contractions
+2.  **date** - Text elements that contain dates
+3.  **digit** - Text elements that contain digits/numbers
+4.  **email** - Text elements that contain email addresses
+5.  **emoticon** - Text elements that contain emoticons
+6.  **empty** - Text elements that contain empty text cells (all white
+    space)
+7.  **escaped** - Text elements that contain escaped back spaced
+    characters
+8.  **hash** - Text elements that contain Twitter style hash tags (e.g.,
+    \#rstats)
+9.  **html** - Text elements that contain HTML markup
+10. **incomplete** - Text elements that contain incomplete sentences
+    (e.g., uses ending punctuation like ...)
+11. **kern** - Text elements that contain kerning (e.g., 'The B O M B!')
+12. **list\_column** - Text variable that is a list column
+13. **missing\_value** - Text elements that contain missing values
+14. **misspelled** - Text elements that contain potentially misspelled
+    words
+15. **no\_alpha** - Text elements that contain elements with no
+    alphabetic (a-z) letters
+16. **no\_endmark** - Text elements that contain elements with missing
+    ending punctuation
+17. **no\_space\_after\_comma** - Text elements that contain commas with
+    no space afterwards
+18. **non\_ascii** - Text elements that contain non-ASCII text
+19. **non\_character** - Text variable that is not a character column
+    (likely factor)
+20. **non\_split\_sentence** - Text elements that contain unsplit
+    sentences (more than one sentence per element)
+21. **tag** - Text elements that contain Twitter style handle tags
+    (e.g., @trinker)
+22. **time** - Text elements that contain timestamps
+23. **url** - Text elements that contain URLs
+
+24. **non\_character** - Text that is `factor`.
+25. **missing\_ending\_punctuation** - Text with no endmark at the end
     of the string.
-3.  **empty** - Text that contains an empty element (i.e., `""`).
-4.  **double\_punctuation** - Text that contains two punctuation marks
+26. **empty** - Text that contains an empty element (i.e., `""`).
+27. **double\_punctuation** - Text that contains two punctuation marks
     in the same string.
-5.  **non\_space\_after\_comma** - Text that contains commas with no
+28. **non\_space\_after\_comma** - Text that contains commas with no
     space after them.
-6.  **no\_alpha** - Text that contains string elements with no
+29. **no\_alpha** - Text that contains string elements with no
     alphabetic characters.
-7.  **non\_ascii** - Text that contains non-ASCII characters.
-8.  **missing\_value** - Text that contains missing values (i.e., `NA`).
-9.  **containing\_escaped** - Text that contains escaped (see
+30. **non\_ascii** - Text that contains non-ASCII characters.
+31. **missing\_value** - Text that contains missing values (i.e., `NA`).
+32. **containing\_escaped** - Text that contains escaped (see
     `?Quotes`).
-10. **containing\_digits** - Text that contains digits.
-11. **containing\_html** - Text that potentially contains HTML markup.
-12. **indicating\_incomplete** - Text that contains endmarks that are
+33. **containing\_digits** - Text that contains digits.
+34. **containing\_html** - Text that potentially contains HTML markup.
+35. **indicating\_incomplete** - Text that contains endmarks that are
     indicative of incomplete/trailing sentences (e.g., `...`).
-13. **potentially\_misspelled** - Text that contains potentially
+36. **potentially\_misspelled** - Text that contains potentially
     misspelled words.
 
 Here is an example:
@@ -339,89 +394,124 @@ Here is an example:
     ## NON CHARACTER
     ## =============
     ## 
-    ## Text is a factor.
+    ## The text variable is not a character column (likely factor):
+    ## 
     ## 
     ## *Suggestion: Consider using `as.character` or `stringsAsFactors = FALSE` when reading in
     ## 
-    ## ==========================
-    ## MISSING ENDING PUNCTUATION
-    ## ==========================
     ## 
-    ## The following observations were missing ending punctuation:
+    ## =====
+    ## DIGIT
+    ## =====
     ## 
-    ## 1, 3, 4, 5, 6, 8, 10, 12, 14, 15
+    ## The following observations contain digits/numbers:
     ## 
-    ## The following text is missing ending punctuation:
+    ## 10, 13
     ## 
-    ## 1: i like
-    ## 3: I am ! that|
-    ## 4: 
-    ## 5: NA
-    ## 6: &quot;they&quot; they,were there
-    ## 8:    
+    ## This issue affected the following text:
+    ## 
     ## 10: 3;
-    ## 12: bißchen Zürcher
-    ## 14: \tgreat
-    ## 15: She said "yes"
+    ## 13: i 4like...
     ## 
-    ## *Suggestion: Consider cleaning the raw text or running `add_missing_endmark`
+    ## *Suggestion: Consider using `replace_number`
+    ## 
+    ## 
+    ## ========
+    ## EMOTICON
+    ## ========
+    ## 
+    ## The following observations contain emoticons:
+    ## 
+    ## 6
+    ## 
+    ## This issue affected the following text:
+    ## 
+    ## 6: &quot;they&quot; they,were there
+    ## 
+    ## *Suggestion: Consider using `replace_emoticons`
     ## 
     ## 
     ## =====
     ## EMPTY
     ## =====
     ## 
-    ## The following observations were empty:
+    ## The following observations contain empty text cells (all white space):
     ## 
-    ## 4, 8
+    ## 1
     ## 
-    ## The following text is empty:
+    ## This issue affected the following text:
     ## 
-    ## 4: 
-    ## 8:    
+    ## 1: i like
     ## 
-    ## *Suggestion: Consider running `filter_empty`
+    ## *Suggestion: Consider running `drop_empty_row`
     ## 
     ## 
-    ## ==================
-    ## DOUBLE PUNCTUATION
-    ## ==================
+    ## =======
+    ## ESCAPED
+    ## =======
     ## 
-    ## The following observations were double punctuation:
+    ## The following observations contain escaped back spaced characters:
     ## 
-    ## 2
+    ## 14
     ## 
-    ## The following text is double punctuation:
+    ## This issue affected the following text:
+    ## 
+    ## 14: \tgreat
+    ## 
+    ## *Suggestion: Consider using `replace_white`
+    ## 
+    ## 
+    ## ====
+    ## HTML
+    ## ====
+    ## 
+    ## The following observations contain HTML markup:
+    ## 
+    ## 2, 6
+    ## 
+    ## This issue affected the following text:
     ## 
     ## 2: <p>i want. </p>. thet them ther .
-    ## 
-    ## *Suggestion: Consider running `textshape::split_sentence`
-    ## 
-    ## 
-    ## =====================
-    ## NON SPACE AFTER COMMA
-    ## =====================
-    ## 
-    ## The following observations were non space after comma:
-    ## 
-    ## 6
-    ## 
-    ## The following text is non space after comma:
-    ## 
     ## 6: &quot;they&quot; they,were there
     ## 
-    ## *Suggestion: Consider running `add_comma_space`
+    ## *Suggestion: Consider running `replace_html`
+    ## 
+    ## 
+    ## ==========
+    ## INCOMPLETE
+    ## ==========
+    ## 
+    ## The following observations contain incomplete sentences (e.g., uses ending punctuation like ...):
+    ## 
+    ## 13
+    ## 
+    ## This issue affected the following text:
+    ## 
+    ## 13: i 4like...
+    ## 
+    ## *Suggestion: Consider using `replace_incomplete`
+    ## 
+    ## 
+    ## =============
+    ## MISSING VALUE
+    ## =============
+    ## 
+    ## The following observations contain missing values:
+    ## 
+    ## 5
+    ## 
+    ## *Suggestion: Consider running `drop_NA`
     ## 
     ## 
     ## ========
     ## NO ALPHA
     ## ========
     ## 
-    ## The following observations were no alpha:
+    ## The following observations contain elements with no alphabetic (a-z) letters:
     ## 
     ## 4, 7, 8, 9, 10
     ## 
-    ## The following text is no alpha:
+    ## This issue affected the following text:
     ## 
     ## 4: 
     ## 7: .
@@ -432,110 +522,73 @@ Here is an example:
     ## *Suggestion: Consider cleaning the raw text or running `filter_row`
     ## 
     ## 
+    ## ==========
+    ## NO ENDMARK
+    ## ==========
+    ## 
+    ## The following observations contain elements with missing ending punctuation:
+    ## 
+    ## 1, 3, 4, 6, 8, 10, 12, 14, 15
+    ## 
+    ## This issue affected the following text:
+    ## 
+    ## 1: i like
+    ## 3: I am ! that|
+    ## 4: 
+    ## 6: &quot;they&quot; they,were there
+    ## 8:    
+    ## 10: 3;
+    ## 12: bißchen Zürcher
+    ## 14: \tgreat
+    ## 15: She said "yes"
+    ## 
+    ## *Suggestion: Consider cleaning the raw text or running `add_missing_endmark`
+    ## 
+    ## 
+    ## ====================
+    ## NO SPACE AFTER COMMA
+    ## ====================
+    ## 
+    ## The following observations contain commas with no space afterwards:
+    ## 
+    ## 6
+    ## 
+    ## This issue affected the following text:
+    ## 
+    ## 6: &quot;they&quot; they,were there
+    ## 
+    ## *Suggestion: Consider running `add_comma_space`
+    ## 
+    ## 
     ## =========
     ## NON ASCII
     ## =========
     ## 
-    ## The following observations were non ascii:
+    ## The following observations contain non-ASCII text:
     ## 
     ## 12
     ## 
-    ## The following text is non ascii:
+    ## This issue affected the following text:
     ## 
     ## 12: bißchen Zürcher
     ## 
     ## *Suggestion: Consider running `replace_non_ascii`
     ## 
     ## 
-    ## =============
-    ## MISSING VALUE
-    ## =============
-    ## 
-    ## The following observations were missing value:
-    ## 
-    ## 5
-    ## 
-    ## *Suggestion: Consider running `filter_NA`
-    ## 
-    ## 
     ## ==================
-    ## CONTAINING ESCAPED
+    ## NON SPLIT SENTENCE
     ## ==================
     ## 
-    ## The following observations were containing escaped:
+    ## The following observations contain unsplit sentences (more than one sentence per element):
     ## 
-    ## 14
+    ## 2, 3
     ## 
-    ## The following text is containing escaped:
-    ## 
-    ## 14: \tgreat
-    ## 
-    ## *Suggestion: Consider using `replace_white`
-    ## 
-    ## 
-    ## =================
-    ## CONTAINING DIGITS
-    ## =================
-    ## 
-    ## The following observations were containing digits:
-    ## 
-    ## 10, 13
-    ## 
-    ## The following text is containing digits:
-    ## 
-    ## 10: 3;
-    ## 13: i 4like...
-    ## 
-    ## *Suggestion: Consider using `replace_number`
-    ## 
-    ## 
-    ## ===============
-    ## CONTAINING HTML
-    ## ===============
-    ## 
-    ## The following observations were containing html:
-    ## 
-    ## 2, 6
-    ## 
-    ## The following text is containing html:
+    ## This issue affected the following text:
     ## 
     ## 2: <p>i want. </p>. thet them ther .
-    ## 6: &quot;they&quot; they,were there
+    ## 3: I am ! that|
     ## 
-    ## *Suggestion: Consider running `replace_html`
-    ## 
-    ## 
-    ## =====================
-    ## INDICATING INCOMPLETE
-    ## =====================
-    ## 
-    ## The following observations were indicating incomplete:
-    ## 
-    ## 13
-    ## 
-    ## The following text is indicating incomplete:
-    ## 
-    ## 13: i 4like...
-    ## 
-    ## *Suggestion: Consider using `replace_incomplete`
-    ## 
-    ## 
-    ## ======================
-    ## POTENTIALLY MISSPELLED
-    ## ======================
-    ## 
-    ## The following observations were potentially misspelled:
-    ## 
-    ## 2, 11, 12, 14
-    ## 
-    ## The following text is potentially misspelled:
-    ## 
-    ## 2: <p>i want. </p>. <<thet>> them <<ther>> .
-    ## 11: I like <<goud>> eggs!
-    ## 12: <<bißchen>> <<Zürcher>>
-    ## 14: \<<tgreat>>
-    ## 
-    ## *Suggestion: Consider running `hunspell::hunspell_find` & `hunspell::hunspell_suggest`
+    ## *Suggestion: Consider running `textshape::split_sentence`
 
 And if all is well the user should be greeted by a cow:
 
@@ -545,7 +598,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------- 
     ## No problems found!
-    ## You are prodigious! 
+    ## This text is outstanding! 
     ##  -------- 
     ##     \   ^__^ 
     ##      \  (oo)\ ________ 
@@ -853,7 +906,7 @@ and then puts them back at the original locations.
     )
 
     ## [1] NA                            "df dft sdf"                 
-    ## [3] "sd <<gggdf>> sd <<hhhfd>> d" "<<ddd>>"
+    ## [3] "sd <<<<hhhfd>>>> sd dfhhh d" "<<ddd>>"
 
 In this example we extract numbers, strip out non-digits, coerce them to
 numeric, cut them in half, round up to the closest integer, add the
@@ -1407,21 +1460,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "Lindsay Lesha dazzle bicarbs caucasian hesitation valency Trena dosers trysted Catherina schoolhouses!"
-    ## [2] "newscasters shaders tainting Masako museums Danyelle broadly Harrison Annita trudgeons nelumbos Genny?"
-    ## [3] "requisitioned Maxima essay champ gassiest ciphers pothole cigarets oxide souchong oblates faqirs?"     
-    ## [4] "stalkily Joselyn Meryl hart calculating windfalls overstating Sunday Ethan maigre jewry Odis!"         
-    ## [5] "Melaine immiscible nom Ivey Phuong lea Antonina romps hyenine charter constipates forwards!"           
-    ## [6] "Jose orbit livest karilynn drafters bernelle maddening Jamey exterminations osmosing heredes reviewer."
+    ## [1] "dilapidation noach Nakesha peculiarity Latrina Refugia clarioned Jeanelle Salvador grabbler lamellae Shaina."   
+    ## [2] "Timothy Garry dad dustrags vanmen Bonny gynecomasty briana angelical syke hyte nightie!"                        
+    ## [3] "wiredrawing Aaron weeper confident dorpers Amira doorways raphides handicrafsmen imp spoke Roma?"               
+    ## [4] "peering puzzlements Clare panics pushpins becalmed Garnett nonspecialist Ernestina Kathline Bridgette Leonie?"  
+    ## [5] "pussier wariest apocalyptic Blake concoction rubbled Alethea backdoor Mellisa blemishing broadcloth profitless."
+    ## [6] "Laurette outright Myrtis bund sulfone sprawled caroming Micaela lambasted Dorthey arachnids psychopathic!"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "NAME NAME dazzle bicarbs caucasian hesitation valency NAME dosers trysted NAME schoolhouses!"         
-    ## [2] "newscasters shaders tainting NAME museums NAME broadly NAME NAME trudgeons nelumbos NAME?"            
-    ## [3] "requisitioned NAME essay champ gassiest ciphers pothole cigarets oxide souchong oblates faqirs?"      
-    ## [4] "stalkily NAME NAME hart calculating windfalls overstating NAME NAME maigre jewry NAME!"               
-    ## [5] "NAME immiscible nom NAME NAME lea NAME romps hyenine charter constipates forwards!"                   
-    ## [6] "NAME orbit livest karilynn drafters bernelle maddening NAME exterminations osmosing heredes reviewer."
+    ## [1] "dilapidation noach NAME peculiarity NAME NAME clarioned NAME NAME grabbler lamellae NAME."               
+    ## [2] "NAME NAME dad dustrags vanmen NAME gynecomasty briana angelical syke hyte nightie!"                      
+    ## [3] "wiredrawing NAME weeper confident dorpers NAME doorways raphides handicrafsmen imp spoke NAME?"          
+    ## [4] "peering puzzlements NAME panics pushpins becalmed NAME nonspecialist NAME NAME NAME NAME?"               
+    ## [5] "pussier wariest apocalyptic NAME concoction rubbled NAME backdoor NAME blemishing broadcloth profitless."
+    ## [6] "NAME outright NAME bund sulfone sprawled caroming NAME lambasted NAME arachnids psychopathic!"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1430,40 +1483,40 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "NAME NAME dazzle bicarbs caucasian hesitation valency NAME dosers trysted NAME schoolhouses!"         
-    ## [2] "newscasters shaders tainting NAME museums NAME broadly NAME NAME trudgeons nelumbos NAME?"            
-    ## [3] "requisitioned NAME essay champ gassiest ciphers pothole cigarets oxide souchong oblates faqirs?"      
-    ## [4] "stalkily NAME NAME hart calculating windfalls overstating NAME NAME maigre jewry NAME!"               
-    ## [5] "NAME immiscible nom NAME NAME lea NAME romps hyenine charter constipates forwards!"                   
-    ## [6] "NAME orbit livest karilynn drafters bernelle maddening NAME exterminations osmosing heredes reviewer."
+    ## [1] "dilapidation noach NAME peculiarity NAME NAME clarioned NAME NAME grabbler lamellae NAME."               
+    ## [2] "NAME NAME dad dustrags vanmen NAME gynecomasty briana angelical syke hyte nightie!"                      
+    ## [3] "wiredrawing NAME weeper confident dorpers NAME doorways raphides handicrafsmen imp spoke NAME?"          
+    ## [4] "peering puzzlements NAME panics pushpins becalmed NAME nonspecialist NAME NAME NAME NAME?"               
+    ## [5] "pussier wariest apocalyptic NAME concoction rubbled NAME backdoor NAME blemishing broadcloth profitless."
+    ## [6] "NAME outright NAME bund sulfone sprawled caroming NAME lambasted NAME arachnids psychopathic!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 6.79982 secs
+    ## Time difference of 8.312045 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "NAME NAME dazzle bicarbs caucasian hesitation valency NAME dosers trysted NAME schoolhouses!"         
-    ## [2] "newscasters shaders tainting NAME museums NAME broadly NAME NAME trudgeons nelumbos NAME?"            
-    ## [3] "requisitioned NAME essay champ gassiest ciphers pothole cigarets oxide souchong oblates faqirs?"      
-    ## [4] "stalkily NAME NAME hart calculating windfalls overstating NAME NAME maigre jewry NAME!"               
-    ## [5] "NAME immiscible nom NAME NAME lea NAME romps hyenine charter constipates forwards!"                   
-    ## [6] "NAME orbit livest karilynn drafters bernelle maddening NAME exterminations osmosing heredes reviewer."
+    ## [1] "dilapidation noach NAME peculiarity NAME NAME clarioned NAME NAME grabbler lamellae NAME."               
+    ## [2] "NAME NAME dad dustrags vanmen NAME gynecomasty briana angelical syke hyte nightie!"                      
+    ## [3] "wiredrawing NAME weeper confident dorpers NAME doorways raphides handicrafsmen imp spoke NAME?"          
+    ## [4] "peering puzzlements NAME panics pushpins becalmed NAME nonspecialist NAME NAME NAME NAME?"               
+    ## [5] "pussier wariest apocalyptic NAME concoction rubbled NAME backdoor NAME blemishing broadcloth profitless."
+    ## [6] "NAME outright NAME bund sulfone sprawled caroming NAME lambasted NAME arachnids psychopathic!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.0690341 secs
+    ## Time difference of 0.07001591 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,120 words) and 5,493 replacement tokens in 1.4 seconds.
+(600,140 words) and 5,493 replacement tokens in 1.7 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.428013 secs
+    ## Time difference of 1.669623 secs
 
 ### White Space
 

@@ -23,6 +23,7 @@
 #' replace_url(x)
 #' replace_url(x, replacement = '<<URL>>')
 #' 
+#' \dontrun{
 #' ## Replacement with a function
 #' library(urltools)
 #' replace_url(x, 
@@ -30,6 +31,7 @@
 #'         sprintf('{{%s}}', urltools::url_parse(x)$domain)
 #'     }
 #' )
+#' }
 replace_url <- function(x, pattern = qdapRegex::grab('rm_url'), 
     replacement = '', ...){
 
