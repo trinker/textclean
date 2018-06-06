@@ -38,7 +38,12 @@ original.
 \examples{
 replace_tokens(DATA$state, c('No', 'what', "it's"))
 replace_tokens(DATA$state, c('No', 'what', "it's"), "<<TOKEN>>")
-replace_tokens(DATA$state, c('No', 'what', "it's"), "<<TOKEN>>", ignore.case = TRUE)
+replace_tokens(
+    DATA$state, 
+    c('No', 'what', "it's"), 
+    "<<TOKEN>>", 
+    ignore.case = TRUE
+)
 
 \dontrun{
 ## Now let's see the speed
@@ -68,8 +73,14 @@ head(replace_tokens(rep(hamlet$dialogue, 20), tokens))
 library(lexicon)
 library(textshape)
 nms <- gsub("(^.)(.*)", "\\\\U\\\\1\\\\L\\\\2", common_names, perl = TRUE)
-x <- split_portion(sample(c(sample(grady_augmented, 5000), sample(nms, 10000, TRUE))), n.words = 12)
-x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
+x <- split_portion(
+    sample(c(sample(grady_augmented, 5000), sample(nms, 10000, TRUE))), 
+    n.words = 12
+)
+x$text.var <- paste0(
+    x$text.var, 
+    sample(c('.', '!', '?'), length(x$text.var), TRUE)
+ )
 replace_tokens(x$text.var, nms, 'NAME')
 }
 }

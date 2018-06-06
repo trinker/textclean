@@ -1,8 +1,10 @@
 Package: textclean
 Title: Text Cleaning Tools
-Version: 0.8.3
-Authors@R: c( person("Tyler", "Rinker", email = "tyler.rinker@gmail.com", role = c("aut",
-          "cre")), person("ctwheels", "StackOverflow", role = "ctb") )
+Version: 0.9.0
+Authors@R: c( 
+        person("Tyler", "Rinker", email = "tyler.rinker@gmail.com", role = c("aut", "cre")), 
+        person("ctwheels", "StackOverflow", role = "ctb") 
+    )
 Maintainer: Tyler Rinker <tyler.rinker@gmail.com>
 Description: Tools to clean and process text.  Tools are geared at checking for substrings that
           are not optimal for analysis and replacing or removing them (normalizing) with more
@@ -21,3 +23,48 @@ Roxygen: list(wrap = FALSE)
 RoxygenNote: 6.0.1
 URL: https://github.com/trinker/textclean
 BugReports: https://github.com/trinker/textclean/issues
+Collate: 
+    'add_comma_space.R'
+    'add_missing_endmark.R'
+    'utils.R'
+    'replace_html.R'
+    'check_text_logicals.R'
+    'check_text.R'
+    'drop_element.R'
+    'drop_row.R'
+    'fgsub.R'
+    'filter_element.R'
+    'filter_row.R'
+    'glue-reexports.R'
+    'has_endmark.R'
+    'make_plural.R'
+    'match_tokens.R'
+    'mgsub.R'
+    'replace_contraction.R'
+    'replace_date.R'
+    'replace_email.R'
+    'replace_emoji.R'
+    'replace_emoticon.R'
+    'replace_grade.R'
+    'replace_hash.R'
+    'replace_incomplete.R'
+    'replace_internet_slang.R'
+    'replace_kerning.R'
+    'replace_money.R'
+    'replace_names.R'
+    'replace_non_ascii.R'
+    'replace_number.R'
+    'replace_ordinal.R'
+    'replace_rating.R'
+    'replace_symbol.R'
+    'replace_tag.R'
+    'replace_time.R'
+    'replace_to.R'
+    'replace_tokens.R'
+    'replace_url.R'
+    'replace_white.R'
+    'replace_word_elongation.R'
+    'strip.R'
+    'sub_holder.R'
+    'swap.R'
+    'textclean-package.R'

@@ -41,7 +41,12 @@ sub_holder <- function(x, pattern, alpha.type = TRUE, ...) {
             counter <- counter + 1
         }
         if (y > 0) counter + 1
-        keys <- apply(expand.grid(lapply(1:counter, function(i) letters)), 1, paste, collapse="")
+        keys <- apply(
+            expand.grid(lapply(1:counter, function(i) letters)), 
+            1, 
+            paste, 
+            collapse=""
+        )
         reps <- paste0("zzzplaceholder", keys, "zzz")
     } else {
         keys <- reps <- 1:y
@@ -76,7 +81,6 @@ sub_holder <- function(x, pattern, alpha.type = TRUE, ...) {
 #' @param \ldots ignored
 #' @export
 #' @method print sub_holder
-print.sub_holder <-
-function(x, ...) {
+print.sub_holder <- function(x, ...) {
     print(x[["output"]])
 }

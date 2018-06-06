@@ -16,7 +16,8 @@ well.}
 \item{file}{A connection, or a character string naming the file to print to.
 If \code{NULL} prints to the console.}
 
-\item{n}{The number of affected elements to print out (the rest are truncated)}
+\item{n}{The number of affected elements to print out (the rest are 
+truncated)}
 
 \item{\ldots}{ignored}
 }

@@ -27,8 +27,8 @@ strip(x, char.keep = "~~", digit.remove = TRUE, apostrophe.remove = FALSE,
 \item{x}{The text variable.}
 
 \item{char.keep}{A character vector of symbols (i.e., punctuation) that 
-\code{\link[textclean]{strip}} should keep.  The default is to strip every symbol 
-except apostrophes and a double tilde \code{"~~"}.  The double tilde 
+\code{\link[textclean]{strip}} should keep.  The default is to strip every 
+symbol except apostrophes and a double tilde \code{"~~"}.  The double tilde 
 \code{"~~"} is included for a convenient means of keeping word groups 
 together in functions that split text apart based on spaces.  To remove 
 double tildes \code{"~~"} set \code{char.keep} to \code{NULL}.}
@@ -42,7 +42,8 @@ the output.}
 lower case.}
 }
 \value{
-Returns a vector of text that has been stripped of unwanted characters.
+Returns a vector of text that has been stripped of unwanted 
+characters.
 }
 \description{
 Strip text of unwanted characters.

@@ -9,12 +9,12 @@
 #' replace the elongation with known semantic replacements (optional; default is
 #' \code{FALSE}).  After this the algorithm locates all places were the same 
 #' letter (case insensitive) appears 3 times consecutively.  These elements are
-#' then further processed.  The matches are replaces via \code{fgsub} by first
-#' taking the elongation to it's canonical form (drop all > 1 consecutive letters
-#' to a single letter) and then replacing with the most common word used in 2008
-#' in Google's ngram data set that takes the canonical form.  If the canonical 
-#' form is not found in the Google data set then the canonical form is used as
-#' the replacement.
+#' then further processed.  The matches are replaced via \code{fgsub} by first
+#' taking the elongation to it's canonical form (drop all > 1 consecutive 
+#' letters to a single letter) and then replacing with the most common word 
+#' used in 2008 in Google's ngram data set that takes the canonical form.  If 
+#' the canonical form is not found in the Google data set then the canonical 
+#' form is used as the replacement.
 #' 
 #' @param x  The text variable.
 #' @param impart.meaning logical.  If \code{TRUE}, known elongation semantics
@@ -80,11 +80,16 @@ replace_word_elongation <- function(x, impart.meaning = FALSE, ...){
 # Known with meaning
 b2 <- "(?<=^|[^A-Za-z'-])(%s)(?=$|[^A-Za-z'-])"
 meaning_elongations <- data.frame(
-    x = sprintf(b2, c('hey{2,}', 'fi{3,}ne', 'no{3,}', 'sor{3,}y|sory{2,}|sor{3,}y{2,}',
-        'thanks{2,}', 'tha{2,}nks', 'ri{3,}ght', 'why{3,}', 'real{2,}y'
-    )),
-    y = c('hey sexy', 'not fine', 'sarcastic', 'not sorry', 
-        'not thankful', 'very thankful', 'not correct', 'frustration', 'surprised'
+    x = sprintf(
+        b2, 
+        c(
+            'hey{2,}', 'fi{3,}ne', 'no{3,}', 'sor{3,}y|sory{2,}|sor{3,}y{2,}',
+            'thanks{2,}', 'tha{2,}nks', 'ri{3,}ght', 'why{3,}', 'real{2,}y'
+        )
+    ),
+    y = c(
+        'hey sexy', 'not fine', 'sarcastic', 'not sorry', 'not thankful', 
+        'very thankful', 'not correct', 'frustration', 'surprised'
     ), 
     stringsAsFactors = FALSE
 )

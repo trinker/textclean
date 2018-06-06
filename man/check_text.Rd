@@ -54,15 +54,15 @@ Returns a list with the following potential text faults report:\cr
 }
 }
 \description{
-\code{check_text} - Uncleaned text may result in errors, warnings, and incorrect results in 
-subsequent analysis.  \code{check_text} checks text for potential problems 
-and suggests possible fixes.  Potential text anomalies that are detected 
-include: factors, missing ending punctuation, empty cells, double punctuation, 
-non-space after comma, no alphabetic characters, non-ASCII, missing value, 
-and potentially misspelled words.
+\code{check_text} - Uncleaned text may result in errors, warnings, and 
+incorrect results in subsequent analysis.  \code{check_text} checks text for 
+potential problems and suggests possible fixes.  Potential text anomalies 
+that are detected include: factors, missing ending punctuation, empty cells, 
+double punctuation, non-space after comma, no alphabetic characters, 
+non-ASCII, missing value, and potentially misspelled words.
 
-\code{available_check} - Provide a data.frame view of all the available checks
-in the \code{check_text} function.
+\code{available_check} - Provide a data.frame view of all the available 
+checks in the \code{check_text} function.
 }
 \note{
 The output is a list containing meta checks and elemental checks

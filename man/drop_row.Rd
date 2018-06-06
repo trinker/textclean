@@ -34,7 +34,8 @@ removed.
 \code{drop_NA} - returns a dataframe with \code{NA} rows removed.
 }
 \description{
-\code{drop_row} - Remove rows from a data set that contain a given marker/term.
+\code{drop_row} - Remove rows from a data set that contain a given 
+marker/term.
 
 \code{keep_row} - Keep rows from a data set that contain a given marker/term.
 

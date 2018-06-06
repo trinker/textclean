@@ -10,8 +10,8 @@ replace_contraction(x, contraction.key = lexicon::key_contractions,
 \arguments{
 \item{x}{The text variable.}
 
-\item{contraction.key}{A two column hash of contractions (column 1) and expanded 
-form replacements (column 2).  Default is to use 
+\item{contraction.key}{A two column hash of contractions (column 1) and 
+expanded form replacements (column 2).  Default is to use 
 \code{\link[lexicon]{key_contractions}} data set.}
 
 \item{ignore.case}{logical.  Should case be ignored?}

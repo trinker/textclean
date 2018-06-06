@@ -25,14 +25,16 @@ equivalents.
 \description{
 Replaces emojis with word equivalents or a token identifier for use in the
 \pkg{sentimentr} package.  Not that this function will coerce the text to 
-ASCII using \code{Encoding(x) <- "latin1"; iconv(x, "latin1", "ASCII", "byte")}.
+ASCII using 
+\code{Encoding(x) <- "latin1"; iconv(x, "latin1", "ASCII", "byte")}.
 The function \code{replace_emoji} replaces emojis with text representations
 while \code{replace_emoji_identifier} replaces with a unique identifier that
 corresponds to \code{lexicon::hash_sentiment_emoji} for use in the 
 \pkg{sentimentr} package.
 }
 \examples{
-x <- readLines(system.file("docs/emoji_sample.txt", package = "textclean"))[1]
+fls <- system.file("docs/emoji_sample.txt", package = "textclean")
+x <- readLines(fls)[1]
 replace_emoji(x)
 replace_emoji_identifier(x)
 }

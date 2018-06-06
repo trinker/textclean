@@ -24,7 +24,10 @@ Returns a vector with the pattern replaced.
 Replaces dates with word equivalents.
 }
 \examples{
-x <- c(NA, '11-16-1980 and 11/16/1980', "and 2017-02-08 but then there's 2/8/2017 too")
+x <- c(
+    NA, '11-16-1980 and 11/16/1980', 
+    "and 2017-02-08 but then there's 2/8/2017 too"
+)
 
 replace_date(x)
 replace_date(x, replacement = '<<DATE>>')

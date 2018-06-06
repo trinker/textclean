@@ -11,7 +11,10 @@
 #' @return Returns a vector with the pattern replaced.
 #' @export
 #' @examples
-#' x <- c(NA, '11-16-1980 and 11/16/1980', "and 2017-02-08 but then there's 2/8/2017 too")
+#' x <- c(
+#'     NA, '11-16-1980 and 11/16/1980', 
+#'     "and 2017-02-08 but then there's 2/8/2017 too"
+#' )
 #' 
 #' replace_date(x)
 #' replace_date(x, replacement = '<<DATE>>')
@@ -32,12 +35,17 @@ replace_date <- function(x,
 
 }
 
-replace_date_pattern <- paste0('([01]?[0-9])[/-]([0-2]?[0-9]|3[01])[/-]\\d{4}|\\d{4}[/-]', 
-        '([01]?[0-9])[/-]([0-2]?[0-9]|3[01])')
+replace_date_pattern <- paste0(
+    '([01]?[0-9])[/-]([0-2]?[0-9]|3[01])[/-]\\d{4}|\\d{4}[/-]', 
+    '([01]?[0-9])[/-]([0-2]?[0-9]|3[01])'
+)
 
 replace_date_fun <- function(x){
 
-        parts <- strsplit(gsub('(^.+)([/-])(\\d{4})', '\\3\\2\\1', x, perl = TRUE), '[/-]')[[1]]
+        parts <- strsplit(
+            gsub('(^.+)([/-])(\\d{4})', '\\3\\2\\1', x, perl = TRUE), 
+            '[/-]'
+        )[[1]]
 
         y <- replace_number(parts[1])
         m <- month.name[as.integer(parts[2])]

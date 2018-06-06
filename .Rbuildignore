@@ -23,3 +23,4 @@ inst/extra_statdoc
 Thumbs.db
 inst/scraping_scripts
 inst/articles
+^CODE_OF_CONDUCT\.md$

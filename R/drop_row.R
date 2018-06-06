@@ -1,6 +1,7 @@
 #' Filter Rows That Contain Markers
 #' 
-#' \code{drop_row} - Remove rows from a data set that contain a given marker/term.
+#' \code{drop_row} - Remove rows from a data set that contain a given 
+#' marker/term.
 #' 
 #' @param dataframe A dataframe object.
 #' @param column Column name to search for markers/terms.
@@ -33,7 +34,12 @@
 drop_row <- function(dataframe, column, terms, ...) {
     
     terms <- paste(terms, collapse="|")
-    if (length(dataframe[[column]]) == 0) stop("No columns in the data appear to match supplied `column`")    
+    if (length(dataframe[[column]]) == 0) {
+        stop(
+            "No columns in the data appear to match supplied `column`", 
+            call. = FALSE
+        )   
+    }
     dataframe <- dataframe[!grepl(terms, dataframe[[column]], perl=TRUE, ...), ]
     rownames(dataframe) <- NULL
     
@@ -48,7 +54,12 @@ drop_row <- function(dataframe, column, terms, ...) {
 keep_row <- function(dataframe, column, terms, ...) {
     
     terms <- paste(terms, collapse="|")
-    if (length(dataframe[[column]]) == 0) stop("No columns in the data appear to match supplied `column`")    
+    if (length(dataframe[[column]]) == 0) {
+        stop(
+            "No columns in the data appear to match supplied `column`", 
+            call. = FALSE
+            )    
+    }
     dataframe <- dataframe[grepl(terms, dataframe[[column]], perl=TRUE, ...), ]
     rownames(dataframe) <- NULL
     
@@ -65,7 +76,9 @@ keep_row <- function(dataframe, column, terms, ...) {
 #' @rdname drop_row
 #' @export
 drop_empty_row <- function(dataframe) {
-    x <- apply(dataframe, 1, function(x) paste(stats::na.omit(x), collapse = ""))
+    x <- apply(dataframe, 1, function(x) {
+        paste(stats::na.omit(x), collapse = "")
+    })
     return(dataframe[!grepl("^\\s*$", x),  ,drop = FALSE] )
 }
 
@@ -79,13 +92,7 @@ drop_empty_row <- function(dataframe) {
 #' @export
 drop_NA <- function(dataframe, column = TRUE, ...){
     
-    if (isTRUE(column)) {
-        column <- names(which.max(sapply(as.data.frame(dataframe), function(y) {
-            if(!is.character(y) && !is.factor(y)) return(0)
-            mean(nchar(as.character(y)), na.rm = TRUE)
-        }))[1])
-        if (length(column) == 0) stop("Could not detect text variable `column`.  Please supply `column` explicitly.")
-    }   
+    column <- detect_text_column(dataframe, column)
     
     dataframe[!is.na(dataframe[[column]]), ,drop = FALSE]
     

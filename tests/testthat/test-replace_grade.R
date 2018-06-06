@@ -9,7 +9,8 @@ test_that("replace_rating replaces ratings",{
         "A poor example deserves a C!"
     )
 
-    x2 <- c("I give an very excellent excellent", "He deserves an very very bad",
+    x2 <- c("I give an very excellent excellent", 
+        "He deserves an very very bad",
         "It's slightly above average work",
         "A poor example deserves a average!"
     )

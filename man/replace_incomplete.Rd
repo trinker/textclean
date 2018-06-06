@@ -2,7 +2,7 @@
 % Please edit documentation in R/replace_incomplete.R
 \name{replace_incomplete}
 \alias{replace_incomplete}
-\title{Denote replace_incompletelete End Marks With "|"}
+\title{Denote Incomplete End Marks With "|"}
 \usage{
 replace_incomplete(x, replacement = "|", ...)
 }
@@ -14,12 +14,11 @@ replace_incomplete(x, replacement = "|", ...)
 \item{\dots}{ignored.}
 }
 \value{
-Returns a text variable (character sting) with replace_incompletelete sentence 
-marks (.., ..., .?, ..?, en & em dash etc.) replaced with "|".  If scan mode 
-is \code{TRUE} returns a data frame with replace_incompletelete sentence location.
+Returns a text variable (character sting) with incomplete sentence 
+marks (.., ..., .?, ..?, en & em dash etc.) replaced with "|".
 }
 \description{
-Replaces replace_incompletelete sentence end marks (.., ..., .?, ..?, en & em dash etc.)
+Replaces incomplete sentence end marks (.., ..., .?, ..?, en & em dash etc.)
 with \code{"|"}.
 }
 \examples{
@@ -27,4 +26,4 @@ x <- c("the...",  "I.?", "you.", "threw..", "we?")
 replace_incomplete(x)
 replace_incomplete(x, '...')
 }
-\keyword{replace_incompletelete-sentence}
+\keyword{incomplete-sentence}

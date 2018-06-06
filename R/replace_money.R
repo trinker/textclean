@@ -11,7 +11,11 @@
 #' @return Returns a vector with the pattern replaced.
 #' @export
 #' @examples
-#' x <- c(NA, '$3.16 into "three dollars, sixteen cents"', "-$20,333.18 too", 'fff')
+#' x <- c(
+#'     NA, 
+#'     '$3.16 into "three dollars, sixteen cents"', 
+#'     "-$20,333.18 too", 'fff'
+#' )
 #' 
 #' replace_money(x)
 #' replace_money(x, replacement = '<<MONEY>>')
@@ -33,13 +37,19 @@ replace_money <- function(x, pattern = '(-?)([$])([0-9,]+)(\\.\\d{2})?',
 
 replace_money_fun <- function(x, decimal = ' and '){
 
-        sign <- ifelse(grepl('^-', x), 'negative ', '')
-        if (grepl('\\.', x)) {
-            number <- replace_number(gsub('\\.', paste0(' dollars', decimal), gsub('(-?)([$])', '', x)))
-            paste0(sign, number, ' cents')
-        } else {
-            number <- replace_number(gsub('(-?)([$])', '', x))
-            paste0(sign, number)
-        }
-
+    sign <- ifelse(grepl('^-', x), 'negative ', '')
+    if (grepl('\\.', x)) {
+        number <- replace_number(
+            gsub(
+                '\\.', 
+                paste0(' dollars', decimal), 
+                gsub('(-?)([$])', '', x)
+            )
+        )
+        paste0(sign, number, ' cents')
+    } else {
+        number <- replace_number(gsub('(-?)([$])', '', x))
+        paste0(sign, number)
     }
+
+}

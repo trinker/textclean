@@ -13,9 +13,35 @@ Status](https://coveralls.io/repos/trinker/textclean/badge.svg?branch=master)](h
 
 ![](tools/textclean_logo/r_textclean.png)
 
-**textclean** is a collection of tools to clean and process text. Many
+**textclean** is a collection of tools to clean and normalize text. Many
 of these tools have been taken from the **qdap** package and revamped to
-be more intuitive, better named, and faster.
+be more intuitive, better named, and faster. Tools are geared at
+checking for substrings that are not optimal for analysis and replacing
+or removing them (normalizing) with more analysis friendly substrings
+(see Sproat, Black, Chen, Kumar, Ostendorf, & Richards (2001)
+<doi:10.1006/csla.2001.0169>) or extracting them into new variables. For
+example, emoticons are often used in text but not always easily handled
+by analysis algorithms. The `replace_emoticon()` function replaces
+emoticons with word equivalents.
+
+Other R packages provide some of the same functionality (e.g.,
+**english**, **gsubfn**, **mgsub**, **stringi**, **stringr**,
+**qdapRegex**). **textclean** differs from these packages in that it is
+designed to handle all of the common cleaning and normalization tasks
+with a single, consistent, pre-configured toolset (note that
+**textclean** using many of these terrific packages as a backend). This
+means that the researcher spends less time on munging, leading to
+quicker analysis. This package is meant to be used jointly with the
+[**textshape**](https://github.com/trinker/textshape) package, which
+provides text extraction and reshaping functionality. **textclean**
+works well with the
+[**qdapRegex**](https://github.com/trinker/qdapRegex) package which
+provides tooling for substring substitution and extraction of pre-canned
+regular expressions. In addition, the functions of **textclean** are
+designed to work within the piping of the tidyverse framework by
+consistently using the first argument of functions as the data source.
+**textclean** tools are particularly effective within a `dplyr::mutate`
+statement.
 
 
 Table of Contents
@@ -24,6 +50,7 @@ Table of Contents
 -   [Functions](#functions)
 -   [Installation](#installation)
 -   [Contact](#contact)
+-   [Contributing](#contributing)
 -   [Demonstration](#demonstration)
     -   [Load the Packages/Data](#load-the-packagesdata)
     -   [Check Text](#check-text)
@@ -299,10 +326,24 @@ the development version:
 Contact
 =======
 
-You are welcome to:    
-- submit suggestions and bug-reports at: <https://github.com/trinker/textclean/issues>    
-- send a pull request on: <https://github.com/trinker/textclean/>    
-- compose a friendly e-mail to: <tyler.rinker@gmail.com>    
+You are welcome to:  
+- submit suggestions and bug-reports at:
+<https://github.com/trinker/textclean/issues>
+
+Contributing
+============
+
+Contributions are welcome from anyone subject to the following rules:
+
+-   Abide by the [code of conduct](CONDUCT.md).
+-   Follow the style conventions of the package (indentation, function &
+    argument naming, commenting, etc.)
+-   All contributions must be consistent with the package license
+    (GPL-2)
+-   Submit contributions as a pull request. Clearly state what the
+    changes are and try to keep the number of changes per pull request
+    as low as possible.
+-   If you make big changes, add your name to the 'Author' field.
 
 Demonstration
 =============
@@ -337,7 +378,7 @@ information on the following:
     \#rstats)
 9.  **html** - Text elements that contain HTML markup
 10. **incomplete** - Text elements that contain incomplete sentences
-    (e.g., uses ending punctuation like ...)
+    (e.g., uses ending punctuation like '...')
 11. **kern** - Text elements that contain kerning (e.g., 'The B O M B!')
 12. **list\_column** - Text variable that is a list column
 13. **missing\_value** - Text elements that contain missing values
@@ -351,13 +392,18 @@ information on the following:
     no space afterwards
 18. **non\_ascii** - Text elements that contain non-ASCII text
 19. **non\_character** - Text variable that is not a character column
-    (likely factor)
+    (likely `factor`)
 20. **non\_split\_sentence** - Text elements that contain unsplit
     sentences (more than one sentence per element)
 21. **tag** - Text elements that contain Twitter style handle tags
     (e.g., @trinker)
 22. **time** - Text elements that contain timestamps
 23. **url** - Text elements that contain URLs
+
+Note that `check_text` is running multiple checks and may be slower on
+larger texts. The user may provide a sample of text for review or use
+the `checks` argument to specify the exact checks to conduct and thus
+limit the compute time.
 
 Here is an example:
 
@@ -373,7 +419,7 @@ Here is an example:
     ## NON CHARACTER
     ## =============
     ## 
-    ## The text variable is not a character column (likely factor):
+    ## The text variable is not a character column (likely `factor`):
     ## 
     ## 
     ## *Suggestion: Consider using `as.character` or `stringsAsFactors = FALSE` when reading in
@@ -461,7 +507,7 @@ Here is an example:
     ## INCOMPLETE
     ## ==========
     ## 
-    ## The following observations contain incomplete sentences (e.g., uses ending punctuation like ...):
+    ## The following observations contain incomplete sentences (e.g., uses ending punctuation like '...'):
     ## 
     ## 13
     ## 
@@ -576,15 +622,15 @@ And if all is well the user should be greeted by a cow:
     check_text(y)
 
     ## 
-    ##  ------- 
+    ##  ------------- 
     ## No problems found!
-    ## This text is righteous! 
-    ##  -------- 
-    ##     \   ^__^ 
-    ##      \  (oo)\ ________ 
-    ##         (__)\         )\ /\ 
-    ##              ||------w|
-    ##              ||      ||
+    ## This text is staggering! 
+    ##  ---------------- 
+    ##   \   ^__^ 
+    ##    \  (oo)\ ________ 
+    ##       (__)\         )\ /\ 
+    ##            ||------w|
+    ##            ||      ||
 
 Row Filtering
 -------------
@@ -1440,21 +1486,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "triangulate summated Shaunna Charlette wenching advisers Brunilda stillest Debera pow Dwight Theda!"          
-    ## [2] "definite Marybeth gonna Mattie cosponsors securest Earlean Farah mouthing dependences Ina Sheba!"             
-    ## [3] "gudes tumoral conicity garrett Aracely Joy quintupling canulated sleeveless fabian Luanna Arianna."           
-    ## [4] "hadjs shortliffe Arlen Latoria Sulema Emely muffed Zada Jenifer scent tininess Bryant."                       
-    ## [5] "freda grubbers merchanting strangeness ichnites nodosities darkeys Donnell abolishes sassafrases Nobuko loss!"
-    ## [6] "aphidian nestlers Britney strategic redbones Warren Kendrick groovy Enda consecrated grain individual!"
+    ## [1] "scurvily arrowy Floyd steadiness dupable zorina potsies Carol vegetant Babette hobnob gravities."             
+    ## [2] "placate pileups Neville rating tweezed deathy descrier potpourris ordinals gingerbread Wm Caterina!"          
+    ## [3] "unitized acnes censurers wardrooms Ileana penmanships enya Beverlee drabbled strigils Cecilia irreconcilable?"
+    ## [4] "Myrtle bashaw rifenesses Beatriz talkings Felica stash scalars foaled preenacts dit panniers!"                
+    ## [5] "Mariann Elsa Juana buttoning kench Mitchell Thomasena weepiest Deidra consonance sanitate overselling."       
+    ## [6] "Vella grasps cockades luce executing jolty centennials pearmain batholomew waggly Michael coccoids?"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "triangulate summated NAME NAME wenching advisers NAME stillest NAME pow NAME NAME!"                      
-    ## [2] "definite NAME gonna NAME cosponsors securest NAME NAME mouthing dependences NAME NAME!"                  
-    ## [3] "gudes tumoral conicity garrett NAME NAME quintupling canulated sleeveless fabian NAME NAME."             
-    ## [4] "hadjs shortliffe NAME NAME NAME NAME muffed NAME NAME scent tininess NAME."                              
-    ## [5] "freda grubbers merchanting strangeness ichnites nodosities darkeys NAME abolishes sassafrases NAME loss!"
-    ## [6] "aphidian nestlers NAME strategic redbones NAME NAME groovy NAME consecrated grain individual!"
+    ## [1] "scurvily arrowy NAME steadiness dupable zorina potsies NAME vegetant NAME hobnob gravities."         
+    ## [2] "placate pileups NAME rating tweezed deathy descrier potpourris ordinals gingerbread NAME NAME!"      
+    ## [3] "unitized acnes censurers wardrooms NAME penmanships enya NAME drabbled strigils NAME irreconcilable?"
+    ## [4] "NAME bashaw rifenesses NAME talkings NAME stash scalars foaled preenacts dit panniers!"              
+    ## [5] "NAME NAME NAME buttoning kench NAME NAME weepiest NAME consonance sanitate overselling."             
+    ## [6] "NAME grasps cockades luce executing jolty centennials pearmain batholomew waggly NAME coccoids?"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1463,40 +1509,40 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "triangulate summated NAME NAME wenching advisers NAME stillest NAME pow NAME NAME!"                      
-    ## [2] "definite NAME gonna NAME cosponsors securest NAME NAME mouthing dependences NAME NAME!"                  
-    ## [3] "gudes tumoral conicity garrett NAME NAME quintupling canulated sleeveless fabian NAME NAME."             
-    ## [4] "hadjs shortliffe NAME NAME NAME NAME muffed NAME NAME scent tininess NAME."                              
-    ## [5] "freda grubbers merchanting strangeness ichnites nodosities darkeys NAME abolishes sassafrases NAME loss!"
-    ## [6] "aphidian nestlers NAME strategic redbones NAME NAME groovy NAME consecrated grain individual!"
+    ## [1] "scurvily arrowy NAME steadiness dupable zorina potsies NAME vegetant NAME hobnob gravities."         
+    ## [2] "placate pileups NAME rating tweezed deathy descrier potpourris ordinals gingerbread NAME NAME!"      
+    ## [3] "unitized acnes censurers wardrooms NAME penmanships enya NAME drabbled strigils NAME irreconcilable?"
+    ## [4] "NAME bashaw rifenesses NAME talkings NAME stash scalars foaled preenacts dit panniers!"              
+    ## [5] "NAME NAME NAME buttoning kench NAME NAME weepiest NAME consonance sanitate overselling."             
+    ## [6] "NAME grasps cockades luce executing jolty centennials pearmain batholomew waggly NAME coccoids?"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 8.472147 secs
+    ## Time difference of 8.294704 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "triangulate summated NAME NAME wenching advisers NAME stillest NAME pow NAME NAME!"                      
-    ## [2] "definite NAME gonna NAME cosponsors securest NAME NAME mouthing dependences NAME NAME!"                  
-    ## [3] "gudes tumoral conicity garrett NAME NAME quintupling canulated sleeveless fabian NAME NAME."             
-    ## [4] "hadjs shortliffe NAME NAME NAME NAME muffed NAME NAME scent tininess NAME."                              
-    ## [5] "freda grubbers merchanting strangeness ichnites nodosities darkeys NAME abolishes sassafrases NAME loss!"
-    ## [6] "aphidian nestlers NAME strategic redbones NAME NAME groovy NAME consecrated grain individual!"
+    ## [1] "scurvily arrowy NAME steadiness dupable zorina potsies NAME vegetant NAME hobnob gravities."         
+    ## [2] "placate pileups NAME rating tweezed deathy descrier potpourris ordinals gingerbread NAME NAME!"      
+    ## [3] "unitized acnes censurers wardrooms NAME penmanships enya NAME drabbled strigils NAME irreconcilable?"
+    ## [4] "NAME bashaw rifenesses NAME talkings NAME stash scalars foaled preenacts dit panniers!"              
+    ## [5] "NAME NAME NAME buttoning kench NAME NAME weepiest NAME consonance sanitate overselling."             
+    ## [6] "NAME grasps cockades luce executing jolty centennials pearmain batholomew waggly NAME coccoids?"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.1600142 secs
+    ## Time difference of 0.1055501 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,080 words) and 5,493 replacement tokens in 2.1 seconds.
+(600,100 words) and 5,493 replacement tokens in 1.7 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 2.117372 secs
+    ## Time difference of 1.699047 secs
 
 ### White Space
 

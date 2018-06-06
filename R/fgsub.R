@@ -24,16 +24,25 @@
 #' fgsub(
 #'     x = c(NA, 'df dft sdf', 'sd fdggg sd dfhhh d', 'ddd'),
 #'     pattern = "\\b\\w*([a-z])(\\1{2,})\\w*\\b",
-#'     fun = function(x) {paste0('<<', paste(rev(strsplit(x, '')[[1]]), collapse =''), '>>')}    
+#'     fun = function(x) {
+#'         paste0('<<', paste(rev(strsplit(x, '')[[1]]), collapse =''), '>>')
+#'     }    
 #' )
 #' 
 #' ## In this example we extract numbers, strip out non-digits, coerce them to 
 #' ## numeric, cut them in half, round up to the closest integer, add the commas 
 #' ## back, and replace back into the original locations.
 #' fgsub(
-#'     x = c(NA, 'I want 32 grapes', 'he wants 4 ice creams', 'they want 1,234,567 dollars'),
+#'     x = c(NA, 'I want 32 grapes', 'he wants 4 ice creams', 
+#'         'they want 1,234,567 dollars'
+#'     ),
 #'     pattern = "[\\d,]+",
-#'     fun = function(x) {prettyNum(ceiling(as.numeric(gsub('[^0-9]', '', x))/2), big.mark = ',')}    
+#'     fun = function(x) {
+#'         prettyNum(
+#'             ceiling(as.numeric(gsub('[^0-9]', '', x))/2), 
+#'             big.mark = ','
+#'         )
+#'     }    
 #' )
 #' 
 #' ## In this example we extract leading zeros, convert to an equal number of 
@@ -61,7 +70,10 @@ fgsub <- function(x, pattern, fun, ...){
     pat_key <- data.table::data.table(pat = pats, replacement = freps)
     
     hit_key <- textshape::tidy_list(
-        set_names(lapply(hits, function(x) set_names(x, seq_along(x))), seq_along(hits)),
+        set_names(
+            lapply(hits, function(x) set_names(x, seq_along(x))), 
+            seq_along(hits)
+        ),
         'hit_id', 'pat', 'pattern_id'
     )
     

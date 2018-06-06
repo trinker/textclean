@@ -17,7 +17,8 @@ through a vector provided from a named entity extractor.}
 
 \item{replacement}{A string to replace names with.}
 
-\item{\dots}{Other arguments passed to \code{\link[textclean]{replace_tokens}}.}
+\item{\dots}{Other arguments passed to 
+\code{\link[textclean]{replace_tokens}}.}
 }
 \value{
 Returns a vector with names replaced.
@@ -31,7 +32,7 @@ x <- c(
     "Karen is not a nice person",
     "Will will do it",
     NA
-)
+) 
 
 replace_names(x)
 replace_names(x, replacement = '<<NAME>>')

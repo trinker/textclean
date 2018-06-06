@@ -38,6 +38,7 @@
 #' locate and return the integer locations of the particular non-normalized text
 #' named by the function.
 #' @export
+#' @include replace_html.R
 #' @rdname which_are
 #' @examples
 #' wa <- which_are()
@@ -95,7 +96,8 @@ set_class <- function(x, nms, atts){
 #' @export
 #' @rdname which_are
 is_it <- function(){
-    out <- list2env(stats::setNames(lapply(is_funs, match.fun), is_funs), hash = FALSE)
+    out <- list2env(stats::setNames(lapply(is_funs, match.fun), is_funs), 
+        hash = FALSE)
     class(out) <- 'is_it'
     attributes(out)[['functions']] <- is_funs
     out
@@ -108,7 +110,8 @@ is_it <- function(){
 #' Prints a which_are_locs object
 #' 
 #' @param x A which_are_locs object 
-#' @param n The number of affected elements to print out (the rest are truncated)
+#' @param n The number of affected elements to print out (the rest are 
+#' truncated)
 #' @param file Path to an external file to print to
 #' @param \ldots ignored.
 #' @method print which_are_locs
@@ -131,40 +134,178 @@ print.which_are_locs <- function(x, n = 100, file = NULL, ...){
 truncated <- function(x, n = 100, ...){
     is_truncated <- length(x) > n
     if (is_truncated) x <- x[seq_len(n)]
-    paste0(paste(x, collapse = ', '), ifelse(is_truncated, '...[truncated]...', ''))
+    paste0(
+        paste(x, collapse = ', '), 
+        ifelse(is_truncated, '...[truncated]...', '')
+    )
 }
 
 .checks <- list(
     
-    contraction = list(fun = "contraction", is_meta = FALSE, problem = "contain contractions", fix = "running `replace_contraction`"),
-    date = list(fun = "date", is_meta = FALSE, problem = "contain dates", fix = "running `replace date`"),
-    digit = list(fun = "digit", is_meta = FALSE, problem = "contain digits/numbers", fix = "using `replace_number`"),
-    email = list(fun = "email", is_meta = FALSE, problem = "contain email addresses", fix = "using `replace_email`"),
-    emoticon = list(fun = "emoticon", is_meta = FALSE, problem = "contain emoticons", fix = "using `replace_emoticons`"),
-    empty = list(fun = "empty", is_meta = FALSE, problem = "contain empty text cells (all white space)", fix = "running `drop_empty_row`"),
-    escaped = list(fun = "escaped", is_meta = FALSE, problem = "contain escaped back spaced characters", fix = "using `replace_white`"),
-    hash = list(fun = "hash", is_meta = FALSE, problem = "contain Twitter style hash tags (e.g., #rstats)", fix = "using `qdapRegex::ex_tag' (to capture meta-data) and/or replace_hash"),
-    html = list(fun = "html", is_meta = FALSE, problem = "contain HTML markup", fix =  "running `replace_html`"),
-    incomplete = list(fun = "incomplete", is_meta = FALSE, problem = "contain incomplete sentences (e.g., uses ending punctuation like '...')", fix = "using `replace_incomplete`"), 
-    kern = list(fun = "kern", is_meta = FALSE, problem = "contain kerning (e.g., 'The B O M B!')", fix = "using `replace_kern`"),
-    list_column = list(fun = "list_column", is_meta = TRUE, problem = "is a list column", fix = "using `textclean::unnest_text`\n             Also, consider rerunning `check_text` after fixing"),
-    missing_value = list(fun = "missing_value", is_meta = FALSE, problem = "contain missing values", fix = "running `drop_NA`"),    
-    misspelled = list(fun = "misspelled", is_meta = FALSE, problem = "contain potentially misspelled words", fix = "running `hunspell::hunspell_find` & `hunspell::hunspell_suggest`"),
-    no_alpha = list(fun = "no_alpha", is_meta = FALSE, problem = "contain elements with no alphabetic (a-z) letters", fix = "cleaning the raw text or running `filter_row`"),
-    no_endmark = list(fun = "no_endmark", is_meta = FALSE, problem = "contain elements with missing ending punctuation", fix = "cleaning the raw text or running `add_missing_endmark`"),
-    no_space_after_comma = list(fun = "no_space_after_comma", is_meta = FALSE, problem = "contain commas with no space afterwards", fix = "running `add_comma_space`"),
-    non_ascii = list(fun = "non_ascii", is_meta = FALSE, problem = "contain non-ASCII text", fix = "running `replace_non_ascii`"),
-    non_character = list(fun = "non_character", is_meta = TRUE, problem = "is not a character column (likely `factor`)", fix =  "using `as.character` or `stringsAsFactors = FALSE` when reading in\n             Also, consider rerunning `check_text` after fixing"),
-    non_split_sentence = list(fun = "non_split_sentence", is_meta = FALSE, problem = "contain unsplit sentences (more than one sentence per element)", fix = "running `textshape::split_sentence`"),
-    tag = list(fun = "tag", is_meta = FALSE, problem = "contain Twitter style handle tags (e.g., @trinker)", fix = "using `qdapRegex::ex_tag' (to capture meta-data) and/or `replace_tag`"),
-    time = list(fun = "time", is_meta = FALSE, problem = "contain timestamps", fix = "using `replace_time`"),
-    url = list(fun = "url", is_meta = FALSE, problem = "contain URLs", fix = "using `replace_url`")
+    contraction = list(
+        fun = "contraction", 
+        is_meta = FALSE, 
+        problem = "contain contractions", 
+        fix = "running `replace_contraction`"
+    ),
+    date = list(
+        fun = "date", 
+        is_meta = FALSE, 
+        problem = "contain dates", 
+        fix = "running `replace date`"
+    ),
+    digit = list(
+        fun = "digit", 
+        is_meta = FALSE, 
+        problem = "contain digits/numbers", 
+        fix = "using `replace_number`"
+    ),
+    email = list(
+        fun = "email", 
+        is_meta = FALSE, 
+        problem = "contain email addresses", 
+        fix = "using `replace_email`"
+    ),
+    emoticon = list(
+        fun = "emoticon", 
+        is_meta = FALSE, 
+        problem = "contain emoticons", 
+        fix = "using `replace_emoticons`"
+    ),
+    empty = list(
+        fun = "empty", 
+        is_meta = FALSE, 
+        problem = "contain empty text cells (all white space)", 
+        fix = "running `drop_empty_row`"
+    ),
+    escaped = list(
+        fun = "escaped", 
+        is_meta = FALSE, 
+        problem = "contain escaped back spaced characters", 
+        fix = "using `replace_white`"
+    ),
+    hash = list(
+        fun = "hash", 
+        is_meta = FALSE, 
+        problem = "contain Twitter style hash tags (e.g., #rstats)", 
+        fix = paste0(
+            "using `qdapRegex::ex_tag' (to capture meta-data) and/", 
+            "or replace_hash"
+        )
+    ),
+    html = list(
+        fun = "html", 
+        is_meta = FALSE, 
+        problem = "contain HTML markup", 
+        fix =  "running `replace_html`"
+    ),
+    incomplete = list(
+        fun = "incomplete", 
+        is_meta = FALSE, 
+        problem = paste(
+            "contain incomplete sentences", 
+            "(e.g., uses ending punctuation like '...')" 
+        ),
+        fix = "using `replace_incomplete`"
+    ), 
+    kern = list(
+        fun = "kern", 
+        is_meta = FALSE, 
+        problem = "contain kerning (e.g., 'The B O M B!')", 
+        fix = "using `replace_kern`"),
+    list_column = list(
+        fun = "list_column", 
+        is_meta = TRUE, 
+        problem = "is a list column", 
+        fix = paste0(
+            "using `textclean::unnest_text`", 
+            "\n             Also, consider rerunning `check_text` after fixing"
+        )
+    ),
+    missing_value = list(
+        fun = "missing_value", 
+        is_meta = FALSE, 
+        problem = "contain missing values", 
+        fix = "running `drop_NA`"),    
+    misspelled = list(
+        fun = "misspelled", 
+        is_meta = FALSE, 
+        problem = "contain potentially misspelled words", 
+        fix = "running `hunspell::hunspell_find` & `hunspell::hunspell_suggest`"
+    ),
+    no_alpha = list(
+        fun = "no_alpha", 
+        is_meta = FALSE, 
+        problem = "contain elements with no alphabetic (a-z) letters", 
+        fix = "cleaning the raw text or running `filter_row`"
+    ),
+    no_endmark = list(
+        fun = "no_endmark", 
+        is_meta = FALSE, 
+        problem = "contain elements with missing ending punctuation", 
+        fix = "cleaning the raw text or running `add_missing_endmark`"
+    ),
+    no_space_after_comma = list(
+        fun = "no_space_after_comma", 
+        is_meta = FALSE, 
+        problem = "contain commas with no space afterwards", 
+        fix = "running `add_comma_space`"
+    ),
+    non_ascii = list(
+        fun = "non_ascii", 
+        is_meta = FALSE, 
+        problem = "contain non-ASCII text", 
+        fix = "running `replace_non_ascii`"
+    ),
+    non_character = list(
+        fun = "non_character", 
+        is_meta = TRUE, 
+        problem = "is not a character column (likely `factor`)", 
+        fix =  paste0(
+            "using `as.character` or ", 
+            "`stringsAsFactors = FALSE` when reading in", 
+            "\n             Also, consider rerunning `check_text` after fixing"
+        )
+    ),
+    non_split_sentence = list(
+        fun = "non_split_sentence", 
+        is_meta = FALSE, 
+        problem = paste(
+            "contain unsplit sentences", 
+            "(more than one sentence per element)"
+        ),
+        fix = "running `textshape::split_sentence`"
+    ),
+    tag = list(
+        fun = "tag", 
+        is_meta = FALSE, 
+        problem = "contain Twitter style handle tags (e.g., @trinker)", 
+        fix = paste0(
+            "using `qdapRegex::ex_tag' (to capture meta-data) and/", 
+            "or `replace_tag`"
+        )
+    ),
+    time = list(
+        fun = "time", 
+        is_meta = FALSE, 
+        problem = "contain timestamps", 
+        fix = "using `replace_time`"
+    ),
+    url = list(
+        fun = "url", 
+        is_meta = FALSE, 
+        problem = "contain URLs", 
+        fix = "using `replace_url`"
+    )
 
 )
  
-is_funs <- unname(sapply(.checks, `[[`, 'fun'))
-meta_funs <- unname(sapply(.checks, `[[`, 'fun')[sapply(.checks, `[[`, 'is_meta')]) 
-elemental_funs <- unname(sapply(.checks, `[[`, 'fun')[!sapply(.checks, `[[`, 'is_meta')]) 
+#' @include utils.R
+is_funs <- unname(sapply2(.checks, `[[`, 'fun'))
+meta_funs <- unname(sapply2(.checks, `[[`, 'fun')[
+    sapply2(.checks, `[[`, 'is_meta')]) 
+elemental_funs <- unname(sapply2(.checks, `[[`, 'fun')[
+    !sapply2(.checks, `[[`, 'is_meta')]) 
 
 
 
@@ -179,11 +320,15 @@ qr2fun <- function(pat){
 ## contains a contaction
 contraction <- function(x){
     grepl(
-        "([a-z]'(nt|t|ve|d|ll|m|re))|('(cause|tis|twas))|(\\b(he|how|it|let|she|that|there|what|when|where|who|why)'s)",
+        paste0(
+            "([a-z]'(nt|t|ve|d|ll|m|re))|('(cause|tis|twas))|(\\b(he|how|it|",
+            "let|she|that|there|what|when|where|who|why)'s)"
+        ),
         x, ignore.case = TRUE
     )
 }
-#contraction(c('jon\'s a good man', "'cause I want to", '4was\'nt', 'the dog', "I'm happy", "He's sad", "I here she's there", NA))
+#contraction(c('jon\'s a good man', "'cause I want to", '4was\'nt', 'the dog', 
+# "I'm happy", "He's sad", "I here she's there", NA))
 
 ## dates
 date <- qr2fun('rm_date')
@@ -221,9 +366,13 @@ html <- function(x) {
     grepl(pat, x)
 }
 
-## incomplete sentences usually indicated by 2-4 enmarks that are trailing (e.g., ...)
+## incomplete sentences usually indicated by 2-4 enmarks that are 
+##  trailing (e.g., ...)
 incomplete <- function(x) {
-    pat <- "\\?*\\?[.]+|[.?!]*\\? [.][.?!]+|[.?!]*\\. [.?!]+|[.?!]+\\. [.?!]*|[.?!]+\\.[.?!]*|[.?!]*\\.[.?!]+"
+    pat <- paste0(
+        "\\?*\\?[.]+|[.?!]*\\? [.][.?!]+|[.?!]*\\. [.?!]+|[.?!]+\\. [.?!]*|",
+        "[.?!]+\\.[.?!]*|[.?!]*\\.[.?!]+"
+    )
     grepl(pat, x)
 }
    
@@ -234,7 +383,7 @@ kern <- function(x) {
 
 ## check if something is a list of vectors
 list_column <-  function(x) {
-    is.list(x) && all(sapply(x, is.atomic))
+    is.list(x) && all(sapply2(x, is.atomic))
 }
 
 ## missing values
@@ -247,7 +396,10 @@ missing_value <- function(x){
 misspelled <- function(x){
     
     check_install('hunspell')
-    pot_spell <- try(eval(parse(text = "hunspell::hunspell_find(x)")), silent = TRUE)
+    pot_spell <- try(
+        eval(parse(text = "hunspell::hunspell_find(x)")), 
+        silent = TRUE
+    )
     
     if (inherits(pot_spell, 'try-error')) {
         pot_spell <- list(rep(character(0), length(x)))
@@ -287,7 +439,8 @@ non_ascii <- function(x) {
 
 ## not character
 non_character <- function(x) {
-    !is.character(x) && !all(unlist(lapply(x, function(y) is.character(y) | (length(y) == 1 && is.na(y)) )))
+    !is.character(x) && !all(unlist(lapply(x, function(y) is.character(y) | 
+            (length(y) == 1 && is.na(y)) )))
 }
 
 ## unique sentences

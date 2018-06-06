@@ -26,7 +26,9 @@ developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repos
 
 ![](tools/textclean_logo/r_textclean.png)
 
-**textclean** is a collection of tools to clean and process text.  Many of these tools have been taken from the **qdap** package and revamped to be more intuitive, better named, and faster.
+**textclean** is a collection of tools to clean and normalize text.  Many of these tools have been taken from the **qdap** package and revamped to be more intuitive, better named, and faster.  Tools are geared at checking for substrings that are not optimal for analysis and replacing or removing them (normalizing) with more analysis friendly substrings (see Sproat, Black, Chen, Kumar, Ostendorf, & Richards (2001) <doi:10.1006/csla.2001.0169>) or extracting them into new variables. For example, emoticons are often used in text but not always easily handled by analysis algorithms.  The `replace_emoticon()` function replaces emoticons with word equivalents. 
+
+Other R packages provide some of the same functionality (e.g., **english**, **gsubfn**, **mgsub**, **stringi**, **stringr**, **qdapRegex**).  **textclean** differs from these packages in that it is designed to handle all of the common cleaning and normalization tasks with a single, consistent, pre-configured toolset (note that **textclean** using many of these terrific packages as a backend).  This means that the researcher spends less time on munging, leading to quicker analysis.  This package is meant to be used jointly with the [**textshape**](https://github.com/trinker/textshape) package, which provides text extraction and reshaping functionality.  **textclean** works well with the [**qdapRegex**](https://github.com/trinker/qdapRegex) package which provides tooling for substring substitution and extraction of pre-canned regular expressions.  In addition, the functions of **textclean** are designed to work within the piping of the tidyverse framework by consistently using the first argument of functions as the data source. **textclean** tools are particularly effective within a `dplyr::mutate` statement. 
 
 # Functions
 
@@ -94,9 +96,17 @@ pacman::p_load_gh(
 
 You are welcome to:    
 - submit suggestions and bug-reports at: <https://github.com/trinker/textclean/issues>    
-- send a pull request on: <https://github.com/trinker/textclean/>    
-- compose a friendly e-mail to: <tyler.rinker@gmail.com>    
 
+
+# Contributing
+
+Contributions are welcome from anyone subject to the following rules:
+
+- Abide by the [code of conduct](CONDUCT.md).
+- Follow the style conventions of the package (indentation, function & argument naming, commenting, etc.)
+- All contributions must be consistent with the package license (GPL-2)
+- Submit contributions as a pull request. Clearly state what the changes are and try to keep the number of changes per pull request as low as possible.
+- If you make big changes, add your name to the 'Author' field.
 
 # Demonstration
 
@@ -120,6 +130,8 @@ cat(sapply(textclean:::.checks, function(x){
 
 }), sep = '\n')
 ```
+
+Note that `check_text` is running multiple checks and may be slower on larger texts.  The user may provide a sample of text for review or use the `checks` argument to specify the exact checks to conduct and thus limit the compute time.
 
 Here is an example:
 

@@ -32,7 +32,8 @@ replacements.}
 \item{trailspace}{logical.  If \code{TRUE} inserts a trailing space in the 
 replacements.}
 
-\item{fixed}{logical. If \code{TRUE}, pattern is a string to be matched as is. 
+\item{fixed}{logical. If \code{TRUE}, pattern is a string to be matched as 
+is. 
 Overrides all conflicting arguments.}
 
 \item{trim}{logical.  If \code{TRUE} leading and trailing white spaces are 
@@ -48,7 +49,8 @@ the backend and performs safe substitutions.  The trade-off is that this mode
 will slow the replacements down considerably.}
 
 \item{\dots}{Additional arguments passed to \code{\link[base]{gsub}}. In 
-\code{mgsub_regex_safe} this is other arguments passed to \code{\link[mgsub]{mgsub}}.}
+\code{mgsub_regex_safe} this is other arguments passed to 
+\code{\link[mgsub]{mgsub}}.}
 }
 \value{
 \code{mgsub} - Returns a vector with the pattern replaced.
@@ -70,15 +72,21 @@ mgsub(DATA$state, "[[:punct:]]", "PUNC", fixed = FALSE)
 library(textclean)
 hunthou <- replace_number(seq_len(1e5)) 
 
-textclean::mgsub("'twenty thousand three hundred five' into 20305", hunthou, seq_len(1e5))
+textclean::mgsub(
+    "'twenty thousand three hundred five' into 20305", 
+    hunthou, 
+    seq_len(1e5)
+)
 ## "'20305' into 20305"
 
 ## Larger example from: https://stackoverflow.com/q/18332463/1000343
 ## A slower approach
 fivehunthou <- replace_number(seq_len(5e5)) 
 
-testvect <- c("fifty seven", "four hundred fifty seven", "six thousand four hundred fifty seven", 
-    "forty six thousand four hundred fifty seven", "forty six thousand four hundred fifty seven", 
+testvect <- c("fifty seven", "four hundred fifty seven", 
+    "six thousand four hundred fifty seven", 
+    "forty six thousand four hundred fifty seven", 
+    "forty six thousand four hundred fifty seven", 
     "three hundred forty six thousand four hundred fifty seven"
 )
 

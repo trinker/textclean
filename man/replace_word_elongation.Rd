@@ -28,12 +28,12 @@ of Armstrong & Fogarty's (2007) algorithm.  The algorithm first attempts to
 replace the elongation with known semantic replacements (optional; default is
 \code{FALSE}).  After this the algorithm locates all places were the same 
 letter (case insensitive) appears 3 times consecutively.  These elements are
-then further processed.  The matches are replaces via \code{fgsub} by first
-taking the elongation to it's canonical form (drop all > 1 consecutive letters
-to a single letter) and then replacing with the most common word used in 2008
-in Google's ngram data set that takes the canonical form.  If the canonical 
-form is not found in the Google data set then the canonical form is used as
-the replacement.
+then further processed.  The matches are replaced via \code{fgsub} by first
+taking the elongation to it's canonical form (drop all > 1 consecutive 
+letters to a single letter) and then replacing with the most common word 
+used in 2008 in Google's ngram data set that takes the canonical form.  If 
+the canonical form is not found in the Google data set then the canonical 
+form is used as the replacement.
 }
 \examples{
 x <- c('look', 'noooooo!', 'real coooool!', "it's sooo goooood", 'fsdfds', 

@@ -14,7 +14,14 @@
 #' filter_element(x, '^d')
 #' filter_element(x, '\\b(dog|cat)\\b')
 filter_element <- function(x, pattern, ...){
-    warning("Deprecated, use textclean::drop_elements() instead.", call. = FALSE)
+    
+    warning(
+        paste(
+            "Deprecated, use textclean::drop_elements() instead.",
+            "`filter_element()` will be removed in the next version."
+        ),
+        call. = FALSE
+    )
     
     grep(pattern, x, value =  TRUE, invert = TRUE, perl = TRUE, ...)
 }

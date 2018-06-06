@@ -1,11 +1,11 @@
 #' Check Text For Potential Problems
 #' 
-#' \code{check_text} - Uncleaned text may result in errors, warnings, and incorrect results in 
-#' subsequent analysis.  \code{check_text} checks text for potential problems 
-#' and suggests possible fixes.  Potential text anomalies that are detected 
-#' include: factors, missing ending punctuation, empty cells, double punctuation, 
-#' non-space after comma, no alphabetic characters, non-ASCII, missing value, 
-#' and potentially misspelled words.
+#' \code{check_text} - Uncleaned text may result in errors, warnings, and 
+#' incorrect results in subsequent analysis.  \code{check_text} checks text for 
+#' potential problems and suggests possible fixes.  Potential text anomalies 
+#' that are detected include: factors, missing ending punctuation, empty cells, 
+#' double punctuation, non-space after comma, no alphabetic characters, 
+#' non-ASCII, missing value, and potentially misspelled words.
 #' 
 #' @param x The text variable.
 #' @param file A connection, or a character string naming the file to print to.  
@@ -48,6 +48,7 @@
 #' accompanying text, and possible suggestions to fix the text.
 #' @keywords check text spelling
 #' @export
+#' @include check_text_logicals.R
 #' @rdname check_text
 #' @examples
 #' \dontrun{
@@ -64,7 +65,12 @@
 #' print(check_text(x), include.text=FALSE)
 #' check_text(x, checks = c('non_split_sentence', 'no_endmark'))
 #' elementals <- available_checks()[is_meta != TRUE,][['fun']]
-#' check_text(x, checks = elementals[!elementals %in% c('non_split_sentence', 'no_endmark')])
+#' check_text(
+#'     x, 
+#'     checks = elementals[
+#'         !elementals %in% c('non_split_sentence', 'no_endmark')
+#'     ]
+#' )
 #' 
 #' y <- c("A valid sentence.", "yet another!")
 #' check_text(y)
@@ -110,19 +116,21 @@ check_text <- function(x, file = NULL, checks = NULL, n = 10, ...) {
 
 # cat(sapply(.checks, function(x){
 # 
-#     frame <- ifelse(x$is_meta, "#'   \\item{%s}{- Text variable that %s}", "#'   \\item{%s}{- Text elements that %s}")
+#     frame <- ifelse(x$is_meta, "#'   \\item{%s}{- Text variable that %s}", 
+#         "#'   \\item{%s}{- Text elements that %s}")
 #     sprintf(frame, x$fun, x$problem)
 # 
 # }), sep = '\n', file = 'clipboard')
     
 #' Check Text For Potential Problems
 #' 
-#' \code{available_check} - Provide a data.frame view of all the available checks
-#' in the \code{check_text} function. 
+#' \code{available_check} - Provide a data.frame view of all the available 
+#' checks in the \code{check_text} function. 
 #' @rdname check_text
 #' @export
 available_checks <- function(){
-    data.table::rbindlist(lapply(.checks, as.data.frame, stringsAsFactors = FALSE))[, 'fix' := NULL][]
+    data.table::rbindlist(lapply(.checks, as.data.frame, 
+        stringsAsFactors = FALSE))[, 'fix' := NULL][]
 }
     
 #' Prints a check_text Object
@@ -134,11 +142,13 @@ available_checks <- function(){
 #' well.
 #' @param file A connection, or a character string naming the file to print to.  
 #' If \code{NULL} prints to the console.
-#' @param n The number of affected elements to print out (the rest are truncated)
+#' @param n The number of affected elements to print out (the rest are 
+#' truncated)
 #' @param \ldots ignored
 #' @method print check_text
 #' @export
-print.check_text <- function(x, include.text = TRUE, file = NULL, n = NULL, ...) {
+print.check_text <- function(x, include.text = TRUE, file = NULL, n = NULL, 
+    ...) {
 
     if (is.null(file)) file <- force(attributes(x)[["file"]])
     file <- ifelse(is.null(file), "", file)
@@ -188,7 +198,11 @@ print.check_text <- function(x, include.text = TRUE, file = NULL, n = NULL, ...)
 
         parts <- .checks[[attributes(e)[['fun']]]]
    
-        problem <- sprintf("\nThe following observations %s:\n", parts[['problem']])
+        problem <- sprintf(
+            "\nThe following observations %s:\n", 
+            parts[['problem']]
+        )
+        
         affected <- truncated(e, n)
         solution <- paste("\n*Suggestion: Consider", parts[['fix']])
         
@@ -213,7 +227,8 @@ print.check_text <- function(x, include.text = TRUE, file = NULL, n = NULL, ...)
             
             cat(
                 c(
-                    paste0("\n", lns), nms, lns, problem, affected, text_problem, 
+                    paste0("\n", lns), 
+                    nms, lns, problem, affected, text_problem, 
                     paste0(
                         paste0(e, ": ", txt.var[e])[seq_len(min(n, length(e)))],
                         trunced
@@ -236,7 +251,10 @@ print.check_text <- function(x, include.text = TRUE, file = NULL, n = NULL, ...)
             
         }
 
-    }, x[['elemental_checks']], gsub('_', ' ', toupper(names(x[['elemental_checks']])))))
+    }, 
+        x[['elemental_checks']], 
+        gsub('_', ' ', toupper(names(x[['elemental_checks']])))
+    ))
     
 }
 
@@ -249,7 +267,18 @@ all_good <- function(){
 }
 
 
-cow <- "\n ------- \nNo problems found!\nThis text is %s! \n -------- \n    \\   ^__^ \n     \\  (oo)\\ ________ \n        (__)\\         )\\ /\\ \n             ||------w|\n             ||      ||"
+cow <- paste0(
+    "\n", 
+    " ------------- \n",
+    "No problems found!\n",
+    "This text is %s! \n",
+    " ---------------- \n",
+    "  \\   ^__^ \n",
+    "   \\  (oo)\\ ________ \n",
+    "      (__)\\         )\\ /\\ \n",
+    "           ||------w|\n",
+    "           ||      ||"
+)
 
 adj <- c(
     "outstanding", "astounding", "staggering", "kryptonian*", "breathtaking",
@@ -259,115 +288,4 @@ adj <- c(
     "virtuosic", "rapturous", "flawless", "majestic", "splendiferous",
     "legendary"
 )
-
-# spaste <- function(x) paste0(" ", x, " ")
-#     
-#     
-# .check_messages <- list(
-#     non_character = "using `as.character` or `stringsAsFactors = FALSE` when reading in", 
-#     missing_ending_punctuation = "cleaning the raw text or running `add_missing_endmark`",
-#     empty = "running `filter_empty`",
-#     double_punctuation = "running `textshape::split_sentence`",
-#     non_space_after_comma = "running `add_comma_space`",
-#     no_alpha = "cleaning the raw text or running `filter_row`",
-#     non_ascii = "running `replace_non_ascii`",
-#     missing_value = "running `filter_NA`", 
-#     containing_escaped = "using `replace_white`",
-#     containing_digits = "using `replace_number`",
-#     containing_html = "running `replace_html`",
-#     indicating_incomplete = "using `replace_incomplete`",   
-#     potentially_misspelled = "running `hunspell::hunspell_find` & `hunspell::hunspell_suggest`"
-# )
-# 
-# ## is missing punctiuation
-# is.mp <- function(x) any(suppressWarnings(stats::na.omit(!has_endmark(x))))
-# is.empty <- function(x) any(grepl("^\\s*$", stats::na.omit(x)))
-# ## is double punctuation
-# is.dp <- function(text.var) {
-#     count_endmark(text.var) > 1
-# }
-# ## is comma with no space
-# is.cns <- function(x) grepl("(,)([^ ])", x)
-# ## x <- c("the, dog,went", "I,like,it", "where are you", NA, "why")
-# ## is.cns(x)
-# 
-# 
-# is.non.alpha <- function(x) {
-#     !is.na(x) & !grepl("[a-zA-Z]", x)
-# }
-# 
-# is.non.ascii <- function(x) {
-#     grepl("[^ -~]", x) & !is.na(x) & !grepl("^\\s*$", x)
-# }
-# 
-# ## check if something is a list of vectors
-# is.list_o_vectors <-  function(x) {
-# 
-#     is.list(x) && !is.data.frame(x) && all(sapply(x, is.vector))
-# }
-# 
-# 
-# which.incomplete <- function(x) {
-#     pat <- "\\?*\\?[.]+|[.?!]*\\? [.][.?!]+|[.?!]*\\. [.?!]+|[.?!]+\\. [.?!]*|[.?!]+\\.[.?!]*|[.?!]*\\.[.?!]+"
-#     out <- grep(pat, x)
-#     if(length(out) == 0) return(NULL)
-#     out
-# }
-# 
-# 
-# which.escaped <- function(x) {
-#     out <- which(grepl("[\\\\]", x) & !grepl("\\\"|\\\'|\\\`", x))
-#     if(length(out) == 0) return(NULL)
-#     out
-# }
-# 
-# which.mp <- function(x) {
-#     out <- which(!has_endmark(x))
-#     if(length(out) == 0) return(NULL)
-#     out
-# }
-# 
-# which.empty <- function(x) {
-#     out <- which(!is.na(x) & grepl("^\\s*$", x))
-#     if(length(out) == 0) return(NULL)
-#     out
-# }
-# 
-# which.cns <- function(x) {
-#     out <- which(is.cns(x))
-#     if(length(out) == 0) return(NULL)
-#     out
-# }
-# 
-# which.dp <- function(x){
-#     out <- which(is.dp(x))
-#     if(length(out) == 0) return(NULL)
-#     out
-# }
-# 
-# which.non.alpha <- function(x){
-#     out <- which(is.non.alpha(x))
-#     if(length(out) == 0) return(NULL)
-#     out
-# }
-# 
-# which.non.ascii <- function(x){
-#     out <- which(is.non.ascii(x))
-#     if(length(out) == 0) return(NULL)
-#     out
-# }
-# 
-# which.digit <- function(x) {
-#     out <- grep('\\d', x)    
-#     if(length(out) == 0) return(NULL)
-#     out
-# }
-# 
-# which.html <- function(x) {
-#     pat <- paste0("<[^>]+>|", paste(html_symbols[['html']], collapse ="|"))
-#     out <- grep(pat, x)
-#     if(length(out) == 0) return(NULL)
-#     out
-# }
-
 

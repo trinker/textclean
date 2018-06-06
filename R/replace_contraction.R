@@ -3,8 +3,8 @@
 #' This function replaces contractions with long form.
 #' 
 #' @param x The text variable.
-#' @param contraction.key A two column hash of contractions (column 1) and expanded 
-#' form replacements (column 2).  Default is to use 
+#' @param contraction.key A two column hash of contractions (column 1) and 
+#' expanded form replacements (column 2).  Default is to use 
 #' \code{\link[lexicon]{key_contractions}} data set.
 #' @param ignore.case logical.  Should case be ignored?
 #' @param \dots ignored.
@@ -22,9 +22,11 @@
 #' replace_contraction(x)
 #' }
 replace_contraction <- 
-function(x, contraction.key = lexicon::key_contractions, ignore.case=TRUE, ...) {
+function(x, contraction.key = lexicon::key_contractions, ignore.case=TRUE, 
+    ...) {
 
-    mgsub(x, contraction.key[[1]], contraction.key[[2]], fixed = FALSE, ignore.case=TRUE)
+    mgsub(x, contraction.key[[1]], contraction.key[[2]], 
+        fixed = FALSE, ignore.case=TRUE)
 
 }
 

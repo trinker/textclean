@@ -49,7 +49,8 @@
 #'         collapse(z, ':')
 #'     }
 #' )
-replace_time <- function(x, pattern = '(2[0-3]|[01]?[0-9]):([0-5][0-9])[.:]?([0-5]?[0-9])?', 
+replace_time <- function(x, 
+    pattern = '(2[0-3]|[01]?[0-9]):([0-5][0-9])[.:]?([0-5]?[0-9])?', 
     replacement = NULL, ...){
 
     if (is.null(replacement)) replacement <- replace_time_fun 

@@ -31,8 +31,14 @@
 #' }
 filter_row <- function(dataframe, column, terms, ...) {
     
-    warning("Deprecated, use textclean::drop_row() instead.", call. = FALSE)
-        
+    warning(
+        paste(
+            "Deprecated, use textclean::drop_row() instead.",
+            "`filter_row()` will be removed in the next version."
+        ),
+        call. = FALSE
+    )
+    
     terms <- paste(terms, collapse="|")
     if (length(dataframe[[column]]) == 0) stop("No columns in the data appear to match supplied `column`")    
     dataframe <- dataframe[!grepl(terms, dataframe[[column]], perl=TRUE, ...), ]
@@ -52,7 +58,13 @@ filter_row <- function(dataframe, column, terms, ...) {
 #' @export
 filter_empty_row <- function(dataframe) {
     
-    warning("Deprecated, use textclean::drop_empty_row() instead.", call. = FALSE)
+    warning(
+        paste(
+            "Deprecated, use textclean::drop_empty_row() instead.",
+            "`filter_empty_row()` will be removed in the next version."
+        ),
+        call. = FALSE
+    )
     
     x <- apply(dataframe, 1, function(x) paste(stats::na.omit(x), collapse = ""))
     return(dataframe[!grepl("^\\s*$", x),  ,drop = FALSE] )
@@ -68,15 +80,15 @@ filter_empty_row <- function(dataframe) {
 #' @export
 filter_NA <- function(dataframe, column = TRUE, ...){
 
-    warning("Deprecated, use textclean::drop_NA() instead.", call. = FALSE)
+    warning(
+        paste(
+            "Deprecated, use textclean::drop_NA() instead.",
+            "`filter_NA()` will be removed in the next version."
+        ),
+        call. = FALSE
+    )
     
-    if (isTRUE(column)) {
-        column <- names(which.max(sapply(as.data.frame(dataframe), function(y) {
-            if(!is.character(y) && !is.factor(y)) return(0)
-            mean(nchar(as.character(y)), na.rm = TRUE)
-        }))[1])
-        if (length(column) == 0) stop("Could not detect text variable `column`.  Please supply `column` explicitly.")
-    }   
+    column <- detect_text_column(dataframe, column)
     
     dataframe[!is.na(dataframe[[column]]), ,drop = FALSE]
     

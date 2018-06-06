@@ -15,11 +15,11 @@ replace_kern(x, ...)
 Returns a vector with kern spaces removed.
 }
 \description{
-In typography kerning is the adjustment of spacing.  Often, in informal writing, 
-adding manual spaces (a form of kerning) coupled with all capital letters is 
-used for emphasis.  This tool looks for 3 or more consecutive capital letters 
-with spaces in between and removes the spaces.  Essentially, the capitalized,
-kerned version is replaced with the word equivalent.
+In typography kerning is the adjustment of spacing.  Often, in informal 
+writing, adding manual spaces (a form of kerning) coupled with all capital 
+letters is used for emphasis.  This tool looks for 3 or more consecutive 
+capital letters with spaces in between and removes the spaces.  Essentially, 
+the capitalized, kerned version is replaced with the word equivalent.
 }
 \examples{
 x <- c(

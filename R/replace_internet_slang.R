@@ -10,7 +10,6 @@
 #' @param \dots Other arguments passed to \code{\link[textclean]{replace_tokens}}.
 #' @return Returns a vector with names replaced.
 #' @export
-#' @import lexicon
 #' @examples
 #' x <- c(
 #'     "Marc the n00b needs to RTFM otherwise ymmv.",
@@ -34,6 +33,6 @@ replace_internet_slang  <- function(x,
     mgsub(x, slang, replacement, fixed = FALSE, ignore.case = ignore.case, ...)
 }
 
-
+im_his <- lexicon::hash_internet_slang
 
 

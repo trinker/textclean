@@ -25,7 +25,11 @@ Returns a vector with the pattern replaced.
 Replaces money with word equivalents.
 }
 \examples{
-x <- c(NA, '$3.16 into "three dollars, sixteen cents"', "-$20,333.18 too", 'fff')
+x <- c(
+    NA, 
+    '$3.16 into "three dollars, sixteen cents"', 
+    "-$20,333.18 too", 'fff'
+)
 
 replace_money(x)
 replace_money(x, replacement = '<<MONEY>>')

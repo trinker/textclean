@@ -9,7 +9,8 @@
 \arguments{
 \item{x}{A which_are_locs object}
 
-\item{n}{The number of affected elements to print out (the rest are truncated)}
+\item{n}{The number of affected elements to print out (the rest are 
+truncated)}
 
 \item{file}{Path to an external file to print to}
 

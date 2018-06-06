@@ -39,7 +39,13 @@ sent_regex <- sprintf("((?<=\\b(%s))\\.)|%s|(%s)",
 
 count_endmark <- function(x) {
     y <- stringi::stri_replace_all_regex(trimws(x), sent_regex, "<<<TEMP>>>")
-    stringi::stri_count_regex(y, "(?<!\\w\\.\\w.)(?<![A-Z][a-z]\\.)(?<=\\.|\\?|\\!)(\\s|(?=[a-zA-Z][a-zA-Z]*\\s))")
+    stringi::stri_count_regex(
+        y, 
+        paste0(
+            "(?<!\\w\\.\\w.)(?<![A-Z][a-z]\\.)(?<=\\.|", 
+            "\\?|\\!)(\\s|(?=[a-zA-Z][a-zA-Z]*\\s))"
+        )
+    )
 }
 
 
@@ -56,16 +62,38 @@ check_install <- function(x, fun = 'function'){
             if (ans == "1") {
                 utils::install.packages(x)
             } else {
-                stop(paste(fun, 'requires', x, 'package to be install.  Please install before using.'))
+                stop(
+                    paste(
+                        fun, 
+                        'requires', 
+                        x, 
+                        'package to be install.  Please install before using.'
+                    ), 
+                    call. = FALSE, 
+                )
             }   
         } else {
-            stop(paste(fun, 'requires', x, 'package to be install.  Please install before using.'))
+            stop(
+                paste(
+                    fun, 
+                    'requires', 
+                    x, 
+                    'package to be install.  Please install before using.'
+                ), 
+                call. = FALSE
+            )
         }     
     }
 
     path <- try(find.package(x), silent = TRUE)
     if (inherits(path, "try-error")) {
-        stop(paste('Could not install.', fun, 'requires', x, 'package to be installed.  Please install before using.'))
+        stop(paste(
+            'Could not install.', 
+            fun, 
+            'requires', 
+            x, 
+            'package to be installed.  Please install before using.'
+        ), call. = FALSE)
     }  
 
 }
@@ -86,14 +114,15 @@ check_install <- function(x, fun = 'function'){
 }
 
 
-replace_string_elements_generic  <- function(x, y, z = NULL, ignore.case = FALSE, ...) {
+replace_string_elements_generic  <- function(x, y, z = NULL, 
+    ignore.case = FALSE, ...) {
 
     z_null <- is.null(z)
     if(isTRUE(z_null)) z <- 'replacermentfunctionstringholder'
 
     na_locs <- is.na(x)
     tokens <- textshape::split_token(x, lower = FALSE, ...)
-    locs <- textshape::starts(sapply(tokens, length))[-1]
+    locs <- textshape::starts(lengths(tokens))[-1]
 
     tokens <- unlist(tokens)
     fun <- ifelse(ignore.case, tolower, c)
@@ -107,7 +136,9 @@ replace_string_elements_generic  <- function(x, y, z = NULL, ignore.case = FALSE
     }))
     out <- unlist(replaced)
 
-    if(isTRUE(z_null)) out <- trimws(gsub("\\s+", " ", gsub(z, "", out, fixed = TRUE)))
+    if(isTRUE(z_null)) {
+        out <- trimws(gsub("\\s+", " ", gsub(z, "", out, fixed = TRUE)))
+    }
 
     gsub("(\\s+)([.!?,;:])", "\\2", out, perl = TRUE)
 }
@@ -146,3 +177,54 @@ rm_class <- function(x, cls){
     class(x) <- class(x)[!class(x) %in% cls]    
     x
 }
+
+## function to detect text columns
+detect_text_column <- function(dat, text.var){
+    
+    if (isTRUE(text.var)) {
+    
+        dat <- as.data.frame(dat, stringsAsFactors = FALSE)
+        
+        mean_lens <- unlist(lapply(dat, function(y) {
+         
+            if(!is.character(y) && !is.factor(y)) return(0)
+            mean(nchar(as.character(y)), na.rm = TRUE)
+            
+        }))
+    
+        max_cols <- which.max(mean_lens)
+        
+        text.var <- colnames(dat)[max_cols[1]]
+        
+        if (length(text.var) == 0 | sum(as.integer(mean_lens)) == 0) {
+            stop(
+                paste(
+                    "Could not detect ` text.var`.", 
+                    "Please supply `text.var` explicitly."
+                ),
+                call. = FALSE
+            )
+        }
+        
+        if (length(max_cols) > 1) {
+            warning(
+                sprintf(
+                    'More than one text column detected...using `%s`', 
+                    text.var
+                ), 
+                call. = FALSE
+            )    
+        }
+    } 
+    
+    text.var
+    
+}
+
+## safer type sapply
+sapply2 <- function (X, FUN, ...) {
+    unlist(lapply(X, FUN, ...))
+}
+
+
+

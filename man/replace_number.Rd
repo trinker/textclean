@@ -25,10 +25,11 @@ Replaces numeric represented numbers with words (e.g., 1001 becomes one
 thousand one).
 }
 \note{
-The user may want to use \code{\link[textclean]{replace_ordinal}} first to 
-remove ordinal number notation.  For example \code{\link[textclean]{replace_number}}
-would turn "21st" into "twenty onest", whereas \code{\link[textclean]{replace_ordinal}}
-would generate "twenty first".
+The user may want to use \code{\link[textclean]{replace_ordinal}} 
+first to remove ordinal number notation.  For example 
+\code{\link[textclean]{replace_number}} would turn "21st" into 
+"twenty onest", whereas \code{\link[textclean]{replace_ordinal}} would 
+generate "twenty first".
 }
 \examples{
 x <- c(
@@ -46,15 +47,21 @@ replace_number(x, remove=TRUE)
 library(textclean)
 hunthou <- replace_number(seq_len(1e5)) 
 
-textclean::mgsub("'twenty thousand three hundred five' into 20305", hunthou, seq_len(1e5))
+textclean::mgsub(
+    "'twenty thousand three hundred five' into 20305", 
+    hunthou, 
+    seq_len(1e5)
+)
 ## "'20305' into 20305"
 
 ## Larger example from: https://stackoverflow.com/q/18332463/1000343
 ## A slower approach
 fivehunthou <- replace_number(seq_len(5e5)) 
 
-testvect <- c("fifty seven", "four hundred fifty seven", "six thousand four hundred fifty seven", 
-    "forty six thousand four hundred fifty seven", "forty six thousand four hundred fifty seven", 
+testvect <- c("fifty seven", "four hundred fifty seven", 
+    "six thousand four hundred fifty seven", 
+    "forty six thousand four hundred fifty seven", 
+    "forty six thousand four hundred fifty seven", 
     "three hundred forty six thousand four hundred fifty seven"
 )
 

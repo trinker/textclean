@@ -14,7 +14,8 @@ one which are  a replacement for matched pattern.}
 
 \item{endmarks}{The potential ending punctuation marks.}
 
-\item{\dots}{Additional arguments passed to \code{\link[textclean]{has_endmark}}.}
+\item{\dots}{Additional arguments passed to 
+\code{\link[textclean]{has_endmark}}.}
 }
 \value{
 Returns a vector with missing endmarks added.

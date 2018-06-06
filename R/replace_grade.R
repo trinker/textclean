@@ -18,6 +18,12 @@
 #' )))
 replace_grade <- function (x, grade_dt = lexicon::key_grade, ...) {
     
-    mgsub(x, paste0(' ', grade_dt[["x"]]), grade_dt[["y"]], fixed = TRUE, leadspace = TRUE)
+    mgsub(
+        x, 
+        paste0(' ', grade_dt[["x"]]), 
+        grade_dt[["y"]], 
+        fixed = TRUE, 
+        leadspace = TRUE
+    )
 }
 
