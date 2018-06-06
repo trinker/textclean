@@ -44,7 +44,8 @@ textclean 0.8.0 -
 
 * `check_text` picks up a `checks` and `n` argument.  The former allows the user
   to specify which checks to conduct.  The latter allows the user to truncate the
-  output to n number of elements with a closing `...[truncated]...`.
+  output to n number of elements with a closing `...[truncated]...`.  This makes
+  the function more useful and the code easier to maintain.
 
 **IMPROVEMENTS**
 

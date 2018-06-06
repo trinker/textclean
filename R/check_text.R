@@ -1,6 +1,6 @@
 #' Check Text For Potential Problems
 #' 
-#' Uncleaned text may result in errors, warnings, and incorrect results in 
+#' \code{check_text} - Uncleaned text may result in errors, warnings, and incorrect results in 
 #' subsequent analysis.  \code{check_text} checks text for potential problems 
 #' and suggests possible fixes.  Potential text anomalies that are detected 
 #' include: factors, missing ending punctuation, empty cells, double punctuation, 
@@ -48,6 +48,7 @@
 #' accompanying text, and possible suggestions to fix the text.
 #' @keywords check text spelling
 #' @export
+#' @rdname check_text
 #' @examples
 #' \dontrun{
 #' v <- list(c('foo', 'bar'), NA, c('hello', 'world'))
@@ -62,6 +63,8 @@
 #' check_text(x)
 #' print(check_text(x), include.text=FALSE)
 #' check_text(x, checks = c('non_split_sentence', 'no_endmark'))
+#' elementals <- available_checks()[is_meta != TRUE,][['fun']]
+#' check_text(x, checks = elementals[!elementals %in% c('non_split_sentence', 'no_endmark')])
 #' 
 #' y <- c("A valid sentence.", "yet another!")
 #' check_text(y)
@@ -112,6 +115,15 @@ check_text <- function(x, file = NULL, checks = NULL, n = 10, ...) {
 # 
 # }), sep = '\n', file = 'clipboard')
     
+#' Check Text For Potential Problems
+#' 
+#' \code{available_check} - Provide a data.frame view of all the available checks
+#' in the \code{check_text} function. 
+#' @rdname check_text
+#' @export
+available_checks <- function(){
+    data.table::rbindlist(lapply(.checks, as.data.frame, stringsAsFactors = FALSE))[, 'fix' := NULL][]
+}
     
 #' Prints a check_text Object
 #' 

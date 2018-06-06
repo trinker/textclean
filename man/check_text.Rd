@@ -2,9 +2,12 @@
 % Please edit documentation in R/check_text.R
 \name{check_text}
 \alias{check_text}
+\alias{available_checks}
 \title{Check Text For Potential Problems}
 \usage{
 check_text(x, file = NULL, checks = NULL, n = 10, ...)
+
+available_checks()
 }
 \arguments{
 \item{x}{The text variable.}
@@ -51,12 +54,15 @@ Returns a list with the following potential text faults report:\cr
 }
 }
 \description{
-Uncleaned text may result in errors, warnings, and incorrect results in 
+\code{check_text} - Uncleaned text may result in errors, warnings, and incorrect results in 
 subsequent analysis.  \code{check_text} checks text for potential problems 
 and suggests possible fixes.  Potential text anomalies that are detected 
 include: factors, missing ending punctuation, empty cells, double punctuation, 
 non-space after comma, no alphabetic characters, non-ASCII, missing value, 
 and potentially misspelled words.
+
+\code{available_check} - Provide a data.frame view of all the available checks
+in the \code{check_text} function.
 }
 \note{
 The output is a list containing meta checks and elemental checks

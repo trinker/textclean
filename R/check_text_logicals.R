@@ -145,7 +145,7 @@ truncated <- function(x, n = 100, ...){
     escaped = list(fun = "escaped", is_meta = FALSE, problem = "contain escaped back spaced characters", fix = "using `replace_white`"),
     hash = list(fun = "hash", is_meta = FALSE, problem = "contain Twitter style hash tags (e.g., #rstats)", fix = "using `qdapRegex::ex_tag' (to capture meta-data) and/or replace_hash"),
     html = list(fun = "html", is_meta = FALSE, problem = "contain HTML markup", fix =  "running `replace_html`"),
-    incomplete = list(fun = "incomplete", is_meta = FALSE, problem = "contain incomplete sentences (e.g., uses ending punctuation like ...)", fix = "using `replace_incomplete`"), 
+    incomplete = list(fun = "incomplete", is_meta = FALSE, problem = "contain incomplete sentences (e.g., uses ending punctuation like '...')", fix = "using `replace_incomplete`"), 
     kern = list(fun = "kern", is_meta = FALSE, problem = "contain kerning (e.g., 'The B O M B!')", fix = "using `replace_kern`"),
     list_column = list(fun = "list_column", is_meta = TRUE, problem = "is a list column", fix = "using `textclean::unnest_text`\n             Also, consider rerunning `check_text` after fixing"),
     missing_value = list(fun = "missing_value", is_meta = FALSE, problem = "contain missing values", fix = "running `drop_NA`"),    
