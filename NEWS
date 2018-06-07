@@ -17,7 +17,21 @@ And constructed with the following guidelines:
 * Bug fixes and misc changes bumps the patch
 
 
-textclean 0.8.0 -
+textclean 0.9.1 -
+----------------------------------------------------------------
+
+BUG FIXES
+
+NEW FEATURES
+
+MINOR FEATURES
+
+IMPROVEMENTS
+
+CHANGES
+
+
+textclean 0.8.0 - 0.9.0
 ----------------------------------------------------------------
 
 BUG FIXES
@@ -52,8 +66,6 @@ IMPROVEMENTS
 * `replace_non_ascii` did not replace all non-ASCII characters.  This has been
   fixed by an explicit replacement of '[^ -~]+' which are all non-ASCII characters.
   See issue #34 for details.
-
-CHANGES
 
 
 
@@ -94,7 +106,7 @@ IMPROVEMENTS
     `c('An', 'To', 'Oh', 'So', 'Do', 'He', 'Ha', 'In', 'Pa', 'Un')` which are 
     likely words and not names.
     
-* `replace_html` picks ups some additional symbol replacments including:
+* `replace_html` picks ups some additional symbol replacements including:
   `c("&trade;", "&ldquo;", "&rdquo;", "&lsquo;", "&rsquo;", "&bull;", "&middot;", 
   "&sdot;", "&ndash;", "&mdash;", "&ne;", "&frac12;", "&frac14;", "&frac34;", 
   "&deg;", "&larr;", "&rarr;", "&hellip;")`.
