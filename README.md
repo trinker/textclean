@@ -2,8 +2,6 @@ textclean
 ============
 
 
-    ## package 'rlang' successfully unpacked and MD5 sums checked
-
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active)
@@ -626,7 +624,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------------- 
     ## No problems found!
-    ## This text is righteous! 
+    ## This text is sublime! 
     ##  ---------------- 
     ##   \   ^__^ 
     ##    \  (oo)\ ________ 
@@ -1488,21 +1486,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "socialism Hermine numinouses quinlan tenderly inquisitorial Robbyn antireform dorsa rentiers wholes lionising?"
-    ## [2] "Lindsey amercers muteness Catalina towheads Minnie gled outstudied heehaws Valentine Jeremiah Madison!"        
-    ## [3] "entitled Kimber mandates Sydney liberations unsplit Jeanelle unworthy mackle dooms hectors reinvestigations."  
-    ## [4] "Kyle solving foreclosed maces Darryl Jamey puddly blebs Adriene Elizabet marchesi wakers?"                     
-    ## [5] "footer Julieann chaplets fishtailed Yvonne hangable Candace mezuzahs Margrett Tien staggers hardener."         
-    ## [6] "Magan Kellye fielder ley cupeller cabildos unspeaking syllabic fleams Leticia Consuelo gargoyles."
+    ## [1] "Sol grammars Klara viburnums baptizers Erin bustles idiotically Noble naivenesses Alphonse Margret!"             
+    ## [2] "novelist environmentalist Arline who'll Desirae Lilla aligners overgrowing caterpillar frankenstein cosmo quite!"
+    ## [3] "initiates insiders snouted pollers endited whorls Huong Merrill Mirna wadding Sirena Sarah!"                     
+    ## [4] "Shay austere Ferne token ansley sandhogs hostilely diastema outwitting totalling rejoicing sockmen!"             
+    ## [5] "Paulene Austin clansmen bolar apogamy britni mamelukes attainers remotest Clemmie wavies curses."                
+    ## [6] "recleaning asphyxias lowliness assist Ma replans outreading Tegan urinals outvoicing Irma medullas!"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "socialism NAME numinouses quinlan tenderly inquisitorial NAME antireform dorsa rentiers wholes lionising?"
-    ## [2] "NAME amercers muteness NAME towheads NAME gled outstudied heehaws NAME NAME NAME!"                        
-    ## [3] "entitled NAME mandates NAME liberations unsplit NAME unworthy mackle dooms hectors reinvestigations."     
-    ## [4] "NAME solving foreclosed maces NAME NAME puddly blebs NAME NAME marchesi wakers?"                          
-    ## [5] "footer NAME chaplets fishtailed NAME hangable NAME mezuzahs NAME NAME staggers hardener."                 
-    ## [6] "NAME NAME fielder ley cupeller cabildos unspeaking syllabic fleams NAME NAME gargoyles."
+    ## [1] "NAME grammars NAME viburnums baptizers NAME bustles idiotically NAME naivenesses NAME NAME!"               
+    ## [2] "novelist environmentalist NAME who'll NAME NAME aligners overgrowing caterpillar frankenstein cosmo quite!"
+    ## [3] "initiates insiders snouted pollers endited whorls NAME NAME NAME wadding NAME NAME!"                       
+    ## [4] "NAME austere NAME token ansley sandhogs hostilely diastema outwitting totalling rejoicing sockmen!"        
+    ## [5] "NAME NAME clansmen bolar apogamy britni mamelukes attainers remotest NAME wavies curses."                  
+    ## [6] "recleaning asphyxias lowliness assist NAME replans outreading NAME urinals outvoicing NAME medullas!"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1511,40 +1509,40 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "socialism NAME numinouses quinlan tenderly inquisitorial NAME antireform dorsa rentiers wholes lionising?"
-    ## [2] "NAME amercers muteness NAME towheads NAME gled outstudied heehaws NAME NAME NAME!"                        
-    ## [3] "entitled NAME mandates NAME liberations unsplit NAME unworthy mackle dooms hectors reinvestigations."     
-    ## [4] "NAME solving foreclosed maces NAME NAME puddly blebs NAME NAME marchesi wakers?"                          
-    ## [5] "footer NAME chaplets fishtailed NAME hangable NAME mezuzahs NAME NAME staggers hardener."                 
-    ## [6] "NAME NAME fielder ley cupeller cabildos unspeaking syllabic fleams NAME NAME gargoyles."
+    ## [1] "NAME grammars NAME viburnums baptizers NAME bustles idiotically NAME naivenesses NAME NAME!"               
+    ## [2] "novelist environmentalist NAME who'll NAME NAME aligners overgrowing caterpillar frankenstein cosmo quite!"
+    ## [3] "initiates insiders snouted pollers endited whorls NAME NAME NAME wadding NAME NAME!"                       
+    ## [4] "NAME austere NAME token ansley sandhogs hostilely diastema outwitting totalling rejoicing sockmen!"        
+    ## [5] "NAME NAME clansmen bolar apogamy britni mamelukes attainers remotest NAME wavies curses."                  
+    ## [6] "recleaning asphyxias lowliness assist NAME replans outreading NAME urinals outvoicing NAME medullas!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 7.011977 secs
+    ## Time difference of 7.516315 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "socialism NAME numinouses quinlan tenderly inquisitorial NAME antireform dorsa rentiers wholes lionising?"
-    ## [2] "NAME amercers muteness NAME towheads NAME gled outstudied heehaws NAME NAME NAME!"                        
-    ## [3] "entitled NAME mandates NAME liberations unsplit NAME unworthy mackle dooms hectors reinvestigations."     
-    ## [4] "NAME solving foreclosed maces NAME NAME puddly blebs NAME NAME marchesi wakers?"                          
-    ## [5] "footer NAME chaplets fishtailed NAME hangable NAME mezuzahs NAME NAME staggers hardener."                 
-    ## [6] "NAME NAME fielder ley cupeller cabildos unspeaking syllabic fleams NAME NAME gargoyles."
+    ## [1] "NAME grammars NAME viburnums baptizers NAME bustles idiotically NAME naivenesses NAME NAME!"               
+    ## [2] "novelist environmentalist NAME who'll NAME NAME aligners overgrowing caterpillar frankenstein cosmo quite!"
+    ## [3] "initiates insiders snouted pollers endited whorls NAME NAME NAME wadding NAME NAME!"                       
+    ## [4] "NAME austere NAME token ansley sandhogs hostilely diastema outwitting totalling rejoicing sockmen!"        
+    ## [5] "NAME NAME clansmen bolar apogamy britni mamelukes attainers remotest NAME wavies curses."                  
+    ## [6] "recleaning asphyxias lowliness assist NAME replans outreading NAME urinals outvoicing NAME medullas!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.07005 secs
+    ## Time difference of 0.073066 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,060 words) and 5,493 replacement tokens in 1.7 seconds.
+(600,120 words) and 5,493 replacement tokens in 1.8 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.655216 secs
+    ## Time difference of 1.787264 secs
 
 ### White Space
 
