@@ -19,10 +19,10 @@ be more intuitive, better named, and faster. Tools are geared at
 checking for substrings that are not optimal for analysis and replacing
 or removing them (normalizing) with more analysis friendly substrings
 (see Sproat, Black, Chen, Kumar, Ostendorf, & Richards (2001)
-<doi:10.1006/csla.2001.0169>) or extracting them into new variables. For
-example, emoticons are often used in text but not always easily handled
-by analysis algorithms. The `replace_emoticon()` function replaces
-emoticons with word equivalents.
+&lt;<doi:10.1006/csla.2001.0169%3E>) or extracting them into new
+variables. For example, emoticons are often used in text but not always
+easily handled by analysis algorithms. The `replace_emoticon()` function
+replaces emoticons with word equivalents.
 
 Other R packages provide some of the same functionality (e.g.,
 **english**, **gsubfn**, **mgsub**, **stringi**, **stringr**,
@@ -624,7 +624,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------------- 
     ## No problems found!
-    ## This text is prodigious! 
+    ## This text is breathtaking! 
     ##  ---------------- 
     ##   \   ^__^ 
     ##    \  (oo)\ ________ 
@@ -1524,21 +1524,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "gossipped prioress Marquerite leveled reimaged chiselling larry emitted Claris solarium Sandee impassivities?"
-    ## [2] "tinfoil snickers vinals batfowls thomasa Tom Jaye intoxicant byname customary reprocessed motorising."        
-    ## [3] "reimburse liter abhorring sovereign refilm Edgardo screechier franklin Nakesha scarcer paganisms elusive!"    
-    ## [4] "Neal Rose Chin taxingly Georgianne inked claddings Ilse flummoxing outmatching deuce rebeka?"                 
-    ## [5] "sensates propjets Lonnie adieus plywood lathered revulsed spallers Moriah Benita Roseann investigating!"      
-    ## [6] "Murray ables Shawn gazetted dustman munition fribblers slurring Hwa Kandis suboxides locks."
+    ## [1] "tagging kindergartners Roxie enfilades strivers winners wame rented guiding humanly upcurls employs?"               
+    ## [2] "excretions shavies huddles excellently larcenies overacceptance yodelers truncated sublated bulbels Yong itemizers!"
+    ## [3] "Lavonda Keri Carie revulsions courlans Hedy Monty ralina violone amanda graperies gox!"                             
+    ## [4] "Billi hoofbeat Daine rapports lapidated episcia jupes reheeling Sindy smalls retirant Alice?"                       
+    ## [5] "Angel revampers Norah wauling thionyl outfacing turn Audrie retirers drubbed Rosamaria vodun?"                      
+    ## [6] "institutionally Odell snatching reptilian sizzle dullest Corrina Buena unreelers overwarms Inez reseat?"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "gossipped prioress NAME leveled reimaged chiselling larry emitted NAME solarium NAME impassivities?"   
-    ## [2] "tinfoil snickers vinals batfowls thomasa NAME NAME intoxicant byname customary reprocessed motorising."
-    ## [3] "reimburse liter abhorring sovereign refilm NAME screechier franklin NAME scarcer paganisms elusive!"   
-    ## [4] "NAME NAME NAME taxingly NAME inked claddings NAME flummoxing outmatching deuce rebeka?"                
-    ## [5] "sensates propjets NAME adieus plywood lathered revulsed spallers NAME NAME NAME investigating!"        
-    ## [6] "NAME ables NAME gazetted dustman munition fribblers slurring NAME NAME suboxides locks."
+    ## [1] "tagging kindergartners NAME enfilades strivers winners wame rented guiding humanly upcurls employs?"                
+    ## [2] "excretions shavies huddles excellently larcenies overacceptance yodelers truncated sublated bulbels NAME itemizers!"
+    ## [3] "NAME NAME NAME revulsions courlans NAME NAME ralina violone amanda graperies gox!"                                  
+    ## [4] "NAME hoofbeat NAME rapports lapidated episcia jupes reheeling NAME smalls retirant NAME?"                           
+    ## [5] "NAME revampers NAME wauling thionyl outfacing turn NAME retirers drubbed NAME vodun?"                               
+    ## [6] "institutionally NAME snatching reptilian sizzle dullest NAME NAME unreelers overwarms NAME reseat?"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1547,40 +1547,40 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "gossipped prioress NAME leveled reimaged chiselling larry emitted NAME solarium NAME impassivities?"   
-    ## [2] "tinfoil snickers vinals batfowls thomasa NAME NAME intoxicant byname customary reprocessed motorising."
-    ## [3] "reimburse liter abhorring sovereign refilm NAME screechier franklin NAME scarcer paganisms elusive!"   
-    ## [4] "NAME NAME NAME taxingly NAME inked claddings NAME flummoxing outmatching deuce rebeka?"                
-    ## [5] "sensates propjets NAME adieus plywood lathered revulsed spallers NAME NAME NAME investigating!"        
-    ## [6] "NAME ables NAME gazetted dustman munition fribblers slurring NAME NAME suboxides locks."
+    ## [1] "tagging kindergartners NAME enfilades strivers winners wame rented guiding humanly upcurls employs?"                
+    ## [2] "excretions shavies huddles excellently larcenies overacceptance yodelers truncated sublated bulbels NAME itemizers!"
+    ## [3] "NAME NAME NAME revulsions courlans NAME NAME ralina violone amanda graperies gox!"                                  
+    ## [4] "NAME hoofbeat NAME rapports lapidated episcia jupes reheeling NAME smalls retirant NAME?"                           
+    ## [5] "NAME revampers NAME wauling thionyl outfacing turn NAME retirers drubbed NAME vodun?"                               
+    ## [6] "institutionally NAME snatching reptilian sizzle dullest NAME NAME unreelers overwarms NAME reseat?"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 8.014484 secs
+    ## Time difference of 7.905982 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "gossipped prioress NAME leveled reimaged chiselling larry emitted NAME solarium NAME impassivities?"   
-    ## [2] "tinfoil snickers vinals batfowls thomasa NAME NAME intoxicant byname customary reprocessed motorising."
-    ## [3] "reimburse liter abhorring sovereign refilm NAME screechier franklin NAME scarcer paganisms elusive!"   
-    ## [4] "NAME NAME NAME taxingly NAME inked claddings NAME flummoxing outmatching deuce rebeka?"                
-    ## [5] "sensates propjets NAME adieus plywood lathered revulsed spallers NAME NAME NAME investigating!"        
-    ## [6] "NAME ables NAME gazetted dustman munition fribblers slurring NAME NAME suboxides locks."
+    ## [1] "tagging kindergartners NAME enfilades strivers winners wame rented guiding humanly upcurls employs?"                
+    ## [2] "excretions shavies huddles excellently larcenies overacceptance yodelers truncated sublated bulbels NAME itemizers!"
+    ## [3] "NAME NAME NAME revulsions courlans NAME NAME ralina violone amanda graperies gox!"                                  
+    ## [4] "NAME hoofbeat NAME rapports lapidated episcia jupes reheeling NAME smalls retirant NAME?"                           
+    ## [5] "NAME revampers NAME wauling thionyl outfacing turn NAME retirers drubbed NAME vodun?"                               
+    ## [6] "institutionally NAME snatching reptilian sizzle dullest NAME NAME unreelers overwarms NAME reseat?"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.07650399 secs
+    ## Time difference of 0.07099509 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,080 words) and 5,493 replacement tokens in 1.7 seconds.
+(600,080 words) and 5,493 replacement tokens in 1.5 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.674756 secs
+    ## Time difference of 1.472557 secs
 
 ### White Space
 
