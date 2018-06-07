@@ -863,7 +863,7 @@ this feature).
 The default behavior of `mgsub` is optimized for speed. This means that
 it is very fast at multiple substitutions and in most cases works
 efficiently. However, it is not what Mark Ewing describes as "safe"
-substitution. I his vignette for the
+substitution. In his vignette for the
 [**mgsub**](https://github.com/bmewing/mgsub) package, Mark defines
 "safe" as:
 
