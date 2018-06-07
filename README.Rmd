@@ -281,23 +281,29 @@ There are times the user may want to stash a set of characters before subbing ou
 m$unhold(m_stripped)
 ```
 
-Of course with clever regexes you can achieve the same thing but it can be a bit trickier to reason about:
+Of course with clever regexes you can achieve the same thing:
 
 ```{r}
+ord_emos <- hash_emoticons[[1]][order(nchar(hash_emoticons[[1]]))]
+
+## This step ensures that longer strings are matched first but can 
+## fail in cases that use quantifiers.  These can appear short but in
+## reality can match long strings and would be ordered last in the 
+## replacement, meaning that the shorter regex took precedent.
 emos <- paste(
-    gsub('([().\\|[{}^$*+?])', '\\\\\\1', hash_emoticons[[1]]),
+    gsub('([().\\|[{}^$*+?])', '\\\\\\1', ord_emos),
     collapse = '|'
 )
 
 gsub(
-    sprintf('([\']|(%s))(*SKIP)(*FAIL)|[[:punct:]]', emos), 
+    sprintf('(%s)(*SKIP)(*FAIL)|[^\'[:^punct:]]', emos), 
     '', 
     fake_dat, 
     perl = TRUE
 )
 ```
 
-
+The pure regex approach can be a bit trickier (less safe) and more difficult to reason about.  It also relies on the less general `(*SKIP)(*FAIL)` backtracking control verbs that are only implemented in a few applications like Perl & PCRE.  Still, it's nice to see an alternative regex approach for comparison.
 
 ## Replacement
 

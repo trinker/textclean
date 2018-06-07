@@ -338,8 +338,8 @@ Contributions are welcome from anyone subject to the following rules:
 -   Abide by the [code of conduct](CONDUCT.md).
 -   Follow the style conventions of the package (indentation, function &
     argument naming, commenting, etc.)
--   All contributions must be consistent with the package
-    license (GPL-2)
+-   All contributions must be consistent with the package license
+    (GPL-2)
 -   Submit contributions as a pull request. Clearly state what the
     changes are and try to keep the number of changes per pull request
     as low as possible.
@@ -370,12 +370,12 @@ information on the following:
 3.  **digit** - Text elements that contain digits/numbers
 4.  **email** - Text elements that contain email addresses
 5.  **emoticon** - Text elements that contain emoticons
-6.  **empty** - Text elements that contain empty text cells (all
-    white space)
+6.  **empty** - Text elements that contain empty text cells (all white
+    space)
 7.  **escaped** - Text elements that contain escaped back spaced
     characters
-8.  **hash** - Text elements that contain Twitter style hash tags
-    (e.g., \#rstats)
+8.  **hash** - Text elements that contain Twitter style hash tags (e.g.,
+    \#rstats)
 9.  **html** - Text elements that contain HTML markup
 10. **incomplete** - Text elements that contain incomplete sentences
     (e.g., uses ending punctuation like '...')
@@ -624,7 +624,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------------- 
     ## No problems found!
-    ## This text is wickedly awesome! 
+    ## This text is prodigious! 
     ##  ---------------- 
     ##   \   ^__^ 
     ##    \  (oo)\ ________ 
@@ -1014,16 +1014,21 @@ punctuation, and last put the stashed emoticons back.
     ## [10] "0:) shall we move on good then"       
     ## [11] "0:-) i'm hungry let's eat you already"
 
-Of course with clever regexes you can achieve the same thing but it can
-be a bit trickier to reason about:
+Of course with clever regexes you can achieve the same thing:
 
+    ord_emos <- hash_emoticons[[1]][order(nchar(hash_emoticons[[1]]))]
+
+    ## This step ensures that longer strings are matched first but can 
+    ## fail in cases that use quantifiers.  These can appear short but in
+    ## reality can match long strings and would be ordered last in the 
+    ## replacement, meaning that the shorter regex took precedent.
     emos <- paste(
-        gsub('([().\\|[{}^$*+?])', '\\\\\\1', hash_emoticons[[1]]),
+        gsub('([().\\|[{}^$*+?])', '\\\\\\1', ord_emos),
         collapse = '|'
     )
 
     gsub(
-        sprintf('([\']|(%s))(*SKIP)(*FAIL)|[[:punct:]]', emos), 
+        sprintf('(%s)(*SKIP)(*FAIL)|[^\'[:^punct:]]', emos), 
         '', 
         fake_dat, 
         perl = TRUE
@@ -1032,14 +1037,20 @@ be a bit trickier to reason about:
     ##  [1] "#-) Computer is fun Not too fun"        
     ##  [2] "%) No it's not it's dumb"               
     ##  [3] "%-) What should we do"                  
-    ##  [4] "'l You liar it stinks"                  
-    ##  [5] "':-| I am telling the truth"            
+    ##  [4] "',:-l You liar it stinks"               
+    ##  [5] "',:-| I am telling the truth"           
     ##  [6] "*) How can we be certain"               
     ##  [7] "*-) There is no way"                    
     ##  [8] "*<|:-) I distrust you"                  
     ##  [9] "*\\0/* What are you talking about"      
     ## [10] "0:) Shall we move on  Good then"        
     ## [11] "0:-) I'm hungry  Let's eat  You already"
+
+The pure regex approach can be a bit trickier (less safe) and more
+difficult to reason about. It also relies on the less general
+`(*SKIP)(*FAIL)` backtracking control verbs that are only implemented in
+a few applications like Perl & PCRE. Still, it's nice to see an
+alternative regex approach for comparison.
 
 Replacement
 -----------
@@ -1513,21 +1524,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "serflike bullrings shucker Omega clawless Tamesha sistra greyhen Daniella Xavier Ronnie outrivalling?"           
-    ## [2] "tossing fascisms grandeur Ray capmaker neckwear elevating Jefferson ambassador slide disconnecting knoller?"     
-    ## [3] "garron Leonor exclaves Kelly craftsmenship karolina Patrina spoilages hiccoughing Vonda cyborg triptane!"        
-    ## [4] "spawner sentinels destained circumcise thermoplastic pitman Juan kaffiyehs gusts bespousing preclearances dorty?"
-    ## [5] "Violette hodad Benito spotter Rosy juana Latricia pibroch kismet Sherryl Anja cutter!"                           
-    ## [6] "dynode Porfirio flopper livier sashayed Adam Kenia Rena anil overdressing Bruna dauphines!"
+    ## [1] "gossipped prioress Marquerite leveled reimaged chiselling larry emitted Claris solarium Sandee impassivities?"
+    ## [2] "tinfoil snickers vinals batfowls thomasa Tom Jaye intoxicant byname customary reprocessed motorising."        
+    ## [3] "reimburse liter abhorring sovereign refilm Edgardo screechier franklin Nakesha scarcer paganisms elusive!"    
+    ## [4] "Neal Rose Chin taxingly Georgianne inked claddings Ilse flummoxing outmatching deuce rebeka?"                 
+    ## [5] "sensates propjets Lonnie adieus plywood lathered revulsed spallers Moriah Benita Roseann investigating!"      
+    ## [6] "Murray ables Shawn gazetted dustman munition fribblers slurring Hwa Kandis suboxides locks."
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "serflike bullrings shucker NAME clawless NAME sistra greyhen NAME NAME NAME outrivalling?"                       
-    ## [2] "tossing fascisms grandeur NAME capmaker neckwear elevating NAME ambassador slide disconnecting knoller?"         
-    ## [3] "garron NAME exclaves NAME craftsmenship karolina NAME spoilages hiccoughing NAME cyborg triptane!"               
-    ## [4] "spawner sentinels destained circumcise thermoplastic pitman NAME kaffiyehs gusts bespousing preclearances dorty?"
-    ## [5] "NAME hodad NAME spotter NAME juana NAME pibroch kismet NAME NAME cutter!"                                        
-    ## [6] "dynode NAME flopper livier sashayed NAME NAME NAME anil overdressing NAME dauphines!"
+    ## [1] "gossipped prioress NAME leveled reimaged chiselling larry emitted NAME solarium NAME impassivities?"   
+    ## [2] "tinfoil snickers vinals batfowls thomasa NAME NAME intoxicant byname customary reprocessed motorising."
+    ## [3] "reimburse liter abhorring sovereign refilm NAME screechier franklin NAME scarcer paganisms elusive!"   
+    ## [4] "NAME NAME NAME taxingly NAME inked claddings NAME flummoxing outmatching deuce rebeka?"                
+    ## [5] "sensates propjets NAME adieus plywood lathered revulsed spallers NAME NAME NAME investigating!"        
+    ## [6] "NAME ables NAME gazetted dustman munition fribblers slurring NAME NAME suboxides locks."
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1536,40 +1547,40 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "serflike bullrings shucker NAME clawless NAME sistra greyhen NAME NAME NAME outrivalling?"                       
-    ## [2] "tossing fascisms grandeur NAME capmaker neckwear elevating NAME ambassador slide disconnecting knoller?"         
-    ## [3] "garron NAME exclaves NAME craftsmenship karolina NAME spoilages hiccoughing NAME cyborg triptane!"               
-    ## [4] "spawner sentinels destained circumcise thermoplastic pitman NAME kaffiyehs gusts bespousing preclearances dorty?"
-    ## [5] "NAME hodad NAME spotter NAME juana NAME pibroch kismet NAME NAME cutter!"                                        
-    ## [6] "dynode NAME flopper livier sashayed NAME NAME NAME anil overdressing NAME dauphines!"
+    ## [1] "gossipped prioress NAME leveled reimaged chiselling larry emitted NAME solarium NAME impassivities?"   
+    ## [2] "tinfoil snickers vinals batfowls thomasa NAME NAME intoxicant byname customary reprocessed motorising."
+    ## [3] "reimburse liter abhorring sovereign refilm NAME screechier franklin NAME scarcer paganisms elusive!"   
+    ## [4] "NAME NAME NAME taxingly NAME inked claddings NAME flummoxing outmatching deuce rebeka?"                
+    ## [5] "sensates propjets NAME adieus plywood lathered revulsed spallers NAME NAME NAME investigating!"        
+    ## [6] "NAME ables NAME gazetted dustman munition fribblers slurring NAME NAME suboxides locks."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 6.829877 secs
+    ## Time difference of 8.014484 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "serflike bullrings shucker NAME clawless NAME sistra greyhen NAME NAME NAME outrivalling?"                       
-    ## [2] "tossing fascisms grandeur NAME capmaker neckwear elevating NAME ambassador slide disconnecting knoller?"         
-    ## [3] "garron NAME exclaves NAME craftsmenship karolina NAME spoilages hiccoughing NAME cyborg triptane!"               
-    ## [4] "spawner sentinels destained circumcise thermoplastic pitman NAME kaffiyehs gusts bespousing preclearances dorty?"
-    ## [5] "NAME hodad NAME spotter NAME juana NAME pibroch kismet NAME NAME cutter!"                                        
-    ## [6] "dynode NAME flopper livier sashayed NAME NAME NAME anil overdressing NAME dauphines!"
+    ## [1] "gossipped prioress NAME leveled reimaged chiselling larry emitted NAME solarium NAME impassivities?"   
+    ## [2] "tinfoil snickers vinals batfowls thomasa NAME NAME intoxicant byname customary reprocessed motorising."
+    ## [3] "reimburse liter abhorring sovereign refilm NAME screechier franklin NAME scarcer paganisms elusive!"   
+    ## [4] "NAME NAME NAME taxingly NAME inked claddings NAME flummoxing outmatching deuce rebeka?"                
+    ## [5] "sensates propjets NAME adieus plywood lathered revulsed spallers NAME NAME NAME investigating!"        
+    ## [6] "NAME ables NAME gazetted dustman munition fribblers slurring NAME NAME suboxides locks."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.06604695 secs
+    ## Time difference of 0.07650399 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,080 words) and 5,493 replacement tokens in 1.5 seconds.
+(600,080 words) and 5,493 replacement tokens in 1.7 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.541168 secs
+    ## Time difference of 1.674756 secs
 
 ### White Space
 
