@@ -29,7 +29,7 @@ Other R packages provide some of the same functionality (e.g.,
 **qdapRegex**). **textclean** differs from these packages in that it is
 designed to handle all of the common cleaning and normalization tasks
 with a single, consistent, pre-configured toolset (note that
-**textclean** using many of these terrific packages as a backend). This
+**textclean** uses many of these terrific packages as a backend). This
 means that the researcher spends less time on munging, leading to
 quicker analysis. This package is meant to be used jointly with the
 [**textshape**](https://github.com/trinker/textshape) package, which
