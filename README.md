@@ -626,7 +626,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------------- 
     ## No problems found!
-    ## This text is splendiferous! 
+    ## This text is righteous! 
     ##  ---------------- 
     ##   \   ^__^ 
     ##    \  (oo)\ ________ 
@@ -976,31 +976,31 @@ punctuation, and last put the stashed emoticons back.
 
     (m <- sub_holder(fake_dat, hash_emoticons[[1]]))
 
-    ##  [1] "zzzplaceholderazzz Computer is fun. Not too fun."        
-    ##  [2] "zzzplaceholderbzzz No it's not, it's dumb."              
-    ##  [3] "zzzplaceholderczzz What should we do?"                   
-    ##  [4] "zzzplaceholderdzzz You liar, it stinks!"                 
-    ##  [5] "zzzplaceholderezzz I am telling the truth!"              
-    ##  [6] "zzzplaceholderfzzz How can we be certain?"               
-    ##  [7] "zzzplaceholdergzzz There is no way."                     
-    ##  [8] "zzzplaceholderhzzz I distrust you."                      
-    ##  [9] "zzzplaceholderizzz What are you talking about?"          
-    ## [10] "zzzplaceholderjzzz Shall we move on?  Good then."        
-    ## [11] "zzzplaceholderkzzz I'm hungry.  Let's eat.  You already?"
+    ##  [1] "zzzplaceholderaazzz Computer is fun. Not too fun."        
+    ##  [2] "zzzplaceholderbazzz No it's not, it's dumb."              
+    ##  [3] "zzzplaceholdercazzz What should we do?"                   
+    ##  [4] "zzzplaceholderdazzz You liar, it stinks!"                 
+    ##  [5] "zzzplaceholdereazzz I am telling the truth!"              
+    ##  [6] "zzzplaceholderfazzz How can we be certain?"               
+    ##  [7] "zzzplaceholdergazzz There is no way."                     
+    ##  [8] "zzzplaceholderhazzz I distrust you."                      
+    ##  [9] "zzzplaceholderiazzz What are you talking about?"          
+    ## [10] "zzzplaceholderjazzz Shall we move on?  Good then."        
+    ## [11] "zzzplaceholderkazzz I'm hungry.  Let's eat.  You already?"
 
     (m_stripped <-strip(m$output))
 
-    ##  [1] "zzzplaceholderazzz computer is fun not too fun"     
-    ##  [2] "zzzplaceholderbzzz no it's not it's dumb"           
-    ##  [3] "zzzplaceholderczzz what should we do"               
-    ##  [4] "zzzplaceholderdzzz you liar it stinks"              
-    ##  [5] "zzzplaceholderezzz i am telling the truth"          
-    ##  [6] "zzzplaceholderfzzz how can we be certain"           
-    ##  [7] "zzzplaceholdergzzz there is no way"                 
-    ##  [8] "zzzplaceholderhzzz i distrust you"                  
-    ##  [9] "zzzplaceholderizzz what are you talking about"      
-    ## [10] "zzzplaceholderjzzz shall we move on good then"      
-    ## [11] "zzzplaceholderkzzz i'm hungry let's eat you already"
+    ##  [1] "zzzplaceholderaazzz computer is fun not too fun"     
+    ##  [2] "zzzplaceholderbazzz no it's not it's dumb"           
+    ##  [3] "zzzplaceholdercazzz what should we do"               
+    ##  [4] "zzzplaceholderdazzz you liar it stinks"              
+    ##  [5] "zzzplaceholdereazzz i am telling the truth"          
+    ##  [6] "zzzplaceholderfazzz how can we be certain"           
+    ##  [7] "zzzplaceholdergazzz there is no way"                 
+    ##  [8] "zzzplaceholderhazzz i distrust you"                  
+    ##  [9] "zzzplaceholderiazzz what are you talking about"      
+    ## [10] "zzzplaceholderjazzz shall we move on good then"      
+    ## [11] "zzzplaceholderkazzz i'm hungry let's eat you already"
 
     m$unhold(m_stripped)
 
@@ -1488,21 +1488,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "Rebecca greeting parabolas Tiffiny borders Joni Shanell knave abridgement nubblier Gwenda Meg?"                
-    ## [2] "plucks reptant unbosomed anthia tetchier portuguese Doyle luminaries overlax Jermaine diligence Wilbur."       
-    ## [3] "scalars exotoxin leariest bannerets dotier reedbird jouster Graig blondest Carmen lurleen hoggs."              
-    ## [4] "blackmailers buttoners afflictions stoma Cammy nameable debrief preserve Mariah lungis Arlinda glossing!"      
-    ## [5] "stenographic Peter moldboard Lanelle Franchesca sulphurs Blythe mimeograph positives nitrils Damon illiteracy!"
-    ## [6] "Paola splotch monazite defiers cherubic bacterins Bernardina Susana distich Cari hared Colleen."
+    ## [1] "socialism Hermine numinouses quinlan tenderly inquisitorial Robbyn antireform dorsa rentiers wholes lionising?"
+    ## [2] "Lindsey amercers muteness Catalina towheads Minnie gled outstudied heehaws Valentine Jeremiah Madison!"        
+    ## [3] "entitled Kimber mandates Sydney liberations unsplit Jeanelle unworthy mackle dooms hectors reinvestigations."  
+    ## [4] "Kyle solving foreclosed maces Darryl Jamey puddly blebs Adriene Elizabet marchesi wakers?"                     
+    ## [5] "footer Julieann chaplets fishtailed Yvonne hangable Candace mezuzahs Margrett Tien staggers hardener."         
+    ## [6] "Magan Kellye fielder ley cupeller cabildos unspeaking syllabic fleams Leticia Consuelo gargoyles."
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "NAME greeting parabolas NAME borders NAME NAME knave abridgement nubblier NAME NAME?"              
-    ## [2] "plucks reptant unbosomed anthia tetchier portuguese NAME luminaries overlax NAME diligence NAME."  
-    ## [3] "scalars exotoxin leariest bannerets dotier reedbird jouster NAME blondest NAME lurleen hoggs."     
-    ## [4] "blackmailers buttoners afflictions stoma NAME nameable debrief preserve NAME lungis NAME glossing!"
-    ## [5] "stenographic NAME moldboard NAME NAME sulphurs NAME mimeograph positives nitrils NAME illiteracy!" 
-    ## [6] "NAME splotch monazite defiers cherubic bacterins NAME NAME distich NAME hared NAME."
+    ## [1] "socialism NAME numinouses quinlan tenderly inquisitorial NAME antireform dorsa rentiers wholes lionising?"
+    ## [2] "NAME amercers muteness NAME towheads NAME gled outstudied heehaws NAME NAME NAME!"                        
+    ## [3] "entitled NAME mandates NAME liberations unsplit NAME unworthy mackle dooms hectors reinvestigations."     
+    ## [4] "NAME solving foreclosed maces NAME NAME puddly blebs NAME NAME marchesi wakers?"                          
+    ## [5] "footer NAME chaplets fishtailed NAME hangable NAME mezuzahs NAME NAME staggers hardener."                 
+    ## [6] "NAME NAME fielder ley cupeller cabildos unspeaking syllabic fleams NAME NAME gargoyles."
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1511,40 +1511,40 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "NAME greeting parabolas NAME borders NAME NAME knave abridgement nubblier NAME NAME?"              
-    ## [2] "plucks reptant unbosomed anthia tetchier portuguese NAME luminaries overlax NAME diligence NAME."  
-    ## [3] "scalars exotoxin leariest bannerets dotier reedbird jouster NAME blondest NAME lurleen hoggs."     
-    ## [4] "blackmailers buttoners afflictions stoma NAME nameable debrief preserve NAME lungis NAME glossing!"
-    ## [5] "stenographic NAME moldboard NAME NAME sulphurs NAME mimeograph positives nitrils NAME illiteracy!" 
-    ## [6] "NAME splotch monazite defiers cherubic bacterins NAME NAME distich NAME hared NAME."
+    ## [1] "socialism NAME numinouses quinlan tenderly inquisitorial NAME antireform dorsa rentiers wholes lionising?"
+    ## [2] "NAME amercers muteness NAME towheads NAME gled outstudied heehaws NAME NAME NAME!"                        
+    ## [3] "entitled NAME mandates NAME liberations unsplit NAME unworthy mackle dooms hectors reinvestigations."     
+    ## [4] "NAME solving foreclosed maces NAME NAME puddly blebs NAME NAME marchesi wakers?"                          
+    ## [5] "footer NAME chaplets fishtailed NAME hangable NAME mezuzahs NAME NAME staggers hardener."                 
+    ## [6] "NAME NAME fielder ley cupeller cabildos unspeaking syllabic fleams NAME NAME gargoyles."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 7.179598 secs
+    ## Time difference of 7.011977 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "NAME greeting parabolas NAME borders NAME NAME knave abridgement nubblier NAME NAME?"              
-    ## [2] "plucks reptant unbosomed anthia tetchier portuguese NAME luminaries overlax NAME diligence NAME."  
-    ## [3] "scalars exotoxin leariest bannerets dotier reedbird jouster NAME blondest NAME lurleen hoggs."     
-    ## [4] "blackmailers buttoners afflictions stoma NAME nameable debrief preserve NAME lungis NAME glossing!"
-    ## [5] "stenographic NAME moldboard NAME NAME sulphurs NAME mimeograph positives nitrils NAME illiteracy!" 
-    ## [6] "NAME splotch monazite defiers cherubic bacterins NAME NAME distich NAME hared NAME."
+    ## [1] "socialism NAME numinouses quinlan tenderly inquisitorial NAME antireform dorsa rentiers wholes lionising?"
+    ## [2] "NAME amercers muteness NAME towheads NAME gled outstudied heehaws NAME NAME NAME!"                        
+    ## [3] "entitled NAME mandates NAME liberations unsplit NAME unworthy mackle dooms hectors reinvestigations."     
+    ## [4] "NAME solving foreclosed maces NAME NAME puddly blebs NAME NAME marchesi wakers?"                          
+    ## [5] "footer NAME chaplets fishtailed NAME hangable NAME mezuzahs NAME NAME staggers hardener."                 
+    ## [6] "NAME NAME fielder ley cupeller cabildos unspeaking syllabic fleams NAME NAME gargoyles."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.07704091 secs
+    ## Time difference of 0.07005 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,120 words) and 5,493 replacement tokens in 1.7 seconds.
+(600,060 words) and 5,493 replacement tokens in 1.7 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.684206 secs
+    ## Time difference of 1.655216 secs
 
 ### White Space
 
