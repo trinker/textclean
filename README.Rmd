@@ -203,7 +203,7 @@ mgsub(DATA$state, c("i", "it"), c("<<I>>", "[[IT]]"), order.pattern = FALSE)
 
 #### Safe Substitutions
 
-The default behavior of `mgsub` is optimized for speed.  This means that it is very fast at multiple substitutions and in most cases works efficiently.  However, it is not what Mark Ewing describes as "safe" substitution.  I his vignette for the [**mgsub**](https://github.com/bmewing/mgsub) package, Mark defines "safe" as:
+The default behavior of `mgsub` is optimized for speed.  This means that it is very fast at multiple substitutions and in most cases works efficiently.  However, it is not what Mark Ewing describes as "safe" substitution.  In his vignette for the [**mgsub**](https://github.com/bmewing/mgsub) package, Mark defines "safe" as:
 
 > 1. Longer matches are preferred over shorter matches for substitution first
 > 2. No placeholders are used so accidental string collisions don't occur
