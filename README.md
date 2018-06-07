@@ -18,11 +18,11 @@ of these tools have been taken from the **qdap** package and revamped to
 be more intuitive, better named, and faster. Tools are geared at
 checking for substrings that are not optimal for analysis and replacing
 or removing them (normalizing) with more analysis friendly substrings
-(see Sproat, Black, Chen, Kumar, Ostendorf, & Richards (2001)
-&lt;<doi:10.1006/csla.2001.0169%3E>) or extracting them into new
-variables. For example, emoticons are often used in text but not always
-easily handled by analysis algorithms. The `replace_emoticon()` function
-replaces emoticons with word equivalents.
+(see Sproat, Black, Chen, Kumar, Ostendorf, & Richards, 2001,
+<doi:10.1006/csla.2001.0169>) or extracting them into new variables. For
+example, emoticons are often used in text but not always easily handled
+by analysis algorithms. The `replace_emoticon()` function replaces
+emoticons with word equivalents.
 
 Other R packages provide some of the same functionality (e.g.,
 **english**, **gsubfn**, **mgsub**, **stringi**, **stringr**,
@@ -624,7 +624,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------------- 
     ## No problems found!
-    ## This text is breathtaking! 
+    ## This text is remarkable! 
     ##  ---------------- 
     ##   \   ^__^ 
     ##    \  (oo)\ ________ 
@@ -1524,21 +1524,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "tagging kindergartners Roxie enfilades strivers winners wame rented guiding humanly upcurls employs?"               
-    ## [2] "excretions shavies huddles excellently larcenies overacceptance yodelers truncated sublated bulbels Yong itemizers!"
-    ## [3] "Lavonda Keri Carie revulsions courlans Hedy Monty ralina violone amanda graperies gox!"                             
-    ## [4] "Billi hoofbeat Daine rapports lapidated episcia jupes reheeling Sindy smalls retirant Alice?"                       
-    ## [5] "Angel revampers Norah wauling thionyl outfacing turn Audrie retirers drubbed Rosamaria vodun?"                      
-    ## [6] "institutionally Odell snatching reptilian sizzle dullest Corrina Buena unreelers overwarms Inez reseat?"
+    ## [1] "oothecae clotty Towanda newsier maestros Richie prophetesses savvying bulldozed boccies lordings invigorates!"
+    ## [2] "moating gourde exacta echinoids polynyas rottennesses Jolene Sylvia trish polluting Carolyn suaver?"          
+    ## [3] "Vince superimposed halakah cabochon wencher Dortha Natalya Francisca India Milagro metalworks Krissy."        
+    ## [4] "Phylis unscrupulously capstones Marcellus Neville snottier haling rejectees mome cottony lonelinesses sneaky!"
+    ## [5] "accouter contemplated presentable interest Rivka Ozell scows eyeletting mote apodal ac depurated!"            
+    ## [6] "Jani vicugnas fodders galoshes clown biggies arlinda bescorches geothermal inducement selflessnesses spriggy!"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "tagging kindergartners NAME enfilades strivers winners wame rented guiding humanly upcurls employs?"                
-    ## [2] "excretions shavies huddles excellently larcenies overacceptance yodelers truncated sublated bulbels NAME itemizers!"
-    ## [3] "NAME NAME NAME revulsions courlans NAME NAME ralina violone amanda graperies gox!"                                  
-    ## [4] "NAME hoofbeat NAME rapports lapidated episcia jupes reheeling NAME smalls retirant NAME?"                           
-    ## [5] "NAME revampers NAME wauling thionyl outfacing turn NAME retirers drubbed NAME vodun?"                               
-    ## [6] "institutionally NAME snatching reptilian sizzle dullest NAME NAME unreelers overwarms NAME reseat?"
+    ## [1] "oothecae clotty NAME newsier maestros NAME prophetesses savvying bulldozed boccies lordings invigorates!"     
+    ## [2] "moating gourde exacta echinoids polynyas rottennesses NAME NAME trish polluting NAME suaver?"                 
+    ## [3] "NAME superimposed halakah cabochon wencher NAME NAME NAME NAME NAME metalworks NAME."                         
+    ## [4] "NAME unscrupulously capstones NAME NAME snottier haling rejectees mome cottony lonelinesses sneaky!"          
+    ## [5] "accouter contemplated presentable interest NAME NAME scows eyeletting mote apodal ac depurated!"              
+    ## [6] "NAME vicugnas fodders galoshes clown biggies arlinda bescorches geothermal inducement selflessnesses spriggy!"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1547,31 +1547,31 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "tagging kindergartners NAME enfilades strivers winners wame rented guiding humanly upcurls employs?"                
-    ## [2] "excretions shavies huddles excellently larcenies overacceptance yodelers truncated sublated bulbels NAME itemizers!"
-    ## [3] "NAME NAME NAME revulsions courlans NAME NAME ralina violone amanda graperies gox!"                                  
-    ## [4] "NAME hoofbeat NAME rapports lapidated episcia jupes reheeling NAME smalls retirant NAME?"                           
-    ## [5] "NAME revampers NAME wauling thionyl outfacing turn NAME retirers drubbed NAME vodun?"                               
-    ## [6] "institutionally NAME snatching reptilian sizzle dullest NAME NAME unreelers overwarms NAME reseat?"
+    ## [1] "oothecae clotty NAME newsier maestros NAME prophetesses savvying bulldozed boccies lordings invigorates!"     
+    ## [2] "moating gourde exacta echinoids polynyas rottennesses NAME NAME trish polluting NAME suaver?"                 
+    ## [3] "NAME superimposed halakah cabochon wencher NAME NAME NAME NAME NAME metalworks NAME."                         
+    ## [4] "NAME unscrupulously capstones NAME NAME snottier haling rejectees mome cottony lonelinesses sneaky!"          
+    ## [5] "accouter contemplated presentable interest NAME NAME scows eyeletting mote apodal ac depurated!"              
+    ## [6] "NAME vicugnas fodders galoshes clown biggies arlinda bescorches geothermal inducement selflessnesses spriggy!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 7.905982 secs
+    ## Time difference of 8.119677 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "tagging kindergartners NAME enfilades strivers winners wame rented guiding humanly upcurls employs?"                
-    ## [2] "excretions shavies huddles excellently larcenies overacceptance yodelers truncated sublated bulbels NAME itemizers!"
-    ## [3] "NAME NAME NAME revulsions courlans NAME NAME ralina violone amanda graperies gox!"                                  
-    ## [4] "NAME hoofbeat NAME rapports lapidated episcia jupes reheeling NAME smalls retirant NAME?"                           
-    ## [5] "NAME revampers NAME wauling thionyl outfacing turn NAME retirers drubbed NAME vodun?"                               
-    ## [6] "institutionally NAME snatching reptilian sizzle dullest NAME NAME unreelers overwarms NAME reseat?"
+    ## [1] "oothecae clotty NAME newsier maestros NAME prophetesses savvying bulldozed boccies lordings invigorates!"     
+    ## [2] "moating gourde exacta echinoids polynyas rottennesses NAME NAME trish polluting NAME suaver?"                 
+    ## [3] "NAME superimposed halakah cabochon wencher NAME NAME NAME NAME NAME metalworks NAME."                         
+    ## [4] "NAME unscrupulously capstones NAME NAME snottier haling rejectees mome cottony lonelinesses sneaky!"          
+    ## [5] "accouter contemplated presentable interest NAME NAME scows eyeletting mote apodal ac depurated!"              
+    ## [6] "NAME vicugnas fodders galoshes clown biggies arlinda bescorches geothermal inducement selflessnesses spriggy!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.07099509 secs
+    ## Time difference of 0.06850314 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
 (600,080 words) and 5,493 replacement tokens in 1.5 seconds.
@@ -1580,7 +1580,7 @@ Now let's amp it up with 20x more text data. That's 50,000 rows of text
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.472557 secs
+    ## Time difference of 1.512028 secs
 
 ### White Space
 
