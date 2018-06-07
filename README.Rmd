@@ -281,6 +281,23 @@ There are times the user may want to stash a set of characters before subbing ou
 m$unhold(m_stripped)
 ```
 
+Of course with clever regexes you can achieve the same thing but it can be a bit trickier to reason about:
+
+```{r}
+emos <- paste(
+    gsub('([().\\|[{}^$*+?])', '\\\\\\1', hash_emoticons[[1]]),
+    collapse = '|'
+)
+
+gsub(
+    sprintf('([\']|(%s))(*SKIP)(*FAIL)|[[:punct:]]', emos), 
+    '', 
+    fake_dat, 
+    perl = TRUE
+)
+```
+
+
 
 ## Replacement
 
