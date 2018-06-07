@@ -40,8 +40,8 @@ provides tooling for substring substitution and extraction of pre-canned
 regular expressions. In addition, the functions of **textclean** are
 designed to work within the piping of the tidyverse framework by
 consistently using the first argument of functions as the data source.
-**textclean** tools are particularly effective within a `dplyr::mutate`
-statement.
+The **textclean** subbing and replacement tools are particularly effective 
+within a `dplyr::mutate` statement. 
 
 
 Table of Contents
