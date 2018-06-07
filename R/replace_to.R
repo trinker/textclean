@@ -7,7 +7,7 @@
 #' @param n Number of times the character appears before the grab.
 #' @param include logical.  If \code{TRUE} includes the character in the grab.
 #' @param \ldots ignored.
-#' @return returns a vector of text with char on/forward removed.
+#' @return returns a vector of text with begin/end of string to/from character removed.
 #' @author Josh O'Brien and Tyler Rinker <tyler.rinker@@gmail.com>.
 #' @references \url{http://stackoverflow.com/q/15909626/1000343}
 #' @rdname replace_to

@@ -21,7 +21,7 @@ replace_from(x, char = " ", n = 1, include = FALSE, ...)
 \item{\ldots}{ignored.}
 }
 \value{
-returns a vector of text with char on/forward removed.
+returns a vector of text with begin/end of string to/from character removed.
 }
 \description{
 \code{replace_to} - Grab from beginning of string to a character(s).

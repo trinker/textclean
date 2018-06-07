@@ -62,22 +62,24 @@ fgsub <- function(x, pattern, fun, ...){
 
     hits <- stringi::stri_extract_all_regex(txt, pattern)
     
+    ## Make unique replacement substrings
+    h <- lengths(hits)
+    y <- sum(h)
+    counter <- ceiling(y/26)
 
+    ## Make a replacement key
     pats <- unique(unlist(hits))
     reps <- paste0("textcleanholder", seq_along(pats), "textcleanholder")
     freps <- unlist(lapply(pats, fun))
 
-    pat_key <- data.table::data.table(pat = pats, replacement = freps)
+    pat_key <- data.table::data.table(pat = reps, replacement = freps)
     
-    hit_key <- textshape::tidy_list(
-        set_names(
-            lapply(hits, function(x) set_names(x, seq_along(x))), 
-            seq_along(hits)
-        ),
-        'hit_id', 'pat', 'pattern_id'
+    hit_key <- data.table::data.table(
+        hit_id = rep(seq_len(length(h)), h),
+        pat = reps,
+        pattern_id = unlist(lapply(h, seq_len))
     )
     
-
     data.table::setkey(pat_key, pat)
     data.table::setkey(hit_key, pat)
     
@@ -87,22 +89,81 @@ fgsub <- function(x, pattern, fun, ...){
     
     data.table::setorderv(hit_key, cols = c('hit_id', 'pattern_id'))
 
-    for (i in seq_len(nrow(hit_key))) {
-        hkr <- hit_key[i,]     
-        hkr[, 'pattern_id'][[1]]
+    ## Loop through and replace the first pattern in each element with a unique 
+    ## replacement substring
+    for (i in seq_len(y)) {
+        
+        hkr <- hit_key[i,]
+        
         txt[hkr[, 'hit_id'][[1]]] <- sub(
             pattern, 
-            hkr[, 'replacement'][[1]], 
+            hkr[, 'pat'][[1]], 
             txt[hkr[, 'hit_id'][[1]]], 
             perl = TRUE
         )
-    }
         
+    }
+
+    ## Because the unique repalcment substrings are so unlikely to have a 
+    ## collision, we can use fixed = TRUE and be very quick here
+    txt <- mgsub(txt, hit_key[['pat']],  hit_key[['replacement']], fixed = TRUE, ...)
+    
     x[locs] <- txt
     x
 
 }
 
+## defunct version 2018-06-06
+# fgsub <- function(x, pattern, fun, ...){
+# 
+#     hit_id <- pattern_id <- pat <- NULL
+#     
+#     locs <- stringi::stri_detect_regex(x, pattern)
+#     locs[is.na(locs)] <- FALSE
+#     txt <- x[locs]
+# 
+#     hits <- stringi::stri_extract_all_regex(txt, pattern)
+#     
+# 
+#     pats <- unique(unlist(hits))
+#     reps <- paste0("textcleanholder", seq_along(pats), "textcleanholder")
+#     freps <- unlist(lapply(pats, fun))
+# 
+#     pat_key <- data.table::data.table(pat = pats, replacement = freps)
+#     
+#     hit_key <- textshape::tidy_list(
+#         set_names(
+#             lapply(hits, function(x) set_names(x, seq_along(x))), 
+#             seq_along(hits)
+#         ),
+#         'hit_id', 'pat', 'pattern_id'
+#     )
+#     
+# 
+#     data.table::setkey(pat_key, pat)
+#     data.table::setkey(hit_key, pat)
+#     
+#     hit_key <- hit_key[pat_key][, 
+#         hit_id := as.integer(hit_id)][, 
+#         pattern_id := as.integer(pattern_id)]
+#     
+#     data.table::setorderv(hit_key, cols = c('hit_id', 'pattern_id'))
+# 
+#     for (i in seq_len(nrow(hit_key))) {
+#         hkr <- hit_key[i,]     
+#         hkr[, 'pattern_id'][[1]]
+#         txt[hkr[, 'hit_id'][[1]]] <- sub(
+#             hkr[, 'pat'][[1]], 
+#             hkr[, 'replacement'][[1]], 
+#             txt[hkr[, 'hit_id'][[1]]], 
+#             perl = TRUE
+#         )
+#     }
+#         
+#     x[locs] <- txt
+#     x
+# 
+# }
 
 ## old version removed 2018-06-01
 # fgsub <- function(x, pattern, fun, ...){

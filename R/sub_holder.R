@@ -32,24 +32,28 @@
 sub_holder <- function(x, pattern, alpha.type = TRUE, ...) {
 
     if (!is.character(pattern)) pattern <- as.character(pattern)
-    y2 <- y <- length(pattern)
+    y <- length(pattern)
 
     if (alpha.type) {
-        counter <- 0
-        while(y > 26) {
-            y <- y/26
-            counter <- counter + 1
-        }
-        if (y > 0) counter + 1
+        # counter <- 0
+        # while(y > 26) {
+        #     y <- y/26
+        #     counter <- counter + 1
+        # }
+        # if (y > 0) counter <- counter + 1
+ 
+        ## replaced the above:https://www.youtube.com/watch?v=zJmTJR6s4QU
+        counter <- ceiling(log(y, 26))
+    
         keys <- apply(
-            expand.grid(lapply(1:counter, function(i) letters)), 
+            expand.grid(lapply(seq_len(counter), function(i) letters)), 
             1, 
             paste, 
             collapse=""
-        )
+        )[seq_len(y)]
         reps <- paste0("zzzplaceholder", keys, "zzz")
     } else {
-        keys <- reps <- 1:y
+        keys <- reps <- seq_len(y)
     }
 
     output <- mgsub(x, pattern, reps, ...)
@@ -66,7 +70,7 @@ sub_holder <- function(x, pattern, alpha.type = TRUE, ...) {
         names = names(out),
         pattern = pattern, 
         keys = keys, 
-        len = y2
+        len = y
     )
     out
 

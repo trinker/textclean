@@ -2,6 +2,8 @@ textclean
 ============
 
 
+    ## package 'rlang' successfully unpacked and MD5 sums checked
+
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active)
@@ -40,8 +42,8 @@ provides tooling for substring substitution and extraction of pre-canned
 regular expressions. In addition, the functions of **textclean** are
 designed to work within the piping of the tidyverse framework by
 consistently using the first argument of functions as the data source.
-The **textclean** subbing and replacement tools are particularly effective 
-within a `dplyr::mutate` statement. 
+The **textclean** subbing and replacement tools are particularly
+effective within a `dplyr::mutate` statement.
 
 
 Table of Contents
@@ -338,8 +340,8 @@ Contributions are welcome from anyone subject to the following rules:
 -   Abide by the [code of conduct](CONDUCT.md).
 -   Follow the style conventions of the package (indentation, function &
     argument naming, commenting, etc.)
--   All contributions must be consistent with the package license
-    (GPL-2)
+-   All contributions must be consistent with the package
+    license (GPL-2)
 -   Submit contributions as a pull request. Clearly state what the
     changes are and try to keep the number of changes per pull request
     as low as possible.
@@ -370,12 +372,12 @@ information on the following:
 3.  **digit** - Text elements that contain digits/numbers
 4.  **email** - Text elements that contain email addresses
 5.  **emoticon** - Text elements that contain emoticons
-6.  **empty** - Text elements that contain empty text cells (all white
-    space)
+6.  **empty** - Text elements that contain empty text cells (all
+    white space)
 7.  **escaped** - Text elements that contain escaped back spaced
     characters
-8.  **hash** - Text elements that contain Twitter style hash tags (e.g.,
-    \#rstats)
+8.  **hash** - Text elements that contain Twitter style hash tags
+    (e.g., \#rstats)
 9.  **html** - Text elements that contain HTML markup
 10. **incomplete** - Text elements that contain incomplete sentences
     (e.g., uses ending punctuation like '...')
@@ -624,7 +626,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------------- 
     ## No problems found!
-    ## This text is staggering! 
+    ## This text is splendiferous! 
     ##  ---------------- 
     ##   \   ^__^ 
     ##    \  (oo)\ ________ 
@@ -932,7 +934,7 @@ and then puts them back at the original locations.
     )
 
     ## [1] NA                            "df dft sdf"                 
-    ## [3] "sd <<<<hhhfd>>>> sd dfhhh d" "<<ddd>>"
+    ## [3] "sd <<gggdf>> sd <<hhhfd>> d" "<<ddd>>"
 
 In this example we extract numbers, strip out non-digits, coerce them to
 numeric, cut them in half, round up to the closest integer, add the
@@ -1486,21 +1488,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "scurvily arrowy Floyd steadiness dupable zorina potsies Carol vegetant Babette hobnob gravities."             
-    ## [2] "placate pileups Neville rating tweezed deathy descrier potpourris ordinals gingerbread Wm Caterina!"          
-    ## [3] "unitized acnes censurers wardrooms Ileana penmanships enya Beverlee drabbled strigils Cecilia irreconcilable?"
-    ## [4] "Myrtle bashaw rifenesses Beatriz talkings Felica stash scalars foaled preenacts dit panniers!"                
-    ## [5] "Mariann Elsa Juana buttoning kench Mitchell Thomasena weepiest Deidra consonance sanitate overselling."       
-    ## [6] "Vella grasps cockades luce executing jolty centennials pearmain batholomew waggly Michael coccoids?"
+    ## [1] "Rebecca greeting parabolas Tiffiny borders Joni Shanell knave abridgement nubblier Gwenda Meg?"                
+    ## [2] "plucks reptant unbosomed anthia tetchier portuguese Doyle luminaries overlax Jermaine diligence Wilbur."       
+    ## [3] "scalars exotoxin leariest bannerets dotier reedbird jouster Graig blondest Carmen lurleen hoggs."              
+    ## [4] "blackmailers buttoners afflictions stoma Cammy nameable debrief preserve Mariah lungis Arlinda glossing!"      
+    ## [5] "stenographic Peter moldboard Lanelle Franchesca sulphurs Blythe mimeograph positives nitrils Damon illiteracy!"
+    ## [6] "Paola splotch monazite defiers cherubic bacterins Bernardina Susana distich Cari hared Colleen."
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "scurvily arrowy NAME steadiness dupable zorina potsies NAME vegetant NAME hobnob gravities."         
-    ## [2] "placate pileups NAME rating tweezed deathy descrier potpourris ordinals gingerbread NAME NAME!"      
-    ## [3] "unitized acnes censurers wardrooms NAME penmanships enya NAME drabbled strigils NAME irreconcilable?"
-    ## [4] "NAME bashaw rifenesses NAME talkings NAME stash scalars foaled preenacts dit panniers!"              
-    ## [5] "NAME NAME NAME buttoning kench NAME NAME weepiest NAME consonance sanitate overselling."             
-    ## [6] "NAME grasps cockades luce executing jolty centennials pearmain batholomew waggly NAME coccoids?"
+    ## [1] "NAME greeting parabolas NAME borders NAME NAME knave abridgement nubblier NAME NAME?"              
+    ## [2] "plucks reptant unbosomed anthia tetchier portuguese NAME luminaries overlax NAME diligence NAME."  
+    ## [3] "scalars exotoxin leariest bannerets dotier reedbird jouster NAME blondest NAME lurleen hoggs."     
+    ## [4] "blackmailers buttoners afflictions stoma NAME nameable debrief preserve NAME lungis NAME glossing!"
+    ## [5] "stenographic NAME moldboard NAME NAME sulphurs NAME mimeograph positives nitrils NAME illiteracy!" 
+    ## [6] "NAME splotch monazite defiers cherubic bacterins NAME NAME distich NAME hared NAME."
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1509,40 +1511,40 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "scurvily arrowy NAME steadiness dupable zorina potsies NAME vegetant NAME hobnob gravities."         
-    ## [2] "placate pileups NAME rating tweezed deathy descrier potpourris ordinals gingerbread NAME NAME!"      
-    ## [3] "unitized acnes censurers wardrooms NAME penmanships enya NAME drabbled strigils NAME irreconcilable?"
-    ## [4] "NAME bashaw rifenesses NAME talkings NAME stash scalars foaled preenacts dit panniers!"              
-    ## [5] "NAME NAME NAME buttoning kench NAME NAME weepiest NAME consonance sanitate overselling."             
-    ## [6] "NAME grasps cockades luce executing jolty centennials pearmain batholomew waggly NAME coccoids?"
+    ## [1] "NAME greeting parabolas NAME borders NAME NAME knave abridgement nubblier NAME NAME?"              
+    ## [2] "plucks reptant unbosomed anthia tetchier portuguese NAME luminaries overlax NAME diligence NAME."  
+    ## [3] "scalars exotoxin leariest bannerets dotier reedbird jouster NAME blondest NAME lurleen hoggs."     
+    ## [4] "blackmailers buttoners afflictions stoma NAME nameable debrief preserve NAME lungis NAME glossing!"
+    ## [5] "stenographic NAME moldboard NAME NAME sulphurs NAME mimeograph positives nitrils NAME illiteracy!" 
+    ## [6] "NAME splotch monazite defiers cherubic bacterins NAME NAME distich NAME hared NAME."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 8.294704 secs
+    ## Time difference of 7.179598 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "scurvily arrowy NAME steadiness dupable zorina potsies NAME vegetant NAME hobnob gravities."         
-    ## [2] "placate pileups NAME rating tweezed deathy descrier potpourris ordinals gingerbread NAME NAME!"      
-    ## [3] "unitized acnes censurers wardrooms NAME penmanships enya NAME drabbled strigils NAME irreconcilable?"
-    ## [4] "NAME bashaw rifenesses NAME talkings NAME stash scalars foaled preenacts dit panniers!"              
-    ## [5] "NAME NAME NAME buttoning kench NAME NAME weepiest NAME consonance sanitate overselling."             
-    ## [6] "NAME grasps cockades luce executing jolty centennials pearmain batholomew waggly NAME coccoids?"
+    ## [1] "NAME greeting parabolas NAME borders NAME NAME knave abridgement nubblier NAME NAME?"              
+    ## [2] "plucks reptant unbosomed anthia tetchier portuguese NAME luminaries overlax NAME diligence NAME."  
+    ## [3] "scalars exotoxin leariest bannerets dotier reedbird jouster NAME blondest NAME lurleen hoggs."     
+    ## [4] "blackmailers buttoners afflictions stoma NAME nameable debrief preserve NAME lungis NAME glossing!"
+    ## [5] "stenographic NAME moldboard NAME NAME sulphurs NAME mimeograph positives nitrils NAME illiteracy!" 
+    ## [6] "NAME splotch monazite defiers cherubic bacterins NAME NAME distich NAME hared NAME."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.1055501 secs
+    ## Time difference of 0.07704091 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,100 words) and 5,493 replacement tokens in 1.7 seconds.
+(600,120 words) and 5,493 replacement tokens in 1.7 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.699047 secs
+    ## Time difference of 1.684206 secs
 
 ### White Space
 
