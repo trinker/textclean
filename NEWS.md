@@ -17,7 +17,8 @@ And constructed with the following guidelines:
 * Bug fixes and misc changes bumps the patch
 
 
-textclean 0.8.0 -
+
+textclean 0.8.0 - 0.9.2
 ----------------------------------------------------------------
 
 **BUG FIXES**
@@ -52,8 +53,6 @@ textclean 0.8.0 -
 * `replace_non_ascii` did not replace all non-ASCII characters.  This has been
   fixed by an explicit replacement of '[^ -~]+' which are all non-ASCII characters.
   See <a href="https://github.com/trinker/textclean/issues/34">issue #34</a> for details.
-
-**CHANGES**
 
 
 
@@ -94,7 +93,7 @@ textclean 0.7.0 - 0.7.2
     `c('An', 'To', 'Oh', 'So', 'Do', 'He', 'Ha', 'In', 'Pa', 'Un')` which are 
     likely words and not names.
     
-* `replace_html` picks ups some additional symbol replacments including:
+* `replace_html` picks ups some additional symbol replacements including:
   `c("&trade;", "&ldquo;", "&rdquo;", "&lsquo;", "&rsquo;", "&bull;", "&middot;", 
   "&sdot;", "&ndash;", "&mdash;", "&ne;", "&frac12;", "&frac14;", "&frac34;", 
   "&deg;", "&larr;", "&rarr;", "&hellip;")`.

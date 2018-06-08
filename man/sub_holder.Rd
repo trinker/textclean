@@ -4,7 +4,8 @@
 \alias{sub_holder}
 \title{Hold the Place of Characters Prior to Subbing}
 \usage{
-sub_holder(x, pattern, alpha.type = TRUE, ...)
+sub_holder(x, pattern, alpha.type = TRUE, holder.prefix = "zzzplaceholder",
+  holder.suffix = "zzz", ...)
 }
 \arguments{
 \item{x}{A character vector.}
@@ -13,6 +14,12 @@ sub_holder(x, pattern, alpha.type = TRUE, ...)
 
 \item{alpha.type}{logical.  If \code{TRUE} alpha (lower case letters) are 
 used for the key.  If \code{FALSE} numbers are used as the key.}
+
+\item{holder.prefix}{The prefix to use before the alpha key in the palce 
+holder when \code{alpha.type = TRUE}; this ensures uniqueness.}
+
+\item{holder.suffix}{The suffix to use after the alpha key in the palce 
+holder when \code{alpha.type = TRUE}; this ensures uniqueness.}
 
 \item{\dots}{Additional arguments passed to \code{\link[base]{gsub}}.}
 }
@@ -29,8 +36,9 @@ original values.
 \note{
 The \code{unhold} function for \code{sub_holder} will only work on keys
 that have not been disturbed by subsequent alterations.  The key follows the 
-pattern of `zzzplaceholder` followed by lower case letter keys followed by
-`zzz`.
+pattern of holder.prefix (`zzzplaceholder`) followed by lower case letter 
+keys followed by holder.suffix (`zzz`) when \code{alpha.type = TRUE}, 
+otherwise the holder is numeric.
 }
 \examples{
 ## `alpha.type` as TRUE

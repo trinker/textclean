@@ -8,14 +8,19 @@
 #' @param pattern Character string to be matched in the given character vector.
 #' @param alpha.type logical.  If \code{TRUE} alpha (lower case letters) are 
 #' used for the key.  If \code{FALSE} numbers are used as the key.
+#' @param holder.prefix The prefix to use before the alpha key in the palce 
+#' holder when \code{alpha.type = TRUE}; this ensures uniqueness.
+#' @param holder.suffix The suffix to use after the alpha key in the palce 
+#' holder when \code{alpha.type = TRUE}; this ensures uniqueness.
 #' @param \dots Additional arguments passed to \code{\link[base]{gsub}}.
 #' @return Returns a list with the following:
 #' \item{output}{keyed place holder character vector} 
 #' \item{unhold}{A function used to revert back to the original values}
 #' @note The \code{unhold} function for \code{sub_holder} will only work on keys
 #' that have not been disturbed by subsequent alterations.  The key follows the 
-#' pattern of `zzzplaceholder` followed by lower case letter keys followed by
-#' `zzz`.
+#' pattern of holder.prefix (`zzzplaceholder`) followed by lower case letter 
+#' keys followed by holder.suffix (`zzz`) when \code{alpha.type = TRUE}, 
+#' otherwise the holder is numeric.
 #' @export
 #' @examples
 #' ## `alpha.type` as TRUE
@@ -29,12 +34,14 @@
 #' (m2 <- sub_holder(toupper(DATA$state), vowels, alpha.type = FALSE))
 #' m2$unhold(gsub("[^0-9]", "", m2$output))
 #' mtabulate(strsplit(m2$unhold(gsub("[^0-9]", "", m2$output)), ""))
-sub_holder <- function(x, pattern, alpha.type = TRUE, ...) {
+sub_holder <- function(x, pattern, alpha.type = TRUE, 
+    holder.prefix = 'zzzplaceholder', holder.suffix = 'zzz', ...) {
 
     if (!is.character(pattern)) pattern <- as.character(pattern)
     y <- length(pattern)
 
     if (alpha.type) {
+  
         # counter <- 0
         # while(y > 26) {
         #     y <- y/26
@@ -43,7 +50,7 @@ sub_holder <- function(x, pattern, alpha.type = TRUE, ...) {
         # if (y > 0) counter <- counter + 1
  
         ## replaced the above:https://www.youtube.com/watch?v=zJmTJR6s4QU
-        counter <- ceiling(log(y, 26))
+        counter <- max(ceiling(log(y, 26)), 0L)
     
         keys <- apply(
             expand.grid(lapply(seq_len(counter), function(i) letters)), 
@@ -51,12 +58,17 @@ sub_holder <- function(x, pattern, alpha.type = TRUE, ...) {
             paste, 
             collapse=""
         )[seq_len(y)]
-        reps <- paste0("zzzplaceholder", keys, "zzz")
+        reps <- paste0(holder.prefix, keys, holder.suffix)
     } else {
+        counter <- NULL
         keys <- reps <- seq_len(y)
     }
 
-    output <- mgsub(x, pattern, reps, ...)
+    if (!is.null(counter) && counter == 0) {
+        output <- x
+    } else {
+        output <- mgsub(x, pattern, reps, ...)
+    }
 
 
     FUN <- function(x, ...) {

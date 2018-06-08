@@ -17,7 +17,8 @@ And constructed with the following guidelines:
 * Bug fixes and misc changes bumps the patch
 
 
-textclean 0.9.1 -
+
+textclean 0.9.3 -
 ----------------------------------------------------------------
 
 BUG FIXES
@@ -31,7 +32,8 @@ IMPROVEMENTS
 CHANGES
 
 
-textclean 0.8.0 - 0.9.0
+
+textclean 0.8.0 - 0.9.2
 ----------------------------------------------------------------
 
 BUG FIXES
