@@ -65,6 +65,7 @@ fgsub <- function(x, pattern, fun, ...){
     ## Make unique replacement substrings
     h <- lengths(hits)
     y <- sum(h)
+    if (y == 0) return(x)
     counter <- ceiling(y/26)
 
     ## Make a replacement key
