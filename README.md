@@ -624,7 +624,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------------- 
     ## No problems found!
-    ## This text is remarkable! 
+    ## This text is outstanding! 
     ##  ---------------- 
     ##   \   ^__^ 
     ##    \  (oo)\ ________ 
@@ -1478,7 +1478,7 @@ extracted pattern.
             z[1] <- 'hh'
             z[2] <- 'mm'
             if(!is.na(z[3])) z[3] <- 'ss'
-            textclean::collapse(z, ':')
+            textclean::glue_collapse(z, ':')
         }
     )
 
@@ -1524,21 +1524,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "oothecae clotty Towanda newsier maestros Richie prophetesses savvying bulldozed boccies lordings invigorates!"
-    ## [2] "moating gourde exacta echinoids polynyas rottennesses Jolene Sylvia trish polluting Carolyn suaver?"          
-    ## [3] "Vince superimposed halakah cabochon wencher Dortha Natalya Francisca India Milagro metalworks Krissy."        
-    ## [4] "Phylis unscrupulously capstones Marcellus Neville snottier haling rejectees mome cottony lonelinesses sneaky!"
-    ## [5] "accouter contemplated presentable interest Rivka Ozell scows eyeletting mote apodal ac depurated!"            
-    ## [6] "Jani vicugnas fodders galoshes clown biggies arlinda bescorches geothermal inducement selflessnesses spriggy!"
+    ## [1] "Bronwyn cannikins moralists cadaver kithes suboxide monuron emaciating penal imbrowned Emerald lunate!"         
+    ## [2] "aswoon laps Rochelle dutch Ina Tressa baudekin soluble Roma bubalis Shaunta lelah."                             
+    ## [3] "putons Connie bouncy hoactzines Mohammed Arthur Lien baneful Trinidad France soupy Gina!"                       
+    ## [4] "marrams Angeline dub Georgie riviera Neva quaere overdyed Jackson Ivory alcohol surfeits!"                      
+    ## [5] "Randee Mose prebills tressed Mahalia modernize howfs monosyllable autonomy rakee syncopal steeked!"             
+    ## [6] "knuckles esparto spender forethoughts kyphoses aurelie carboxyls reapportions fayth consolatory Roxane Donette."
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "oothecae clotty NAME newsier maestros NAME prophetesses savvying bulldozed boccies lordings invigorates!"     
-    ## [2] "moating gourde exacta echinoids polynyas rottennesses NAME NAME trish polluting NAME suaver?"                 
-    ## [3] "NAME superimposed halakah cabochon wencher NAME NAME NAME NAME NAME metalworks NAME."                         
-    ## [4] "NAME unscrupulously capstones NAME NAME snottier haling rejectees mome cottony lonelinesses sneaky!"          
-    ## [5] "accouter contemplated presentable interest NAME NAME scows eyeletting mote apodal ac depurated!"              
-    ## [6] "NAME vicugnas fodders galoshes clown biggies arlinda bescorches geothermal inducement selflessnesses spriggy!"
+    ## [1] "NAME cannikins moralists cadaver kithes suboxide monuron emaciating penal imbrowned NAME lunate!"          
+    ## [2] "aswoon laps NAME dutch NAME NAME baudekin soluble NAME bubalis NAME lelah."                                
+    ## [3] "putons NAME bouncy hoactzines NAME NAME NAME baneful NAME NAME soupy NAME!"                                
+    ## [4] "marrams NAME dub NAME riviera NAME quaere overdyed NAME NAME alcohol surfeits!"                            
+    ## [5] "NAME NAME prebills tressed NAME modernize howfs monosyllable autonomy rakee syncopal steeked!"             
+    ## [6] "knuckles esparto spender forethoughts kyphoses aurelie carboxyls reapportions fayth consolatory NAME NAME."
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1547,40 +1547,40 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "oothecae clotty NAME newsier maestros NAME prophetesses savvying bulldozed boccies lordings invigorates!"     
-    ## [2] "moating gourde exacta echinoids polynyas rottennesses NAME NAME trish polluting NAME suaver?"                 
-    ## [3] "NAME superimposed halakah cabochon wencher NAME NAME NAME NAME NAME metalworks NAME."                         
-    ## [4] "NAME unscrupulously capstones NAME NAME snottier haling rejectees mome cottony lonelinesses sneaky!"          
-    ## [5] "accouter contemplated presentable interest NAME NAME scows eyeletting mote apodal ac depurated!"              
-    ## [6] "NAME vicugnas fodders galoshes clown biggies arlinda bescorches geothermal inducement selflessnesses spriggy!"
+    ## [1] "NAME cannikins moralists cadaver kithes suboxide monuron emaciating penal imbrowned NAME lunate!"          
+    ## [2] "aswoon laps NAME dutch NAME NAME baudekin soluble NAME bubalis NAME lelah."                                
+    ## [3] "putons NAME bouncy hoactzines NAME NAME NAME baneful NAME NAME soupy NAME!"                                
+    ## [4] "marrams NAME dub NAME riviera NAME quaere overdyed NAME NAME alcohol surfeits!"                            
+    ## [5] "NAME NAME prebills tressed NAME modernize howfs monosyllable autonomy rakee syncopal steeked!"             
+    ## [6] "knuckles esparto spender forethoughts kyphoses aurelie carboxyls reapportions fayth consolatory NAME NAME."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 8.119677 secs
+    ## Time difference of 7.892227 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "oothecae clotty NAME newsier maestros NAME prophetesses savvying bulldozed boccies lordings invigorates!"     
-    ## [2] "moating gourde exacta echinoids polynyas rottennesses NAME NAME trish polluting NAME suaver?"                 
-    ## [3] "NAME superimposed halakah cabochon wencher NAME NAME NAME NAME NAME metalworks NAME."                         
-    ## [4] "NAME unscrupulously capstones NAME NAME snottier haling rejectees mome cottony lonelinesses sneaky!"          
-    ## [5] "accouter contemplated presentable interest NAME NAME scows eyeletting mote apodal ac depurated!"              
-    ## [6] "NAME vicugnas fodders galoshes clown biggies arlinda bescorches geothermal inducement selflessnesses spriggy!"
+    ## [1] "NAME cannikins moralists cadaver kithes suboxide monuron emaciating penal imbrowned NAME lunate!"          
+    ## [2] "aswoon laps NAME dutch NAME NAME baudekin soluble NAME bubalis NAME lelah."                                
+    ## [3] "putons NAME bouncy hoactzines NAME NAME NAME baneful NAME NAME soupy NAME!"                                
+    ## [4] "marrams NAME dub NAME riviera NAME quaere overdyed NAME NAME alcohol surfeits!"                            
+    ## [5] "NAME NAME prebills tressed NAME modernize howfs monosyllable autonomy rakee syncopal steeked!"             
+    ## [6] "knuckles esparto spender forethoughts kyphoses aurelie carboxyls reapportions fayth consolatory NAME NAME."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.06850314 secs
+    ## Time difference of 0.06750083 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,080 words) and 5,493 replacement tokens in 1.5 seconds.
+(600,180 words) and 5,493 replacement tokens in 1.6 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.512028 secs
+    ## Time difference of 1.642667 secs
 
 ### White Space
 

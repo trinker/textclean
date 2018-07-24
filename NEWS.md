@@ -18,6 +18,27 @@ And constructed with the following guidelines:
 
 
 
+textclean 0.9.4 -  
+----------------------------------------------------------------
+
+**BUG FIXES**
+
+**NEW FEATURES**
+
+**MINOR FEATURES**
+
+**IMPROVEMENTS**
+
+**CHANGES**
+
+
+textclean 0.9.3 
+----------------------------------------------------------------
+
+Version update to comply with changes in the **glue** package's API.
+
+
+
 textclean 0.8.0 - 0.9.2
 ----------------------------------------------------------------
 

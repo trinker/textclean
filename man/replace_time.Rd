@@ -43,7 +43,7 @@ replace_time(x, replacement = function(y){
         z[1] <- 'hh'
         z[2] <- 'mm'
         if(!is.na(z[3])) z[3] <- 'ss'
-        collapse(z, ':')
+        glue_collapse(z, ':')
     }
 )
 
@@ -61,7 +61,7 @@ replace_time(x, replacement = function(y){
         z[1] <- 'hh'
         z[2] <- 'mm'
         z[3] <- 'ss'
-        collapse(z, ':')
+        glue_collapse(z, ':')
     }
 )
 }

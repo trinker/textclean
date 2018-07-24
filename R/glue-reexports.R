@@ -2,6 +2,6 @@
 #' @export
 glue::glue
 
-#' @importFrom glue collapse
+#' @importFrom glue glue_collapse
 #' @export
-glue::collapse
+glue::glue_collapse
