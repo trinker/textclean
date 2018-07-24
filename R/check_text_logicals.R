@@ -212,7 +212,8 @@ truncated <- function(x, n = 100, ...){
         fun = "kern", 
         is_meta = FALSE, 
         problem = "contain kerning (e.g., 'The B O M B!')", 
-        fix = "using `replace_kern`"),
+        fix = "using `replace_kern`"
+    ),
     list_column = list(
         fun = "list_column", 
         is_meta = TRUE, 
@@ -226,7 +227,8 @@ truncated <- function(x, n = 100, ...){
         fun = "missing_value", 
         is_meta = FALSE, 
         problem = "contain missing values", 
-        fix = "running `drop_NA`"),    
+        fix = "running `drop_NA`"
+    ),    
     misspelled = list(
         fun = "misspelled", 
         is_meta = FALSE, 
