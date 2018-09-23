@@ -227,4 +227,4 @@ sapply2 <- function (X, FUN, ...) {
 }
 
 
-
+avail <- lexicon::available_data
