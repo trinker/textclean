@@ -51,6 +51,20 @@ replace_non_ascii <- function (x, replacement = '',
 }
 
 
+#' Replace Common Non-ASCII Characters
+#' 
+#' \code{place_non_ascii2} - Replaces all non-ASCII (defined as \code{'[^ -~]+'}).  
+#' This provides a subset of functionality found in \code{replace_non_ascii} that
+#' is faster and likely less accurate.
+#' 
+#' @rdname replace_non_ascii
+#' @export
+replace_non_ascii2 <- function (x, replacement = '',  ...) {
+    
+    stringi::stri_replace_all_regex(x, '[^ -~]+', replacement = replacement)
+    
+}
+
 # replace_non_ascii <- function(x, remove.nonconverted = TRUE, ...) {
 #     x <- replace_curly_quote(x)
 #     x <- stringi::stri_trans_general(x, "latin-ascii")

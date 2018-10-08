@@ -2,10 +2,13 @@
 % Please edit documentation in R/replace_non_ascii.R
 \name{replace_non_ascii}
 \alias{replace_non_ascii}
+\alias{replace_non_ascii2}
 \alias{replace_curly_quote}
 \title{Replace Common Non-ASCII Characters}
 \usage{
 replace_non_ascii(x, replacement = "", remove.nonconverted = TRUE, ...)
+
+replace_non_ascii2(x, replacement = "", ...)
 
 replace_curly_quote(x, ...)
 }
@@ -26,6 +29,10 @@ replaced.
 }
 \description{
 \code{replace_non_ascii} - Replaces common non-ASCII characters.
+
+\code{place_non_ascii2} - Replaces all non-ASCII (defined as \code{'[^ -~]+'}).  
+This provides a subset of functionality found in \code{replace_non_ascii} that
+is faster and likely less accurate.
 
 \code{replace_curly_quote} - Replaces curly single and double quotes.  This 
 provides a subset of functionality found in \code{replace_non_ascii} specific 
