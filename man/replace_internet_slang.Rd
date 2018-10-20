@@ -6,7 +6,8 @@
 \usage{
 replace_internet_slang(x, slang = paste0("\\\\b",
   lexicon::hash_internet_slang[[1]], "\\\\b"),
-  replacement = lexicon::hash_internet_slang[[2]], ignore.case = TRUE, ...)
+  replacement = lexicon::hash_internet_slang[[2]], ignore.case = TRUE,
+  ...)
 }
 \arguments{
 \item{x}{The text variable.}

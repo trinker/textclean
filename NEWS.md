@@ -25,6 +25,10 @@ textclean 0.9.4 -
 
 **NEW FEATURES**
 
+* `replace_misspelling` added as a way to replace misspelled words with their 
+  most likely replacement using **hunspell** in the backend.  Suggested by Surin
+  Space; see <a href="https://github.com/trinker/textclean/issues/39">issue #39</a>.
+
 **MINOR FEATURES**
 
 **IMPROVEMENTS**

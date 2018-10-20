@@ -4,7 +4,8 @@
 \alias{replace_tag}
 \title{Replace Handle Tags}
 \usage{
-replace_tag(x, pattern = qdapRegex::grab("rm_tag"), replacement = "", ...)
+replace_tag(x, pattern = qdapRegex::grab("rm_tag"), replacement = "",
+  ...)
 }
 \arguments{
 \item{x}{The text variable.}

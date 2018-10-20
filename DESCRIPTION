@@ -20,7 +20,7 @@ Suggests: testthat
 License: GPL-2
 LazyData: TRUE
 Roxygen: list(wrap = FALSE)
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.0.9000
 URL: https://github.com/trinker/textclean
 BugReports: https://github.com/trinker/textclean/issues
 Collate: 
@@ -50,6 +50,7 @@ Collate:
     'replace_incomplete.R'
     'replace_internet_slang.R'
     'replace_kerning.R'
+    'replace_misspelling.R'
     'replace_money.R'
     'replace_names.R'
     'replace_non_ascii.R'

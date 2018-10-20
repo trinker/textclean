@@ -4,8 +4,8 @@
 \alias{sub_holder}
 \title{Hold the Place of Characters Prior to Subbing}
 \usage{
-sub_holder(x, pattern, alpha.type = TRUE, holder.prefix = "zzzplaceholder",
-  holder.suffix = "zzz", ...)
+sub_holder(x, pattern, alpha.type = TRUE,
+  holder.prefix = "zzzplaceholder", holder.suffix = "zzz", ...)
 }
 \arguments{
 \item{x}{A character vector.}

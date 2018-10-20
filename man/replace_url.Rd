@@ -4,7 +4,8 @@
 \alias{replace_url}
 \title{Replace URLs}
 \usage{
-replace_url(x, pattern = qdapRegex::grab("rm_url"), replacement = "", ...)
+replace_url(x, pattern = qdapRegex::grab("rm_url"), replacement = "",
+  ...)
 }
 \arguments{
 \item{x}{The text variable.}

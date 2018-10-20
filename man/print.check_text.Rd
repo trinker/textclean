@@ -4,8 +4,8 @@
 \alias{print.check_text}
 \title{Prints a check_text Object}
 \usage{
-\method{print}{check_text}(x, include.text = TRUE, file = NULL, n = NULL,
-  ...)
+\method{print}{check_text}(x, include.text = TRUE, file = NULL,
+  n = NULL, ...)
 }
 \arguments{
 \item{x}{The check_text object.}

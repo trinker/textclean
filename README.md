@@ -209,96 +209,101 @@ table below:
 <td>Replace spaces for &gt;2 letter, all cap, words containing spaces in between letters</td>
 </tr>
 <tr class="even">
+<td><code>replace_misspelling</code></td>
+<td>replacement</td>
+<td>Replace misspelled words with their most likely replacement</td>
+</tr>
+<tr class="odd">
 <td><code>replace_money</code></td>
 <td>replacement</td>
 <td>Replace money in the form of $\d+.?\d{0,2}</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_names</code></td>
 <td>replacement</td>
 <td>Replace common first/last names</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_non_ascii</code></td>
 <td>replacement</td>
 <td>Replace non-ASCII with equivalent or remove</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_number</code></td>
 <td>replacement</td>
 <td>Replace common numbers</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_ordinal</code></td>
 <td>replacement</td>
 <td>Replace common ordinal number form</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_rating</code></td>
 <td>replacement</td>
 <td>Replace ratings (e.g., &quot;10 out of 10&quot;, &quot;3 stars&quot;) with word equivalent</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_symbol</code></td>
 <td>replacement</td>
 <td>Replace common symbols</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_tag</code></td>
 <td>replacement</td>
 <td>Replace Twitter style handle tag (e.g., <span class="citation">@trinker</span>)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_time</code></td>
 <td>replacement</td>
 <td>Replace time stamps</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_to</code>/<code>replace_from</code></td>
 <td>replacement</td>
 <td>Remove from/to begin/end of string to/from a character(s)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_token</code></td>
 <td>replacement</td>
 <td>Remove or replace a vector of tokens with a single value</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_url</code></td>
 <td>replacement</td>
 <td>Replace URLs</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>replace_white</code></td>
 <td>replacement</td>
 <td>Replace regex white space characters</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>replace_word_elongation</code></td>
 <td>replacement</td>
 <td>Replace word elongations with shortened form</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>add_comma_space</code></td>
 <td>replacement</td>
 <td>Replace non-space after comma</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>add_missing_endmark</code></td>
 <td>replacement</td>
 <td>Replace missing endmarks with desired symbol</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>make_plural</code></td>
 <td>replacement</td>
 <td>Add plural endings to singular noun forms</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>check_text</code></td>
 <td>check</td>
 <td>Text report of potential issues</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>has_endmark</code></td>
 <td>check</td>
 <td>Check if an element has an end-mark</td>
@@ -624,7 +629,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------------- 
     ## No problems found!
-    ## This text is outstanding! 
+    ## This text is sublime! 
     ##  ---------------- 
     ##   \   ^__^ 
     ##    \  (oo)\ ________ 
@@ -1524,21 +1529,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "Bronwyn cannikins moralists cadaver kithes suboxide monuron emaciating penal imbrowned Emerald lunate!"         
-    ## [2] "aswoon laps Rochelle dutch Ina Tressa baudekin soluble Roma bubalis Shaunta lelah."                             
-    ## [3] "putons Connie bouncy hoactzines Mohammed Arthur Lien baneful Trinidad France soupy Gina!"                       
-    ## [4] "marrams Angeline dub Georgie riviera Neva quaere overdyed Jackson Ivory alcohol surfeits!"                      
-    ## [5] "Randee Mose prebills tressed Mahalia modernize howfs monosyllable autonomy rakee syncopal steeked!"             
-    ## [6] "knuckles esparto spender forethoughts kyphoses aurelie carboxyls reapportions fayth consolatory Roxane Donette."
+    ## [1] "globes firetraps jeroboam abbeys Natacha Cary Ronni deferring Kit Justa Polly statistics?"              
+    ## [2] "attaint Socorro spendthrift noising breaming Connie maltier paisano rabbit marrer triplex Shela."       
+    ## [3] "crimple curraghs pedometer returner Lawanna fiddlers Erasmo affixer hootier Lynnette Oliva cunts."      
+    ## [4] "Hung Jeanett depreciate jams rollings Noella mica unnavigable Gwendolyn Lindsey Rosanne obsequiousness!"
+    ## [5] "natantly gluers Marina hibernations steelies Julia somewhat Lorilee refers acoustic ardeen Marinda!"    
+    ## [6] "Willa rebid Mardell savor dipole debor swards spores yashmacs blurb simoleon Penney!"
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "NAME cannikins moralists cadaver kithes suboxide monuron emaciating penal imbrowned NAME lunate!"          
-    ## [2] "aswoon laps NAME dutch NAME NAME baudekin soluble NAME bubalis NAME lelah."                                
-    ## [3] "putons NAME bouncy hoactzines NAME NAME NAME baneful NAME NAME soupy NAME!"                                
-    ## [4] "marrams NAME dub NAME riviera NAME quaere overdyed NAME NAME alcohol surfeits!"                            
-    ## [5] "NAME NAME prebills tressed NAME modernize howfs monosyllable autonomy rakee syncopal steeked!"             
-    ## [6] "knuckles esparto spender forethoughts kyphoses aurelie carboxyls reapportions fayth consolatory NAME NAME."
+    ## [1] "globes firetraps jeroboam abbeys NAME NAME NAME deferring NAME NAME NAME statistics?"      
+    ## [2] "attaint NAME spendthrift noising breaming NAME maltier paisano rabbit marrer triplex NAME."
+    ## [3] "crimple curraghs pedometer returner NAME fiddlers NAME affixer hootier NAME NAME cunts."   
+    ## [4] "NAME NAME depreciate jams rollings NAME mica unnavigable NAME NAME NAME obsequiousness!"   
+    ## [5] "natantly gluers NAME hibernations steelies NAME somewhat NAME refers acoustic ardeen NAME!"
+    ## [6] "NAME rebid NAME savor dipole debor swards spores yashmacs blurb simoleon NAME!"
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1547,40 +1552,40 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "NAME cannikins moralists cadaver kithes suboxide monuron emaciating penal imbrowned NAME lunate!"          
-    ## [2] "aswoon laps NAME dutch NAME NAME baudekin soluble NAME bubalis NAME lelah."                                
-    ## [3] "putons NAME bouncy hoactzines NAME NAME NAME baneful NAME NAME soupy NAME!"                                
-    ## [4] "marrams NAME dub NAME riviera NAME quaere overdyed NAME NAME alcohol surfeits!"                            
-    ## [5] "NAME NAME prebills tressed NAME modernize howfs monosyllable autonomy rakee syncopal steeked!"             
-    ## [6] "knuckles esparto spender forethoughts kyphoses aurelie carboxyls reapportions fayth consolatory NAME NAME."
+    ## [1] "globes firetraps jeroboam abbeys NAME NAME NAME deferring NAME NAME NAME statistics?"      
+    ## [2] "attaint NAME spendthrift noising breaming NAME maltier paisano rabbit marrer triplex NAME."
+    ## [3] "crimple curraghs pedometer returner NAME fiddlers NAME affixer hootier NAME NAME cunts."   
+    ## [4] "NAME NAME depreciate jams rollings NAME mica unnavigable NAME NAME NAME obsequiousness!"   
+    ## [5] "natantly gluers NAME hibernations steelies NAME somewhat NAME refers acoustic ardeen NAME!"
+    ## [6] "NAME rebid NAME savor dipole debor swards spores yashmacs blurb simoleon NAME!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 7.892227 secs
+    ## Time difference of 7.837029 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "NAME cannikins moralists cadaver kithes suboxide monuron emaciating penal imbrowned NAME lunate!"          
-    ## [2] "aswoon laps NAME dutch NAME NAME baudekin soluble NAME bubalis NAME lelah."                                
-    ## [3] "putons NAME bouncy hoactzines NAME NAME NAME baneful NAME NAME soupy NAME!"                                
-    ## [4] "marrams NAME dub NAME riviera NAME quaere overdyed NAME NAME alcohol surfeits!"                            
-    ## [5] "NAME NAME prebills tressed NAME modernize howfs monosyllable autonomy rakee syncopal steeked!"             
-    ## [6] "knuckles esparto spender forethoughts kyphoses aurelie carboxyls reapportions fayth consolatory NAME NAME."
+    ## [1] "globes firetraps jeroboam abbeys NAME NAME NAME deferring NAME NAME NAME statistics?"      
+    ## [2] "attaint NAME spendthrift noising breaming NAME maltier paisano rabbit marrer triplex NAME."
+    ## [3] "crimple curraghs pedometer returner NAME fiddlers NAME affixer hootier NAME NAME cunts."   
+    ## [4] "NAME NAME depreciate jams rollings NAME mica unnavigable NAME NAME NAME obsequiousness!"   
+    ## [5] "natantly gluers NAME hibernations steelies NAME somewhat NAME refers acoustic ardeen NAME!"
+    ## [6] "NAME rebid NAME savor dipole debor swards spores yashmacs blurb simoleon NAME!"
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.06750083 secs
+    ## Time difference of 0.08349895 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,180 words) and 5,493 replacement tokens in 1.6 seconds.
+(600,120 words) and 5,493 replacement tokens in 1.4 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.642667 secs
+    ## Time difference of 1.449124 secs
 
 ### White Space
 

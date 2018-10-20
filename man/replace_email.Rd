@@ -4,8 +4,8 @@
 \alias{replace_email}
 \title{Replace Email Addresses}
 \usage{
-replace_email(x, pattern = qdapRegex::grab("rm_email"), replacement = "",
-  ...)
+replace_email(x, pattern = qdapRegex::grab("rm_email"),
+  replacement = "", ...)
 }
 \arguments{
 \item{x}{The text variable.}

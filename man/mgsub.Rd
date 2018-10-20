@@ -8,13 +8,16 @@
 \title{Multiple \code{\link[base]{gsub}}}
 \usage{
 mgsub(x, pattern, replacement, leadspace = FALSE, trailspace = FALSE,
-  fixed = TRUE, trim = FALSE, order.pattern = fixed, safe = FALSE, ...)
+  fixed = TRUE, trim = FALSE, order.pattern = fixed, safe = FALSE,
+  ...)
 
-mgsub_fixed(x, pattern, replacement, leadspace = FALSE, trailspace = FALSE,
-  fixed = TRUE, trim = FALSE, order.pattern = fixed, safe = FALSE, ...)
+mgsub_fixed(x, pattern, replacement, leadspace = FALSE,
+  trailspace = FALSE, fixed = TRUE, trim = FALSE,
+  order.pattern = fixed, safe = FALSE, ...)
 
-mgsub_regex(x, pattern, replacement, leadspace = FALSE, trailspace = FALSE,
-  fixed = FALSE, trim = FALSE, order.pattern = fixed, ...)
+mgsub_regex(x, pattern, replacement, leadspace = FALSE,
+  trailspace = FALSE, fixed = FALSE, trim = FALSE,
+  order.pattern = fixed, ...)
 
 mgsub_regex_safe(x, pattern, replacement, ...)
 }

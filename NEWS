@@ -25,6 +25,10 @@ BUG FIXES
 
 NEW FEATURES
 
+* `replace_misspelling` added as a way to replace misspelled words with their 
+  most likely replacement using **hunspell** in the backend.  Suggested by Surin
+  Space; see issue #39.
+
 MINOR FEATURES
 
 IMPROVEMENTS

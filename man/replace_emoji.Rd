@@ -7,7 +7,8 @@
 \usage{
 replace_emoji(x, emoji_dt = lexicon::hash_emojis, ...)
 
-replace_emoji_identifier(x, emoji_dt = lexicon::hash_emojis_identifier, ...)
+replace_emoji_identifier(x, emoji_dt = lexicon::hash_emojis_identifier,
+  ...)
 }
 \arguments{
 \item{x}{The text variable.}
