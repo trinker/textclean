@@ -3,7 +3,8 @@ Title: Text Cleaning Tools
 Version: 0.9.4
 Authors@R: c( 
         person("Tyler", "Rinker", email = "tyler.rinker@gmail.com", role = c("aut", "cre")), 
-        person("ctwheels", "StackOverflow", role = "ctb") 
+        person("ctwheels", "StackOverflow", role = "ctb"), 
+        person("Surin", "Space", role = "ctb")  
     )
 Maintainer: Tyler Rinker <tyler.rinker@gmail.com>
 Description: Tools to clean and process text.  Tools are geared at checking for substrings that
