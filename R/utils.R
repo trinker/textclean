@@ -228,3 +228,14 @@ sapply2 <- function (X, FUN, ...) {
 
 
 avail <- lexicon::available_data
+
+drop_sci_note <- function(x, ...){
+
+    x <- as.character(as.numeric(x))
+    locs <- grepl('e\\+', x)
+    x[locs] <- paste0(
+        gsub('e\\+.+', '', x[locs]), 
+        unlist(lapply(gsub('^.+?e\\+', '', x[locs]), function(x){paste(rep('0', x), collapse = '')}))
+    )
+    x
+}

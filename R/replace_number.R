@@ -57,8 +57,12 @@
 #' }
 replace_number  <- function(x, num.paste = FALSE, remove = FALSE, ...) {
 
-    x <- as.character(x)
-    
+    if (is.numeric(x)){    
+        x <- drop_sci_note(x) ## ensures scientific notation is not used
+    } else {
+        x <- as.character(x)    
+    }
+
     if (remove) return(stringi::stri_replace_all_regex(x, num_regex, ""))
 
     ## extract the numbers
