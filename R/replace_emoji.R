@@ -31,6 +31,7 @@ replace_emoji <- function(x, emoji_dt = lexicon::hash_emojis, ...){
     
 }
 
+lexicon_available_data <- lexicon::available_data
 
 #' @export
 #' @rdname replace_emoji
