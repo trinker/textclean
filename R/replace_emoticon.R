@@ -38,10 +38,10 @@
 #' replace_emoticon(x)
 replace_emoticon <- function(x, emoticon_dt = lexicon::hash_emoticons, ...){
 
-    gsub(
+    trimws(gsub(
         "\\s+", 
         " ", 
         mgsub_regex(x, paste0('\\b\\Q', emoticon_dt[['x']], '\\E\\b'), paste0(" ", emoticon_dt[['y']], " "))
-    )
+    ))
     
 }
