@@ -23,6 +23,9 @@ textclean 0.9.4 -
 
 BUG FIXES
 
+* `replace_emoticon` replaced emoticon-like substrings within actual words.  
+  Spotted thanks to Carolyn Challoner; ee issue #46.
+
 NEW FEATURES
 
 * `replace_misspelling` added as a way to replace misspelled words with their 

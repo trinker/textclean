@@ -42,7 +42,8 @@ x <- c(
         "smiling angel 0;) with a nose 0;-)"
     ),
     "Use the letter 8 in place of the colon for sunglasses 8-)",
-    "Use the open bracket ( to turn the smile into a frown  :-("
+    "Use the open bracket ( to turn the smile into a frown  :-(",
+    "I have experience with using the xp emoticon"
 )
 
 replace_emoticon(x)
