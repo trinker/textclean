@@ -69,7 +69,7 @@ The main functions, task category, & descriptions are summarized in the table be
 | `replace_tag`             | replacement | Replace Twitter style handle tag (e.g., @trinker) |
 | `replace_time`            | replacement | Replace time stamps                   |
 | `replace_to`/`replace_from` | replacement | Remove from/to begin/end of string to/from a character(s) |
-| `replace_token`           | replacement | Remove or replace a vector of tokens with a single value |
+| `replace_tokens`          | replacement | Remove or replace a vector of tokens with a single value |
 | `replace_url`             | replacement | Replace URLs                          |
 | `replace_white`           | replacement | Replace regex white space characters  |
 | `replace_word_elongation` | replacement | Replace word elongations with shortened form  |

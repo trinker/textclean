@@ -2,6 +2,39 @@ textclean
 ============
 
 
+    ## 
+    ##   
+      
+      
+       checking for file 'C:\Users\trinker\AppData\Local\Temp\RtmpaiZs6r\remotes162c486510ac\trinker-numform-be93697/DESCRIPTION' ...
+      
+       checking for file 'C:\Users\trinker\AppData\Local\Temp\RtmpaiZs6r\remotes162c486510ac\trinker-numform-be93697/DESCRIPTION' ... 
+      
+    v  checking for file 'C:\Users\trinker\AppData\Local\Temp\RtmpaiZs6r\remotes162c486510ac\trinker-numform-be93697/DESCRIPTION' (363ms)
+    ## 
+      
+      
+      
+    -  preparing 'numform': (407ms)
+    ## 
+      
+       checking DESCRIPTION meta-information ...
+      
+       checking DESCRIPTION meta-information ... 
+      
+    v  checking DESCRIPTION meta-information
+    ## 
+      
+      
+      
+    -  checking for LF line-endings in source and make files and shell scripts (662ms)
+    ## -  checking for empty or unneeded directories
+    ## -  building 'numform_0.5.1.tar.gz'
+    ## 
+      
+       
+    ## 
+
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active)
@@ -264,7 +297,7 @@ table below:
 <td>Remove from/to begin/end of string to/from a character(s)</td>
 </tr>
 <tr class="odd">
-<td><code>replace_token</code></td>
+<td><code>replace_tokens</code></td>
 <td>replacement</td>
 <td>Remove or replace a vector of tokens with a single value</td>
 </tr>
@@ -1529,21 +1562,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "globes firetraps jeroboam abbeys Natacha Cary Ronni deferring Kit Justa Polly statistics?"              
-    ## [2] "attaint Socorro spendthrift noising breaming Connie maltier paisano rabbit marrer triplex Shela."       
-    ## [3] "crimple curraghs pedometer returner Lawanna fiddlers Erasmo affixer hootier Lynnette Oliva cunts."      
-    ## [4] "Hung Jeanett depreciate jams rollings Noella mica unnavigable Gwendolyn Lindsey Rosanne obsequiousness!"
-    ## [5] "natantly gluers Marina hibernations steelies Julia somewhat Lorilee refers acoustic ardeen Marinda!"    
-    ## [6] "Willa rebid Mardell savor dipole debor swards spores yashmacs blurb simoleon Penney!"
+    ## [1] "gyratory marrowy critiqued Donnell deviancies unblocked wristiest indistinct gaseous Cletus lengths offbeats?"    
+    ## [2] "liquoring talkies Genna etape ventrals cris Amelia reearning fructified socket Floyd Tomi!"                       
+    ## [3] "weaners deject extortioner albedo linked overexplains Kennith Romelia menarche accidental repeated Ila?"          
+    ## [4] "Monique doorstops futuristic Elidia expiries unatoned squooshing miff picaras sleepwalked yows counteraccusation!"
+    ## [5] "challahs sautoire wendigos Wes existing almost raster Elois dawed penally Markus aerostats?"                      
+    ## [6] "vatfuls Dodie reforestation Keith randans spongers fronds Jc swarding hereby Janiece Daniel."
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "globes firetraps jeroboam abbeys NAME NAME NAME deferring NAME NAME NAME statistics?"      
-    ## [2] "attaint NAME spendthrift noising breaming NAME maltier paisano rabbit marrer triplex NAME."
-    ## [3] "crimple curraghs pedometer returner NAME fiddlers NAME affixer hootier NAME NAME cunts."   
-    ## [4] "NAME NAME depreciate jams rollings NAME mica unnavigable NAME NAME NAME obsequiousness!"   
-    ## [5] "natantly gluers NAME hibernations steelies NAME somewhat NAME refers acoustic ardeen NAME!"
-    ## [6] "NAME rebid NAME savor dipole debor swards spores yashmacs blurb simoleon NAME!"
+    ## [1] "gyratory marrowy critiqued NAME deviancies unblocked wristiest indistinct gaseous NAME lengths offbeats?"    
+    ## [2] "liquoring talkies NAME etape ventrals cris NAME reearning fructified socket NAME NAME!"                      
+    ## [3] "weaners deject extortioner albedo linked overexplains NAME NAME menarche accidental repeated NAME?"          
+    ## [4] "NAME doorstops futuristic NAME expiries unatoned squooshing miff picaras sleepwalked yows counteraccusation!"
+    ## [5] "challahs sautoire wendigos NAME existing almost raster NAME dawed penally NAME aerostats?"                   
+    ## [6] "vatfuls NAME reforestation NAME randans spongers fronds NAME swarding hereby NAME NAME."
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1552,40 +1585,40 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "globes firetraps jeroboam abbeys NAME NAME NAME deferring NAME NAME NAME statistics?"      
-    ## [2] "attaint NAME spendthrift noising breaming NAME maltier paisano rabbit marrer triplex NAME."
-    ## [3] "crimple curraghs pedometer returner NAME fiddlers NAME affixer hootier NAME NAME cunts."   
-    ## [4] "NAME NAME depreciate jams rollings NAME mica unnavigable NAME NAME NAME obsequiousness!"   
-    ## [5] "natantly gluers NAME hibernations steelies NAME somewhat NAME refers acoustic ardeen NAME!"
-    ## [6] "NAME rebid NAME savor dipole debor swards spores yashmacs blurb simoleon NAME!"
+    ## [1] "gyratory marrowy critiqued NAME deviancies unblocked wristiest indistinct gaseous NAME lengths offbeats?"    
+    ## [2] "liquoring talkies NAME etape ventrals cris NAME reearning fructified socket NAME NAME!"                      
+    ## [3] "weaners deject extortioner albedo linked overexplains NAME NAME menarche accidental repeated NAME?"          
+    ## [4] "NAME doorstops futuristic NAME expiries unatoned squooshing miff picaras sleepwalked yows counteraccusation!"
+    ## [5] "challahs sautoire wendigos NAME existing almost raster NAME dawed penally NAME aerostats?"                   
+    ## [6] "vatfuls NAME reforestation NAME randans spongers fronds NAME swarding hereby NAME NAME."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 7.837029 secs
+    ## Time difference of 8.417504 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "globes firetraps jeroboam abbeys NAME NAME NAME deferring NAME NAME NAME statistics?"      
-    ## [2] "attaint NAME spendthrift noising breaming NAME maltier paisano rabbit marrer triplex NAME."
-    ## [3] "crimple curraghs pedometer returner NAME fiddlers NAME affixer hootier NAME NAME cunts."   
-    ## [4] "NAME NAME depreciate jams rollings NAME mica unnavigable NAME NAME NAME obsequiousness!"   
-    ## [5] "natantly gluers NAME hibernations steelies NAME somewhat NAME refers acoustic ardeen NAME!"
-    ## [6] "NAME rebid NAME savor dipole debor swards spores yashmacs blurb simoleon NAME!"
+    ## [1] "gyratory marrowy critiqued NAME deviancies unblocked wristiest indistinct gaseous NAME lengths offbeats?"    
+    ## [2] "liquoring talkies NAME etape ventrals cris NAME reearning fructified socket NAME NAME!"                      
+    ## [3] "weaners deject extortioner albedo linked overexplains NAME NAME menarche accidental repeated NAME?"          
+    ## [4] "NAME doorstops futuristic NAME expiries unatoned squooshing miff picaras sleepwalked yows counteraccusation!"
+    ## [5] "challahs sautoire wendigos NAME existing almost raster NAME dawed penally NAME aerostats?"                   
+    ## [6] "vatfuls NAME reforestation NAME randans spongers fronds NAME swarding hereby NAME NAME."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.08349895 secs
+    ## Time difference of 0.06850004 secs
 
 Now let's amp it up with 20x more text data. That's 50,000 rows of text
-(600,120 words) and 5,493 replacement tokens in 1.4 seconds.
+(600,140 words) and 5,493 replacement tokens in 1.6 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.449124 secs
+    ## Time difference of 1.555501 secs
 
 ### White Space
 
