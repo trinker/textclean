@@ -126,7 +126,7 @@ replace_string_elements_generic  <- function(x, y, z = NULL,
 
     tokens <- unlist(tokens)
     fun <- ifelse(ignore.case, tolower, c)
-    match(fun(tokens), fun(y))
+    #match(fun(tokens), fun(y))
     tokens[which(fun(tokens) %in% fun(y))] <- z
 
     replaced <- textshape::split_index(tokens, locs)
