@@ -231,11 +231,22 @@ avail <- lexicon::available_data
 
 drop_sci_note <- function(x, ...){
 
+    if (!is.numeric(x)) return(x)
+
     x <- as.character(as.numeric(x))
+
     locs <- grepl('e\\+', x)
-    x[locs] <- paste0(
-        gsub('e\\+.+', '', x[locs]), 
-        unlist(lapply(gsub('^.+?e\\+', '', x[locs]), function(x){paste(rep('0', x), collapse = '')}))
-    )
+
+    x[locs] <- unlist(Map(function(b, e) {
+
+            subs <- nchar(gsub('^.*\\.', '', b))
+
+            paste0(gsub('[.]', '', b), paste(rep('0', e - subs), collapse = ''))
+
+        }, gsub('e\\+.+', '', x[locs]), as.integer(gsub('^.+?e\\+', '', x[locs]))
+    ))
+
+
     x
 }
+
