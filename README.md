@@ -2,38 +2,7 @@ textclean
 ============
 
 
-    ## 
-    ##   
-      
-      
-       checking for file 'C:\Users\trinker\AppData\Local\Temp\RtmpaiZs6r\remotes162c486510ac\trinker-numform-be93697/DESCRIPTION' ...
-      
-       checking for file 'C:\Users\trinker\AppData\Local\Temp\RtmpaiZs6r\remotes162c486510ac\trinker-numform-be93697/DESCRIPTION' ... 
-      
-    v  checking for file 'C:\Users\trinker\AppData\Local\Temp\RtmpaiZs6r\remotes162c486510ac\trinker-numform-be93697/DESCRIPTION' (363ms)
-    ## 
-      
-      
-      
-    -  preparing 'numform': (407ms)
-    ## 
-      
-       checking DESCRIPTION meta-information ...
-      
-       checking DESCRIPTION meta-information ... 
-      
-    v  checking DESCRIPTION meta-information
-    ## 
-      
-      
-      
-    -  checking for LF line-endings in source and make files and shell scripts (662ms)
-    ## -  checking for empty or unneeded directories
-    ## -  building 'numform_0.5.1.tar.gz'
-    ## 
-      
-       
-    ## 
+
 
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
