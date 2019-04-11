@@ -23,6 +23,9 @@ textclean 0.9.4 -
 
 **BUG FIXES**
 
+* `replace_emoticon` replaced emoticon-like substrings within actual words.  
+  Spotted thanks to Carolyn Challoner; see <a href="https://github.com/trinker/textclean/issues/46">issue #46</a>.
+
 **NEW FEATURES**
 
 * `replace_misspelling` added as a way to replace misspelled words with their 
@@ -32,6 +35,9 @@ textclean 0.9.4 -
 **MINOR FEATURES**
 
 **IMPROVEMENTS**
+
+* `replace_html` pics up the ability to replace "&laquo;" & "&raquo;" with ASCII
+  equivalents "&lt;&lt;" & "&gt;&gt;".  Suggested by Ilya Shutov (see #48).
 
 **CHANGES**
 

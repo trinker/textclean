@@ -69,6 +69,35 @@ The output is a list containing meta checks and elemental checks
 but prints as a pretty formatted output with potential problem elements, the 
 accompanying text, and possible suggestions to fix the text.
 }
+\examples{
+\dontrun{
+v <- list(c('foo', 'bar'), NA, c('hello', 'world'))
+check_text(v)
+
+w <- factor(unlist(v))
+check_text(w)
+
+x <- c("i like", "<p>i want. </p>thet them ther .", "I am ! that|", "", NA, 
+    "&quot;they&quot;,were there", ".", "   ", "?", "3;", "I like goud eggs!", 
+    "i 4like...", "\\\\tgreat",  'She said "yes"')
+check_text(x)
+print(check_text(x), include.text=FALSE)
+check_text(x, checks = c('non_split_sentence', 'no_endmark'))
+elementals <- available_checks()[is_meta != TRUE,][['fun']]
+check_text(
+    x, 
+    checks = elementals[
+        !elementals \%in\% c('non_split_sentence', 'no_endmark')
+    ]
+)
+
+y <- c("A valid sentence.", "yet another!")
+check_text(y)
+
+z <- rep("dfsdsd'nt", 120)
+check_text(z)
+}
+}
 \keyword{check}
 \keyword{spelling}
 \keyword{text}

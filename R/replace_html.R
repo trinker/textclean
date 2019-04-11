@@ -33,6 +33,8 @@
 #'   &nbsp;   \tab   \cr
 #'   &lt;   \tab < \cr
 #'   &gt;   \tab > \cr
+#'   &laquo; \tab << \cr
+#'   &raquo; \tab >> \cr
 #'   &amp;   \tab & \cr
 #'   &quot;   \tab " \cr
 #'   &apos;   \tab ' \cr
@@ -49,7 +51,7 @@
 #' @examples
 #' x <- c(
 #'     "<bold>Random</bold> text with symbols: &nbsp; &lt; &gt; &amp; &quot; &apos;",
-#'     "<p>More text</p> &cent; &pound; &yen; &euro; &copy; &reg;"
+#'     "<p>More text</p> &cent; &pound; &yen; &euro; &copy; &reg; &laquo; &raquo;"
 #' )
 #' 
 #' replace_html(x)
@@ -71,12 +73,12 @@ html_symbols <- data.frame(
         "&ndash;", "&mdash;", "&cent;", "&pound;", "&euro;", "&ne;", 
         "&frac12;", "&frac14;", "&frac34;", "&deg;", "&larr;", "&rarr;", 
         "&hellip;", "&nbsp;", "&lt;", "&gt;", "&amp;", "&quot;", "&apos;",
-        "&yen;"
+        "&yen;", "&laquo;", "&raquo;"
     ), 
     symbol = c("(c)", "(r)", "tm", "\"", "\"", "'", 
         "'", "-", "-", "[]", "-", "-", "cents", "pounds", "euro", "!=", 
         "half", "quarter", "three fourths", "degrees", "<-", "->", "...",
-        " ", "<", ">", "&", '"', "'", "yen"
+        " ", "<", ">", "&", '"', "'", "yen", "<<", ">>"
     ), 
     stringsAsFactors = FALSE
 )

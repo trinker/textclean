@@ -60,7 +60,7 @@
 #' 
 #' x <- c("i like", "<p>i want. </p>thet them ther .", "I am ! that|", "", NA, 
 #'     "&quot;they&quot;,were there", ".", "   ", "?", "3;", "I like goud eggs!", 
-#'     "i 4like...", "\\tgreat",  "She said \"yes\"")
+#'     "i 4like...", "\\tgreat",  'She said "yes"')
 #' check_text(x)
 #' print(check_text(x), include.text=FALSE)
 #' check_text(x, checks = c('non_split_sentence', 'no_endmark'))
@@ -75,7 +75,7 @@
 #' y <- c("A valid sentence.", "yet another!")
 #' check_text(y)
 #' 
-#' z <- rep('dfsdsd\'nt', 120)
+#' z <- rep("dfsdsd'nt", 120)
 #' check_text(z)
 #' }
 check_text <- function(x, file = NULL, checks = NULL, n = 10, ...) {
