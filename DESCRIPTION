@@ -17,7 +17,7 @@ Description: Tools to clean and process text.  Tools are geared at checking for 
 Depends: R (>= 3.4.0)
 Imports: data.table, english(>= 1.0-2), glue (>= 1.3.0), lexicon (>= 1.0.0), mgsub (>= 1.5.0), qdapRegex,
           stringi, textshape(>= 1.0.1), utils
-Suggests: testthat
+Suggests: hunspell, testthat
 License: GPL-2
 LazyData: TRUE
 Roxygen: list(wrap = FALSE)

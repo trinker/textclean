@@ -37,7 +37,7 @@ textclean 0.9.4 -
 **IMPROVEMENTS**
 
 * `replace_html` pics up the ability to replace "&laquo;" & "&raquo;" with ASCII
-  equivalents "&lt;&lt;" & "&gt;&gt;".  Suggested by Ilya Shutov (see #48).
+  equivalents "&lt;&lt;" & "&gt;&gt;".  Suggested by Ilya Shutov; see <a href="https://github.com/trinker/textclean/issues/48">issue #48</a>.
 
 **CHANGES**
 

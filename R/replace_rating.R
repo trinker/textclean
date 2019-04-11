@@ -29,3 +29,5 @@ replace_rating <- function (x, rating_dt = lexicon::key_rating, ...) {
         rating_dt[["y"]], " "), x, ...))
 }
 
+
+IMPORT <- lexicon::available_data

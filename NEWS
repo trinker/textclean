@@ -37,7 +37,7 @@ MINOR FEATURES
 IMPROVEMENTS
 
 * `replace_html` pics up the ability to replace "&laquo;" & "&raquo;" with ASCII
-  equivalents "<<" & ">>".  Suggested by Ilya Shutov (see #48).
+  equivalents "<<" & ">>".  Suggested by Ilya Shutov; see issue #48.
 
 CHANGES
 

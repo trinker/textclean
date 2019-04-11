@@ -14,11 +14,15 @@
 #' @export
 #' @author Surin Space and Tyler Rinker <tyler.rinker@@gmail.com>.
 #' @examples
+#' \dontrun{
 #' bad_string <- c("I cant spelll rigtt noow.", '', NA, 
 #'     'Thiss is aslo mispelled?', 'this is 6$ and 38 cents in back2back!')
 #' replace_misspelling(bad_string)
+#' }
 replace_misspelling <- function(x, ...){
 
+    lower <- text <- replacement <- is_cap <- final <- element_id <- token_id <- NULL
+    
     check_install('hunspell')
 
     if (!(is.character(x) | is.factor(x))) stop('`x` must be a character vector')
@@ -35,7 +39,7 @@ replace_misspelling <- function(x, ...){
 
     map <- data.table::data.table(
         lower = misspelled,
-        replacement = unlist(lapply(hunspell_suggest(misspelled), `[`, 1))
+        replacement = unlist(lapply(hunspell::hunspell_suggest(misspelled), `[`, 1))
     )
 
     fixed_df <- map[token_df, on = "lower"]

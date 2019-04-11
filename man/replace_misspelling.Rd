@@ -26,9 +26,11 @@ together.  The strings are not guaranteed to retain exact spacing of the
 original.
 }
 \examples{
+\dontrun{
 bad_string <- c("I cant spelll rigtt noow.", '', NA, 
     'Thiss is aslo mispelled?', 'this is 6$ and 38 cents in back2back!')
 replace_misspelling(bad_string)
+}
 }
 \author{
 Surin Space and Tyler Rinker <tyler.rinker@gmail.com>.

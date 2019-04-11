@@ -53,6 +53,7 @@ check_install <- function(x, fun = 'function'){
 
     found <- TRUE
     path <- try(find.package(x), silent = TRUE)
+    
     if (inherits(path, "try-error")) found <- FALSE
 
     if (!found) {
