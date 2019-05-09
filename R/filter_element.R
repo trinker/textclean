@@ -17,7 +17,7 @@ filter_element <- function(x, pattern, ...){
     
     warning(
         paste(
-            "Deprecated, use textclean::drop_elements() instead.",
+            "Deprecated, use textclean::drop_element() instead.",
             "`filter_element()` will be removed in the next version."
         ),
         call. = FALSE
