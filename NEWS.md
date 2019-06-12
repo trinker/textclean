@@ -31,6 +31,9 @@ textclean 0.9.4 -
 * `replace_misspelling` added as a way to replace misspelled words with their 
   most likely replacement using **hunspell** in the backend.  Suggested by Surin
   Space; see <a href="https://github.com/trinker/textclean/issues/39">issue #39</a>.
+  
+* `as_ordinal` added as a convenience wrapper for `english::ordinal` that 
+  takes integers and converts them to ordinal form.
 
 **MINOR FEATURES**
 

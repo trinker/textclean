@@ -1,7 +1,7 @@
-#' Remove Escaped Characters
+#' Remove White Space Characters
 #' 
 #' Pre-process data to replace one or more white space character with a single 
-#' space.
+#' space (this includes new line characters).
 #' 
 #' @param x The character vector.
 #' @param \dots ignored.

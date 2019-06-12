@@ -2,9 +2,12 @@
 % Please edit documentation in R/replace_number.R
 \name{replace_number}
 \alias{replace_number}
+\alias{as_ordinal}
 \title{Replace Numbers With Text Representation}
 \usage{
 replace_number(x, num.paste = FALSE, remove = FALSE, ...)
+
+as_ordinal(x, ...)
 }
 \arguments{
 \item{x}{The text variable.}
@@ -21,8 +24,11 @@ spaces.}
 Returns a vector with numbers replaced.
 }
 \description{
-Replaces numeric represented numbers with words (e.g., 1001 becomes one 
-thousand one).
+\code{replace_number} - Replaces numeric represented numbers with words 
+(e.g., 1001 becomes one thousand one).
+
+\code{as_ordinal} - A convenience wrapper for \code{english::ordinal} that 
+takes integers and converts them to ordinal form.
 }
 \note{
 The user may want to use \code{\link[textclean]{replace_ordinal}} 
@@ -66,6 +72,9 @@ testvect <- c("fifty seven", "four hundred fifty seven",
 )
 
 textclean::mgsub(testvect, fivehunthou, seq_len(5e5))
+
+as_ordinal(1:10)
+textclean::mgsub('I want to be 1 in line', 1:10, as_ordinal(1:10))
 }
 }
 \references{

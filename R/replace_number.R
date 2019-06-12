@@ -1,7 +1,7 @@
 #' Replace Numbers With Text Representation
 #' 
-#' Replaces numeric represented numbers with words (e.g., 1001 becomes one 
-#' thousand one).
+#' \code{replace_number} - Replaces numeric represented numbers with words 
+#' (e.g., 1001 becomes one thousand one).
 #' 
 #' @param x The text variable.
 #' @param num.paste logical.  If \code{FALSE} the elements of larger numbers are 
@@ -18,6 +18,7 @@
 #' "twenty onest", whereas \code{\link[textclean]{replace_ordinal}} would 
 #' generate "twenty first".
 #' @keywords number-to-word
+#' @rdname replace_number
 #' @export
 #' @examples
 #' x <- c(
@@ -54,6 +55,9 @@
 #' )
 #' 
 #' textclean::mgsub(testvect, fivehunthou, seq_len(5e5))
+#' 
+#' as_ordinal(1:10)
+#' textclean::mgsub('I want to be 1 in line', 1:10, as_ordinal(1:10))
 #' }
 replace_number  <- function(x, num.paste = FALSE, remove = FALSE, ...) {
 
@@ -137,5 +141,19 @@ num_regex <- paste0(
 )
 
 eng <- function(x, ...) as.character(english::as.english(x, ...))
+
+
+#' Replace Numbers With Text Representation
+#' 
+#' \code{as_ordinal} - A convenience wrapper for \code{english::ordinal} that 
+#' takes integers and converts them to ordinal form.
+#' 
+#' @rdname replace_number
+#' @export
+as_ordinal <- function(x, ...){
+    english::ordinal(x)
+}
+
+
 
 

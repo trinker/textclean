@@ -2,7 +2,7 @@
 % Please edit documentation in R/replace_white.R
 \name{replace_white}
 \alias{replace_white}
-\title{Remove Escaped Characters}
+\title{Remove White Space Characters}
 \usage{
 replace_white(x, ...)
 }
@@ -16,7 +16,7 @@ Returns a vector of character strings with escaped characters removed.
 }
 \description{
 Pre-process data to replace one or more white space character with a single 
-space.
+space (this includes new line characters).
 }
 \examples{
 x <- "I go \\r
