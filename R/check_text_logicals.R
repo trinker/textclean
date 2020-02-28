@@ -349,7 +349,8 @@ emoticon <- qr2fun('rm_emoticon')
 
 ## just white space
 empty <- function(x) {
-    any(grepl("^\\s*$", stats::na.omit(x)))
+    #any(grepl("^\\s*$", stats::na.omit(x)))
+    grepl("^\\s*$", x)
 }
 
 ## are there escaped backslashes
