@@ -4,8 +4,7 @@
 \alias{replace_hash}
 \title{Replace Hashes}
 \usage{
-replace_hash(x, pattern = qdapRegex::grab("rm_hash"), replacement = "",
-  ...)
+replace_hash(x, pattern = qdapRegex::grab("rm_hash"), replacement = "", ...)
 }
 \arguments{
 \item{x}{The text variable.}

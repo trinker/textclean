@@ -4,8 +4,12 @@
 \alias{replace_contraction}
 \title{Replace Contractions}
 \usage{
-replace_contraction(x, contraction.key = lexicon::key_contractions,
-  ignore.case = TRUE, ...)
+replace_contraction(
+  x,
+  contraction.key = lexicon::key_contractions,
+  ignore.case = TRUE,
+  ...
+)
 }
 \arguments{
 \item{x}{The text variable.}

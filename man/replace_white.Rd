@@ -19,8 +19,8 @@ Pre-process data to replace one or more white space character with a single
 space (this includes new line characters).
 }
 \examples{
-x <- "I go \\r
-    to   the \\tnext line"
+x <- "I go \r
+    to   the \tnext line"
 x
 replace_white(x)
 }

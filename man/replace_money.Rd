@@ -4,8 +4,12 @@
 \alias{replace_money}
 \title{Replace Money With Words}
 \usage{
-replace_money(x, pattern = "(-?)([$])([0-9,]+)(\\\\.\\\\d{2})?",
-  replacement = NULL, ...)
+replace_money(
+  x,
+  pattern = "(-?)([$])([0-9,]+)(\\\\.\\\\d{2})?",
+  replacement = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{The text variable.}

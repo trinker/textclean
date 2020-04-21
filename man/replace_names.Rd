@@ -4,10 +4,14 @@
 \alias{replace_names}
 \title{Replace First/Last Names}
 \usage{
-replace_names(x, names = textclean::drop_element(gsub("(^.)(.*)",
-  "\\\\U\\\\1\\\\L\\\\2", c(lexicon::freq_last_names[[1]],
-  lexicon::common_names), perl = TRUE), "^([AIU]n|[TSD]o|H[ea]Pa|Oh)$"),
-  replacement = "", ...)
+replace_names(
+  x,
+  names = textclean::drop_element(gsub("(^.)(.*)", "\\\\U\\\\1\\\\L\\\\2",
+    c(lexicon::freq_last_names[[1]], lexicon::common_names), perl = TRUE),
+    "^([AIU]n|[TSD]o|H[ea]Pa|Oh)$"),
+  replacement = "",
+  ...
+)
 }
 \arguments{
 \item{x}{The text variable.}

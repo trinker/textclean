@@ -4,7 +4,9 @@
 \name{DATA}
 \alias{DATA}
 \title{Fictitious Classroom Dialogue}
-\format{A data frame with 11 rows and 5 variables}
+\format{
+A data frame with 11 rows and 5 variables
+}
 \usage{
 data(DATA)
 }

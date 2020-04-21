@@ -40,9 +40,9 @@ to quotes.
 }
 \examples{
 x <- c(
-    "Hello World", "6 Ekstr\\xf8m", "J\\xf6reskog", "bi\\xdfchen Z\\xfcrcher",
-    'This is a \\xA9 but not a \\xAE', '6 \\xF7 2 = 3', 
-    'fractions \\xBC, \\xBD, \\xBE', 'cows go \\xB5', '30\\xA2'
+    "Hello World", "6 Ekstr\xf8m", "J\xf6reskog", "bi\xdfchen Z\xfcrcher",
+    'This is a \xA9 but not a \xAE', '6 \xF7 2 = 3', 
+    'fractions \xBC, \xBD, \xBE', 'cows go \xB5', '30\xA2'
 )
 Encoding(x) <- "latin1"
 x
@@ -50,7 +50,7 @@ x
 replace_non_ascii(x)
 replace_non_ascii(x, remove.nonconverted = FALSE)
 
-z <- '\\x95He said, \\x93Gross, I am going to!\\x94'
+z <- '\x95He said, \x93Gross, I am going to!\x94'
 Encoding(z) <- "latin1"
 z
 

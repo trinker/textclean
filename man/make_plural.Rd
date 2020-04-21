@@ -4,8 +4,11 @@
 \alias{make_plural}
 \title{Make Plural (or Verb to Singular) Versions of Words}
 \usage{
-make_plural(x, keep.original = FALSE,
-  irregular = lexicon::pos_df_irregular_nouns)
+make_plural(
+  x,
+  keep.original = FALSE,
+  irregular = lexicon::pos_df_irregular_nouns
+)
 }
 \arguments{
 \item{x}{A vector of words to make plural.}

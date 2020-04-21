@@ -4,8 +4,16 @@
 \alias{replace_symbol}
 \title{Replace Symbols With Word Equivalents}
 \usage{
-replace_symbol(x, dollar = TRUE, percent = TRUE, pound = TRUE,
-  at = TRUE, and = TRUE, with = TRUE, ...)
+replace_symbol(
+  x,
+  dollar = TRUE,
+  percent = TRUE,
+  pound = TRUE,
+  at = TRUE,
+  and = TRUE,
+  with = TRUE,
+  ...
+)
 }
 \arguments{
 \item{x}{A character vector.}

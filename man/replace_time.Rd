@@ -4,9 +4,12 @@
 \alias{replace_time}
 \title{Replace Time Stamps With Words}
 \usage{
-replace_time(x,
+replace_time(
+  x,
   pattern = "(2[0-3]|[01]?[0-9]):([0-5][0-9])[.:]?([0-5]?[0-9])?",
-  replacement = NULL, ...)
+  replacement = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{The text variable.}

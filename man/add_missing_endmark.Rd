@@ -4,8 +4,7 @@
 \alias{add_missing_endmark}
 \title{Add Missing Endmarks}
 \usage{
-add_missing_endmark(x, replacement = "|", endmarks = c("?", ".", "!"),
-  ...)
+add_missing_endmark(x, replacement = "|", endmarks = c("?", ".", "!"), ...)
 }
 \arguments{
 \item{x}{The text variable.}

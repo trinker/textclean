@@ -8,20 +8,45 @@
 \alias{strip.list}
 \title{Strip Text}
 \usage{
-strip(x, char.keep = "~~", digit.remove = TRUE,
-  apostrophe.remove = FALSE, lower.case = TRUE)
+strip(
+  x,
+  char.keep = "~~",
+  digit.remove = TRUE,
+  apostrophe.remove = FALSE,
+  lower.case = TRUE
+)
 
-\method{strip}{character}(x, char.keep = "~~", digit.remove = TRUE,
-  apostrophe.remove = FALSE, lower.case = TRUE)
+\method{strip}{character}(
+  x,
+  char.keep = "~~",
+  digit.remove = TRUE,
+  apostrophe.remove = FALSE,
+  lower.case = TRUE
+)
 
-\method{strip}{factor}(x, char.keep = "~~", digit.remove = TRUE,
-  apostrophe.remove = TRUE, lower.case = TRUE)
+\method{strip}{factor}(
+  x,
+  char.keep = "~~",
+  digit.remove = TRUE,
+  apostrophe.remove = TRUE,
+  lower.case = TRUE
+)
 
-\method{strip}{default}(x, char.keep = "~~", digit.remove = TRUE,
-  apostrophe.remove = TRUE, lower.case = TRUE)
+\method{strip}{default}(
+  x,
+  char.keep = "~~",
+  digit.remove = TRUE,
+  apostrophe.remove = TRUE,
+  lower.case = TRUE
+)
 
-\method{strip}{list}(x, char.keep = "~~", digit.remove = TRUE,
-  apostrophe.remove = TRUE, lower.case = TRUE)
+\method{strip}{list}(
+  x,
+  char.keep = "~~",
+  digit.remove = TRUE,
+  apostrophe.remove = TRUE,
+  lower.case = TRUE
+)
 }
 \arguments{
 \item{x}{The text variable.}

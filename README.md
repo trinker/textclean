@@ -1,7 +1,3 @@
-textclean   
-============
-
-
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active)
@@ -19,7 +15,7 @@ be more intuitive, better named, and faster. Tools are geared at
 checking for substrings that are not optimal for analysis and replacing
 or removing them (normalizing) with more analysis friendly substrings
 (see Sproat, Black, Chen, Kumar, Ostendorf, & Richards, 2001,
-<a href="doi:10.1006/csla.2001.0169" class="uri">doi:10.1006/csla.2001.0169</a>)
+[doi:10.1006/csla.2001.0169](https://www.sciencedirect.com/science/article/pii/S088523080190169X))
 or extracting them into new variables. For example, emoticons are often
 used in text but not always easily handled by analysis algorithms. The
 `replace_emoticon()` function replaces emoticons with word equivalents.
@@ -42,7 +38,6 @@ designed to work within the piping of the tidyverse framework by
 consistently using the first argument of functions as the data source.
 The **textclean** subbing and replacement tools are particularly
 effective within a `dplyr::mutate` statement.
-
 
 Table of Contents
 ============
@@ -81,10 +76,9 @@ Table of Contents
         -   [Tokens](#tokens)
         -   [White Space](#white-space)
         -   [Word Elongation](#word-elongation)
-
+        
 Functions
-============
-
+=========
 
 The main functions, task category, & descriptions are summarized in the
 table below:
@@ -356,9 +350,10 @@ Demonstration
 Load the Packages/Data
 ----------------------
 
-    if (!require("pacman")) install.packages("pacman")
-    pacman::p_load(dplyr)
-    pacman::p_load_gh("trinker/textshape", "trinker/lexicon", "trinker/textclean")
+    library(dplyr)
+    library(textshape)
+    library(lexicon)
+    library(textclean)
 
 Check Text
 ----------
@@ -468,11 +463,12 @@ Here is an example:
     ## 
     ## The following observations contain empty text cells (all white space):
     ## 
-    ## 1
+    ## 4, 8
     ## 
     ## This issue affected the following text:
     ## 
-    ## 1: i like
+    ## 4: 
+    ## 8:    
     ## 
     ## *Suggestion: Consider running `drop_empty_row`
     ## 
@@ -569,7 +565,7 @@ Here is an example:
     ## 6: &quot;they&quot; they,were there
     ## 8:    
     ## 10: 3;
-    ## 12: biÃŸchen ZÃ¼rcher
+    ## 12: bißchen Zürcher
     ## 14: \tgreat
     ## 15: She said "yes"
     ## 
@@ -601,7 +597,7 @@ Here is an example:
     ## 
     ## This issue affected the following text:
     ## 
-    ## 12: biÃŸchen ZÃ¼rcher
+    ## 12: bißchen Zürcher
     ## 
     ## *Suggestion: Consider running `replace_non_ascii`
     ## 
@@ -629,7 +625,7 @@ And if all is well the user should be greeted by a cow:
     ## 
     ##  ------------- 
     ## No problems found!
-    ## This text is flawless! 
+    ## This text is stunning! 
     ##  ---------------- 
     ##   \   ^__^ 
     ##    \  (oo)\ ________ 
@@ -759,35 +755,21 @@ retain characters.
 
     strip(DATA$state)
 
-    ##  [1] "computer is fun not too fun"      "no it's not it's dumb"           
-    ##  [3] "what should we do"                "you liar it stinks"              
-    ##  [5] "i am telling the truth"           "how can we be certain"           
-    ##  [7] "there is no way"                  "i distrust you"                  
-    ##  [9] "what are you talking about"       "shall we move on good then"      
-    ## [11] "i'm hungry let's eat you already"
+    ##  [1] "computer is fun not too fun"      "no it's not it's dumb"            "what should we do"                "you liar it stinks"              
+    ##  [5] "i am telling the truth"           "how can we be certain"            "there is no way"                  "i distrust you"                  
+    ##  [9] "what are you talking about"       "shall we move on good then"       "i'm hungry let's eat you already"
 
     strip(DATA$state, apostrophe.remove = TRUE)
 
-    ##  [1] "computer is fun not too fun"    "no its not its dumb"           
-    ##  [3] "what should we do"              "you liar it stinks"            
-    ##  [5] "i am telling the truth"         "how can we be certain"         
-    ##  [7] "there is no way"                "i distrust you"                
-    ##  [9] "what are you talking about"     "shall we move on good then"    
+    ##  [1] "computer is fun not too fun"    "no its not its dumb"            "what should we do"              "you liar it stinks"             "i am telling the truth"        
+    ##  [6] "how can we be certain"          "there is no way"                "i distrust you"                 "what are you talking about"     "shall we move on good then"    
     ## [11] "im hungry lets eat you already"
 
     strip(DATA$state, char.keep = c("?", "."))
 
-    ##  [1] "computer is fun. not too fun."      
-    ##  [2] "no it's not it's dumb."             
-    ##  [3] "what should we do?"                 
-    ##  [4] "you liar it stinks"                 
-    ##  [5] "i am telling the truth"             
-    ##  [6] "how can we be certain?"             
-    ##  [7] "there is no way."                   
-    ##  [8] "i distrust you."                    
-    ##  [9] "what are you talking about?"        
-    ## [10] "shall we move on? good then."       
-    ## [11] "i'm hungry. let's eat. you already?"
+    ##  [1] "computer is fun. not too fun."       "no it's not it's dumb."              "what should we do?"                  "you liar it stinks"                 
+    ##  [5] "i am telling the truth"              "how can we be certain?"              "there is no way."                    "i distrust you."                    
+    ##  [9] "what are you talking about?"         "shall we move on? good then."        "i'm hungry. let's eat. you already?"
 
 Subbing
 -------
@@ -809,59 +791,31 @@ this feature).
 
     mgsub(DATA$state, c("it's", "I'm"), c("<<it is>>", "<<I am>>"))
 
-    ##  [1] "Computer is fun. Not too fun."             
-    ##  [2] "No <<it is>> not, <<it is>> dumb."         
-    ##  [3] "What should we do?"                        
-    ##  [4] "You liar, it stinks!"                      
-    ##  [5] "I am telling the truth!"                   
-    ##  [6] "How can we be certain?"                    
-    ##  [7] "There is no way."                          
-    ##  [8] "I distrust you."                           
-    ##  [9] "What are you talking about?"               
-    ## [10] "Shall we move on?  Good then."             
-    ## [11] "<<I am>> hungry.  Let's eat.  You already?"
+    ##  [1] "Computer is fun. Not too fun."              "No <<it is>> not, <<it is>> dumb."          "What should we do?"                        
+    ##  [4] "You liar, it stinks!"                       "I am telling the truth!"                    "How can we be certain?"                    
+    ##  [7] "There is no way."                           "I distrust you."                            "What are you talking about?"               
+    ## [10] "Shall we move on?  Good then."              "<<I am>> hungry.  Let's eat.  You already?"
 
     mgsub(DATA$state, "[[:punct:]]", "<<PUNCT>>", fixed = FALSE)
 
-    ##  [1] "Computer is fun<<PUNCT>> Not too fun<<PUNCT>>"                                
-    ##  [2] "No it<<PUNCT>>s not<<PUNCT>> it<<PUNCT>>s dumb<<PUNCT>>"                      
-    ##  [3] "What should we do<<PUNCT>>"                                                   
-    ##  [4] "You liar<<PUNCT>> it stinks<<PUNCT>>"                                         
-    ##  [5] "I am telling the truth<<PUNCT>>"                                              
-    ##  [6] "How can we be certain<<PUNCT>>"                                               
-    ##  [7] "There is no way<<PUNCT>>"                                                     
-    ##  [8] "I distrust you<<PUNCT>>"                                                      
-    ##  [9] "What are you talking about<<PUNCT>>"                                          
-    ## [10] "Shall we move on<<PUNCT>>  Good then<<PUNCT>>"                                
+    ##  [1] "Computer is fun<<PUNCT>> Not too fun<<PUNCT>>"                                 "No it<<PUNCT>>s not<<PUNCT>> it<<PUNCT>>s dumb<<PUNCT>>"                      
+    ##  [3] "What should we do<<PUNCT>>"                                                    "You liar<<PUNCT>> it stinks<<PUNCT>>"                                         
+    ##  [5] "I am telling the truth<<PUNCT>>"                                               "How can we be certain<<PUNCT>>"                                               
+    ##  [7] "There is no way<<PUNCT>>"                                                      "I distrust you<<PUNCT>>"                                                      
+    ##  [9] "What are you talking about<<PUNCT>>"                                           "Shall we move on<<PUNCT>>  Good then<<PUNCT>>"                                
     ## [11] "I<<PUNCT>>m hungry<<PUNCT>>  Let<<PUNCT>>s eat<<PUNCT>>  You already<<PUNCT>>"
 
     mgsub(DATA$state, c("i", "it"), c("<<I>>", "[[IT]]"))
 
-    ##  [1] "Computer <<I>>s fun. Not too fun."    
-    ##  [2] "No [[IT]]'s not, [[IT]]'s dumb."      
-    ##  [3] "What should we do?"                   
-    ##  [4] "You l<<I>>ar, [[IT]] st<<I>>nks!"     
-    ##  [5] "I am tell<<I>>ng the truth!"          
-    ##  [6] "How can we be certa<<I>>n?"           
-    ##  [7] "There <<I>>s no way."                 
-    ##  [8] "I d<<I>>strust you."                  
-    ##  [9] "What are you talk<<I>>ng about?"      
-    ## [10] "Shall we move on?  Good then."        
-    ## [11] "I'm hungry.  Let's eat.  You already?"
+    ##  [1] "Computer <<I>>s fun. Not too fun."     "No [[IT]]'s not, [[IT]]'s dumb."       "What should we do?"                    "You l<<I>>ar, [[IT]] st<<I>>nks!"     
+    ##  [5] "I am tell<<I>>ng the truth!"           "How can we be certa<<I>>n?"            "There <<I>>s no way."                  "I d<<I>>strust you."                  
+    ##  [9] "What are you talk<<I>>ng about?"       "Shall we move on?  Good then."         "I'm hungry.  Let's eat.  You already?"
 
     mgsub(DATA$state, c("i", "it"), c("<<I>>", "[[IT]]"), order.pattern = FALSE)
 
-    ##  [1] "Computer <<I>>s fun. Not too fun."    
-    ##  [2] "No <<I>>t's not, <<I>>t's dumb."      
-    ##  [3] "What should we do?"                   
-    ##  [4] "You l<<I>>ar, <<I>>t st<<I>>nks!"     
-    ##  [5] "I am tell<<I>>ng the truth!"          
-    ##  [6] "How can we be certa<<I>>n?"           
-    ##  [7] "There <<I>>s no way."                 
-    ##  [8] "I d<<I>>strust you."                  
-    ##  [9] "What are you talk<<I>>ng about?"      
-    ## [10] "Shall we move on?  Good then."        
-    ## [11] "I'm hungry.  Let's eat.  You already?"
+    ##  [1] "Computer <<I>>s fun. Not too fun."     "No <<I>>t's not, <<I>>t's dumb."       "What should we do?"                    "You l<<I>>ar, <<I>>t st<<I>>nks!"     
+    ##  [5] "I am tell<<I>>ng the truth!"           "How can we be certa<<I>>n?"            "There <<I>>s no way."                  "I d<<I>>strust you."                  
+    ##  [9] "What are you talk<<I>>ng about?"       "Shall we move on?  Good then."         "I'm hungry.  Let's eat.  You already?"
 
 #### Safe Substitutions
 
@@ -936,8 +890,7 @@ and then puts them back at the original locations.
         fun = function(x) {paste0('<<', paste(rev(strsplit(x, '')[[1]]), collapse =''), '>>')}
     )
 
-    ## [1] NA                            "df dft sdf"                 
-    ## [3] "sd <<gggdf>> sd <<hhhfd>> d" "<<ddd>>"
+    ## [1] NA                            "df dft sdf"                  "sd <<gggdf>> sd <<hhhfd>> d" "<<ddd>>"
 
 In this example we extract numbers, strip out non-digits, coerce them to
 numeric, cut them in half, round up to the closest integer, add the
@@ -949,8 +902,7 @@ commas back, and replace back into the original locations.
         fun = function(x) {prettyNum(ceiling(as.numeric(gsub('[^0-9]', '', x))/2), big.mark = ',')}
     )
 
-    ## [1] NA                          "I want 16 grapes"         
-    ## [3] "he wants 2 ice creams"     "they want 617,284 dollars"
+    ## [1] NA                          "I want 16 grapes"          "he wants 2 ice creams"     "they want 617,284 dollars"
 
 ### Stashing Character Pre-Sub
 
@@ -965,59 +917,32 @@ punctuation, and last put the stashed emoticons back.
 
     (fake_dat <- paste(hash_emoticons[1:11, 1, with=FALSE][[1]], DATA$state))
 
-    ##  [1] "#-) Computer is fun. Not too fun."         
-    ##  [2] "%) No it's not, it's dumb."                
-    ##  [3] "%-) What should we do?"                    
-    ##  [4] "',:-l You liar, it stinks!"                
-    ##  [5] "',:-| I am telling the truth!"             
-    ##  [6] "*) How can we be certain?"                 
-    ##  [7] "*-) There is no way."                      
-    ##  [8] "*<|:-) I distrust you."                    
-    ##  [9] "*\\0/* What are you talking about?"        
-    ## [10] "0:) Shall we move on?  Good then."         
-    ## [11] "0:-) I'm hungry.  Let's eat.  You already?"
+    ##  [1] "#-) Computer is fun. Not too fun."          "%) No it's not, it's dumb."                 "%-) What should we do?"                    
+    ##  [4] "',:-l You liar, it stinks!"                 "',:-| I am telling the truth!"              "*) How can we be certain?"                 
+    ##  [7] "*-) There is no way."                       "*<|:-) I distrust you."                     "*\\0/* What are you talking about?"        
+    ## [10] "0:) Shall we move on?  Good then."          "0:-) I'm hungry.  Let's eat.  You already?"
 
     (m <- sub_holder(fake_dat, hash_emoticons[[1]]))
 
-    ##  [1] "zzzplaceholderaazzz Computer is fun. Not too fun."        
-    ##  [2] "zzzplaceholderbazzz No it's not, it's dumb."              
-    ##  [3] "zzzplaceholdercazzz What should we do?"                   
-    ##  [4] "zzzplaceholderdazzz You liar, it stinks!"                 
-    ##  [5] "zzzplaceholdereazzz I am telling the truth!"              
-    ##  [6] "zzzplaceholderfazzz How can we be certain?"               
-    ##  [7] "zzzplaceholdergazzz There is no way."                     
-    ##  [8] "zzzplaceholderhazzz I distrust you."                      
-    ##  [9] "zzzplaceholderiazzz What are you talking about?"          
-    ## [10] "zzzplaceholderjazzz Shall we move on?  Good then."        
+    ##  [1] "zzzplaceholderaazzz Computer is fun. Not too fun."         "zzzplaceholderbazzz No it's not, it's dumb."              
+    ##  [3] "zzzplaceholdercazzz What should we do?"                    "zzzplaceholderdazzz You liar, it stinks!"                 
+    ##  [5] "zzzplaceholdereazzz I am telling the truth!"               "zzzplaceholderfazzz How can we be certain?"               
+    ##  [7] "zzzplaceholdergazzz There is no way."                      "zzzplaceholderhazzz I distrust you."                      
+    ##  [9] "zzzplaceholderiazzz What are you talking about?"           "zzzplaceholderjazzz Shall we move on?  Good then."        
     ## [11] "zzzplaceholderkazzz I'm hungry.  Let's eat.  You already?"
 
     (m_stripped <-strip(m$output))
 
-    ##  [1] "zzzplaceholderaazzz computer is fun not too fun"     
-    ##  [2] "zzzplaceholderbazzz no it's not it's dumb"           
-    ##  [3] "zzzplaceholdercazzz what should we do"               
-    ##  [4] "zzzplaceholderdazzz you liar it stinks"              
-    ##  [5] "zzzplaceholdereazzz i am telling the truth"          
-    ##  [6] "zzzplaceholderfazzz how can we be certain"           
-    ##  [7] "zzzplaceholdergazzz there is no way"                 
-    ##  [8] "zzzplaceholderhazzz i distrust you"                  
-    ##  [9] "zzzplaceholderiazzz what are you talking about"      
-    ## [10] "zzzplaceholderjazzz shall we move on good then"      
-    ## [11] "zzzplaceholderkazzz i'm hungry let's eat you already"
+    ##  [1] "zzzplaceholderaazzz computer is fun not too fun"      "zzzplaceholderbazzz no it's not it's dumb"            "zzzplaceholdercazzz what should we do"               
+    ##  [4] "zzzplaceholderdazzz you liar it stinks"               "zzzplaceholdereazzz i am telling the truth"           "zzzplaceholderfazzz how can we be certain"           
+    ##  [7] "zzzplaceholdergazzz there is no way"                  "zzzplaceholderhazzz i distrust you"                   "zzzplaceholderiazzz what are you talking about"      
+    ## [10] "zzzplaceholderjazzz shall we move on good then"       "zzzplaceholderkazzz i'm hungry let's eat you already"
 
     m$unhold(m_stripped)
 
-    ##  [1] "#-) computer is fun not too fun"      
-    ##  [2] "%) no it's not it's dumb"             
-    ##  [3] "%-) what should we do"                
-    ##  [4] "',:-l you liar it stinks"             
-    ##  [5] "',:-| i am telling the truth"         
-    ##  [6] "*) how can we be certain"             
-    ##  [7] "*-) there is no way"                  
-    ##  [8] "*<|:-) i distrust you"                
-    ##  [9] "*\\0/* what are you talking about"    
-    ## [10] "0:) shall we move on good then"       
-    ## [11] "0:-) i'm hungry let's eat you already"
+    ##  [1] "#-) computer is fun not too fun"       "%) no it's not it's dumb"              "%-) what should we do"                 "',:-l you liar it stinks"             
+    ##  [5] "',:-| i am telling the truth"          "*) how can we be certain"              "*-) there is no way"                   "*<|:-) i distrust you"                
+    ##  [9] "*\\0/* what are you talking about"     "0:) shall we move on good then"        "0:-) i'm hungry let's eat you already"
 
 Of course with clever regexes you can achieve the same thing:
 
@@ -1039,17 +964,9 @@ Of course with clever regexes you can achieve the same thing:
         perl = TRUE
     )
 
-    ##  [1] "#-) Computer is fun Not too fun"        
-    ##  [2] "%) No it's not it's dumb"               
-    ##  [3] "%-) What should we do"                  
-    ##  [4] "',:-l You liar it stinks"               
-    ##  [5] "',:-| I am telling the truth"           
-    ##  [6] "*) How can we be certain"               
-    ##  [7] "*-) There is no way"                    
-    ##  [8] "*<|:-) I distrust you"                  
-    ##  [9] "*\\0/* What are you talking about"      
-    ## [10] "0:) Shall we move on  Good then"        
-    ## [11] "0:-) I'm hungry  Let's eat  You already"
+    ##  [1] "#-) Computer is fun Not too fun"         "%) No it's not it's dumb"                "%-) What should we do"                   "',:-l You liar it stinks"               
+    ##  [5] "',:-| I am telling the truth"            "*) How can we be certain"                "*-) There is no way"                     "*<|:-) I distrust you"                  
+    ##  [9] "*\\0/* What are you talking about"       "0:) Shall we move on  Good then"         "0:-) I'm hungry  Let's eat  You already"
 
 The pure regex approach can be a bit trickier (less safe) and more
 difficult to reason about. It also relies on the less general
@@ -1078,10 +995,7 @@ provides this functionality.
 
     replace_contraction(x)
 
-    ## [1] "Mr. Jones is not going."            
-    ## [2] "Check it out what is going on."     
-    ## [3] "he is here but did not go."         
-    ## [4] "the robot at t.s. was not nice"     
+    ## [1] "Mr. Jones is not going."             "Check it out what is going on."      "he is here but did not go."          "the robot at t.s. was not nice"     
     ## [5] "he would like it if I would go away"
 
 ### Dates
@@ -1096,9 +1010,7 @@ provides this functionality.
 
     replace_date(x, replacement = '<<DATE>>')
 
-    ## [1] NA                                          
-    ## [2] "<<DATE>> and <<DATE>>"                     
-    ## [3] "and <<DATE>> but then there's <<DATE>> too"
+    ## [1] NA                                           "<<DATE>> and <<DATE>>"                      "and <<DATE>> but then there's <<DATE>> too"
 
 ### Emojis
 
@@ -1111,9 +1023,9 @@ forms equivalents.
 
     x
 
-    ## [1] "Hello, helpful! Ã°Å¸â€œÂ¦Ã¢\235Å’Ã°Å¸â€˜Â¾ debugme: Easy & efficient debugging for R packages Ã°Å¸â€˜Â¨Ã°Å¸\217Â»Ã¢\200\215Ã°Å¸â€™Â» @GaborCsardi https://buff.ly/2nNKcps  #rstats"
-    ## [2] "Did you ever get bored and accidentally create a Ã°Å¸â€œÂ¦ to make #Rstats speak on a Mac? I have -> "                                            
-    ## [3] "A gift to my fellow nfl loving #rstats folks this package is Ã°Å¸â€™Â¥Ã°Å¸â€™Â¥"
+    ## [1] "Hello, helpful! ðŸ“¦â\235ŒðŸ‘¾ debugme: Easy & efficient debugging for R packages ðŸ‘¨ðŸ\217»â\200\215ðŸ’» @GaborCsardi https://buff.ly/2nNKcps  #rstats"
+    ## [2] "Did you ever get bored and accidentally create a ðŸ“¦ to make #Rstats speak on a Mac? I have -> "                                            
+    ## [3] "A gift to my fellow nfl loving #rstats folks this package is ðŸ’¥ðŸ’¥"
 
     replace_emoji(x)
 
@@ -1167,10 +1079,7 @@ this task.
     )
     replace_grade(text)
 
-    ## [1] "I give an very excellent excellent"
-    ## [2] "He deserves an very very bad"      
-    ## [3] "It's slightly above average work"  
-    ## [4] "A poor example deserves a average!"
+    ## [1] "I give an very excellent excellent" "He deserves an very very bad"       "It's slightly above average work"   "A poor example deserves a average!"
 
 ### HTML
 
@@ -1184,8 +1093,7 @@ Sometimes HTML tags and symbols stick around like pesky gnats. The
 
     replace_html(x)
 
-    ## [1] " Random  text with symbols:   < > & \" '" 
-    ## [2] " More text  cents pounds yen euro (c) (r)"
+    ## [1] " Random  text with symbols:   < > & \" '"  " More text  cents pounds yen euro (c) (r)"
 
 ### Incomplete Sentences
 
@@ -1221,10 +1129,8 @@ machines.
 
     replace_internet_slang(x)
 
-    ## [1] "thank god, it's friday and a big hooray!  The weekend is great!"                   
-    ## [2] "no problem it was my pleasure: end of message"                                     
-    ## [3] "wait...this newbie needs me to say let me google that for you...laughing out loud."
-    ## [4] NA
+    ## [1] "thank god, it's friday and a big hooray!  The weekend is great!"                    "no problem it was my pleasure: end of message"                                     
+    ## [3] "wait...this newbie needs me to say let me google that for you...laughing out loud." NA
 
 ### Kerning
 
@@ -1245,9 +1151,7 @@ capital letters with spaces in between and removes the spaces.
 
     replace_kern(x)
 
-    ## [1] "Welcome to A I: the best WORLD!"              
-    ## [2] "Hi I R is the BOMB for sure: we AGREE indeed."
-    ## [3] "A sort CAT indeed!"                           
+    ## [1] "Welcome to A I: the best WORLD!"               "Hi I R is the BOMB for sure: we AGREE indeed." "A sort CAT indeed!"                           
     ## [4] NA
 
 ### Money
@@ -1260,16 +1164,12 @@ complete this task.
      
     replace_money(x)
 
-    ## [1] NA                                                                                  
-    ## [2] "three dollars and sixteen cents into \"three dollars, sixteen cents\""             
-    ## [3] "negative twenty thousand three hundred thirty three dollars and eighteen cents too"
-    ## [4] "fff"
+    ## [1] NA                                                                                   "three dollars and sixteen cents into \"three dollars, sixteen cents\""             
+    ## [3] "negative twenty thousand three hundred thirty-three dollars and eighteen cents too" "fff"
 
     replace_money(x, replacement = '<<MONEY>>')
 
-    ## [1] NA                                               
-    ## [2] "<<MONEY>> into \"three dollars, sixteen cents\""
-    ## [3] "<<MONEY>> too"                                  
+    ## [1] NA                                                "<<MONEY>> into \"three dollars, sixteen cents\"" "<<MONEY>> too"                                  
     ## [4] "fff"
 
 ### Names
@@ -1288,13 +1188,11 @@ of names extracted via a named entity extractor.
      
     replace_names(x)
 
-    ## [1] "  is not here"         " is not a nice person" " will do it"          
-    ## [4] NA
+    ## [1] "  is not here"         " is not a nice person" " will do it"           NA
 
     replace_names(x, replacement = '<<NAME>>')
 
-    ## [1] "<<NAME>> <<NAME>> is not here" "<<NAME>> is not a nice person"
-    ## [3] "<<NAME>> will do it"           NA
+    ## [1] "<<NAME>> <<NAME>> is not here" "<<NAME>> is not a nice person" "<<NAME>> will do it"           NA
 
 ### Non-ASCII Characters
 
@@ -1314,27 +1212,18 @@ non-ASCII characters are simply removed (unless
     Encoding(x) <- "latin1"
     x
 
-    ## [1] "Hello World"             "6 EkstrÃ¸m"              
-    ## [3] "JÃ¶reskog"                "biÃŸchen ZÃ¼rcher"        
-    ## [5] "This is a Â© but not a Â®" "6 Ã· 2 = 3"              
-    ## [7] "fractions Â¼, Â½, Â¾"       "cows go Âµ"              
-    ## [9] "30Â¢"
+    ## [1] "Hello World"             "6 Ekstrøm"               "Jöreskog"                "bißchen Zürcher"         "This is a © but not a ®" "6 ÷ 2 = 3"              
+    ## [7] "fractions ¼, ½, ¾"       "cows go µ"               "30¢"
 
     replace_non_ascii(x)
 
-    ## [1] "Hello World"                 "6 Ekstrom"                  
-    ## [3] "Joreskog"                    "bisschen Zurcher"           
-    ## [5] "This is a (C) but not a (R)" "6 / 2 = 3"                  
-    ## [7] "fractions 1/4, 1/2, 3/4"     "cows go mu"                 
-    ## [9] "30 cent"
+    ## [1] "Hello World"                 "6 Ekstrom"                   "Joreskog"                    "bisschen Zurcher"            "This is a (C) but not a (R)"
+    ## [6] "6 / 2 = 3"                   "fractions 1/4, 1/2, 3/4"     "cows go mu"                  "30 cent"
 
     replace_non_ascii(x, remove.nonconverted = FALSE)
 
-    ## [1] "Hello World"                 "6 Ekstrom"                  
-    ## [3] "Joreskog"                    "bisschen Zurcher"           
-    ## [5] "This is a (C) but not a (R)" "6 / 2 = 3"                  
-    ## [7] "fractions  1/4,  1/2,  3/4"  "cows go <c2> mu "           
-    ## [9] "30<c2> cent "
+    ## [1] "Hello World"                 "6 Ekstrom"                   "Joreskog"                    "bisschen Zurcher"            "This is a (C) but not a (R)"
+    ## [6] "6 / 2 = 3"                   "fractions  1/4,  1/2,  3/4"  "cows go <c2> mu "            "30<c2> cent "
 
 ### Numbers
 
@@ -1346,18 +1235,15 @@ comma separated numbers as well.
     y <- c("I like 346457 ice cream cones.", "They are 99 percent good")
     replace_number(x)
 
-    ## [1] "I like three hundred forty six thousand four hundred fifty seven ice cream cones."
-    ## [2] "They are ninety nine percent good"
+    ## [1] "I like three hundred forty-six thousand four hundred fifty-seven ice cream cones." "They are ninety-nine percent good"
 
     replace_number(y)
 
-    ## [1] "I like three hundred forty six thousand four hundred fifty seven ice cream cones."
-    ## [2] "They are ninety nine percent good"
+    ## [1] "I like three hundred forty-six thousand four hundred fifty-seven ice cream cones." "They are ninety-nine percent good"
 
     replace_number(x, num.paste = TRUE)
 
-    ## [1] "I like threehundredfortysixthousandfourhundredfiftyseven ice cream cones."
-    ## [2] "They are ninetynine percent good"
+    ## [1] "I like threehundredforty-sixthousandfourhundredfifty-seven ice cream cones." "They are ninety-nine percent good"
 
     replace_number(x, remove=TRUE)
 
@@ -1384,18 +1270,12 @@ word equivalents.
 
     replace_rating(x)
 
-    ##  [1] "This place receives best for their APPETIZERS!!!"                    
-    ##  [2] " better for the food & the guy in the blue shirt for his great vibe!"
-    ##  [3] " best for both the movie and trilogy."                               
-    ##  [4] "* Both the Hot & Sour & the Egg Flower Soups were absolutely best !" 
-    ##  [5] "For service, I give them terrible ."                                 
-    ##  [6] "This place deserves terrible ."                                      
-    ##  [7] " best stars."                                                        
-    ##  [8] "My rating: just below average ."                                     
-    ##  [9] "If there were terrible I would give it terrible ."                   
-    ## [10] "Rating: extremely below average ."                                   
-    ## [11] "I gave it best because of the sound quality."                        
-    ## [12] "If it were possible to give them terrible , they'd have it."
+    ##  [1] "This place receives best for their APPETIZERS!!!"                     " better for the food & the guy in the blue shirt for his great vibe!"
+    ##  [3] " best for both the movie and trilogy."                                "* Both the Hot & Sour & the Egg Flower Soups were absolutely best !" 
+    ##  [5] "For service, I give them terrible ."                                  "This place deserves terrible ."                                      
+    ##  [7] " best stars."                                                         "My rating: just below average ."                                     
+    ##  [9] "If there were terrible I would give it terrible ."                    "Rating: extremely below average ."                                   
+    ## [11] "I gave it best because of the sound quality."                         "If it were possible to give them terrible , they'd have it."
 
 ### Ordinal Numbers
 
@@ -1410,27 +1290,19 @@ for ordinal number 1-100 (i.e., 1st - 100th).
     )
     replace_ordinal(x)
 
-    ## [1] "I like the  first  one not the  twenty second  one."
-    ## [2] "For the  hundredth  time stop those 3 things!"      
-    ## [3] "I like the  third  1 not the  twelfth  1."
+    ## [1] "I like the  first  one not the  twenty second  one." "For the  hundredth  time stop those 3 things!"       "I like the  third  1 not the  twelfth  1."
 
     replace_ordinal(x, TRUE)
 
-    ## [1] "I like the  first  one not the  twentysecond  one."
-    ## [2] "For the  hundredth  time stop those 3 things!"     
-    ## [3] "I like the  third  1 not the  twelfth  1."
+    ## [1] "I like the  first  one not the  twentysecond  one." "For the  hundredth  time stop those 3 things!"      "I like the  third  1 not the  twelfth  1."
 
     replace_ordinal(x, remove = TRUE)
 
-    ## [1] "I like the    one not the    one."   
-    ## [2] "For the    time stop those 3 things!"
-    ## [3] "I like the    1 not the    1."
+    ## [1] "I like the    one not the    one."    "For the    time stop those 3 things!" "I like the    1 not the    1."
 
     replace_number(replace_ordinal(x))
 
-    ## [1] "I like the  first  one not the  twenty second  one."
-    ## [2] "For the  hundredth  time stop those three things!"  
-    ## [3] "I like the  third  one not the  twelfth  one."
+    ## [1] "I like the  first  one not the  twenty second  one." "For the  hundredth  time stop those three things!"   "I like the  third  one not the  twelfth  one."
 
 ### Symbols
 
@@ -1445,9 +1317,7 @@ symbols `c("$", "%", "#", "@", "& "w/")` with their word equivalents.
     )
     replace_symbol(x)
 
-    ## [1] "I am  at  Jon's  and  Jim's  with  Marry"
-    ## [2] "I owe  dollar 41 for food"               
-    ## [3] "two is 10 percent  of a  number "
+    ## [1] "I am  at  Jon's  and  Jim's  with  Marry" "I owe  dollar 41 for food"                "two is 10 percent  of a  number "
 
 ### Time Stamps
 
@@ -1465,16 +1335,14 @@ extracted pattern.
     replace_time(x)
 
     ## [1] NA                                                                                       
-    ## [2] "twelve forty seven to \"twelve forty-seven\" and also eight thirty five and two seconds"
-    ## [3] "what about fourteen twenty four and five seconds"                                       
+    ## [2] "twelve forty-seven to \"twelve forty-seven\" and also eight thirty-five and two seconds"
+    ## [3] "what about fourteen twenty-four and five seconds"                                       
     ## [4] "And then 99:99:99?"
 
     ## Normalization: <<TIME>>
     replace_time(x, replacement = '<<TIME>>')
 
-    ## [1] NA                                                    
-    ## [2] "<<TIME>> to \"twelve forty-seven\" and also <<TIME>>"
-    ## [3] "what about <<TIME>>"                                 
+    ## [1] NA                                                     "<<TIME>> to \"twelve forty-seven\" and also <<TIME>>" "what about <<TIME>>"                                 
     ## [4] "And then 99:99:99?"
 
     ## Normalization: hh:mm:ss or hh:mm
@@ -1487,9 +1355,7 @@ extracted pattern.
         }
     )
 
-    ## [1] NA                                                 
-    ## [2] "hh:mm to \"twelve forty-seven\" and also hh:mm:ss"
-    ## [3] "what about hh:mm:ss"                              
+    ## [1] NA                                                  "hh:mm to \"twelve forty-seven\" and also hh:mm:ss" "what about hh:mm:ss"                              
     ## [4] "And then 99:99:99?"
 
     ## Textual: Word version (forced seconds)
@@ -1501,8 +1367,8 @@ extracted pattern.
     )
 
     ## [1] NA                                                                                                     
-    ## [2] "twelve forty seven and 0 seconds to \"twelve forty-seven\" and also eight thirty five and two seconds"
-    ## [3] "what about fourteen twenty four and five seconds"                                                     
+    ## [2] "twelve forty-seven and 0 seconds to \"twelve forty-seven\" and also eight thirty-five and two seconds"
+    ## [3] "what about fourteen twenty-four and five seconds"                                                     
     ## [4] "And then 99:99:99?"
 
 ### Tokens
@@ -1529,21 +1395,21 @@ This example shows a use case for `replace_token`:
     x$text.var <- paste0(x$text.var, sample(c('.', '!', '?'), length(x$text.var), TRUE))
     head(x$text.var)
 
-    ## [1] "Veronika salvations Caterina atomize offerings lustring bullbat expurgating mackinaw moseys Shay indigens!"       
-    ## [2] "Athena unlobed despatched drupelet sambas Marvis imperceptible Margene reside Madonna Enda Joi?"                  
-    ## [3] "letdowns facer Ana Risa reobtains electronics parging pelvis fiver turnoffs warstlers miran."                     
-    ## [4] "nitros elane collop Siobhan rerollers Lorene hemolyzing rewarming vernice protest Blythe belarus!"                
-    ## [5] "Sunny dislodge nastiest jarls Dawne Marni Nikita Cinda Coleen alderman outhear Kendall?"                          
-    ## [6] "Shanita susan fleecers euros ophthalmologist reedbird imbrowned Reba hotnesses flippancies Latonia strangulation."
+    ## [1] "penitent turbary Reita fruitages Larissa Wendi Francis Jimmy unmelted Stacey Dolly marinaras!"                   
+    ## [2] "Darlena Bernie slathered Madalene Everette subletting amalgam vang Alysa detractor Waldo Alberto."               
+    ## [3] "souring extensor pugilist specificity Marchelle spirit Monet immovably sidelined Idella bots Lee."               
+    ## [4] "wager estimated Xiao malorie dynamic optimist Rosena Jocelyn interviewing bromism overexhausting ladyloves."     
+    ## [5] "wedded spiraeas partake coxswained Chia warnings istvan Mona jemidars Gena idolatries brailed?"                  
+    ## [6] "outhowls ballet epitaxy mentality compunction escheating unkennelled Candyce espresso baleen Katelyn disconnect."
 
     head(replace_tokens(x$text.var, nms, 'NAME'))
 
-    ## [1] "NAME salvations NAME atomize offerings lustring bullbat expurgating mackinaw moseys NAME indigens!"         
-    ## [2] "NAME unlobed despatched drupelet sambas NAME imperceptible NAME reside NAME NAME NAME?"                     
-    ## [3] "letdowns facer NAME NAME reobtains electronics parging pelvis fiver turnoffs warstlers miran."              
-    ## [4] "nitros elane collop NAME rerollers NAME hemolyzing rewarming vernice protest NAME belarus!"                 
-    ## [5] "NAME dislodge nastiest jarls NAME NAME NAME NAME NAME alderman outhear NAME?"                               
-    ## [6] "NAME susan fleecers euros ophthalmologist reedbird imbrowned NAME hotnesses flippancies NAME strangulation."
+    ## [1] "penitent turbary NAME fruitages NAME NAME NAME NAME unmelted NAME NAME marinaras!"                         
+    ## [2] "NAME NAME slathered NAME NAME subletting amalgam vang NAME detractor NAME NAME."                           
+    ## [3] "souring extensor pugilist specificity NAME spirit NAME immovably sidelined NAME bots NAME."                
+    ## [4] "wager estimated NAME malorie dynamic optimist NAME NAME interviewing bromism overexhausting ladyloves."    
+    ## [5] "wedded spiraeas partake coxswained NAME warnings istvan NAME jemidars NAME idolatries brailed?"            
+    ## [6] "outhowls ballet epitaxy mentality compunction escheating unkennelled NAME espresso baleen NAME disconnect."
 
 This demonstration shows how fast token replacement can be with
 `replace_token`:
@@ -1552,40 +1418,40 @@ This demonstration shows how fast token replacement can be with
     tic <- Sys.time()
     head(mgsub(x$text.var, nms, "NAME"))
 
-    ## [1] "NAME salvations NAME atomize offerings lustring bullbat expurgating mackinaw moseys NAME indigens!"         
-    ## [2] "NAME unlobed despatched drupelet sambas NAME imperceptible NAME reside NAME NAME NAME?"                     
-    ## [3] "letdowns facer NAME NAME reobtains electronics parging pelvis fiver turnoffs warstlers miran."              
-    ## [4] "nitros elane collop NAME rerollers NAME hemolyzing rewarming vernice protest NAME belarus!"                 
-    ## [5] "NAME dislodge nastiest jarls NAME NAME NAME NAME NAME alderman outhear NAME?"                               
-    ## [6] "NAME susan fleecers euros ophthalmologist reedbird imbrowned NAME hotnesses flippancies NAME strangulation."
+    ## [1] "penitent turbary NAME fruitages NAME NAME NAME NAME unmelted NAME NAME marinaras!"                         
+    ## [2] "NAME NAME slathered NAME NAME subletting amalgam vang NAME detractor NAME NAME."                           
+    ## [3] "souring extensor pugilist specificity NAME spirit NAME immovably sidelined NAME bots NAME."                
+    ## [4] "wager estimated NAME malorie dynamic optimist NAME NAME interviewing bromism overexhausting ladyloves."    
+    ## [5] "wedded spiraeas partake coxswained NAME warnings istvan NAME jemidars NAME idolatries brailed?"            
+    ## [6] "outhowls ballet epitaxy mentality compunction escheating unkennelled NAME espresso baleen NAME disconnect."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 8.055668 secs
+    ## Time difference of 4.642003 secs
 
     ## replace_tokens
     tic <- Sys.time()
     head(replace_tokens(x$text.var, nms, "NAME"))
 
-    ## [1] "NAME salvations NAME atomize offerings lustring bullbat expurgating mackinaw moseys NAME indigens!"         
-    ## [2] "NAME unlobed despatched drupelet sambas NAME imperceptible NAME reside NAME NAME NAME?"                     
-    ## [3] "letdowns facer NAME NAME reobtains electronics parging pelvis fiver turnoffs warstlers miran."              
-    ## [4] "nitros elane collop NAME rerollers NAME hemolyzing rewarming vernice protest NAME belarus!"                 
-    ## [5] "NAME dislodge nastiest jarls NAME NAME NAME NAME NAME alderman outhear NAME?"                               
-    ## [6] "NAME susan fleecers euros ophthalmologist reedbird imbrowned NAME hotnesses flippancies NAME strangulation."
+    ## [1] "penitent turbary NAME fruitages NAME NAME NAME NAME unmelted NAME NAME marinaras!"                         
+    ## [2] "NAME NAME slathered NAME NAME subletting amalgam vang NAME detractor NAME NAME."                           
+    ## [3] "souring extensor pugilist specificity NAME spirit NAME immovably sidelined NAME bots NAME."                
+    ## [4] "wager estimated NAME malorie dynamic optimist NAME NAME interviewing bromism overexhausting ladyloves."    
+    ## [5] "wedded spiraeas partake coxswained NAME warnings istvan NAME jemidars NAME idolatries brailed?"            
+    ## [6] "outhowls ballet epitaxy mentality compunction escheating unkennelled NAME espresso baleen NAME disconnect."
 
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 0.06599712 secs
+    ## Time difference of 0.04703093 secs
 
 Now let’s amp it up with 20x more text data. That’s 50,000 rows of text
-(600,180 words) and 5,493 replacement tokens in 1.4 seconds.
+(600,140 words) and 5,493 replacement tokens in 1.2 seconds.
 
     tic <- Sys.time()
     out <- replace_tokens(rep(x$text.var, 20), nms, "NAME")
     (toc <- Sys.time() - tic)
 
-    ## Time difference of 1.428533 secs
+    ## Time difference of 1.237006 secs
 
 ### White Space
 
@@ -1627,18 +1493,11 @@ replacements.
 
     replace_word_elongation(x)
 
-    ##  [1] "look"             "no!"              "real cool!"      
-    ##  [4] "it's so good"     "fsdfds"           "fdf"             
-    ##  [7] "as"               "ahahahahaha"      "aabbccxccbbaa"   
-    ## [10] "I said hey!"      "I'm like why me?" "what!"           
-    ## [13] NA
+    ##  [1] "look"             "no!"              "real cool!"       "it's so good"     "fsdfds"           "fdf"              "as"               "ahahahahaha"      "aabbccxccbbaa"   
+    ## [10] "I said hey!"      "I'm like why me?" "what!"            NA
 
     replace_word_elongation(x, impart.meaning = TRUE)
 
-    ##  [1] "look"                     "sarcastic!"              
-    ##  [3] "real cool!"               "it's so good"            
-    ##  [5] "fsdfds"                   "fdf"                     
-    ##  [7] "as"                       "ahahahahaha"             
-    ##  [9] "aabbccxccbbaa"            "I said hey sexy!"        
-    ## [11] "I'm like frustration me?" "what!"                   
+    ##  [1] "look"                     "sarcastic!"               "real cool!"               "it's so good"             "fsdfds"                   "fdf"                     
+    ##  [7] "as"                       "ahahahahaha"              "aabbccxccbbaa"            "I said hey sexy!"         "I'm like frustration me?" "what!"                   
     ## [13] NA
