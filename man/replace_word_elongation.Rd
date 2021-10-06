@@ -26,7 +26,7 @@ be to be more sexy (e.g., "Heyyyy there").  Other times it may be used for
 emphasis (e.g., "This is so gooood").  This function uses an augmented form
 of Armstrong & Fogarty's (2007) algorithm.  The algorithm first attempts to
 replace the elongation with known semantic replacements (optional; default is
-\code{FALSE}).  After this the algorithm locates all places were the same 
+\code{FALSE}).  After this the algorithm locates all places where the same 
 letter (case insensitive) appears 3 times consecutively.  These elements are
 then further processed.  The matches are replaced via \code{fgsub} by first
 taking the elongation to it's canonical form (drop all > 1 consecutive 
