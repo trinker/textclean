@@ -21,7 +21,7 @@
 has_endmark <- function(x, endmarks = c('?', '.', '!'), ...){
     !is.na(x) & grepl(
         sprintf('[%s]\\s*$', paste(endmarks, collapse = "")), 
-        x, 
+        x, perl = TRUE, 
         ...
     )
 }

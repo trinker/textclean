@@ -49,7 +49,7 @@ characteristics of small business information systems. Proceedings of the
 2011 Conference on Empirical Methods in Natural Language Processing (pp. 
 562-570). Edinburgh, Scotland. Retrieved from 
 http://www.aclweb.org/anthology/D11-1052 \cr \cr
-\url{http://storage.googleapis.com/books/ngrams/books/datasetsv2.html} \cr \cr
+\url{https://storage.googleapis.com/books/ngrams/books/datasetsv2.html} \cr \cr
 \url{https://www.theatlantic.com/magazine/archive/2013/03/dragging-it-out/309220} \cr \cr
 \url{https://english.stackexchange.com/questions/189517/is-there-a-name-term-for-multiplied-vowels}
 }

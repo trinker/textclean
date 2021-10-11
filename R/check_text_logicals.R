@@ -326,7 +326,7 @@ contraction <- function(x){
             "([a-z]'(nt|t|ve|d|ll|m|re))|('(cause|tis|twas))|(\\b(he|how|it|",
             "let|she|that|there|what|when|where|who|why)'s)"
         ),
-        x, ignore.case = TRUE
+        x, ignore.case = TRUE, perl = TRUE
     )
 }
 #contraction(c('jon\'s a good man', "'cause I want to", '4was\'nt', 'the dog', 
@@ -337,7 +337,7 @@ date <- qr2fun('rm_date')
 
 ## digits
 digit <- function(x) {
-    grepl('\\d', x)    
+    grepl('\\d', x, perl = TRUE)    
 }
 
 ## email addresses
@@ -350,12 +350,12 @@ emoticon <- qr2fun('rm_emoticon')
 ## just white space
 empty <- function(x) {
     #any(grepl("^\\s*$", stats::na.omit(x)))
-    grepl("^\\s*$", x)
+    grepl("^\\s*$", x, perl = TRUE)
 }
 
 ## are there escaped backslashes
 escaped <- function(x) {
-    grepl("[\\\\]", x) & !grepl("\\\"|\\\'|\\\`", x)
+    grepl("[\\\\]", x) & !grepl("\\\"|\\\'|\\\`", x, perl = TRUE)
 }
 
 
@@ -366,7 +366,7 @@ hash <- qr2fun('rm_hash')
 ## contains html
 html <- function(x) {
     pat <- paste0("<[^>]+>|", paste(html_symbols[['html']], collapse ="|"))
-    grepl(pat, x)
+    grepl(pat, x, perl = TRUE)
 }
 
 ## incomplete sentences usually indicated by 2-4 enmarks that are 
@@ -376,12 +376,12 @@ incomplete <- function(x) {
         "\\?*\\?[.]+|[.?!]*\\? [.][.?!]+|[.?!]*\\. [.?!]+|[.?!]+\\. [.?!]*|",
         "[.?!]+\\.[.?!]*|[.?!]*\\.[.?!]+"
     )
-    grepl(pat, x)
+    grepl(pat, x, perl = TRUE)
 }
    
 ## contains kerning
 kern <- function(x) {
-   grepl('(([A-Z]\\s+){2,}[A-Z])', x)
+   grepl('(([A-Z]\\s+){2,}[A-Z])', x, perl = TRUE)
 } 
 
 ## check if something is a list of vectors
@@ -419,7 +419,7 @@ misspelled <- function(x){
 
 ## Does it have no letters
 no_alpha <- function(x) {
-    !is.na(x) & !grepl("[a-zA-Z]", x)
+    !is.na(x) & !grepl("[a-zA-Z]", x, perl = TRUE)
 }
 
 
@@ -430,14 +430,14 @@ no_endmark <- function(x) {
 
 ## is comma with no space
 no_space_after_comma <- function(x) {
-    grepl("(,)([^ ])", x)
+    grepl("(,)([^ ])", x, perl = TRUE)
 }
 
 
 
 ## are there any non ascii characters
 non_ascii <- function(x) {
-    grepl("[^ -~]", x) & !is.na(x) & !grepl("^\\s*$", x)
+    grepl("[^ -~]", x, perl = TRUE) & !is.na(x) & !grepl("^\\s*$", x, perl = TRUE)
 }
 
 ## not character

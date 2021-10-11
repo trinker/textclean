@@ -22,7 +22,7 @@ make_plural <- function (x, keep.original = FALSE,
     hits <- match(tolower(x), tolower(irregular[[1]]))
     
     ends <- "(sh?|x|z|ch)$"
-    pluralify <- ifelse(grepl(ends, x), "es", "s")
+    pluralify <- ifelse(grepl(ends, x, perl = TRUE), "es", "s")
     out <- gsub("ys$", "ies", paste0(x, pluralify))
     out[which(!is.na(hits))] <- irregular[[2]][hits[which(!is.na(hits))]]
     

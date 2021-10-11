@@ -37,8 +37,8 @@ replace_money <- function(x, pattern = '(-?)([$])([0-9,]+)(\\.\\d{2})?',
 
 replace_money_fun <- function(x, decimal = ' and '){
 
-    sign <- ifelse(grepl('^-', x), 'negative ', '')
-    if (grepl('\\.', x)) {
+    sign <- ifelse(grepl('^-', x, perl = TRUE), 'negative ', '')
+    if (grepl('\\.', x, perl = TRUE)) {
         number <- replace_number(
             gsub(
                 '\\.', 

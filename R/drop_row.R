@@ -79,7 +79,7 @@ drop_empty_row <- function(dataframe) {
     x <- apply(dataframe, 1, function(x) {
         paste(stats::na.omit(x), collapse = "")
     })
-    return(dataframe[!grepl("^\\s*$", x),  ,drop = FALSE] )
+    return(dataframe[!grepl("^\\s*$", x, perl = TRUE),  ,drop = FALSE] )
 }
 
 

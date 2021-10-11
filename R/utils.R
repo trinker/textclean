@@ -236,7 +236,7 @@ drop_sci_note <- function(x, ...){
 
     x <- as.character(as.numeric(x))
 
-    locs <- grepl('e\\+', x)
+    locs <- grepl('e\\+', x, perl = TRUE)
 
     x[locs] <- unlist(Map(function(b, e) {
 

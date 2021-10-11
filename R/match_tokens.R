@@ -23,7 +23,7 @@ match_tokens <- function(x, pattern, ignore.case = TRUE, ...){
     y <- rm_na(unique(unlist(textshape::split_token(x, lower = ignore.case))))
     if (isTRUE(ignore.case)) pattern <- tolower(pattern)
     
-    y[grepl(paste(paste0('(', pattern, ')'), collapse = '|'), y)]
+    y[grepl(paste(paste0('(', pattern, ')'), collapse = '|'), y, perl = TRUE)]
     
 }
 

@@ -110,8 +110,8 @@ replace_number  <- function(x, num.paste = FALSE, remove = FALSE, ...) {
     num_df[['den']][is.na(num_df[['den']])] <- ""
     num_df[['int']] <- eng(num_df[['integer']], ...)
     
-    is_decimal <- grepl("\\.", num_df[[1]])  
-    not_integer_decimal <- !grepl('\\d\\.', num_df[[1]])
+    is_decimal <- grepl("\\.", num_df[[1]], perl = TRUE)  
+    not_integer_decimal <- !grepl('\\d\\.', num_df[[1]], perl = TRUE)
     
     num_df[['int']][is_decimal & not_integer_decimal] <- ""
     
