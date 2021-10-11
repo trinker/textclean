@@ -21,24 +21,24 @@
 #' ) %>%
 #' mutate_at(vars(ends_with('_date')), fix_mdyyyy)
 #' }
-fix_mdyyyy <- function(x){
+fix_mdyyyy <- function(x, ...){
     UseMethod('fix_mdyyyy')
 } 
 
 
 #' @export
 #' @method fix_mdyyyy date
-fix_mdyyyy.date <- function(x){
+fix_mdyyyy.date <- function(x, ...){
     x
 } 
 
 #' @export
 #' @method fix_mdyyyy default
-fix_mdyyyy.default <- function(x){
+fix_mdyyyy.default <- function(x, ...){
     as.Date(fix_mdyyyy_character(x), format = '%Y-%m-%d')
 } 
 
-fix_mdyyyy_character <- function(x){
+fix_mdyyyy_character <- function(x, ...){
     gsub(
         '(^\\d{2})(?:/)(\\d{2})(?:/)(\\d{4})', 
         '\\3-\\1-\\2', 

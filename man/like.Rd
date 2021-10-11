@@ -2,9 +2,18 @@
 % Please edit documentation in R/like.R
 \name{\%like\%}
 \alias{\%like\%}
+\alias{\%LIKE\%}
+\alias{\%slike\%}
+\alias{\%SLIKE\%}
 \title{SQL Style LIKE}
 \usage{
 var \%like\% pattern
+
+var \%LIKE\% pattern
+
+var \%slike\% pattern
+
+var \%SLIKE\% pattern
 }
 \arguments{
 \item{var}{A variable/column.}

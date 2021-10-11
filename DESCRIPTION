@@ -20,7 +20,8 @@ Imports: data.table, english(>= 1.0-2), glue (>= 1.3.0), lexicon (>= 1.0.0), mgs
 Suggests: hunspell, testthat
 License: GPL-2
 LazyData: TRUE
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.2
+Encoding: UTF-8
 URL: https://github.com/trinker/textclean
 BugReports: https://github.com/trinker/textclean/issues
 Collate: 
@@ -33,8 +34,6 @@ Collate:
     'drop_element.R'
     'drop_row.R'
     'fgsub.R'
-    'filter_element.R'
-    'filter_row.R'
     'fix_mdyyyy.R'
     'glue-reexports.R'
     'has_endmark.R'

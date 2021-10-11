@@ -4,7 +4,7 @@
 \alias{fix_mdyyyy}
 \title{Coerce Character m/d/yyyy to Date}
 \usage{
-fix_mdyyyy(x)
+fix_mdyyyy(x, ...)
 }
 \arguments{
 \item{x}{A character date in the form of m/d/yyyy where m and d can be single 

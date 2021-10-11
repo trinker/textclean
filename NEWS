@@ -25,6 +25,7 @@ BUG FIXES
 
 * `replace_emoticon` replaced emoticon-like substrings within actual words.  
   Spotted thanks to Carolyn Challoner; see issue #46.
+  
 
 NEW FEATURES
 
@@ -48,6 +49,9 @@ IMPROVEMENTS
 
 CHANGES
 
+* `filter_element()` and `filter_row()` have been deprecated for a few years.  
+  They have now been removed.
+  
 
 textclean 0.9.3 
 ----------------------------------------------------------------

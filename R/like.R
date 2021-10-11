@@ -7,6 +7,7 @@
 #' @param var A variable/column.
 #' @param pattern A search pattern.
 #' @export
+#' @rdname like
 #' @examples
 #' state.name[state.name %like% 'or']
 #' state.name[state.name %LIKE% 'or']
@@ -15,13 +16,16 @@
     stringi::stri_detect_regex(var, pattern, case_insensitive = TRUE)
 }
 
+#' @rdname like
 #' @export
 `%LIKE%` <- `%like%`
 
+#' @rdname like
 #' @export
 `%slike%` <- function(var, pattern){
     stringi::stri_detect_regex(var, pattern, case_insensitive = FALSE)
 }
 
+#' @rdname like
 #' @export
 `%SLIKE%` <- `%slike%`
