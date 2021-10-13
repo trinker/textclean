@@ -71,7 +71,9 @@ replace_number  <- function(x, num.paste = FALSE, remove = FALSE, ...) {
 
     ## extract the numbers
     to_replace <- stringi::stri_extract_all_regex(x, num_regex)
-
+    
+    
+# browser()
     ## locations of the number strings
     locs <- which(!sapply2(to_replace, function(x) length(x) == 1 && is.na(x)))
 
@@ -84,7 +86,7 @@ replace_number  <- function(x, num.paste = FALSE, remove = FALSE, ...) {
     ## lengths of the replacements lists so that it can be  
     ## unlisted and then relisted later
     lens <- lengths(replaces)
-
+# browser()
     ## Data frame of the number text.  
     ## This will be disected and put back together
     num_df <- data.frame(
@@ -112,8 +114,8 @@ replace_number  <- function(x, num.paste = FALSE, remove = FALSE, ...) {
     
     is_decimal <- grepl("\\.", num_df[[1]], perl = TRUE)  
     not_integer_decimal <- !grepl('\\d\\.', num_df[[1]], perl = TRUE)
-    
-    num_df[['int']][is_decimal & not_integer_decimal] <- ""
+
+    num_df[['int']][is_decimal & not_integer_decimal] <- ifelse(grepl('^minus', num_df[['int']][is_decimal & not_integer_decimal]), 'minus', "")
     
     num_df[['numerator']][!not_integer_decimal] <- paste(
         'and', num_df[['numerator']][!not_integer_decimal]
@@ -136,7 +138,8 @@ replace_number  <- function(x, num.paste = FALSE, remove = FALSE, ...) {
 }
 
 num_regex <- paste0(
-    "(?<=^| )[-.]*\\d+(?:\\.\\d+)?(?= |\\.?$)|", 
+    "(?<=^| )-?.?\\d+(?:\\d+)?(?= |\\.?$)|", 
+    "(?<=^| )-?\\d+(?:\\.\\d+)?(?= |\\.?$)|",
     "\\d+(?:,\\d{3})+(\\.\\d+)*"
 )
 
@@ -153,7 +156,5 @@ eng <- function(x, ...) as.character(english::as.english(x, ...))
 as_ordinal <- function(x, ...){
     english::ordinal(x)
 }
-
-
 
 

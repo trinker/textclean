@@ -25,7 +25,9 @@ BUG FIXES
 
 * `replace_emoticon` replaced emoticon-like substrings within actual words.  
   Spotted thanks to Carolyn Challoner; see issue #46.
-  
+
+* `replace_number` failed if the number pattern contained two leading decimals 
+  or hyphens.  Spotted thanks to Stefano De Sabbata; see issue #60.
 
 NEW FEATURES
 
@@ -47,6 +49,9 @@ IMPROVEMENTS
 * `replace_html` pics up the ability to replace "&laquo;" & "&raquo;" with ASCII
   equivalents "<<" & ">>".  Suggested by Ilya Shutov; see issue #48.
 
+* All internal calls to `grepl()` now have `perl = TRUE` added as this is 
+  generally a speed up. Suggested by Kyle Haynes (see #51).
+  
 CHANGES
 
 * `filter_element()` and `filter_row()` have been deprecated for a few years.  

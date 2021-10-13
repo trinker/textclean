@@ -24,26 +24,39 @@ textclean 0.9.4 -
 **BUG FIXES**
 
 * `replace_emoticon` replaced emoticon-like substrings within actual words.  
-  Spotted thanks to Carolyn Challoner; see <a href="https://github.com/trinker/textclean/issues/46">issue #46</a>.
+  Spotted thanks to Carolyn Challoner; see <a href="https://github.com/trinker/textclean/issues/46">issue <a href="https://github.com/trinker/textclean/issues/46">#46</a></a>.
+
+* `replace_number` failed if the number pattern contained two leading decimals 
+  or hyphens.  Spotted thanks to Stefano De Sabbata; see <a href="https://github.com/trinker/textclean/issues/60">issue <a href="https://github.com/trinker/textclean/issues/60">#60</a></a>.
 
 **NEW FEATURES**
 
 * `replace_misspelling` added as a way to replace misspelled words with their 
   most likely replacement using **hunspell** in the backend.  Suggested by Surin
-  Space; see <a href="https://github.com/trinker/textclean/issues/39">issue #39</a>.
+  Space; see <a href="https://github.com/trinker/textclean/issues/39">issue <a href="https://github.com/trinker/textclean/issues/39">#39</a></a>.
   
 * `as_ordinal` added as a convenience wrapper for `english::ordinal` that 
   takes integers and converts them to ordinal form.
+  
+* `%like%` added as an binary operator similar to SQL's LIKE.
 
 **MINOR FEATURES**
+
+* `fix_mdyyyy` added to correct dates in the form of m/d/yyyy to yyyy-mm-dd.
 
 **IMPROVEMENTS**
 
 * `replace_html` pics up the ability to replace "&laquo;" & "&raquo;" with ASCII
-  equivalents "&lt;&lt;" & "&gt;&gt;".  Suggested by Ilya Shutov; see <a href="https://github.com/trinker/textclean/issues/48">issue #48</a>.
+  equivalents "&lt;&lt;" & "&gt;&gt;".  Suggested by Ilya Shutov; see <a href="https://github.com/trinker/textclean/issues/48">issue <a href="https://github.com/trinker/textclean/issues/48">#48</a></a>.
 
+* All internal calls to `grepl()` now have `perl = TRUE` added as this is 
+  generally a speed up. Suggested by Kyle Haynes (see <a href="https://github.com/trinker/textclean/issues/51">#51</a>).
+  
 **CHANGES**
 
+* `filter_element()` and `filter_row()` have been deprecated for a few years.  
+  They have now been removed.
+  
 
 textclean 0.9.3 
 ----------------------------------------------------------------
@@ -63,7 +76,7 @@ textclean 0.8.0 - 0.9.2
   means the extracted string was used as a search and might be found in places
   other than the original location (e.g., a leading boundary in '^T' replaced
   with '__' may have led to '__he __itle' rather than '__he Title' as expected
-  in the string 'The Title').  See #35 for details.  The fix will add some time 
+  in the string 'The Title').  See <a href="https://github.com/trinker/textclean/issues/35">#35</a> for details.  The fix will add some time 
   to the computation but is safer.
 
 **NEW FEATURES**
@@ -86,7 +99,7 @@ textclean 0.8.0 - 0.9.2
 
 * `replace_non_ascii` did not replace all non-ASCII characters.  This has been
   fixed by an explicit replacement of '[^ -~]+' which are all non-ASCII characters.
-  See <a href="https://github.com/trinker/textclean/issues/34">issue #34</a> for details.
+  See <a href="https://github.com/trinker/textclean/issues/34">issue <a href="https://github.com/trinker/textclean/issues/34">#34</a></a> for details.
 
 
 
@@ -190,7 +203,7 @@ textclean 0.4.0 - 0.5.1
   non-ASCII characters to ASCII format.
   
 * `check_text` now checks for HTML characters/tags.  Thanks to @Peter Gensler
-  for suggesting this (see <a href="https://github.com/trinker/textclean/issues/15">issue #15</a>). 
+  for suggesting this (see <a href="https://github.com/trinker/textclean/issues/15">issue <a href="https://github.com/trinker/textclean/issues/15">#15</a></a>). 
 
 **CHANGES**
 

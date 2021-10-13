@@ -1,10 +1,10 @@
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
-developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active)
+developed.](https://www.repostatus.org/badges/0.1.0/active.svg)](https://www.repostatus.org/#active)
 [![Build
 Status](https://travis-ci.org/trinker/textclean.svg?branch=master)](https://travis-ci.org/trinker/textclean)
 [![Coverage
-Status](https://coveralls.io/repos/trinker/textclean/badge.svg?branch=master)](https://coveralls.io/r/trinker/textclean?branch=master)
+Status](https://coveralls.io/repos/trinker/textclean/badge.svg?branch=master)](https://coveralls.io/github/trinker/textclean)
 [![](https://cranlogs.r-pkg.org/badges/textclean)](https://cran.r-project.org/package=textclean)
 
 ![](tools/textclean_logo/r_textclean.png)

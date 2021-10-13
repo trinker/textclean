@@ -21,7 +21,9 @@ var \%SLIKE\% pattern
 \item{pattern}{A search pattern.}
 }
 \description{
-
+Use like as a SQL-esque opertator for pattern matching.  \code{\%like\%} is
+case insensitive while \code{\%slike\%} is case sensitive.  This is most useful 
+in a \code{dplyr::filter}.
 }
 \examples{
 state.name[state.name \%like\% 'or']

@@ -9,7 +9,7 @@
 #' @param \ldots ignored.
 #' @return returns a vector of text with begin/end of string to/from character removed.
 #' @author Josh O'Brien and Tyler Rinker <tyler.rinker@@gmail.com>.
-#' @references \url{http://stackoverflow.com/q/15909626/1000343}
+#' @references \url{https://stackoverflow.com/q/15909626/1000343}
 #' @rdname replace_to
 #' @export
 #' @examples

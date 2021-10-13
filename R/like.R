@@ -1,7 +1,7 @@
 #' SQL Style LIKE
 #' 
-#' Use like as a SQL-esque opertator for pattern matching.  \code{%like%} is
-#' case insensitive while \code{%slike%} is case sensitive.  This is most useful 
+#' Use like as a SQL-esque opertator for pattern matching.  \code{\%like\%} is
+#' case insensitive while \code{\%slike\%} is case sensitive.  This is most useful 
 #' in a \code{dplyr::filter}.
 #' 
 #' @param var A variable/column.

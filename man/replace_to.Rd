@@ -57,7 +57,7 @@ replace_to(x4, "_", 1)
 }
 }
 \references{
-\url{http://stackoverflow.com/q/15909626/1000343}
+\url{https://stackoverflow.com/q/15909626/1000343}
 }
 \author{
 Josh O'Brien and Tyler Rinker <tyler.rinker@gmail.com>.
