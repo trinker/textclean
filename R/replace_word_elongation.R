@@ -22,8 +22,8 @@
 #' known elongation semantics and replacements).
 #' @param elongation.pattern The elongation pattern to search for.  The default
 #' only considers a repeat of \code{'[A-Za-z]'} within a "word" that is bounded
-#' by a word boundary or the beginning or end of the string and contained only
-#' \code{'\\w'} characters.  This means "words" with non-ascii characters will 
+#' by a word boundary or the beginning or end of the string and contains only
+#' \code{'\\w'} characters.  This means "words" with non-ASCII characters will 
 #' not be considered.
 #' @param \ldots ignored.
 #' @return Returns a vector with word elongations replaced.
