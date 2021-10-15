@@ -28,6 +28,13 @@ BUG FIXES
 
 * `replace_number` failed if the number pattern contained two leading decimals 
   or hyphens.  Spotted thanks to Stefano De Sabbata; see issue #60.
+  
+* `replace_word_elongation` failed for repeating of the same character but of
+  different case (e.g., `replace_word_elongation("Ooo")` resulted in `NA`.  This
+  has been corrected.  Additionally, the `elongation.pattern` defined as 
+  `"(?i)(^|\\b)\\w*([a-z])(\\1{2,})\\w*($|\\b)"` has been moved interally, to
+  a parameter, allowing the user to alter this pattern if desired.  Spotted 
+  thanks to Stefano De Sabbata; see issue #59.
 
 NEW FEATURES
 

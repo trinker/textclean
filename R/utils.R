@@ -163,7 +163,6 @@ to_byte <- function(x){
     
     mgsub(x, reps, freps)
 
-
 }
 
 

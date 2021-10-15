@@ -20,6 +20,11 @@
 #' @param impart.meaning logical.  If \code{TRUE}, known elongation semantics
 #' are used as replacements (see \code{textclean:::meaning_elongations} for 
 #' known elongation semantics and replacements).
+#' @param elongation.pattern The elongation pattern to search for.  The default
+#' only considers a repeat of \code{'[A-Za-z]'} within a "word" that is bounded
+#' by a word boundary or the beginning or end of the string and contained only
+#' \code{'\\w'} characters.  This means "words" with non-ascii characters will 
+#' not be considered.
 #' @param \ldots ignored.
 #' @return Returns a vector with word elongations replaced.
 #' @references
@@ -39,7 +44,8 @@
 #' 
 #' replace_word_elongation(x)
 #' replace_word_elongation(x, impart.meaning = TRUE)
-replace_word_elongation <- function(x, impart.meaning = FALSE, ...){
+replace_word_elongation <- function(x, impart.meaning = FALSE, 
+    elongation.pattern = "(?i)(^|\\b)\\w*([a-z])(\\1{2,})\\w*($|\\b)", ...){
 
     ## replace with meaningful
     if (isTRUE(impart.meaning)){
@@ -48,7 +54,7 @@ replace_word_elongation <- function(x, impart.meaning = FALSE, ...){
     }
 
     ## consider only groupings with a triple letter
-    locs <- stringi::stri_detect_regex(x, elongation_search_pattern, 
+    locs <- stringi::stri_detect_regex(x, elongation.pattern, 
         opts_regex = list(case_insensitive = TRUE))
     
     locs[is.na(locs)] <- FALSE
@@ -57,16 +63,23 @@ replace_word_elongation <- function(x, impart.meaning = FALSE, ...){
     
     txt <- x[locs]
     canonicalk <- data.table::data.table(canonical)
-    
+# browser()
     ## replace tripple letter words with most common form or else canonical form
-    x[locs] <- .fgsub(txt, elongation_pattern, function(x, can = canonical){
-    
+    x[locs] <- .fgsub(txt, elongation.pattern, function(x, can = canonical){
+
         y <- gsub("([a-z])(\\1+)", '\\1', tolower(x), perl = TRUE)
     
         z <- data.table::data.table(canonical = y)
         out <- merge(z, can, by = 'canonical')$word
 
-        if (length(out) == 0 || is.na(out)) out <- y
+        if ((length(out) == 0 || is.na(out))) {
+            if (!is.na(y)){
+                out <- y
+            } else {
+                warning(sprintf("Elongation detected for '%s' but could not be replaced", x))
+                out <- x
+            }                
+        } 
         out
         
     })
@@ -94,11 +107,8 @@ meaning_elongations <- data.frame(
     stringsAsFactors = FALSE
 )
 
-elongation_search_pattern <- "(?i)([a-z])(\\1{2,})"
-elongation_pattern <- "\\b\\w*([a-z])(\\1{2,})\\w*\\b"
-
-
-
+#elongation_search_pattern <- "(?i)([a-z])(\\1{2,})"
+#elongation_pattern <- "(?i)(^|\\b)\\w*([a-z])(\\1{2,})\\w*($|\\b)"
 
 
 

@@ -4,7 +4,12 @@
 \alias{replace_word_elongation}
 \title{Replace Word Elongations}
 \usage{
-replace_word_elongation(x, impart.meaning = FALSE, ...)
+replace_word_elongation(
+  x,
+  impart.meaning = FALSE,
+  elongation.pattern = "(?i)(^|\\\\b)\\\\w*([a-z])(\\\\1{2,})\\\\w*($|\\\\b)",
+  ...
+)
 }
 \arguments{
 \item{x}{The text variable.}
@@ -12,6 +17,12 @@ replace_word_elongation(x, impart.meaning = FALSE, ...)
 \item{impart.meaning}{logical.  If \code{TRUE}, known elongation semantics
 are used as replacements (see \code{textclean:::meaning_elongations} for 
 known elongation semantics and replacements).}
+
+\item{elongation.pattern}{The elongation pattern to search for.  The default
+only considers a repeat of \code{'[A-Za-z]'} within a "word" that is bounded
+by a word boundary or the beginning or end of the string and contained only
+\code{'\\w'} characters.  This means "words" with non-ascii characters will 
+not be considered.}
 
 \item{\ldots}{ignored.}
 }

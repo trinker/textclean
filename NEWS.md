@@ -28,6 +28,13 @@ textclean 0.9.4 -
 
 * `replace_number` failed if the number pattern contained two leading decimals 
   or hyphens.  Spotted thanks to Stefano De Sabbata; see <a href="https://github.com/trinker/textclean/issues/60">issue <a href="https://github.com/trinker/textclean/issues/60">#60</a></a>.
+  
+* `replace_word_elongation` failed for repeating of the same character but of
+  different case (e.g., `replace_word_elongation("Ooo")` resulted in `NA`.  This
+  has been corrected.  Additionally, the `elongation.pattern` defined as 
+  `"(?i)(^|\\b)\\w*([a-z])(\\1{2,})\\w*($|\\b)"` has been moved interally, to
+  a parameter, allowing the user to alter this pattern if desired.  Spotted 
+  thanks to Stefano De Sabbata; see <a href="https://github.com/trinker/textclean/issues/59">issue <a href="https://github.com/trinker/textclean/issues/59">#59</a></a>.
 
 **NEW FEATURES**
 

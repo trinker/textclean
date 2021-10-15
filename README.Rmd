@@ -14,7 +14,7 @@ ver <- gsub(regex, "\\2", desc[loc])
 pacman::p_load_current_gh('trinker/numform')
 verbadge <- sprintf('<a href="https://img.shields.io/badge/Version-%s-orange.svg"><img src="https://img.shields.io/badge/Version-%s-orange.svg" alt="Version"/></a></p>', ver, ver)
 verbadge <- ""
-````
+```
 
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
