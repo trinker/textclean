@@ -20,11 +20,26 @@
 #' @param impart.meaning logical.  If \code{TRUE}, known elongation semantics
 #' are used as replacements (see \code{textclean:::meaning_elongations} for 
 #' known elongation semantics and replacements).
-#' @param elongation.pattern The elongation pattern to search for.  The default
+#' @param elongation.search.pattern The elongation pattern to search for.  The default
 #' only considers a repeat of \code{'[A-Za-z]'} within a "word" that is bounded
 #' by a word boundary or the beginning or end of the string and contains only
 #' \code{'\\w'} characters.  This means "words" with non-ASCII characters will 
 #' not be considered.
+#' @param conservative By default the \code{elongation.search.pattern} will find3 or 
+#' more of the same character in a row after in initial word character as the 
+#' starting boundary to pull out words with 3 or more of the same character in a 
+#' row.  You can choose to replace all letters that appear 3 or more times in a 
+#' row with the single character replacement (conservative) or any letters that 
+#' appear 2 or more times in a row (not conservative).  This is most important in 
+#' words that can contain two of the same letter as the correct spelling that 
+#' would not be found in the canonical lookup table.  For example 'Lookkkkkk!'
+#' is in the lookup table and would be corrected to 'Look!' regardless, while
+#' the workd 'mook' (that is then elongated into the word 'Mookkkkkk') would not 
+#' be found in the lookup table.
+#' @param elongation.pattern The actual pattern used for replacement.  We use a 
+#' search pattern and then this pattern with the assumption that an elongated 
+#' word must have 3 or more letters in a row but often these elongations can 
+#' also contain 2 or more letters in a row as well.
 #' @param \ldots ignored.
 #' @return Returns a vector with word elongations replaced.
 #' @references
@@ -40,12 +55,17 @@
 #' @examples
 #' x <- c('look', 'noooooo!', 'real coooool!', "it's sooo goooood", 'fsdfds', 
 #'     'fdddf', 'as', "aaaahahahahaha", "aabbccxccbbaa", 'I said heyyy!',
-#'     "I'm liiiike whyyyyy me?", "Wwwhhatttt!", NA)
+#'     "I'm liiiike whyyyyy me?", "WwwhhaTttt!", NA)
 #' 
-#' replace_word_elongation(x)
+#' replace_word_elongation(x)                      #Look at "WwwhhaTttt!" as "what!"
+#' replace_word_elongation(x, conservative = TRUE) #Look at "WwwhhaTttt!" as "whhat!"
 #' replace_word_elongation(x, impart.meaning = TRUE)
+#' replace_word_elongation(c('online mookkkkk!', "WwwhhaTttt!"))
+#' replace_word_elongation(c('online mookkkkk!', "WwwhhaTttt!"), conservative = TRUE)
 replace_word_elongation <- function(x, impart.meaning = FALSE, 
-    elongation.pattern = "(?i)(^|\\b)\\w*([a-z])(\\1{2,})\\w*($|\\b)", ...){
+    elongation.search.pattern = "(?i)(?:^|\\b)\\w+([a-z])(\\1{2,})\\w*(?:$|\\b)", 
+    conservative = FALSE, 
+    elongation.pattern = sprintf("([a-z])(\\1{%s,})", as.integer(conservative) + 1), ...){
 
     ## replace with meaningful
     if (isTRUE(impart.meaning)){
@@ -54,7 +74,7 @@ replace_word_elongation <- function(x, impart.meaning = FALSE,
     }
 
     ## consider only groupings with a triple letter
-    locs <- stringi::stri_detect_regex(x, elongation.pattern, 
+    locs <- stringi::stri_detect_regex(x, elongation.search.pattern, 
         opts_regex = list(case_insensitive = TRUE))
     
     locs[is.na(locs)] <- FALSE
@@ -64,10 +84,10 @@ replace_word_elongation <- function(x, impart.meaning = FALSE,
     txt <- x[locs]
     canonicalk <- data.table::data.table(canonical)
 # browser()
-    ## replace tripple letter words with most common form or else canonical form
-    x[locs] <- .fgsub(txt, elongation.pattern, function(x, can = canonical){
+    ## replace triple letter words with most common form or else canonical form
+    x[locs] <- .fgsub(txt, elongation.search.pattern, function(x, can = canonical){
 
-        y <- gsub("([a-z])(\\1+)", '\\1', tolower(x), perl = TRUE)
+        y <- gsub(elongation.pattern, '\\1', tolower(x), perl = TRUE)
     
         z <- data.table::data.table(canonical = y)
         out <- merge(z, can, by = 'canonical')$word
@@ -87,6 +107,8 @@ replace_word_elongation <- function(x, impart.meaning = FALSE,
     x
 
 }
+
+
 
 
 
