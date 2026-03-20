@@ -53,8 +53,8 @@
 #'     fun = function(x) {gsub('0', ' ', x)}
 #' )
 fgsub <- function(x, pattern, fun, ...){
+    hit_id <- pattern_id <- pat <- placeholder <- NULL
 
-    hit_id <- pattern_id <- pat <- NULL
     
     locs <- stringi::stri_detect_regex(x, pattern)
     locs[is.na(locs)] <- FALSE
@@ -73,15 +73,21 @@ fgsub <- function(x, pattern, fun, ...){
     reps <- paste0("textcleanholder", seq_along(pats), "textcleanholder")
     freps <- unlist(lapply(pats, fun))
 
-    pat_key <- data.table::data.table(pat = reps, replacement = freps)
+    pat_key <- data.table::data.table(pat = pats, replacement = freps, placeholder = reps)
+    
+    ## Matches and their corresponding placeholder
+    all_hits <- unlist(hits)
+    
+    ## Maintain order
+    placeholders <- pat_key$placeholder[match(all_hits, pat_key$pat)]
     
     hit_key <- data.table::data.table(
         hit_id = rep(seq_len(length(h)), h),
-        pat = reps,
+        pat = placeholders,
         pattern_id = unlist(lapply(h, seq_len))
     )
     
-    data.table::setkey(pat_key, pat)
+    data.table::setkey(pat_key, placeholder)
     data.table::setkey(hit_key, pat)
     
     hit_key <- hit_key[pat_key][, 
@@ -91,19 +97,19 @@ fgsub <- function(x, pattern, fun, ...){
     data.table::setorderv(hit_key, cols = c('hit_id', 'pattern_id'))
 
     ## Loop through and replace the first pattern in each element with a unique 
-    ## replacement substring
-    for (i in seq_len(y)) {
+    # replacement substring
+    for (i in seq_len(nrow(hit_key))) {
         
         hkr <- hit_key[i,]
         
-        txt[hkr[, 'hit_id'][[1]]] <- sub(
+        txt[hkr[, 'hit_id'][[1]]] <- stringi::stri_replace_first_regex(
+            txt[hkr[, 'hit_id'][[1]]],
             pattern, 
-            hkr[, 'pat'][[1]], 
-            txt[hkr[, 'hit_id'][[1]]], 
-            perl = TRUE
+            hkr[, 'pat'][[1]]
         )
         
     }
+
 
     ## Because the unique repalcment substrings are so unlikely to have a 
     ## collision, we can use fixed = TRUE and be very quick here
