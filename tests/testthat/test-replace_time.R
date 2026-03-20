@@ -17,4 +17,9 @@ test_that("replace_time works as expected", {
     
     x1 <- "We use a training-validation-test split of 60:20:20 for both datasets."
     expect_equal(replace_time(x1), x1)
+    
+    # Issue #66
+    x2 <- c("01:30", "02:30", "3:30", "01:30", "2:30")
+    expected2 <- c("one thirty", "two thirty", "three thirty", "one thirty", "two thirty")
+    expect_equal(replace_time(x2), expected2)
 })
