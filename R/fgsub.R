@@ -53,8 +53,8 @@
 #'     fun = function(x) {gsub('0', ' ', x)}
 #' )
 fgsub <- function(x, pattern, fun, ...){
+    hit_id <- pattern_id <- pat <- placeholder <- NULL
 
-    hit_id <- pattern_id <- pat <- NULL
     
     locs <- stringi::stri_detect_regex(x, pattern)
     locs[is.na(locs)] <- FALSE
