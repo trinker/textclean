@@ -75,10 +75,10 @@ fgsub <- function(x, pattern, fun, ...){
 
     pat_key <- data.table::data.table(pat = pats, replacement = freps, placeholder = reps)
     
-    ## Create a list of all hits and their corresponding placeholder
+    ## Matches and their corresponding placeholder
     all_hits <- unlist(hits)
     
-    ## Maintain the original order of hits for placeholder assignment
+    ## Maintain order
     placeholders <- pat_key$placeholder[match(all_hits, pat_key$pat)]
     
     hit_key <- data.table::data.table(

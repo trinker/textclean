@@ -6,7 +6,8 @@
 \usage{
 replace_time(
   x,
-  pattern = "(2[0-3]|[01]?[0-9]):([0-5][0-9])[.:]?([0-5]?[0-9])?",
+  pattern =
+    "(?<![:\\\\d])(2[0-3]|[01]?[0-9]):([0-5][0-9])(?:[.:](\\\\d{1,2}))?(?![:\\\\d])",
   replacement = NULL,
   ...
 )
@@ -67,4 +68,5 @@ replace_time(x, replacement = function(y){
         glue_collapse(z, ':')
     }
 )
+
 }
