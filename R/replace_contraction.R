@@ -26,7 +26,7 @@ function(x, contraction.key = lexicon::key_contractions, ignore.case=TRUE,
     ...) {
 
     mgsub(x, contraction.key[[1]], contraction.key[[2]], 
-        fixed = FALSE, ignore.case=TRUE)
+        fixed = FALSE, ignore.case = ignore.case)
 
 }
 
