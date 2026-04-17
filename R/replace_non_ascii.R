@@ -35,7 +35,7 @@ replace_non_ascii <- function (x, replacement = '',
     remove.nonconverted = TRUE, ...) {
     
     x <- replace_curly_quote(x)
-    x <- stringi::stri_trans_general(x, "latin-ascii")
+    x <- stringi::stri_trans_general(x, "Any-Latin; Latin-ASCII")
     x <- iconv(as.character(x), "", "ASCII", "byte")
     Encoding(x) <- "latin1"
     x <- mgsub(x, ser, reps)
